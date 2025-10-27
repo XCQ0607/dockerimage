@@ -46,8 +46,6 @@ RUN npm install -g pm2
 # 配置 supervisord
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-# 配置环境变量
-COPY .env /fiora/.env
 
 # 暴露端口
 EXPOSE 27017 6379 9200
