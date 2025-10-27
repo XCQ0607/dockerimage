@@ -34,6 +34,9 @@ RUN apt-get install -y nodejs
 # 安装 Yarn
 RUN npm install -g yarn
 
+# 安装 git
+RUN apt-get update && apt-get install -y git --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 # 克隆并构建 Fiora
 RUN git clone https://github.com/yinxin630/fiora.git /fiora
 WORKDIR /fiora
