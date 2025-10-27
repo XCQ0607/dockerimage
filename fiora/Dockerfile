@@ -1,30 +1,43 @@
-# 使用官方 Fiora 镜像作为基础
-FROM suisuijiang/fiora
+FROM ubuntu:24.04
+
+# 安装基础工具、Node.js、Yarn、MongoDB、Redis、supervisord
+RUN apt-get update && apt-get install -y \
+    curl wget gnupg lsb-release build-essential \
+    ca-certificates sudo git supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装 Node.js v14 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn pm2
+
+# 安装 MongoDB
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | apt-key add - \
+    && echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list \
+    && apt-get update \
+    && apt-get install -y mongodb-org \
+    && mkdir -p /data/db
 
 # 安装 Redis
-RUN apt-get update && apt-get install -y redis-server && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y redis-server
 
-# 设置生产环境
-ENV NODE_ENV=production
+# 创建 Fiora 工作目录
+WORKDIR /app
 
-# MongoDB Atlas 云数据库连接（替换成你的账号密码）
-ENV Database=mongodb+srv://xcq0607:wCaDvQ3bsqY95VlS@cluster0.lfjwbif.mongodb.net/fiora
+# 克隆 Fiora 仓库
+RUN git clone -b master https://github.com/yinxin630/fiora.git .
 
-# Redis 本地配置
-ENV REDIS_HOST=127.0.0.1
-ENV REDIS_PORT=6379
-ENV REDIS_PASSWORD=
-ENV REDIS_TLS=false
+# 安装依赖并构建客户端
+RUN yarn install \
+    && yarn build:web
 
-# 暴露 Fiora 端口
-EXPOSE 9200
+# 配置环境变量
+RUN echo "JwtSecret=SuperSecretFioraToken" > .env2
 
-# 使用 supervisord 同时启动 Redis 和 Fiora
-RUN apt-get update && apt-get install -y supervisor && rm -rf /var/lib/apt/lists/*
-
-# 添加 supervisord 配置文件
-RUN mkdir -p /etc/supervisor/conf.d
+# 拷贝 supervisord 配置和启动脚本
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# 启动 supervisord
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# 容器启动
+CMD ["/entrypoint.sh"]
