@@ -1,43 +1,56 @@
-FROM ubuntu:24.04
+# 基础镜像
+FROM ubuntu:20.04
 
-# 安装基础工具、Node.js、Yarn、MongoDB、Redis、supervisord
+# 设置环境变量
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 安装必需的工具和依赖
 RUN apt-get update && apt-get install -y \
-    curl wget gnupg lsb-release build-essential \
-    ca-certificates sudo git supervisor \
+    curl \
+    gnupg2 \
+    ca-certificates \
+    lsb-release \
+    sudo \
+    wget \
+    supervisor \
+    unzip \
+    build-essential \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# 安装 Node.js v14 LTS
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g yarn pm2
-
 # 安装 MongoDB
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | apt-key add - \
-    && echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list \
-    && apt-get update \
-    && apt-get install -y mongodb-org \
-    && mkdir -p /data/db
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
+RUN apt-get update && apt-get install -y mongodb-org
 
 # 安装 Redis
 RUN apt-get update && apt-get install -y redis-server
 
-# 创建 Fiora 工作目录
-WORKDIR /app
+# 安装 Node.js 和 npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
-# 克隆 Fiora 仓库
-RUN git clone -b master https://github.com/yinxin630/fiora.git .
+# 安装 Yarn
+RUN npm install -g yarn
 
-# 安装依赖并构建客户端
-RUN yarn install \
-    && yarn build:web
+# 克隆并构建 Fiora
+RUN git clone https://github.com/yinxin630/fiora.git /fiora
+WORKDIR /fiora
+RUN yarn install
+RUN yarn build:web
+
+# 安装 pm2
+RUN npm install -g pm2
+
+# 配置 supervisord
+COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # 配置环境变量
-RUN echo "JwtSecret=SuperSecretFioraToken" > .env2
+COPY .env /fiora/.env
 
-# 拷贝 supervisord 配置和启动脚本
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# 暴露端口
+EXPOSE 27017 6379 9200
 
-# 容器启动
-CMD ["/entrypoint.sh"]
+# 启动 supervisord
+CMD ["/usr/bin/supervisord"]
