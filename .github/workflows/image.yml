@@ -1,0 +1,60 @@
+name: Build and Push Multiple Docker Images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set lowercase owner
+        id: repo
+        run: echo "owner_lower=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker images
+        run: |
+          OWNER=${{ steps.repo.outputs.owner_lower }}
+          for dir in */ ; do
+            # 忽略非文件夹
+            if [ ! -f "$dir/Dockerfile" ]; then
+              echo "Skipping $dir, no Dockerfile"
+              continue
+            fi
+
+            FLAG="$dir/build.flag"
+            if [ -f "$FLAG" ]; then
+              echo "Skipping $dir, already built"
+              continue
+            fi
+
+            IMAGE="ghcr.io/$OWNER/${dir%/}:latest"
+            echo "Building and pushing $IMAGE"
+
+            docker build -t $IMAGE "$dir"
+            docker push $IMAGE
+
+            # 创建 flag 文件并 commit 回仓库
+            echo "Built on $(date)" > "$FLAG"
+            git config --local user.name "github-actions"
+            git config --local user.email "github-actions@github.com"
+            git add "$FLAG"
+            git commit -m "Add build flag for $dir"
+            git push
+          done
