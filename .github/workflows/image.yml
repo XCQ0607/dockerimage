@@ -1,4 +1,4 @@
-name: Build and Push Multiple Docker Images
+name: Build and Push Multiple Docker Images with Summaries
 
 on:
   workflow_dispatch:
@@ -31,6 +31,10 @@ jobs:
       - name: Build and push Docker images
         run: |
           OWNER=${{ steps.repo.outputs.owner_lower }}
+          SUMMARY_FILE="docker_build_summaries.md"
+          echo "# Docker Build Summaries" > $SUMMARY_FILE
+          echo "" >> $SUMMARY_FILE
+
           for dir in */ ; do
             # 忽略非文件夹
             if [ ! -f "$dir/Dockerfile" ]; then
@@ -47,35 +51,34 @@ jobs:
             IMAGE="ghcr.io/$OWNER/${dir%/}:latest"
             echo "Building and pushing $IMAGE"
 
-            docker build -t $IMAGE "$dir"
+            START_TIME=$(date +%s)
+            docker build -t $IMAGE "$dir" | tee build.log
+            BUILD_STATUS=${PIPESTATUS[0]}
             docker push $IMAGE
+            END_TIME=$(date +%s)
+            DURATION=$((END_TIME - START_TIME))
+
+            echo "## $IMAGE" >> $SUMMARY_FILE
+            echo "- Directory: $dir" >> $SUMMARY_FILE
+            echo "- Status: $( [ $BUILD_STATUS -eq 0 ] && echo ✅ completed || echo ❌ failed )" >> $SUMMARY_FILE
+            echo "- Duration: ${DURATION}s" >> $SUMMARY_FILE
+            echo "- Logs: " >> $SUMMARY_FILE
+            echo '```' >> $SUMMARY_FILE
+            tail -n 50 build.log >> $SUMMARY_FILE
+            echo '```' >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
 
             # 创建 flag 文件并 commit 回仓库
             echo "Built on $(date)" > "$FLAG"
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
-            git add "$FLAG"
-            git commit -m "Add build flag for $dir"
+            git add "$FLAG" "$SUMMARY_FILE"
+            git commit -m "Add build flag and summary for $dir"
             git push
           done
 
-  generate-summary:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Generate Build Summary
-        run: |
-          echo "## Docker Build Summary" >> $GITHUB_STEP_SUMMARY
-          for dir in */ ; do
-            FLAG="$dir/build.flag"
-            if [ -f "$FLAG" ]; then
-              echo "### Image: $dir" >> $GITHUB_STEP_SUMMARY
-              echo "- Directory: $dir" >> $GITHUB_STEP_SUMMARY
-              echo "- Build Status: ✅ Success" >> $GITHUB_STEP_SUMMARY
-              echo "- Build Timestamp: $(cat "$FLAG")" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-            fi
-          done
+      - name: Upload build summary as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-build-summaries
+          path: docker_build_summaries.md
