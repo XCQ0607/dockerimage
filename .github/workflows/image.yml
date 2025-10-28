@@ -1,4 +1,4 @@
-name: Build and Push Multiple Docker Images
+name: 构建&推送
 
 on:
   workflow_dispatch:
@@ -8,53 +8,87 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       packages: write
 
     steps:
-      - name: Checkout repository
+      - name: 检出仓库
         uses: actions/checkout@v4
 
-      - name: Set lowercase owner
+      - name: 设置小写仓库所有者
         id: repo
-        run: echo "owner_lower=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+        run: |
+          echo "owner_lower=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
-      - name: Log in to GHCR
+      - name: 登录 GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB1_TOKEN }}
 
-      - name: Build and push Docker images
+      - name: 构建并推送 Docker 镜像
         run: |
           OWNER=${{ steps.repo.outputs.owner_lower }}
+          mkdir -p build_logs
+          echo "## Docker 构建总结" >> $GITHUB_STEP_SUMMARY
+          
           for dir in */ ; do
-            # 忽略非文件夹
             if [ ! -f "$dir/Dockerfile" ]; then
-              echo "Skipping $dir, no Dockerfile"
+              echo "跳过 $dir，没有 Dockerfile"
               continue
             fi
 
             FLAG="$dir/build.flag"
             if [ -f "$FLAG" ]; then
-              echo "Skipping $dir, already built"
+              echo "跳过 $dir，已构建过"
               continue
             fi
 
             IMAGE="ghcr.io/$OWNER/${dir%/}:latest"
-            echo "Building and pushing $IMAGE"
+            LOG_FILE="build_logs/${dir%/}_build.log"
+            echo "开始构建 $IMAGE ..."
+            START_TIME=$(date +%s)
 
-            docker build -t $IMAGE "$dir"
-            docker push $IMAGE
+            # 构建并记录日志
+            if docker build -t $IMAGE "$dir" &> "$LOG_FILE"; then
+              BUILD_RESULT=0
+            else
+              BUILD_RESULT=1
+            fi
 
-            # 创建 flag 文件并 commit 回仓库
-            echo "Built on $(date)" > "$FLAG"
+            # 推送镜像
+            docker push $IMAGE &>> "$LOG_FILE"
+            END_TIME=$(date +%s)
+            DURATION=$((END_TIME-START_TIME))
+
+            # 写 build flag
+            echo "构建于 $(date)" > "$FLAG"
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
             git add "$FLAG"
-            git commit -m "Add build flag for $dir"
-            git push
+            git commit -m "添加 $dir 构建标记" || echo "无新变化提交"
+            git push || echo "推送失败，可能是并发问题"
+
+            # 输出中文总结到 Actions Summary
+            if [ $BUILD_RESULT -eq 0 ]; then
+              STATUS="✅ 成功"
+            else
+              STATUS="❌ 失败"
+            fi
+
+            echo "### 镜像: $IMAGE" >> $GITHUB_STEP_SUMMARY
+            echo "- 目录: $dir" >> $GITHUB_STEP_SUMMARY
+            echo "- 构建状态: $STATUS" >> $GITHUB_STEP_SUMMARY
+            echo "- 构建耗时: ${DURATION} 秒" >> $GITHUB_STEP_SUMMARY
+            echo "- 镜像标签: latest" >> $GITHUB_STEP_SUMMARY
+            echo "- 构建日志: [下载日志](./build_logs/${dir%/}_build.log)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
           done
+
+      - name: 上传构建日志作为 artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker_build_logs
+          path: build_logs/
