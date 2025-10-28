@@ -4,13 +4,16 @@ FROM ubuntu:20.04
 # 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 安装 ca-certificates 包，确保可以使用 HTTPS
-RUN apt-get update && apt-get install -y ca-certificates
+# 清理 apt 缓存，确保没有旧的镜像源配置
+RUN rm -rf /var/lib/apt/lists/*
 
 # 使用清华大学镜像源
 RUN sed -i 's|http://archive.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
     sed -i 's|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
     apt-get update --fix-missing
+
+# 安装 ca-certificates 包，确保可以使用 HTTPS
+RUN apt-get install -y ca-certificates
 
 # 安装必需的工具和依赖
 RUN apt-get install -y \
