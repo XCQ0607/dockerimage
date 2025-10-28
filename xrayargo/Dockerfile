@@ -26,8 +26,7 @@ ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     # Cloudflared PAT
-    AUGO_PAT= 
-# eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
+    # AUGO_PAT=eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
 
 
 COPY entrypoint.sh /entrypoint.sh
