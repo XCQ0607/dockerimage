@@ -11,4 +11,8 @@ mkdir -p /data/db /data/redis
 chown -R user:user /data/db /data/redis
 chmod 777 /data/db /data/redis
 
+# Make sure the user has write permissions to the log directories
+mkdir -p /tmp
+chmod 777 /tmp
+
 exec "$@"

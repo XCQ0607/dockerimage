@@ -61,10 +61,10 @@ RUN chmod +x /entrypoint.sh; \
     git config --global user.email "fiora@example.com"; \
     git config --global user.name "Fiora Installer"
 
-# Create directories for MongoDB and Redis data
+# Create directories for MongoDB and Redis data with proper permissions
 RUN mkdir -p /data/db /data/redis; \
-    chown -R mongodb:mongodb /data/db; \
-    chown -R redis:redis /data/redis
+    chown -R 1000:0 /data/db /data/redis; \
+    chmod -R 777 /data/db /data/redis
 
 # Create directory for Fiora
 RUN mkdir -p /app/fiora
