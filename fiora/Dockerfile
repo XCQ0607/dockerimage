@@ -1,67 +1,60 @@
-# 使用 Node 14 基础镜像
-FROM node:14-bullseye
+# 使用 Ubuntu 20.04 作为基础镜像
+FROM ubuntu:20.04
 
-# 环境变量设置
-ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Asia/Shanghai \
-    NODE_ENV=production
+# 设置环境变量
+ENV DEBIAN_FRONTEND=noninteractive
 
-# 更新系统并安装必要工具
-RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends \
-    wget curl git supervisor gnupg2 ca-certificates lsb-release \
-    redis-server python3 python3-pip unzip && \
-    rm -rf /var/lib/apt/lists/*
+# 安装必需的工具和依赖
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg2 \
+    ca-certificates \
+    lsb-release \
+    sudo \
+    wget \
+    supervisor \
+    unzip \
+    build-essential \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
-# -------------------------------
-# 安装 MongoDB (Debian bullseye 官方5.0+源)
-# -------------------------------
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add - && \
-    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian bullseye/mongodb-org/5.0 main" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list && \
-    apt-get update && apt-get install -y mongodb-org && \
-    rm -rf /var/lib/apt/lists/*
+# 安装 MongoDB
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
+RUN apt-get update && apt-get install -y mongodb-org
 
-# -------------------------------
-# 创建目录并开放权限
-# -------------------------------
+# 安装 Redis
+RUN apt-get update && apt-get install -y redis-server
+
+# 安装 Node.js 和 npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+# 安装 Yarn
+RUN npm install -g yarn
+
+# 安装 git
+RUN apt-get update && apt-get install -y git --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+# 克隆并构建 Fiora
+RUN git clone https://github.com/yinxin630/fiora.git /fiora
+WORKDIR /fiora
+RUN yarn install
+RUN yarn build:web
+
+# 安装 pm2
+RUN npm install -g pm2
+
+# 创建必需文件夹并设置权限
 RUN mkdir -p /data/db /var/log/supervisor /app /fiora && \
     chmod -R 777 /data /var/log/supervisor /app /fiora
 
-# -------------------------------
-# 克隆并构建 Fiora
-# -------------------------------
-WORKDIR /fiora
-RUN git clone https://github.com/yinxin630/fiora.git . && \
-    npm install -g npm@latest && \ 
-    yarn install --legacy-peer-deps && \ 
-    yarn build:web
+# 配置 supervisord
+COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-# -------------------------------
-# 安装 PM2
-# -------------------------------
-RUN npm install -g pm2
-
-# -------------------------------
-# 预设环境变量（你也可以用 Docker 环境变量覆盖）
-# -------------------------------
-ENV Database="mongodb://localhost:27017/fiora" \
-    RedisHost="127.0.0.1" \
-    JwtSecret="changeme_secret"
-
-# -------------------------------
-# 配置 Supervisor 来管理进程
-# -------------------------------
-RUN echo "[supervisord]\nnodaemon=true\n" > /etc/supervisor/supervisord.conf && \
-    echo "\n[program:mongodb]\ncommand=/usr/bin/mongod --bind_ip_all\nautostart=true\nautorestart=true\npriority=10\n" >> /etc/supervisor/supervisord.conf && \
-    echo "\n[program:redis]\ncommand=/usr/bin/redis-server --bind 0.0.0.0\nautostart=true\nautorestart=true\npriority=20\n" >> /etc/supervisor/supervisord.conf && \
-    echo "\n[program:fiora]\ncommand=pm2 start yarn --name fiora -- start && pm2 logs fiora --no-color\ndirectory=/fiora\nautostart=true\nautorestart=true\npriority=30\n" >> /etc/supervisor/supervisord.conf
-
-# -------------------------------
 # 暴露端口
-# -------------------------------
-EXPOSE 9200 27017 6379
+EXPOSE 27017 6379 9200
 
-# -------------------------------
-# 启动容器
-# -------------------------------
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# 启动 supervisord
+CMD ["/usr/bin/supervisord"]
