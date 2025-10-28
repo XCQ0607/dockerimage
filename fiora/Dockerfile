@@ -1,20 +1,17 @@
-# =========================================================
-# Fiora 一体化容器（Node.js + MongoDB + Redis + PM2）
-# 基础镜像：node:14-bullseye
-# =========================================================
+# 使用 Node 14 基础镜像
+FROM node:14-bullseye
 
-FROM node:18-bullseye
-
+# 环境变量设置
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Asia/Shanghai \
     NODE_ENV=production
 
+# 更新系统并安装必要工具
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends \
     wget curl git supervisor gnupg2 ca-certificates lsb-release \
     redis-server python3 python3-pip unzip && \
     rm -rf /var/lib/apt/lists/*
-
 
 # -------------------------------
 # 安装 MongoDB (Debian bullseye 官方5.0+源)
@@ -35,7 +32,8 @@ RUN mkdir -p /data/db /var/log/supervisor /app /fiora && \
 # -------------------------------
 WORKDIR /fiora
 RUN git clone https://github.com/yinxin630/fiora.git . && \
-    yarn install && \
+    npm install -g npm@latest && \  # 更新 npm 到最新版本
+    yarn install --legacy-peer-deps && \  # 使用 legacy-peer-deps 安装依赖
     yarn build:web
 
 # -------------------------------
@@ -51,7 +49,7 @@ ENV Database="mongodb://localhost:27017/fiora" \
     JwtSecret="changeme_secret"
 
 # -------------------------------
-# 配置 Supervisor
+# 配置 Supervisor 来管理进程
 # -------------------------------
 RUN echo "[supervisord]\nnodaemon=true\n" > /etc/supervisor/supervisord.conf && \
     echo "\n[program:mongodb]\ncommand=/usr/bin/mongod --bind_ip_all\nautostart=true\nautorestart=true\npriority=10\n" >> /etc/supervisor/supervisord.conf && \
