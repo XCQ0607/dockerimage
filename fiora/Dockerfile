@@ -1,10 +1,14 @@
-# 基础镜像
+# ===============================
+# Fiora 全功能一体化容器构建
+# ===============================
 FROM ubuntu:20.04
 
-# 设置环境变量
+# 禁止交互模式
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 安装必需的工具和依赖
+# ===============================
+# 安装系统依赖
+# ===============================
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg2 \
@@ -12,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     sudo \
     wget \
+    git \
     supervisor \
     unzip \
     build-essential \
@@ -19,39 +24,50 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
+# ===============================
 # 安装 MongoDB
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
-RUN apt-get update && apt-get install -y mongodb-org
+# ===============================
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list \
+    && wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add - \
+    && apt-get update && apt-get install -y mongodb-org
 
+# ===============================
 # 安装 Redis
+# ===============================
 RUN apt-get update && apt-get install -y redis-server
 
-# 安装 Node.js 和 npm
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
+# ===============================
+# 安装 Node.js 14.x 和 Yarn
+# ===============================
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn pm2
 
-# 安装 Yarn
-RUN npm install -g yarn
+# ===============================
+# 创建必须的目录并设置权限
+# ===============================
+RUN mkdir -p /data/db /var/log/mongodb /var/log/redis /var/log/fiora /fiora \
+    && chmod -R 777 /data /var/log /fiora
 
-# 安装 git
-RUN apt-get update && apt-get install -y git --no-install-recommends && rm -rf /var/lib/apt/lists/*
-
+# ===============================
 # 克隆并构建 Fiora
-RUN git clone https://github.com/yinxin630/fiora.git /fiora
+# ===============================
 WORKDIR /fiora
-RUN yarn install
-RUN yarn build:web
+RUN git clone https://github.com/yinxin630/fiora.git . \
+    && yarn install \
+    && yarn build:web
 
-# 安装 pm2
-RUN npm install -g pm2
-
-# 配置 supervisord
+# ===============================
+# Supervisor 配置文件
+# ===============================
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-
+# ===============================
 # 暴露端口
+# ===============================
 EXPOSE 27017 6379 9200
 
-# 启动 supervisord
-CMD ["/usr/bin/supervisord"]
+# ===============================
+# 启动所有服务
+# ===============================
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
