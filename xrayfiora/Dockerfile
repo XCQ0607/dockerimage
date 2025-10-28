@@ -29,13 +29,6 @@ ENV TZ=Asia/Shanghai \
     AUGO_PAT=
 # eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
 
-# Fiora environment variables
-ENV Database=mongodb://localhost:27017/fiora \
-    RedisHost=localhost \
-    RedisPort=6379 \
-    Port=9200 \
-    JwtSecret=fiora_jwt_secret
-
 # Install Node.js, MongoDB, Redis and other dependencies
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
