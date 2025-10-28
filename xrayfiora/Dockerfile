@@ -34,15 +34,15 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 gnupg; \
     # Install Node.js
-    curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -; \
+    curl -fsSL https://deb.nodesource.com/setup_14.x | bash -; \
     apt-get install -y nodejs; \
     # Install MongoDB
     wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | apt-key add -; \
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list; \
     apt-get update; \
     apt-get install -y mongodb-org; \
-    # Install Redis
-    apt-get install -y redis; \
+    # Install Redis (without starting the service)
+    apt-get install -y redis-server; \
     # Clean up
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
