@@ -2,12 +2,6 @@
 
 echo "Starting Fiora startup script..."
 
-# Load environment variables from .env file if it exists
-if [ -f "/app/fiora/.env" ]; then
-    echo "Loading environment variables from .env file"
-    export $(cat /app/fiora/.env | xargs)
-fi
-
 echo "Using environment variables:"
 echo "  Database: $Database"
 echo "  RedisHost: $RedisHost"
@@ -42,6 +36,7 @@ cd /app/fiora
 # Check if we need to clone the repository
 if [ ! -f "package.json" ]; then
     echo "Cloning Fiora repository..."
+    rm -rf /app/fiora/*  # Clear directory if needed
     git clone https://github.com/yinxin630/fiora.git .
 fi
 

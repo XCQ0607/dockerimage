@@ -26,7 +26,14 @@ ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     # Cloudflared PAT
-    AUGO_PAT=
+    AUGO_PAT= \
+    # Fiora environment variables
+    Database=mongodb://localhost:27017/fiora \
+    RedisHost=localhost \
+    RedisPort=6379 \
+    Port=9200 \
+    JwtSecret=fiora_jwt_secret
+
 # eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
 
 # Install Node.js, MongoDB, Redis and other dependencies
@@ -66,8 +73,10 @@ RUN mkdir -p /data/db /data/redis; \
     chown -R 1000:0 /data/db /data/redis; \
     chmod -R 777 /data/db /data/redis
 
-# Create directory for Fiora
-RUN mkdir -p /app/fiora
+# Create directory for Fiora with proper permissions
+RUN mkdir -p /app/fiora; \
+    chown -R 1000:0 /app/fiora; \
+    chmod -R 777 /app/fiora
 
 # Set executable permissions for scripts
 RUN chmod +x /app/start-fiora.sh; \
