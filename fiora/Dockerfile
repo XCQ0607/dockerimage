@@ -4,6 +4,9 @@ FROM ubuntu:20.04
 # 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 安装 ca-certificates 包，确保可以使用 HTTPS
+RUN apt-get update && apt-get install -y ca-certificates
+
 # 使用清华大学镜像源
 RUN sed -i 's|http://archive.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
     sed -i 's|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
