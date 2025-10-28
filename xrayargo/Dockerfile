@@ -26,7 +26,7 @@ ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     # Cloudflared PAT
-    AUGO_PAT=
+    AUGO_PAT= 
 
 COPY entrypoint.sh /entrypoint.sh
 COPY app /app
