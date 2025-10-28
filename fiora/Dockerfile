@@ -27,14 +27,9 @@ RUN apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# 安装 ca-certificates，确保可以使用 HTTPS
-RUN apt-get update && apt-get install -y ca-certificates wget gnupg
-
-# 添加 MongoDB 官方源
+# 安装 MongoDB
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add - && \
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-
-# 安装 MongoDB
 RUN apt-get update && apt-get install -y mongodb-org
 
 # 安装 Redis
@@ -62,6 +57,13 @@ RUN npm install -g pm2
 # 创建必需文件夹并设置权限
 RUN mkdir -p /data/db /var/log/supervisor /app /fiora && \
     chmod -R 777 /data /var/log/supervisor /app /fiora
+
+# 配置环境变量，连接 MongoDB 和 Redis
+ENV MONGO_URL=mongodb://localhost:27017/fiora
+ENV REDIS_HOST=localhost
+ENV REDIS_PORT=6379
+# ENV JWT_SECRET=mysecretkey
+ENV MAX_GROUP_COUNT=100
 
 # 配置 supervisord
 COPY supervisord.conf /etc/supervisor/supervisord.conf
