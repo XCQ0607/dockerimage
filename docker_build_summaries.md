@@ -3,7 +3,7 @@
 ## ghcr.io/xcq0607/xrayfiora:latest
 - Directory: xrayfiora/
 - Status: ✅ completed
-- Duration: 192s
+- Duration: 219s
 - Logs: 
 ```
 ```
