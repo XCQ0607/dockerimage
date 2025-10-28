@@ -20,13 +20,15 @@ RUN apt-get update; \
 
 FROM ubuntu:22.04
 
-LABEL org.opencontainers.image.source="https://github.com/vevc/one-node"
+LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
 
 ENV TZ=Asia/Shanghai \
-    UUID=2584b733-9095-4bec-a7d5-62b473540f7a \
-    DOMAIN=vevc-fml.hf.space \
+    UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
+    DOMAIN=web3x-p.hf.space \
     # Cloudflared PAT
-    AUGO_PAT=eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
+    AUGO_PAT= 
+# eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
+
 
 COPY entrypoint.sh /entrypoint.sh
 COPY app /app
