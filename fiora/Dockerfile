@@ -3,21 +3,18 @@
 # 基础镜像：node:14-bullseye
 # =========================================================
 
-FROM node:14-bullseye
+FROM node:18-bullseye
 
-# 设置时区和环境变量
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Asia/Shanghai \
     NODE_ENV=production
 
-# -------------------------------
-# 安装系统依赖
-# -------------------------------
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends \
     wget curl git supervisor gnupg2 ca-certificates lsb-release \
-    redis-server python3 python3-pip unzip \
-    && rm -rf /var/lib/apt/lists/*
+    redis-server python3 python3-pip unzip && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # -------------------------------
 # 安装 MongoDB (Debian bullseye 官方5.0+源)
