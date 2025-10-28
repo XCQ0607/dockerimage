@@ -4,8 +4,13 @@ FROM ubuntu:20.04
 # 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 使用阿里云镜像源（可根据需要更改为其他源）
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://mirrors.aliyun.com/ubuntu|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.ubuntu.com/ubuntu|http://mirrors.aliyun.com/ubuntu|g' /etc/apt/sources.list && \
+    apt-get update --fix-missing
+
 # 安装必需的工具和依赖
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     curl \
     gnupg2 \
     ca-certificates \
