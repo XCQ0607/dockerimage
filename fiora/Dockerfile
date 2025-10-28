@@ -4,9 +4,9 @@ FROM ubuntu:20.04
 # 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 使用阿里云镜像源（可根据需要更改为其他源）
-RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://mirrors.aliyun.com/ubuntu|g' /etc/apt/sources.list && \
-    sed -i 's|http://security.ubuntu.com/ubuntu|http://mirrors.aliyun.com/ubuntu|g' /etc/apt/sources.list && \
+# 使用清华大学镜像源
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list && \
     apt-get update --fix-missing
 
 # 安装必需的工具和依赖
@@ -25,7 +25,7 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 安装 MongoDB
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/mongodb-org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
 RUN apt-get update && apt-get install -y mongodb-org
 
