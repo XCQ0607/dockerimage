@@ -8,8 +8,7 @@ mkdir -p /app/fiora
 
 # Set correct permissions for MongoDB and Redis data directories
 mkdir -p /data/db /data/redis
-chown -R mongodb:mongodb /data/db
-chown -R redis:redis /data/redis
+chown -R user:user /data/db /data/redis
 chmod 777 /data/db /data/redis
 
 exec "$@"
