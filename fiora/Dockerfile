@@ -32,8 +32,8 @@ RUN mkdir -p /data/db /var/log/supervisor /app /fiora && \
 # -------------------------------
 WORKDIR /fiora
 RUN git clone https://github.com/yinxin630/fiora.git . && \
-    npm install -g npm@latest && \  # 更新 npm 到最新版本
-    yarn install --legacy-peer-deps && \  # 使用 legacy-peer-deps 安装依赖
+    npm install -g npm@latest && \ 
+    yarn install --legacy-peer-deps && \ 
     yarn build:web
 
 # -------------------------------
