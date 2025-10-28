@@ -1,9 +1,9 @@
 # Docker Build Summaries
 
-## ghcr.io/xcq0607/fiora:latest
-- Directory: fiora/
+## ghcr.io/xcq0607/xray:latest
+- Directory: xray/
 - Status: ✅ completed
-- Duration: 543s
+- Duration: 42s
 - Logs: 
 ```
 ```
