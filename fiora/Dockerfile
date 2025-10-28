@@ -1,48 +1,72 @@
-# 使用轻量 Node.js 镜像（自带 npm/yarn）
-FROM node:14-buster
+# =========================================================
+# Fiora 一体化容器（Node.js + MongoDB + Redis + PM2）
+# 基础镜像：node:14-bullseye
+# =========================================================
 
-# 切换 apt 源为国内镜像（Debian 版）
-RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list && \
-    sed -i 's|security.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list
+FROM node:14-bullseye
 
-# 环境变量设置
+# 设置时区和环境变量
 ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Asia/Shanghai
+    TZ=Asia/Shanghai \
+    NODE_ENV=production
 
-# 安装系统依赖、MongoDB 和 Redis
-RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
-    wget curl git supervisor redis-server gnupg2 ca-certificates lsb-release python3 python3-pip unzip \
+# -------------------------------
+# 安装系统依赖
+# -------------------------------
+RUN apt-get update --fix-missing && \
+    apt-get install -y --no-install-recommends \
+    wget curl git supervisor gnupg2 ca-certificates lsb-release \
+    redis-server python3 python3-pip unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# 安装 MongoDB（官方二进制版）
-RUN wget -qO - https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2004-5.0.15.tgz && \
-    tar -xzf mongodb-linux-x86_64-ubuntu2004-5.0.15.tgz && \
-    mv mongodb-linux-x86_64-ubuntu2004-5.0.15 /usr/local/mongodb && \
-    rm mongodb-linux-x86_64-ubuntu2004-5.0.15.tgz && \
-    ln -s /usr/local/mongodb/bin/* /usr/local/bin/
+# -------------------------------
+# 安装 MongoDB (Debian bullseye 官方5.0+源)
+# -------------------------------
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add - && \
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian bullseye/mongodb-org/5.0 main" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list && \
+    apt-get update && apt-get install -y mongodb-org && \
+    rm -rf /var/lib/apt/lists/*
 
-# 安装 pm2
+# -------------------------------
+# 创建目录并开放权限
+# -------------------------------
+RUN mkdir -p /data/db /var/log/supervisor /app /fiora && \
+    chmod -R 777 /data /var/log/supervisor /app /fiora
+
+# -------------------------------
+# 克隆并构建 Fiora
+# -------------------------------
+WORKDIR /fiora
+RUN git clone https://github.com/yinxin630/fiora.git . && \
+    yarn install && \
+    yarn build:web
+
+# -------------------------------
+# 安装 PM2
+# -------------------------------
 RUN npm install -g pm2
 
-# 创建必要目录并赋予最高权限
-RUN mkdir -p /data/db /data/logs /var/log/supervisor /fiora && \
-    chmod -R 777 /data /var/log/supervisor /fiora
+# -------------------------------
+# 预设环境变量（你也可以用 Docker 环境变量覆盖）
+# -------------------------------
+ENV Database="mongodb://localhost:27017/fiora" \
+    RedisHost="127.0.0.1" \
+    JwtSecret="changeme_secret"
 
-# 克隆并构建 Fiora
-RUN git clone https://github.com/yinxin630/fiora.git /fiora
-WORKDIR /fiora
+# -------------------------------
+# 配置 Supervisor
+# -------------------------------
+RUN echo "[supervisord]\nnodaemon=true\n" > /etc/supervisor/supervisord.conf && \
+    echo "\n[program:mongodb]\ncommand=/usr/bin/mongod --bind_ip_all\nautostart=true\nautorestart=true\npriority=10\n" >> /etc/supervisor/supervisord.conf && \
+    echo "\n[program:redis]\ncommand=/usr/bin/redis-server --bind 0.0.0.0\nautostart=true\nautorestart=true\npriority=20\n" >> /etc/supervisor/supervisord.conf && \
+    echo "\n[program:fiora]\ncommand=pm2 start yarn --name fiora -- start && pm2 logs fiora --no-color\ndirectory=/fiora\nautostart=true\nautorestart=true\npriority=30\n" >> /etc/supervisor/supervisord.conf
 
-# 安装依赖并构建前端
-RUN yarn install && yarn build:web
-
-# 创建环境变量文件（可自定义 JwtSecret）
-RUN echo "JwtSecret=SuperSecretKey123" > .env
-
-# 拷贝 supervisor 配置
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-
+# -------------------------------
 # 暴露端口
+# -------------------------------
 EXPOSE 9200 27017 6379
 
-# 启动 supervisord
+# -------------------------------
+# 启动容器
+# -------------------------------
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
