@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cd /app/rustdesk-api
+
+# Check if database directory exists, if not create it
+if [ ! -d "./db" ]; then
+    mkdir -p ./db
+    echo "Created db directory"
+    # Set correct permissions (user 1000:0, permissions 777)
+    chown -R 1000:0 ./db
+    chmod -R 777 ./db
+fi
+
+# Check if database file exists, if not copy from backup
+if [ ! -e "./db/db.sqlite3" ]; then
+    if [ -e "./db_bak/db.sqlite3" ]; then
+        cp "./db_bak/db.sqlite3" "./db/db.sqlite3"
+        echo "Initialized database from backup"
+        # Set correct permissions
+        chown 1000:0 ./db/db.sqlite3
+        chmod 777 ./db/db.sqlite3
+    else
+        echo "No database backup found, will create new database"
+    fi
+fi
+
+# Run migrations
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+# Start the server
+python3 manage.py runserver 0.0.0.0:21114
