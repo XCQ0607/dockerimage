@@ -1,0 +1,44 @@
+1.Dockerfile
+a.创建目录文件夹要注意创建用户权限
+如：
+RUN mkdir -p /data/db /data/redis; \
+    chown -R 1000:0 /data/db /data/redis; \
+    chmod -R 777 /data/db /data/redis
+这里创建的目录为用户1000:0，权限为777，所有文件夹都要最高权限和正确的用户组
+b.环境变量在这里配置ENV=
+注意：需要把所有能自定义的变量在这里填写清楚，每个变量要有注释说明其含义以及示例输入，而且要标明该参数是否有默认值(有的话为多少)，是否必填
+如：
+# Database：数据库地址，默认值为mongodb://127.0.0.1:27017/dbname，必填，示例输入：mongodb://database_host:database_port/dbname
+ENV Database=“用户填入数据” \
+# RedisHost：Redis地址，默认值为127.0.0.1，必填，示例输入：x.x.x.x
+    RedisHost=“用户填入数据” \
+    # RedisPort：Redis端口，默认值为6379，必填，示例输入：6379
+    RedisPort=“用户填入数据” \
+    # Port：服务端口，默认值为8080，必填，示例输入：8080
+    Port=“用户填入数据” \
+    # JwtSecret：JWT密钥，默认值为空，必填，示例输入：x.x.x.x
+    JwtSecret=“用户填入数据”
+
+2.supervisord.conf配置文件
+a.记得带上参数user=user
+b.记得带上环境变量environment
+如：environment=Database="%(ENV_Database)s",RedisHost="%(ENV_RedisHost)s",RedisPort="%(ENV_RedisPort)s",Port="%(ENV_Port)s",JwtSecret="%(ENV_JwtSecret)s"
+c.目前supervisord.conf配置文件中已经含有一些项目启动命令，如cloudflared,xray,ttyd等，你要遵循用户需求在dockerfile中增加新项目的安装以及环境变量声明，并根据该应用是什么类型选择合适的启动器
+
+3.启动项目
+a.选择合适的进程启动器/启动守护器+启动参数
+b.现在目前内置supervisord.conf启动器，如果它不行再使用其它进程启动器如systemd，pm2
+c.日志记录
+stdout_logfile=/tmp/xxx.log
+stdout_logfile_maxbytes = 3MB
+stdout_logfile_backups = 2
+d.配置好正确的启动顺序
+1.第一优先级supervisord,cloudflared,xray,ttyd,supercronic等原本在dockerfile中就有的项目
+2.第二优先级用户自定义项目，根据添加项目的依赖关系顺序启动，比如如果有安装数据库项目，则优先启动数据库项目
+e.配置好正确环境变量
+如果新增的项目有很多，互相之间有调用的话，请正确配置好相关变量使得同一个localhost内的所有项目之间能够互联
+如：用户新增项目有一个redis项目，还有一个XXX项目，XXX项目依赖数据库。如果用户说明不使用网络数据库的话，请你配合好redis的相关启动参数并设置好XXX项目中指定的环境变量名如RedisHost,RedisPort,RedisPassword指向内网redis项目
+
+4.新项目加入Dockerfile
+a.在Dockerfile中是否添加新项目的二进制文件的下载看用户需求，如果用户想不更新镜像但是每次安装的服务都是最新的那就把二进制下载放在脚本中，如果不想的话就直接在dockerfile中写好二进制下载的逻辑，这样镜像不更新内部项目就不更新
+b.项目的启动文件或启动脚本和启动conf文件或下载本体二进制文件脚本等放在/app/XXX/目录下，一个项目一个目录
