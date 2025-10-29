@@ -25,9 +25,9 @@ LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
 # Environment variables for all services
 ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
-    DOMAIN=web3x-p.hf.space \
+    DOMAIN=web3x-desk.hf.space \
     # Cloudflared PAT
-    AUGO_PAT= \
+    ARGO_PAT= \
     # RustDesk API Server Settings
     SECRET_KEY=xcq0607 \
     DATABASE_TYPE=MYSQL \
@@ -36,7 +36,7 @@ ENV TZ=Asia/Shanghai \
     MYSQL_USER=xcq06071 \
     MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
     MYSQL_PORT=3307 \
-    CSRF_TRUSTED_ORIGINS= \
+    # CSRF_TRUSTED_ORIGINS= \
     ID_SERVER= \
     DEBUG=False \
     ALLOW_REGISTRATION=True \
