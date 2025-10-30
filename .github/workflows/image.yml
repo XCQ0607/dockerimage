@@ -58,9 +58,9 @@ jobs:
               
               # 检查是否成功获取到时间戳
               if [ -n "$LATEST_FILE_TIMESTAMP" ] && [ -n "$BUILD_FLAG_TIMESTAMP" ]; then
-                # 比较时间戳（需要转换为整数进行比较）
-                LATEST_FILE_TS_INT=$(echo "$LATEST_FILE_TIMESTAMP" | cut -d. -f1)
-                if [ "$LATEST_FILE_TS_INT" -gt "$BUILD_FLAG_TIMESTAMP" ]; then
+                # 使用bc进行浮点数比较
+                TIMESTAMP_COMPARISON=$(echo "$LATEST_FILE_TIMESTAMP > $BUILD_FLAG_TIMESTAMP" | bc -l 2>/dev/null)
+                if [ "$TIMESTAMP_COMPARISON" = "1" ]; then
                   NEEDS_REBUILD=true
                   echo "Found updated files in $dir, will rebuild:"
                   # 列出所有更新的文件
