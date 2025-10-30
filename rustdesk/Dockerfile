@@ -64,10 +64,12 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     # Set timezone
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone; \
-    # Fix pip permission issues
+    # Fix pip permission issues by configuring pip to use user directory
     mkdir -p /home/user/.local; \
     chown -R 1000:0 /home/user/.local; \
-    chmod -R 777 /home/user/.local
+    chmod -R 777 /home/user/.local; \
+    # Create symbolic links for python command
+    ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy binaries from builder stage
 COPY --from=builder /app/xy /usr/local/bin/xy
