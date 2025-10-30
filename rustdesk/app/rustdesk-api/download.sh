@@ -27,8 +27,9 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 # Install Python packages using the global pip directory configured in Dockerfile
+# Using --target to avoid conflicts with pip configuration
 cd /app/rustdesk-api
-pip3 install --no-cache-dir --disable-pip-version-check -r requirements.txt
+pip3 install --no-cache-dir --disable-pip-version-check --target /opt/pip-packages -r requirements.txt
 
 # Create db directory if it doesn't exist
 mkdir -p /app/rustdesk-api/db

@@ -28,6 +28,8 @@ if [ ! -e "./db/db.sqlite3" ]; then
 fi
 
 # Run migrations
+# Ensure environment is properly set before running Python commands
+source /etc/profile
 python3 manage.py makemigrations
 python3 manage.py migrate
 
