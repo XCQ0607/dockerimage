@@ -56,18 +56,24 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # Create directories with correct permissions (user 1000:0, permissions 777)
-    mkdir -p /data/db /data/redis /app/rustdesk-api; \
-    chown -R 1000:0 /data/db /data/redis /app/rustdesk-api; \
-    chmod -R 777 /data/db /data/redis /app/rustdesk-api; \
+    mkdir -p /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
+    chown -R 1000:0 /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
+    chmod -R 777 /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
     # Create user
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     # Set timezone
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone; \
-    # Fix pip permission issues by configuring pip to use user directory
+    # Configure pip to use a dedicated directory for packages to avoid permission issues
     mkdir -p /home/user/.local; \
     chown -R 1000:0 /home/user/.local; \
     chmod -R 777 /home/user/.local; \
+    # Configure global pip directory
+    mkdir -p /opt/pip-packages; \
+    echo "[global]" > /etc/pip.conf; \
+    echo "target = /opt/pip-packages" >> /etc/pip.conf; \
+    # Add pip-packages to Python path
+    echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /etc/profile; \
     # Create symbolic links for python command
     ln -s /usr/bin/python3 /usr/bin/python
 

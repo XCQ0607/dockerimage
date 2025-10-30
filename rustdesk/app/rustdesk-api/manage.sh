@@ -6,6 +6,9 @@
 chown -R 1000:0 /app/rustdesk-api
 chmod -R 777 /app/rustdesk-api
 
+# Source profile to ensure PYTHONPATH is set
+source /etc/profile
+
 # Function to check if rustdesk-api-server is already installed
 check_installation() {
     if [ -d "/app/rustdesk-api" ] && [ -f "/app/rustdesk-api/manage.py" ]; then
@@ -32,10 +35,37 @@ run_rustdesk_api() {
         sed -i 's|./db_bak/db.sqlite3|./db.sqlite3_bak|g' /app/rustdesk-api/run.sh
         sed -i 's|python |python3 |g' /app/rustdesk-api/run.sh
         chmod +x /app/rustdesk-api/run.sh
-        /app/rustdesk-api/run.sh
+        cd /app/rustdesk-api && /app/rustdesk-api/run.sh
     else
-        # Use our own run script
-        /app/rustdesk-api/run.sh
+        # Use our own run approach
+        cd /app/rustdesk-api
+        
+        # Check if database directory exists, if not create it
+        if [ ! -d "./db" ]; then
+            mkdir -p ./db
+            echo "Created db directory"
+            # Set correct permissions (user 1000:0, permissions 777)
+            chown 1000:0 ./db
+            chmod 777 ./db
+        fi
+
+        # Check if database file exists, if not copy from backup
+        if [ ! -e "./db/db.sqlite3" ]; then
+            if [ -e "./db.sqlite3_bak" ]; then
+                cp "./db.sqlite3_bak" "./db/db.sqlite3"
+                echo "Initialized database from backup"
+                # Set correct permissions
+                chown 1000:0 ./db/db.sqlite3
+                chmod 777 ./db/db.sqlite3
+            else
+                echo "No database backup found, will create new database"
+            fi
+        fi
+
+        # Run migrations and start server
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+        python3 manage.py runserver 0.0.0.0:21114
     fi
 }
 

@@ -23,7 +23,7 @@ if ! command -v python3 &> /dev/null; then
     apt-get install -y python3 python3-pip python3-dev default-libmysqlclient-dev build-essential pkg-config
 fi
 
-# Install Python packages
+# Install Python packages using the global pip directory configured in Dockerfile
 cd /app/rustdesk-api
 pip3 install --no-cache-dir --disable-pip-version-check -r requirements.txt
 
@@ -31,8 +31,8 @@ pip3 install --no-cache-dir --disable-pip-version-check -r requirements.txt
 mkdir -p /app/rustdesk-api/db
 
 # Copy database backup if it exists
-if [ -d "./db_bak" ]; then
-    cp -r ./db_bak /app/rustdesk-api/
+if [ -f "./db.sqlite3_bak" ]; then
+    cp ./db.sqlite3_bak /app/rustdesk-api/db/db.sqlite3
 fi
 
 # Set correct permissions for db directory
