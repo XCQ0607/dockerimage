@@ -1,35 +1,40 @@
 # Docker Build Summaries
 
-## 镜像: rustdesk
+## 镜像: fiora
 
 ### 构建信息
-- 目录: rustdesk/
-- 完整镜像名: ghcr.io/xcq0607/rustdesk:latest
-- 构建状态: ✅ 成功
-- 构建耗时: 60s
+- 目录: fiora/
+- 完整镜像名: ghcr.io/xcq0607/fiora:latest
+- 构建状态: ❌ 失败
+- 构建耗时: 2s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/rustdesk:latest
+FROM ghcr.io/xcq0607/fiora:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-rustdesk ghcr.io/xcq0607/rustdesk:latest
+docker run -d --name my-fiora ghcr.io/xcq0607/fiora:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/rustdesk:latest
+docker pull ghcr.io/xcq0607/fiora:latest
 ```
 
 ### 构建日志
 
 ```
+unknown shorthand flag: 'v' in -v
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Run 'docker buildx build --help' for more information
 ```
 
