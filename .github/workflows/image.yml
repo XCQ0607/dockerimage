@@ -52,9 +52,8 @@ jobs:
               echo "No build.flag found for $dir, will rebuild"
             else
               # 检查目录下是否有文件在build.flag之后更新
-              LAST_BUILD_TIME=$(stat -c %Y "$FLAG")
-              # 使用find查找所有在build.flag之后修改的文件
-              UPDATED_FILES=$(find "$dir" -type f -newer "$FLAG" 2>/dev/null)
+              # 使用find递归查找所有文件（包括子目录），排除build.flag自身
+              UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
               if [ -n "$UPDATED_FILES" ]; then
                 NEEDS_REBUILD=true
                 echo "Found updated files in $dir, will rebuild:"
@@ -75,8 +74,8 @@ jobs:
             echo "Building and pushing $IMAGE"
 
             START_TIME=$(date +%s)
-            # 使用 -v 参数增加日志输出，并确保日志被捕获
-            docker build -v -t $IMAGE "$dir" 2>&1 | tee build.log
+            # 使用--progress=plain来增加日志输出
+            docker build --progress=plain -t $IMAGE "$dir" 2>&1 | tee build.log
             BUILD_STATUS=${PIPESTATUS[0]}
             
             # 如果构建成功，则推送镜像
