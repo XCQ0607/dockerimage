@@ -40,13 +40,13 @@ run_rustdesk_server() {
         chmod 777 ./data
     fi
 
-    # Run hbbs and hbbr
-    echo "Starting hbbs..."
-    ./hbbs -c ./data &
+    # Run hbbs and hbbr with proper ports
+    echo "Starting hbbs on port $RUSTDESK_PORT..."
+    ./hbbs -p $RUSTDESK_PORT -c ./data &
     HBBS_PID=$!
     
-    echo "Starting hbbr..."
-    ./hbbr -c ./data &
+    echo "Starting hbbr on port $RUSTDESK_RELAY_PORT..."
+    ./hbbr -p $RUSTDESK_RELAY_PORT -c ./data &
     HBBR_PID=$!
     
     # Wait for processes

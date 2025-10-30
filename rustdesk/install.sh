@@ -65,7 +65,7 @@ true
 SCRIPT_NAME="Install script"
 export SCRIPT_NAME
 # shellcheck source=lib.sh
-source <(curl -sL https://raw.githubusercontent.com/rustdesk/rustdesk-server-pro/main/lib.sh)
+source <(curl -sL https://raw.githubusercontent.com/rustdesk/rustdesk-server/main/lib.sh)
 # see https://github.com/koalaman/shellcheck/wiki/Directive
 unset SCRIPT_NAME
 
@@ -142,7 +142,7 @@ ufw allow 22/tcp
 ufw allow 21116/udp
 
 # Download latest version of RustDesk
-RDLATEST=$(curl https://api.github.com/repos/rustdesk/rustdesk-server-pro/releases/latest -s | grep "tag_name"| awk '{print substr($2, 2, length($2)-3) }')
+RDLATEST=$(curl https://api.github.com/repos/rustdesk/rustdesk-server/releases/latest -s | grep "tag_name"| awk '{print substr($2, 2, length($2)-3) }')
 
 # Download, extract, and move Rustdesk in place
 if [ -n "${ARCH}" ]
@@ -158,7 +158,7 @@ then
             cd "$RUSTDESK_INSTALL_DIR"
         else
             msg_box "It seems like the installation folder wasn't created, we can't continue.
-Please report this to: https://github.com/rustdesk/rustdesk-server-pro/issues"
+Please report this to: https://github.com/rustdesk/rustdesk-server/issues"
             exit 1
         fi
         # Since the name of the actual tar files differs from the output of uname -m we need to rename acutal download file.
@@ -175,7 +175,7 @@ Please report this to: https://github.com/rustdesk/rustdesk-server-pro/issues"
         fi
         ACTUAL_TAR_NAME=${ACTUAL_TAR_NAME}${TLS}
         # Download
-        if ! curl -fSLO --retry 3 https://github.com/rustdesk/rustdesk-server-pro/releases/download/"${RDLATEST}"/rustdesk-server-linux-"${ACTUAL_TAR_NAME}".tar.gz
+        if ! curl -fSLO --retry 3 https://github.com/rustdesk/rustdesk-server/releases/download/"${RDLATEST}"/rustdesk-server-linux-"${ACTUAL_TAR_NAME}".tar.gz
         then
             msg_box "Sorry, the installation package failed to download.
 This might be temporary, so please try to run the installation script again."
@@ -214,7 +214,7 @@ This might be temporary, so please try to run the installation script again."
     fi
 else
     msg_box "Sorry, we can't figure out your distro, this script will now exit.
-Please report this to: https://github.com/rustdesk/rustdesk-server-pro/issues"
+Please report this to: https://github.com/rustdesk/rustdesk-server/issues"
     exit 1
 fi
 

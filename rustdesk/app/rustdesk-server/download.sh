@@ -3,8 +3,8 @@
 # Source profile to ensure environment variables are set
 source /etc/profile
 
-# Download the latest rustdesk-server from GitHub
-echo "Downloading rustdesk-server..."
+# Download the latest rustdesk-server (open source version) from GitHub
+echo "Downloading rustdesk-server (open source version)..."
 cd /tmp
 rm -rf rustdesk-server*
 rm -rf amd64
@@ -26,4 +26,4 @@ chmod -R 777 /app/rustdesk-server
 chmod +x /app/rustdesk-server/hbbs
 chmod +x /app/rustdesk-server/hbbr
 
-echo "rustdesk-server downloaded and installed successfully."
+echo "rustdesk-server (open source version) downloaded and installed successfully."
