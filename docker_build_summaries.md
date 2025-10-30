@@ -1,135 +1,135 @@
 # Docker Build Summaries
 
-## 镜像: xrayfiora
+## 镜像: rustdesk
 
 ### 构建信息
-- 目录: xrayfiora/
-- 完整镜像名: ghcr.io/xcq0607/xrayfiora:latest
+- 目录: rustdesk/
+- 完整镜像名: ghcr.io/xcq0607/rustdesk:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 194s
+- 构建耗时: 57s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/xrayfiora:latest
+FROM ghcr.io/xcq0607/rustdesk:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-xrayfiora ghcr.io/xcq0607/xrayfiora:latest
+docker run -d --name my-rustdesk ghcr.io/xcq0607/rustdesk:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/xrayfiora:latest
+docker pull ghcr.io/xcq0607/rustdesk:latest
 ```
 
 ### 构建日志
 
 ```
-#8 131.9 The following NEW packages will be installed:
-#8 131.9   libatomic1 libjemalloc2 liblua5.1-0 liblzf1 lua-bitop lua-cjson redis-server
-#8 131.9   redis-tools
-#8 132.2 0 upgraded, 8 newly installed, 0 to remove and 1 not upgraded.
-#8 132.2 Need to get 1283 kB of archives.
-#8 132.2 After this operation, 5771 kB of additional disk space will be used.
-#8 132.2 Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libatomic1 amd64 12.3.0-1ubuntu1~22.04.2 [10.4 kB]
-#8 132.3 Get:2 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libjemalloc2 amd64 5.2.1-4ubuntu1 [240 kB]
-#8 132.6 Get:3 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblua5.1-0 amd64 5.1.5-8.1build4 [99.9 kB]
-#8 132.6 Get:4 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblzf1 amd64 3.6-3 [7444 B]
-#8 132.6 Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 lua-bitop amd64 1.0.2-5 [6680 B]
-#8 132.6 Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 lua-cjson amd64 2.1.0+dfsg-2.1 [17.4 kB]
-#8 132.6 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 redis-tools amd64 5:6.0.16-1ubuntu1.1 [856 kB]
-#8 132.7 Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 redis-server amd64 5:6.0.16-1ubuntu1.1 [45.9 kB]
-#8 132.8 debconf: delaying package configuration, since apt-utils is not installed
-#8 132.9 Fetched 1283 kB in 1s (1612 kB/s)
-#8 132.9 Selecting previously unselected package libatomic1:amd64.
-#8 132.9 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 23095 files and directories currently installed.)
-#8 132.9 Preparing to unpack .../0-libatomic1_12.3.0-1ubuntu1~22.04.2_amd64.deb ...
-#8 132.9 Unpacking libatomic1:amd64 (12.3.0-1ubuntu1~22.04.2) ...
-#8 132.9 Selecting previously unselected package libjemalloc2:amd64.
-#8 132.9 Preparing to unpack .../1-libjemalloc2_5.2.1-4ubuntu1_amd64.deb ...
-#8 132.9 Unpacking libjemalloc2:amd64 (5.2.1-4ubuntu1) ...
-#8 132.9 Selecting previously unselected package liblua5.1-0:amd64.
-#8 132.9 Preparing to unpack .../2-liblua5.1-0_5.1.5-8.1build4_amd64.deb ...
-#8 132.9 Unpacking liblua5.1-0:amd64 (5.1.5-8.1build4) ...
-#8 133.0 Selecting previously unselected package liblzf1:amd64.
-#8 133.0 Preparing to unpack .../3-liblzf1_3.6-3_amd64.deb ...
-#8 133.0 Unpacking liblzf1:amd64 (3.6-3) ...
-#8 133.0 Selecting previously unselected package lua-bitop:amd64.
-#8 133.0 Preparing to unpack .../4-lua-bitop_1.0.2-5_amd64.deb ...
-#8 133.0 Unpacking lua-bitop:amd64 (1.0.2-5) ...
-#8 133.0 Selecting previously unselected package lua-cjson:amd64.
-#8 133.0 Preparing to unpack .../5-lua-cjson_2.1.0+dfsg-2.1_amd64.deb ...
-#8 133.0 Unpacking lua-cjson:amd64 (2.1.0+dfsg-2.1) ...
-#8 133.0 Selecting previously unselected package redis-tools.
-#8 133.0 Preparing to unpack .../6-redis-tools_5%3a6.0.16-1ubuntu1.1_amd64.deb ...
-#8 133.0 Unpacking redis-tools (5:6.0.16-1ubuntu1.1) ...
-#8 133.0 Selecting previously unselected package redis-server.
-#8 133.1 Preparing to unpack .../7-redis-server_5%3a6.0.16-1ubuntu1.1_amd64.deb ...
-#8 133.1 Unpacking redis-server (5:6.0.16-1ubuntu1.1) ...
-#8 133.1 Setting up libjemalloc2:amd64 (5.2.1-4ubuntu1) ...
-#8 133.1 Setting up lua-cjson:amd64 (2.1.0+dfsg-2.1) ...
-#8 133.1 Setting up liblzf1:amd64 (3.6-3) ...
-#8 133.1 Setting up libatomic1:amd64 (12.3.0-1ubuntu1~22.04.2) ...
-#8 133.1 Setting up lua-bitop:amd64 (1.0.2-5) ...
-#8 133.1 Setting up liblua5.1-0:amd64 (5.1.5-8.1build4) ...
-#8 133.1 Setting up redis-tools (5:6.0.16-1ubuntu1.1) ...
-#8 133.2 Setting up redis-server (5:6.0.16-1ubuntu1.1) ...
-#8 133.2 invoke-rc.d: could not determine current runlevel
-#8 133.2 invoke-rc.d: policy-rc.d denied execution of start.
-#8 133.3 Created symlink /etc/systemd/system/redis.service → /lib/systemd/system/redis-server.service.
-#8 133.3 Created symlink /etc/systemd/system/multi-user.target.wants/redis-server.service → /lib/systemd/system/redis-server.service.
-#8 133.3 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
-#8 134.0 
-#8 134.0 > yarn@1.22.22 preinstall /usr/lib/node_modules/yarn
-#8 134.0 > :; (node ./preinstall.js > /dev/null 2>&1 || true)
-#8 134.0 
-#8 134.3 /usr/bin/yarn -> /usr/lib/node_modules/yarn/bin/yarn.js
-#8 134.3 /usr/bin/yarnpkg -> /usr/lib/node_modules/yarn/bin/yarn.js
-#8 134.3 + yarn@1.22.22
-#8 134.3 added 1 package in 0.582s
-#8 DONE 136.0s
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+#10 16.00 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.00 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.01 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 16.54 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 16.61 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 16.65 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 16.65 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 16.65 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 16.65 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 16.65 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 16.65 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 16.66 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 16.66 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 16.74 Setting up binutils (2.38-4ubuntu2.10) ...
+#10 16.74 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 16.75 Setting up libexpat1-dev:amd64 (2.4.7-1ubuntu0.6) ...
+#10 16.75 Setting up libdpkg-perl (1.21.1ubuntu2.6) ...
+#10 16.75 Setting up libstdc++-11-dev:amd64 (11.4.0-1ubuntu1~22.04.2) ...
+#10 16.76 Setting up zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu9.2) ...
+#10 16.76 Setting up gcc-11 (11.4.0-1ubuntu1~22.04.2) ...
+#10 16.76 Setting up python3-lib2to3 (3.10.8-1~22.04) ...
+#10 16.84 Setting up libmysqlclient-dev (8.0.43-0ubuntu0.22.04.2) ...
+#10 16.85 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 16.99 Setting up default-libmysqlclient-dev:amd64 (1.0.8) ...
+#10 16.99 Setting up python3-distutils (3.10.8-1~22.04) ...
+#10 17.09 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 17.09 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 17.37 invoke-rc.d: could not determine current runlevel
+#10 17.38 invoke-rc.d: policy-rc.d denied execution of start.
+#10 17.48 Setting up python3-setuptools (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 17.75 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 17.84 
+#10 17.84 Creating config file /etc/ssh/sshd_config with new version
+#10 17.87 Creating SSH2 RSA key; this may take some time ...
+#10 18.31 3072 SHA256:TqCdVqiPnJidWB4DY8DoHLmPtSRf7CSehCz1Llfl21U root@buildkitsandbox (RSA)
+#10 18.31 Creating SSH2 ECDSA key; this may take some time ...
+#10 18.32 256 SHA256:DWBps3uJHqT/t8KdAgP4L8hk/SeWRV0c3eti5wodOVU root@buildkitsandbox (ECDSA)
+#10 18.32 Creating SSH2 ED25519 key; this may take some time ...
+#10 18.33 256 SHA256:+AM/DyHONUxkEwdIP0DQbxi/r7sEwxPWcbQoUVYQ5PE root@buildkitsandbox (ED25519)
+#10 18.39 invoke-rc.d: could not determine current runlevel
+#10 18.39 invoke-rc.d: policy-rc.d denied execution of start.
+#10 18.57 Setting up g++-11 (11.4.0-1ubuntu1~22.04.2) ...
+#10 18.57 Setting up python3-wheel (0.37.1-2ubuntu0.22.04.1) ...
+#10 18.68 Setting up gcc (4:11.2.0-1ubuntu1) ...
+#10 18.69 Setting up dpkg-dev (1.21.1ubuntu2.6) ...
+#10 18.69 Setting up liberror-perl (0.17029-1) ...
+#10 18.70 Setting up pkg-config (0.29.2-1ubuntu3) ...
+#10 18.72 Setting up libpython3.10-dev:amd64 (3.10.12-1~22.04.11) ...
+#10 18.72 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 18.73 Setting up python3-pip (22.0.2+dfsg-1ubuntu0.7) ...
+#10 19.60 Setting up python3.10-dev (3.10.12-1~22.04.11) ...
+#10 19.61 Setting up g++ (4:11.2.0-1ubuntu1) ...
+#10 19.63 update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+#10 19.63 update-alternatives: warning: skip creation of /usr/share/man/man1/c++.1.gz because associated file /usr/share/man/man1/g++.1.gz (of link group c++) doesn't exist
+#10 19.63 Setting up build-essential (12.9ubuntu3) ...
+#10 19.63 Setting up libpython3-dev:amd64 (3.10.6-1~22.04.1) ...
+#10 19.63 Setting up python3-dev (3.10.6-1~22.04.1) ...
+#10 19.64 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 19.65 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 19.66 Updating certificates in /etc/ssl/certs...
+#10 20.07 0 added, 0 removed; done.
+#10 20.07 Running hooks in /etc/ca-certificates/update.d...
+#10 20.07 done.
+#10 DONE 21.0s
 
-#10 [stage-1  3/12] COPY entrypoint.sh /entrypoint.sh
-#10 DONE 0.0s
-
-#11 [stage-1  4/12] COPY app /app
-#11 DONE 0.0s
-
-#12 [stage-1  5/12] RUN chmod +x /entrypoint.sh;     chmod -R 777 /app;     useradd -u 1000 -g 0 -m -s /bin/bash user;     ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;     echo Asia/Shanghai > /etc/timezone;     git config --global user.email "fiora@example.com";     git config --global user.name "Fiora Installer"
+#12 [stage-1 5/9] COPY --from=builder /app/xy /usr/local/bin/xy
 #12 DONE 0.1s
 
-#13 [stage-1  6/12] RUN mkdir -p /data/db /data/redis;     chown -R 1000:0 /data/db /data/redis;     chmod -R 777 /data/db /data/redis
-#13 DONE 0.1s
+#13 [stage-1 6/9] COPY --from=builder /app/td /usr/local/bin/td
+#13 DONE 0.0s
 
-#14 [stage-1  7/12] RUN mkdir -p /app/fiora;     chown -R 1000:0 /app/fiora;     chmod -R 777 /app/fiora
-#14 DONE 0.1s
+#14 [stage-1 7/9] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 DONE 0.0s
 
-#15 [stage-1  8/12] RUN chmod +x /app/start-fiora.sh;     chmod +x /app/test-services.sh
+#15 [stage-1 8/9] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 #15 DONE 0.1s
 
-#16 [stage-1  9/12] COPY --from=builder /app/xy /usr/local/bin/xy
+#16 [stage-1 9/9] RUN chmod +x /app/rustdesk-api/*.sh && chmod +x /app/rustdesk-server/*.sh
 #16 DONE 0.1s
 
-#17 [stage-1 10/12] COPY --from=builder /app/td /usr/local/bin/td
-#17 DONE 0.0s
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 3.1s done
+#17 writing image sha256:50b81663c55e3f9dc9c781082c427cc8dddd88e7f38eda2417dc26af9514afe9 done
+#17 naming to ghcr.io/xcq0607/rustdesk:latest done
+#17 DONE 3.1s
 
-#18 [stage-1 11/12] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
-#18 DONE 0.0s
-
-#19 [stage-1 12/12] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#19 DONE 0.0s
-
-#20 exporting to image
-#20 exporting layers
-#20 exporting layers 5.8s done
-#20 writing image sha256:274c5c793221e7855a27814650a8c08eab8f6f67cd17e12a4ccdd7de54ee2fb2 done
-#20 naming to ghcr.io/xcq0607/xrayfiora:latest done
-#20 DONE 5.8s
+ [33m2 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "RUSTDESK_KEY") (line 26)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "SECRET_KEY") (line 26)
 ```
 
