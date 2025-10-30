@@ -133,3 +133,136 @@ docker pull ghcr.io/xcq0607/rustdesk:latest
  - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "SECRET_KEY") (line 26)
 ```
 
+## 镜像: xray
+
+### 构建信息
+- 目录: xray/
+- 完整镜像名: ghcr.io/xcq0607/xray:latest
+- 构建状态: ✅ 成功
+- 构建耗时: 28s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/xray:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-xray ghcr.io/xcq0607/xray:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/xray:latest
+```
+
+### 构建日志
+
+```
+#9 11.41 Setting up libcurl4:amd64 (7.81.0-1ubuntu1.21) ...
+#9 11.41 Setting up curl (7.81.0-1ubuntu1.21) ...
+#9 11.41 Setting up libbpf0:amd64 (1:0.5.0-1ubuntu22.04.1) ...
+#9 11.41 Setting up libpython3-stdlib:amd64 (3.10.6-1~22.04.1) ...
+#9 11.41 Setting up libpython3.10:amd64 (3.10.12-1~22.04.11) ...
+#9 11.42 Setting up libperl5.34:amd64 (5.34.0-3ubuntu1.5) ...
+#9 11.42 Setting up vim (2:8.2.3995-1ubuntu2.24) ...
+#9 11.42 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+#9 11.42 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/da/man1/vi.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/de/man1/vi.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/vi.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/it/man1/vi.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/vi.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/vi.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/vi.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/man1/vi.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group vi) doesn't exist
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/da/man1/view.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/de/man1/view.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/view.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/it/man1/view.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/view.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/view.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/view.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/man1/view.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group view) doesn't exist
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/da/man1/ex.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/de/man1/ex.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/ex.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/it/man1/ex.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/ex.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+#9 11.43 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.43 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#9 11.44 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#9 11.97 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#9 12.04 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#9 12.08 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#9 12.08 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#9 12.08 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#9 12.08 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#9 12.08 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#9 12.08 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#9 12.09 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#9 12.09 Setting up python3 (3.10.6-1~22.04.1) ...
+#9 12.17 Setting up perl (5.34.0-3ubuntu1.5) ...
+#9 12.17 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#9 12.32 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#9 12.32 Setting up supervisor (4.2.1-1ubuntu1) ...
+#9 12.61 invoke-rc.d: could not determine current runlevel
+#9 12.61 invoke-rc.d: policy-rc.d denied execution of start.
+#9 12.72 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#9 12.82 
+#9 12.82 Creating config file /etc/ssh/sshd_config with new version
+#9 12.84 Creating SSH2 RSA key; this may take some time ...
+#9 13.27 3072 SHA256:362DvK1gjzH/2jBdSZZ1gKgyp839BJwFofGohy8Nr5A root@buildkitsandbox (RSA)
+#9 13.28 Creating SSH2 ECDSA key; this may take some time ...
+#9 13.28 256 SHA256:CkxzNRnEZSlxRZadenVvzpt2SLzYD9D502Yj1AB9Oqg root@buildkitsandbox (ECDSA)
+#9 13.28 Creating SSH2 ED25519 key; this may take some time ...
+#9 13.29 256 SHA256:9t+q5BZQ9iEHZnNzEU5Ugpuy2OZqE4R+DJS2hDTuNYk root@buildkitsandbox (ED25519)
+#9 13.35 invoke-rc.d: could not determine current runlevel
+#9 13.35 invoke-rc.d: policy-rc.d denied execution of start.
+#9 13.53 Setting up liberror-perl (0.17029-1) ...
+#9 13.53 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#9 13.54 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#9 13.55 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#9 13.55 Updating certificates in /etc/ssl/certs...
+#9 13.97 0 added, 0 removed; done.
+#9 13.97 Running hooks in /etc/ca-certificates/update.d...
+#9 13.97 done.
+#9 DONE 14.1s
+
+#11 [stage-1 5/7] COPY --from=builder /app/xy /usr/local/bin/xy
+#11 DONE 0.0s
+
+#12 [stage-1 6/7] COPY --from=builder /app/td /usr/local/bin/td
+#12 DONE 0.0s
+
+#13 [stage-1 7/7] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#13 DONE 0.0s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 1.5s done
+#14 writing image sha256:3ec18a7393d85a4fe808fbfdbdaeb0370654d4703ad2096de0cec467fba87ae8 done
+#14 naming to ghcr.io/xcq0607/xray:latest done
+#14 DONE 1.5s
+```
+
