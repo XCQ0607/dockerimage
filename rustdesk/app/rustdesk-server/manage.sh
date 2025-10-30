@@ -42,11 +42,11 @@ run_rustdesk_server() {
 
     # Run hbbs and hbbr
     echo "Starting hbbs..."
-    sudo -E -u root ./hbbs -c ./data &
+    ./hbbs -c ./data &
     HBBS_PID=$!
     
     echo "Starting hbbr..."
-    sudo -E -u root ./hbbr -c ./data &
+    ./hbbr -c ./data &
     HBBR_PID=$!
     
     # Wait for processes

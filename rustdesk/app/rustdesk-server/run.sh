@@ -13,13 +13,12 @@ chown -R 1000:0 ./data
 chmod -R 777 ./data
 
 # Run hbbs and hbbr
-# Use sudo to ensure proper permissions
 echo "Starting hbbs..."
-sudo -E -u root ./hbbs -c ./data &
+./hbbs -c ./data &
 HBBS_PID=$!
 
 echo "Starting hbbr..."
-sudo -E -u root ./hbbr -c ./data &
+./hbbr -c ./data &
 HBBR_PID=$!
 
 # Wait for processes

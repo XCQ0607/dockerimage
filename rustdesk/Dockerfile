@@ -24,32 +24,49 @@ LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
 
 # Environment variables for all services
 ENV TZ=Asia/Shanghai \
+    # TimeZone：时区设置，默认值为Asia/Shanghai，必填，示例输入：Asia/Shanghai
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
+    # UUID：用户唯一标识符，默认值为2982f122-9649-40dc-bc15-fa3ec91d8921，必填，示例输入：your-uuid-here
     DOMAIN=web3x-desk.hf.space \
+    # Domain：域名设置，默认值为web3x-desk.hf.space，必填，示例输入：your-domain.hf.space
     # Cloudflared PAT
     ARGO_PAT= \
+    # ARGO_PAT：Cloudflared隧道令牌，默认值为空，可选，示例输入：your-cloudflared-pat
     # RustDesk API Server Settings
-    # SECRET_KEY=xcq0607 \
-    # DATABASE_TYPE=MYSQL \
+    SECRET_KEY=xcq0607 \
+    # SECRET_KEY：Django密钥，默认值为xcq0607，必填，示例输入：your-secret-key
+    DATABASE_TYPE=MYSQL \
+    # DATABASE_TYPE：数据库类型，默认值为MYSQL，必填，示例输入：MYSQL
     # MYSQL_DBNAME=rustdesk \
+    # MYSQL_DBNAME：MySQL数据库名称，默认值为rustdesk，必填，示例输入：your-database-name
     # MYSQL_HOST=mysql2.sqlpub.com \
+    # MYSQL_HOST：MySQL主机地址，默认值为mysql2.sqlpub.com，必填，示例输入：your-mysql-host
     # MYSQL_USER=xcq06071 \
+    # MYSQL_USER：MySQL用户名，默认值为xcq06071，必填，示例输入：your-mysql-user
     # MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
+    # MYSQL_PASSWORD：MySQL密码，默认值为QMAzY6gm74t8WSBC，必填，示例输入：your-mysql-password
     # MYSQL_PORT=3307 \
+    # MYSQL_PORT：MySQL端口，默认值为3307，必填，示例输入：3306
     # CSRF_TRUSTED_ORIGINS= \
-    ID_SERVER=web3x-desk.hf.space \
+    # CSRF_TRUSTED_ORIGINS：CSRF信任的源，默认值为空，可选，示例输入：http://localhost:8000
+    ID_SERVER=v.com \
+    # ID_SERVER：ID服务器地址，默认值为空，可选，示例输入：your-id-server
     DEBUG=False \
+    # DEBUG：调试模式，默认值为False，可选，示例输入：True
     ALLOW_REGISTRATION=True \
+    # ALLOW_REGISTRATION：允许注册，默认值为True，可选，示例输入：False
     LANGUAGE_CODE=zh-hans \
+    # LANGUAGE_CODE：语言代码，默认值为zh-hans，可选，示例输入：en-us
     HOST=0.0.0.0 \
+    # HOST：主机地址，默认值为0.0.0.0，必填，示例输入：0.0.0.0
     # RustDesk Server Settings
-    # RustDeskKey: RustDesk服务器密钥，默认值为空，可选，示例输入：your_rustdesk_key
+    # RUSTDESK_KEY: RustDesk服务器密钥，默认值为空，可选，示例输入：your_rustdesk_key
     RUSTDESK_KEY=xcq0607 \
-    # RustDeskRelayPort: RustDesk中继端口，默认值为21117，可选，示例输入：21117
+    # RUSTDESK_RELAY_PORT: RustDesk中继端口，默认值为21117，可选，示例输入：21117
     RUSTDESK_RELAY_PORT=21117 \
-    # RustDeskApiPort: RustDesk API端口，默认值为21115，可选，示例输入：21115
+    # RUSTDESK_API_PORT: RustDesk API端口，默认值为21115，可选，示例输入：21115
     RUSTDESK_API_PORT=21115 \
-    # RustDeskPort: RustDesk主要端口，默认值为21116，可选，示例输入：21116
+    # RUSTDESK_PORT: RustDesk主要端口，默认值为21116，可选，示例输入：21116
     RUSTDESK_PORT=21116
 
 # Copy entrypoint script and app directory

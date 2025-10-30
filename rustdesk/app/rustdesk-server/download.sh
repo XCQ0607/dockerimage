@@ -6,7 +6,8 @@ source /etc/profile
 # Download the latest rustdesk-server from GitHub
 echo "Downloading rustdesk-server..."
 cd /tmp
-rm -rf rustdesk-server
+rm -rf rustdesk-server*
+rm -rf amd64
 # Use root user to avoid git permission issues
 sudo -E -u root wget https://github.com/rustdesk/rustdesk-server/releases/latest/download/rustdesk-server-linux-amd64.zip
 sudo -E -u root unzip rustdesk-server-linux-amd64.zip
@@ -15,7 +16,7 @@ sudo -E -u root unzip rustdesk-server-linux-amd64.zip
 mkdir -p /app/rustdesk-server
 
 # Copy files to the application directory
-sudo -E -u root cp -r rustdesk-server-linux-amd64/* /app/rustdesk-server/
+sudo -E -u root cp -r amd64/* /app/rustdesk-server/
 
 # Set correct permissions (user 1000:0, permissions 777)
 chown -R 1000:0 /app/rustdesk-server

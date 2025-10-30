@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 # Source profile to ensure PYTHONPATH is set
 source /etc/profile
