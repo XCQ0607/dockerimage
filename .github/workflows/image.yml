@@ -43,8 +43,30 @@ jobs:
             fi
 
             FLAG="$dir/build.flag"
-            if [ -f "$FLAG" ]; then
-              echo "Skipping $dir, already built"
+            
+            # 检查是否有文件在build.flag之后更新
+            NEEDS_REBUILD=false
+            if [ ! -f "$FLAG" ]; then
+              # 如果build.flag不存在，需要构建
+              NEEDS_REBUILD=true
+              echo "No build.flag found for $dir, will rebuild"
+            else
+              # 检查目录下是否有文件在build.flag之后更新
+              LAST_BUILD_TIME=$(stat -c %Y "$FLAG")
+              # 使用find查找所有在build.flag之后修改的文件
+              UPDATED_FILES=$(find "$dir" -type f -newer "$FLAG" 2>/dev/null)
+              if [ -n "$UPDATED_FILES" ]; then
+                NEEDS_REBUILD=true
+                echo "Found updated files in $dir, will rebuild:"
+                echo "$UPDATED_FILES"
+              else
+                echo "Skipping $dir, no files updated since last build"
+                continue
+              fi
+            fi
+
+            if [ "$NEEDS_REBUILD" = false ]; then
+              echo "Skipping $dir, already built and no updates"
               continue
             fi
 
