@@ -36,7 +36,7 @@ ENV TZ=Asia/Shanghai \
     MYSQL_USER=xcq06071 \
     MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
     MYSQL_PORT=3307 \
-    CSRF_TRUSTED_ORIGINS= \
+    # CSRF_TRUSTED_ORIGINS= \
     ID_SERVER= \
     DEBUG=False \
     ALLOW_REGISTRATION=True \
@@ -68,10 +68,8 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir -p /home/user/.local; \
     chown -R 1000:0 /home/user/.local; \
     chmod -R 777 /home/user/.local; \
-    # Configure global pip directory
+    # Create pip-packages directory without global pip.conf to avoid conflicts
     mkdir -p /opt/pip-packages; \
-    echo "[global]" > /etc/pip.conf; \
-    echo "target = /opt/pip-packages" >> /etc/pip.conf; \
     # Add pip-packages to Python path in bashrc for interactive and non-interactive shells
     echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /etc/bash.bashrc; \
     echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /home/user/.bashrc; \
