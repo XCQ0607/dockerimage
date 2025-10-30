@@ -532,3 +532,136 @@ docker pull ghcr.io/xcq0607/xrayargo:latest
 #15 DONE 1.6s
 ```
 
+## 镜像: xrayfiora
+
+### 构建信息
+- 目录: xrayfiora/
+- 完整镜像名: ghcr.io/xcq0607/xrayfiora:latest
+- 构建状态: ✅ 成功
+- 构建耗时: 183s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/xrayfiora:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-xrayfiora ghcr.io/xcq0607/xrayfiora:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/xrayfiora:latest
+```
+
+### 构建日志
+
+```
+#6 121.4 The following NEW packages will be installed:
+#6 121.4   libatomic1 libjemalloc2 liblua5.1-0 liblzf1 lua-bitop lua-cjson redis-server
+#6 121.4   redis-tools
+#6 121.6 0 upgraded, 8 newly installed, 0 to remove and 1 not upgraded.
+#6 121.6 Need to get 1283 kB of archives.
+#6 121.6 After this operation, 5771 kB of additional disk space will be used.
+#6 121.6 Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libatomic1 amd64 12.3.0-1ubuntu1~22.04.2 [10.4 kB]
+#6 121.7 Get:2 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libjemalloc2 amd64 5.2.1-4ubuntu1 [240 kB]
+#6 122.1 Get:3 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblua5.1-0 amd64 5.1.5-8.1build4 [99.9 kB]
+#6 122.1 Get:4 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblzf1 amd64 3.6-3 [7444 B]
+#6 122.1 Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 lua-bitop amd64 1.0.2-5 [6680 B]
+#6 122.1 Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 lua-cjson amd64 2.1.0+dfsg-2.1 [17.4 kB]
+#6 122.1 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 redis-tools amd64 5:6.0.16-1ubuntu1.1 [856 kB]
+#6 122.3 Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 redis-server amd64 5:6.0.16-1ubuntu1.1 [45.9 kB]
+#6 122.4 debconf: delaying package configuration, since apt-utils is not installed
+#6 122.4 Fetched 1283 kB in 1s (1511 kB/s)
+#6 122.4 Selecting previously unselected package libatomic1:amd64.
+#6 122.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 23095 files and directories currently installed.)
+#6 122.4 Preparing to unpack .../0-libatomic1_12.3.0-1ubuntu1~22.04.2_amd64.deb ...
+#6 122.4 Unpacking libatomic1:amd64 (12.3.0-1ubuntu1~22.04.2) ...
+#6 122.4 Selecting previously unselected package libjemalloc2:amd64.
+#6 122.4 Preparing to unpack .../1-libjemalloc2_5.2.1-4ubuntu1_amd64.deb ...
+#6 122.4 Unpacking libjemalloc2:amd64 (5.2.1-4ubuntu1) ...
+#6 122.4 Selecting previously unselected package liblua5.1-0:amd64.
+#6 122.4 Preparing to unpack .../2-liblua5.1-0_5.1.5-8.1build4_amd64.deb ...
+#6 122.4 Unpacking liblua5.1-0:amd64 (5.1.5-8.1build4) ...
+#6 122.5 Selecting previously unselected package liblzf1:amd64.
+#6 122.5 Preparing to unpack .../3-liblzf1_3.6-3_amd64.deb ...
+#6 122.5 Unpacking liblzf1:amd64 (3.6-3) ...
+#6 122.5 Selecting previously unselected package lua-bitop:amd64.
+#6 122.5 Preparing to unpack .../4-lua-bitop_1.0.2-5_amd64.deb ...
+#6 122.5 Unpacking lua-bitop:amd64 (1.0.2-5) ...
+#6 122.5 Selecting previously unselected package lua-cjson:amd64.
+#6 122.5 Preparing to unpack .../5-lua-cjson_2.1.0+dfsg-2.1_amd64.deb ...
+#6 122.5 Unpacking lua-cjson:amd64 (2.1.0+dfsg-2.1) ...
+#6 122.5 Selecting previously unselected package redis-tools.
+#6 122.5 Preparing to unpack .../6-redis-tools_5%3a6.0.16-1ubuntu1.1_amd64.deb ...
+#6 122.5 Unpacking redis-tools (5:6.0.16-1ubuntu1.1) ...
+#6 122.6 Selecting previously unselected package redis-server.
+#6 122.6 Preparing to unpack .../7-redis-server_5%3a6.0.16-1ubuntu1.1_amd64.deb ...
+#6 122.6 Unpacking redis-server (5:6.0.16-1ubuntu1.1) ...
+#6 122.6 Setting up libjemalloc2:amd64 (5.2.1-4ubuntu1) ...
+#6 122.6 Setting up lua-cjson:amd64 (2.1.0+dfsg-2.1) ...
+#6 122.6 Setting up liblzf1:amd64 (3.6-3) ...
+#6 122.6 Setting up libatomic1:amd64 (12.3.0-1ubuntu1~22.04.2) ...
+#6 122.6 Setting up lua-bitop:amd64 (1.0.2-5) ...
+#6 122.6 Setting up liblua5.1-0:amd64 (5.1.5-8.1build4) ...
+#6 122.6 Setting up redis-tools (5:6.0.16-1ubuntu1.1) ...
+#6 122.7 Setting up redis-server (5:6.0.16-1ubuntu1.1) ...
+#6 122.7 invoke-rc.d: could not determine current runlevel
+#6 122.7 invoke-rc.d: policy-rc.d denied execution of start.
+#6 122.8 Created symlink /etc/systemd/system/redis.service → /lib/systemd/system/redis-server.service.
+#6 122.8 Created symlink /etc/systemd/system/multi-user.target.wants/redis-server.service → /lib/systemd/system/redis-server.service.
+#6 122.8 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#6 123.4 
+#6 123.4 > yarn@1.22.22 preinstall /usr/lib/node_modules/yarn
+#6 123.4 > :; (node ./preinstall.js > /dev/null 2>&1 || true)
+#6 123.4 
+#6 123.7 /usr/bin/yarnpkg -> /usr/lib/node_modules/yarn/bin/yarn.js
+#6 123.7 /usr/bin/yarn -> /usr/lib/node_modules/yarn/bin/yarn.js
+#6 123.7 + yarn@1.22.22
+#6 123.7 added 1 package in 0.526s
+#6 DONE 125.4s
+
+#9 [stage-1  3/12] COPY entrypoint.sh /entrypoint.sh
+#9 DONE 0.0s
+
+#10 [stage-1  4/12] COPY app /app
+#10 DONE 0.0s
+
+#11 [stage-1  5/12] RUN chmod +x /entrypoint.sh;     chmod -R 777 /app;     useradd -u 1000 -g 0 -m -s /bin/bash user;     ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;     echo Asia/Shanghai > /etc/timezone;     git config --global user.email "fiora@example.com";     git config --global user.name "Fiora Installer"
+#11 DONE 0.1s
+
+#12 [stage-1  6/12] RUN mkdir -p /data/db /data/redis;     chown -R 1000:0 /data/db /data/redis;     chmod -R 777 /data/db /data/redis
+#12 DONE 0.1s
+
+#13 [stage-1  7/12] RUN mkdir -p /app/fiora;     chown -R 1000:0 /app/fiora;     chmod -R 777 /app/fiora
+#13 DONE 0.1s
+
+#14 [stage-1  8/12] RUN chmod +x /app/start-fiora.sh;     chmod +x /app/test-services.sh
+#14 DONE 0.1s
+
+#15 [stage-1  9/12] COPY --from=builder /app/xy /usr/local/bin/xy
+#15 DONE 0.1s
+
+#16 [stage-1 10/12] COPY --from=builder /app/td /usr/local/bin/td
+#16 DONE 0.0s
+
+#17 [stage-1 11/12] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#17 DONE 0.0s
+
+#18 [stage-1 12/12] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 5.9s done
+#19 writing image sha256:5bcd5dd5a2dad0ecdc1d78f743aa7928d161dc3d844bf36df1910fc3a20ad3de done
+#19 naming to ghcr.io/xcq0607/xrayfiora:latest done
+#19 DONE 5.9s
+```
+
