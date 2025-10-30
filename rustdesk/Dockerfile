@@ -37,19 +37,19 @@ ENV TZ=Asia/Shanghai \
     # SECRET_KEY：Django密钥，默认值为xcq0607，必填，示例输入：your-secret-key
     DATABASE_TYPE=MYSQL \
     # DATABASE_TYPE：数据库类型，默认值为MYSQL，必填，示例输入：MYSQL
-    MYSQL_DBNAME=rustdesk \
+    # MYSQL_DBNAME=rustdesk \
     # MYSQL_DBNAME：MySQL数据库名称，默认值为rustdesk，必填，示例输入：your-database-name
-    MYSQL_HOST=mysql2.sqlpub.com \
+    # MYSQL_HOST=mysql2.sqlpub.com \
     # MYSQL_HOST：MySQL主机地址，默认值为mysql2.sqlpub.com，必填，示例输入：your-mysql-host
-    MYSQL_USER=xcq06071 \
+    # MYSQL_USER=xcq06071 \
     # MYSQL_USER：MySQL用户名，默认值为xcq06071，必填，示例输入：your-mysql-user
-    MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
+    # MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
     # MYSQL_PASSWORD：MySQL密码，默认值为QMAzY6gm74t8WSBC，必填，示例输入：your-mysql-password
-    MYSQL_PORT=3307 \
+    # MYSQL_PORT=3307 \
     # MYSQL_PORT：MySQL端口，默认值为3307，必填，示例输入：3306
     # CSRF_TRUSTED_ORIGINS= \
     # CSRF_TRUSTED_ORIGINS：CSRF信任的源，默认值为空，可选，示例输入：http://localhost:8000
-    ID_SERVER= \
+    ID_SERVER=localhost:21116 \
     # ID_SERVER：ID服务器地址，默认值为空，可选，示例输入：your-id-server
     DEBUG=False \
     # DEBUG：调试模式，默认值为False，可选，示例输入：True
@@ -61,7 +61,7 @@ ENV TZ=Asia/Shanghai \
     # HOST：主机地址，默认值为0.0.0.0，必填，示例输入：0.0.0.0
     # RustDesk Server Settings
     # RUSTDESK_KEY: RustDesk服务器密钥，默认值为空，可选，示例输入：your_rustdesk_key
-    RUSTDESK_KEY= \
+    RUSTDESK_KEY=xcq0607 \
     # RUSTDESK_PORT: RustDesk ID服务器端口，默认值为21116，可选，示例输入：21116
     RUSTDESK_PORT=21116 \
     # RUSTDESK_RELAY_PORT: RustDesk中继服务器端口，默认值为21117，可选，示例输入：21117
