@@ -3,6 +3,9 @@
 # Source profile to ensure environment variables are set
 source /etc/profile
 
+# Set HOME environment variable to user's home directory to avoid permission issues
+export HOME=/home/user
+
 cd /app/rustdesk-server
 
 # Create data directory if it doesn't exist

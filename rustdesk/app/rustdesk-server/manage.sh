@@ -3,6 +3,9 @@
 # Source profile to ensure environment variables are set
 source /etc/profile
 
+# Set HOME environment variable to user's home directory to avoid permission issues
+export HOME=/home/user
+
 # This script manages the rustdesk-server setup and execution
 
 # Set correct permissions for the rustdesk-server directory
