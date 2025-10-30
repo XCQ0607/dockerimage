@@ -72,7 +72,10 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir -p /opt/pip-packages; \
     echo "[global]" > /etc/pip.conf; \
     echo "target = /opt/pip-packages" >> /etc/pip.conf; \
-    # Add pip-packages to Python path
+    # Add pip-packages to Python path in bashrc for interactive and non-interactive shells
+    echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /etc/bash.bashrc; \
+    echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /home/user/.bashrc; \
+    # Also add to profile for system-wide availability
     echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /etc/profile; \
     # Create symbolic links for python command
     ln -s /usr/bin/python3 /usr/bin/python

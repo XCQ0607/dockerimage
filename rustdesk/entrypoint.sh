@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Source profile to ensure PYTHONPATH is set
+source /etc/profile
+
 # Replace placeholders in config files
 sed -i "s/UUID/$UUID/g" /app/xy/config.json
 sed -i "s/DOMAIN/$DOMAIN/g" /app/keepalive.sh

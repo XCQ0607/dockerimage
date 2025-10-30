@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source profile to ensure PYTHONPATH is set
+source /etc/profile
+
 # Download the latest rustdesk-api-server from GitHub
 echo "Downloading rustdesk-api-server..."
 cd /tmp

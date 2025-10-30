@@ -1,13 +1,13 @@
 #!/bin/bash
 
+# Source profile to ensure PYTHONPATH is set
+source /etc/profile
+
 # This script manages the rustdesk-api-server setup and execution
 
 # Set correct permissions for the rustdesk-api directory
 chown -R 1000:0 /app/rustdesk-api
 chmod -R 777 /app/rustdesk-api
-
-# Source profile to ensure PYTHONPATH is set
-source /etc/profile
 
 # Function to check if rustdesk-api-server is already installed
 check_installation() {
