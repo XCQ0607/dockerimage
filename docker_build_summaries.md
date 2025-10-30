@@ -133,3 +133,136 @@ docker pull ghcr.io/xcq0607/rustdesk:latest
  - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "RUSTDESK_KEY") (line 26)
 ```
 
+## 镜像: voce
+
+### 构建信息
+- 目录: voce/
+- 完整镜像名: ghcr.io/xcq0607/voce:latest
+- 构建状态: ✅ 成功
+- 构建耗时: 50s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/voce:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-voce ghcr.io/xcq0607/voce:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/voce:latest
+```
+
+### 构建日志
+
+```
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/view.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/it/man1/view.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/view.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/view.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/view.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/man1/view.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group view) doesn't exist
+#10 14.93 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/da/man1/ex.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/de/man1/ex.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/ex.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/it/man1/ex.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/ex.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+#10 14.93 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.93 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 14.94 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 15.47 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 15.47 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 15.47 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 15.47 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 15.47 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 15.48 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 15.48 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 15.49 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 15.56 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 15.59 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 15.59 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 15.60 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 15.60 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 15.60 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 15.60 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 15.60 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 15.61 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 15.68 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 15.75 Adding group `docker' (GID 102) ...
+#10 15.76 Done.
+#10 15.96 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 15.96 invoke-rc.d: could not determine current runlevel
+#10 15.97 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 16.07 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 16.07 Setting up python3-dateutil (2.8.1-6) ...
+#10 16.20 Setting up python3-magic (2:0.4.24-2) ...
+#10 16.30 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 16.44 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 16.44 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 16.72 invoke-rc.d: could not determine current runlevel
+#10 16.73 invoke-rc.d: policy-rc.d denied execution of start.
+#10 16.83 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 16.92 
+#10 16.92 Creating config file /etc/ssh/sshd_config with new version
+#10 16.95 Creating SSH2 RSA key; this may take some time ...
+#10 17.69 3072 SHA256:YUyQi3Lx7fci5D+SFvFxDBU3/nNXXb6OeGIE8MTSTQI root@buildkitsandbox (RSA)
+#10 17.69 Creating SSH2 ECDSA key; this may take some time ...
+#10 17.69 256 SHA256:8bEu5yK756YwGSNwB1QtEx6x6rvhnNixT/Ay81IjsOQ root@buildkitsandbox (ECDSA)
+#10 17.70 Creating SSH2 ED25519 key; this may take some time ...
+#10 17.70 256 SHA256:8/U2YZfP8+8RaYdP5dkcn7ibdrYo0/3FXdLqAlMREaA root@buildkitsandbox (ED25519)
+#10 17.76 invoke-rc.d: could not determine current runlevel
+#10 17.76 invoke-rc.d: policy-rc.d denied execution of start.
+#10 17.94 Setting up s3cmd (2.2.0-1) ...
+#10 18.07 Setting up liberror-perl (0.17029-1) ...
+#10 18.07 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 18.08 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 18.09 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 18.09 Updating certificates in /etc/ssl/certs...
+#10 18.50 0 added, 0 removed; done.
+#10 18.50 Running hooks in /etc/ca-certificates/update.d...
+#10 18.50 done.
+#10 DONE 19.5s
+
+#11 [stage-1 5/8] COPY --from=builder /app/xy /usr/local/bin/xy
+#11 DONE 0.1s
+
+#12 [stage-1 6/8] COPY --from=builder /app/td /usr/local/bin/td
+#12 DONE 0.0s
+
+#13 [stage-1 7/8] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#13 DONE 0.0s
+
+#14 [stage-1 8/8] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 2.1s done
+#15 writing image sha256:c782ac54f84f55254bbac726a0e49a5ad4b2661e4ef43c675dd0731ec720bc57 done
+#15 naming to ghcr.io/xcq0607/voce:latest done
+#15 DONE 2.1s
+
+ [33m2 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 27)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 27)
+```
+
