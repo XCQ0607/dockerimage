@@ -6,8 +6,8 @@ source /etc/profile
 # This script manages the rustdesk-server setup and execution
 
 # Set correct permissions for the rustdesk-server directory
-chown -R 1000:0 /app/rustdesk-server
-chmod -R 777 /app/rustdesk-server
+sudo -E -u root chown -R 1000:0 /app/rustdesk-server
+sudo -E -u root chmod -R 777 /app/rustdesk-server
 
 # Function to check if rustdesk-server is already installed
 check_installation() {
@@ -21,7 +21,7 @@ check_installation() {
 # Function to install rustdesk-server
 install_rustdesk_server() {
     echo "Installing rustdesk-server..."
-    /app/rustdesk-server/download.sh
+    sudo -E -u root /app/rustdesk-server/download.sh
 }
 
 # Function to run rustdesk-server
@@ -33,20 +33,20 @@ run_rustdesk_server() {
     
     # Check if data directory exists, if not create it
     if [ ! -d "./data" ]; then
-        mkdir -p ./data
+        sudo -E -u root mkdir -p ./data
         echo "Created data directory"
         # Set correct permissions (user 1000:0, permissions 777)
-        chown 1000:0 ./data
-        chmod 777 ./data
+        sudo -E -u root chown 1000:0 ./data
+        sudo -E -u root chmod 777 ./data
     fi
 
     # Run hbbs and hbbr with proper ports
     echo "Starting hbbs on port $RUSTDESK_PORT..."
-    ./hbbs -p $RUSTDESK_PORT -c ./data &
+    sudo -E -u root ./hbbs -p $RUSTDESK_PORT -c ./data &
     HBBS_PID=$!
     
     echo "Starting hbbr on port $RUSTDESK_RELAY_PORT..."
-    ./hbbr -p $RUSTDESK_RELAY_PORT -c ./data &
+    sudo -E -u root ./hbbr --port $RUSTDESK_RELAY_PORT -c ./data &
     HBBR_PID=$!
     
     # Wait for processes
