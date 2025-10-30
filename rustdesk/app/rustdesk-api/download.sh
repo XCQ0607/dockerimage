@@ -7,7 +7,8 @@ source /etc/profile
 echo "Downloading rustdesk-api-server..."
 cd /tmp
 rm -rf rustdesk-api-server
-git clone https://github.com/kingmo888/rustdesk-api-server.git
+# Use root user to avoid git permission issues
+sudo -E -u root git clone https://github.com/kingmo888/rustdesk-api-server.git
 cd rustdesk-api-server
 
 # Create the application directory if it doesn't exist
@@ -26,10 +27,10 @@ if ! command -v python3 &> /dev/null; then
     apt-get install -y python3 python3-pip python3-dev default-libmysqlclient-dev build-essential pkg-config
 fi
 
-# Install Python packages using the global pip directory configured in Dockerfile
-# Using --target to avoid conflicts with pip configuration
+# Install Python packages using root permissions to avoid conflicts
 cd /app/rustdesk-api
-pip3 install --no-cache-dir --disable-pip-version-check --target /opt/pip-packages -r requirements.txt
+# Use root permissions and explicit target directory to avoid pip configuration conflicts
+sudo -E -u root pip3 install --no-cache-dir --disable-pip-version-check --target /opt/pip-packages -r requirements.txt
 
 # Create db directory if it doesn't exist
 mkdir -p /app/rustdesk-api/db

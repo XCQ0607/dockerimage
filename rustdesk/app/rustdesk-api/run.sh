@@ -28,10 +28,9 @@ if [ ! -e "./db/db.sqlite3" ]; then
 fi
 
 # Run migrations
-# Ensure environment is properly set before running Python commands
-source /etc/profile
-python3 manage.py makemigrations
-python3 manage.py migrate
+# Use sudo to ensure proper permissions
+sudo -E -u root python3 manage.py makemigrations
+sudo -E -u root python3 manage.py migrate
 
 # Start the server
-python3 manage.py runserver 0.0.0.0:21114
+sudo -E -u root python3 manage.py runserver 0.0.0.0:21114

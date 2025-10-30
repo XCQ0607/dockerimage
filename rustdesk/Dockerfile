@@ -50,7 +50,7 @@ COPY app /app
 # Install system packages
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 python3 python3-pip python3-dev default-libmysqlclient-dev build-essential pkg-config --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 python3 python3-pip python3-dev default-libmysqlclient-dev build-essential pkg-config sudo --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     chmod +x /entrypoint.sh; \
@@ -77,6 +77,8 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /home/user/.bashrc; \
     # Also add to profile for system-wide availability
     echo "export PYTHONPATH=/opt/pip-packages:\$PYTHONPATH" >> /etc/profile; \
+    # Configure sudo to allow user to run commands as root without password
+    echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers; \
     # Create symbolic links for python command
     ln -s /usr/bin/python3 /usr/bin/python
 

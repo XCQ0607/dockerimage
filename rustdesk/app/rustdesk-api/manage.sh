@@ -63,11 +63,10 @@ run_rustdesk_api() {
         fi
 
         # Run migrations and start server
-        # Ensure environment is properly set before running Python commands
-        source /etc/profile
-        python3 manage.py makemigrations
-        python3 manage.py migrate
-        python3 manage.py runserver 0.0.0.0:21114
+        # Use sudo to ensure proper permissions
+        sudo -E -u root python3 manage.py makemigrations
+        sudo -E -u root python3 manage.py migrate
+        sudo -E -u root python3 manage.py runserver 0.0.0.0:21114
     fi
 }
 
