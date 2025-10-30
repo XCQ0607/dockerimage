@@ -53,9 +53,15 @@ jobs:
             echo "Building and pushing $IMAGE"
 
             START_TIME=$(date +%s)
-            docker build -t $IMAGE "$dir" | tee build.log
+            # 使用 -v 参数增加日志输出，并确保日志被捕获
+            docker build -v -t $IMAGE "$dir" 2>&1 | tee build.log
             BUILD_STATUS=${PIPESTATUS[0]}
-            docker push $IMAGE
+            
+            # 如果构建成功，则推送镜像
+            if [ $BUILD_STATUS -eq 0 ]; then
+              docker push $IMAGE
+            fi
+            
             END_TIME=$(date +%s)
             DURATION=$((END_TIME - START_TIME))
 
@@ -92,7 +98,12 @@ jobs:
             echo "### 构建日志" >> $SUMMARY_FILE
             echo "" >> $SUMMARY_FILE
             echo '```' >> $SUMMARY_FILE
-            tail -n 50 build.log >> $SUMMARY_FILE
+            # 检查日志文件是否存在且不为空
+            if [ -s build.log ]; then
+              tail -n 100 build.log >> $SUMMARY_FILE
+            else
+              echo "无详细日志输出或日志为空" >> $SUMMARY_FILE
+            fi
             echo '```' >> $SUMMARY_FILE
             echo "" >> $SUMMARY_FILE
 
@@ -104,6 +115,11 @@ jobs:
             git commit -m "Add build flag and summary for $dir"
             git push
           done
+
+          # 将构建总结输出到 GitHub Actions 摘要
+          echo "# Docker Build Summaries" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat $SUMMARY_FILE >> $GITHUB_STEP_SUMMARY
 
       - name: Upload build summary as artifact
         uses: actions/upload-artifact@v4
