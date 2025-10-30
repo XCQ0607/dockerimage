@@ -52,33 +52,19 @@ jobs:
               echo "No build.flag found for $dir, will rebuild"
             else
               # 检查目录下是否有文件在build.flag之后更新
-              # 使用更可靠的方法：比较最新的文件时间戳与build.flag时间戳
-              LATEST_FILE_TIMESTAMP=$(find "$dir" -type f ! -name "build.flag" -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f1)
-              BUILD_FLAG_TIMESTAMP=$(stat -c %Y "$FLAG" 2>/dev/null)
-              
-              # 检查是否成功获取到时间戳
-              if [ -n "$LATEST_FILE_TIMESTAMP" ] && [ -n "$BUILD_FLAG_TIMESTAMP" ]; then
-                # 使用bc进行浮点数比较
-                TIMESTAMP_COMPARISON=$(echo "$LATEST_FILE_TIMESTAMP > $BUILD_FLAG_TIMESTAMP" | bc -l 2>/dev/null)
-                if [ "$TIMESTAMP_COMPARISON" = "1" ]; then
-                  NEEDS_REBUILD=true
-                  echo "Found updated files in $dir, will rebuild:"
-                  # 列出所有更新的文件
-                  find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null | while read file; do
-                    echo "  $file"
-                  done
-                else
-                  echo "Skipping $dir, no files updated since last build"
-                  echo "Debug: Latest file timestamp: $LATEST_FILE_TIMESTAMP"
-                  echo "Debug: Build flag timestamp: $BUILD_FLAG_TIMESTAMP"
-                  continue
-                fi
+              # 使用find的-newer选项来检查文件更新
+              UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
+              if [ -n "$UPDATED_FILES" ]; then
+                NEEDS_REBUILD=true
+                echo "Found updated files in $dir, will rebuild:"
+                echo "$UPDATED_FILES"
               else
-                echo "Warning: Could not determine timestamps for $dir, skipping"
+                echo "Skipping $dir, no files updated since last build"
                 continue
               fi
             fi
 
+            # 这里是关键：只有当NEEDS_REBUILD为true时才继续构建
             if [ "$NEEDS_REBUILD" = false ]; then
               echo "Skipping $dir, already built and no updates"
               continue
