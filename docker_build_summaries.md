@@ -3,7 +3,7 @@
 ## ghcr.io/xcq0607/rustdesk:latest
 - Directory: rustdesk/
 - Status: ✅ completed
-- Duration: 66s
+- Duration: 55s
 - Logs: 
 ```
 ```
