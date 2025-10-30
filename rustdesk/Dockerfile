@@ -29,19 +29,28 @@ ENV TZ=Asia/Shanghai \
     # Cloudflared PAT
     ARGO_PAT= \
     # RustDesk API Server Settings
-    SECRET_KEY=xcq0607 \
-    DATABASE_TYPE=MYSQL \
-    MYSQL_DBNAME=rustdesk \
-    MYSQL_HOST=mysql2.sqlpub.com \
-    MYSQL_USER=xcq06071 \
-    MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
-    MYSQL_PORT=3307 \
+    # SECRET_KEY=xcq0607 \
+    # DATABASE_TYPE=MYSQL \
+    # MYSQL_DBNAME=rustdesk \
+    # MYSQL_HOST=mysql2.sqlpub.com \
+    # MYSQL_USER=xcq06071 \
+    # MYSQL_PASSWORD=QMAzY6gm74t8WSBC \
+    # MYSQL_PORT=3307 \
     # CSRF_TRUSTED_ORIGINS= \
-    ID_SERVER= \
+    ID_SERVER=web3x-desk.hf.space \
     DEBUG=False \
     ALLOW_REGISTRATION=True \
     LANGUAGE_CODE=zh-hans \
-    HOST=0.0.0.0
+    HOST=0.0.0.0 \
+    # RustDesk Server Settings
+    # RustDeskKey: RustDesk服务器密钥，默认值为空，可选，示例输入：your_rustdesk_key
+    RUSTDESK_KEY=xcq0607 \
+    # RustDeskRelayPort: RustDesk中继端口，默认值为21117，可选，示例输入：21117
+    RUSTDESK_RELAY_PORT=21117 \
+    # RustDeskApiPort: RustDesk API端口，默认值为21115，可选，示例输入：21115
+    RUSTDESK_API_PORT=21115 \
+    # RustDeskPort: RustDesk主要端口，默认值为21116，可选，示例输入：21116
+    RUSTDESK_PORT=21116
 
 # Copy entrypoint script and app directory
 COPY entrypoint.sh /entrypoint.sh
@@ -56,9 +65,9 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # Create directories with correct permissions (user 1000:0, permissions 777)
-    mkdir -p /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
-    chown -R 1000:0 /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
-    chmod -R 777 /data/db /data/redis /app/rustdesk-api /opt/pip-packages; \
+    mkdir -p /data/db /data/redis /app/rustdesk-api /app/rustdesk-server /opt/pip-packages; \
+    chown -R 1000:0 /data/db /data/redis /app/rustdesk-api /app/rustdesk-server /opt/pip-packages; \
+    chmod -R 777 /data/db /data/redis /app/rustdesk-api /app/rustdesk-server /opt/pip-packages; \
     # Create user
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     # Set timezone
@@ -88,9 +97,9 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 
 # Make scripts executable
-RUN chmod +x /app/rustdesk-api/*.sh
+RUN chmod +x /app/rustdesk-api/*.sh && chmod +x /app/rustdesk-server/*.sh
 
-EXPOSE 7860 21114
+EXPOSE 7860 21114 21115 21116 21117
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["supervisord", "-c", "/app/supervisor/supervisord.conf"]

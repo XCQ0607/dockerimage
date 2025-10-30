@@ -19,5 +19,17 @@ fi
 chown -R 1000:0 /app/rustdesk-api
 chmod -R 777 /app/rustdesk-api
 
+# Download rustdesk-server if not already present
+if [ ! -d "/app/rustdesk-server" ] || [ -z "$(ls -A /app/rustdesk-server)" ]; then
+    echo "Downloading rustdesk-server..."
+    /app/rustdesk-server/download.sh
+else
+    echo "rustdesk-server already exists, skipping download"
+fi
+
+# Set correct permissions (user 1000:0, permissions 777)
+chown -R 1000:0 /app/rustdesk-server
+chmod -R 777 /app/rustdesk-server
+
 # Execute the main command
 exec "$@"
