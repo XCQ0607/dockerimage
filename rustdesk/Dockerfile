@@ -63,7 +63,11 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     # Set timezone
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
-    echo $TZ > /etc/timezone
+    echo $TZ > /etc/timezone; \
+    # Fix pip permission issues
+    mkdir -p /home/user/.local; \
+    chown -R 1000:0 /home/user/.local; \
+    chmod -R 777 /home/user/.local
 
 # Copy binaries from builder stage
 COPY --from=builder /app/xy /usr/local/bin/xy

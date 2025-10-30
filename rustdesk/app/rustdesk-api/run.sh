@@ -7,8 +7,8 @@ if [ ! -d "./db" ]; then
     mkdir -p ./db
     echo "Created db directory"
     # Set correct permissions (user 1000:0, permissions 777)
-    chown -R 1000:0 ./db
-    chmod -R 777 ./db
+    chown 1000:0 ./db
+    chmod 777 ./db
 fi
 
 # Check if database file exists, if not copy from backup
