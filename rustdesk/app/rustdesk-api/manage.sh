@@ -24,7 +24,19 @@ install_rustdesk_api() {
 # Function to run rustdesk-api-server
 run_rustdesk_api() {
     echo "Starting rustdesk-api-server..."
-    /app/rustdesk-api/run.sh
+    
+    # Check if the downloaded run.sh exists and fix it if needed
+    if [ -f "/app/rustdesk-api/run.sh" ]; then
+        # Fix the run.sh file to use correct paths
+        sed -i 's|cd /rustdesk-api-server|cd /app/rustdesk-api|g' /app/rustdesk-api/run.sh
+        sed -i 's|./db_bak/db.sqlite3|./db.sqlite3_bak|g' /app/rustdesk-api/run.sh
+        sed -i 's|python |python3 |g' /app/rustdesk-api/run.sh
+        chmod +x /app/rustdesk-api/run.sh
+        /app/rustdesk-api/run.sh
+    else
+        # Use our own run script
+        /app/rustdesk-api/run.sh
+    fi
 }
 
 # Main execution
