@@ -48,7 +48,8 @@ jobs:
               continue
             fi
 
-            IMAGE="ghcr.io/$OWNER/${dir%/}:latest"
+            IMAGE_NAME="${dir%/}"
+            IMAGE="ghcr.io/$OWNER/$IMAGE_NAME:latest"
             echo "Building and pushing $IMAGE"
 
             START_TIME=$(date +%s)
@@ -58,11 +59,38 @@ jobs:
             END_TIME=$(date +%s)
             DURATION=$((END_TIME - START_TIME))
 
-            echo "## $IMAGE" >> $SUMMARY_FILE
-            echo "- Directory: $dir" >> $SUMMARY_FILE
-            echo "- Status: $( [ $BUILD_STATUS -eq 0 ] && echo ✅ completed || echo ❌ failed )" >> $SUMMARY_FILE
-            echo "- Duration: ${DURATION}s" >> $SUMMARY_FILE
-            echo "- Logs: " >> $SUMMARY_FILE
+            echo "## 镜像: $IMAGE_NAME" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "### 构建信息" >> $SUMMARY_FILE
+            echo "- 目录: $dir" >> $SUMMARY_FILE
+            echo "- 完整镜像名: $IMAGE" >> $SUMMARY_FILE
+            echo "- 构建状态: $( [ $BUILD_STATUS -eq 0 ] && echo ✅ 成功 || echo ❌ 失败 )" >> $SUMMARY_FILE
+            echo "- 构建耗时: ${DURATION}s" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            
+            echo "### 使用方法" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "#### 在 Dockerfile 中使用:" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "\`\`\`Dockerfile" >> $SUMMARY_FILE
+            echo "FROM $IMAGE" >> $SUMMARY_FILE
+            echo "\`\`\`" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "#### 使用 docker run 命令运行:" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "\`\`\`bash" >> $SUMMARY_FILE
+            echo "docker run -d --name my-$IMAGE_NAME $IMAGE" >> $SUMMARY_FILE
+            echo "\`\`\`" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "#### 拉取镜像到本地:" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "\`\`\`bash" >> $SUMMARY_FILE
+            echo "docker pull $IMAGE" >> $SUMMARY_FILE
+            echo "\`\`\`" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            
+            echo "### 构建日志" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
             echo '```' >> $SUMMARY_FILE
             tail -n 50 build.log >> $SUMMARY_FILE
             echo '```' >> $SUMMARY_FILE
