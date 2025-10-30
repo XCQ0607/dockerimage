@@ -1,0 +1,23 @@
+# 基于官方镜像
+FROM privoce/vocechat-server:latest
+
+# 切换 root 以修改权限
+USER root
+
+# 创建配置和数据目录（若不存在）
+RUN mkdir -p /home/vocechat-server/config /home/vocechat-server/data
+
+# 修改所有者为 vocechat 用户（官方镜像中该用户 UID 一般是 1000）
+RUN chown -R 1000:1000 /home/vocechat-server
+
+# （可选）放置自定义配置文件
+# COPY ./config.toml /home/vocechat-server/config/config.toml
+
+# 切换回普通用户执行
+USER 1000
+
+# 暴露端口（按官方默认）
+EXPOSE 3000
+
+# 启动命令
+ENTRYPOINT ["./vocechat-server"]

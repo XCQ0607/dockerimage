@@ -1,0 +1,5 @@
+# 每小时执行一次VoceChat备份
+0 * * * * /app/backup/backup-voce.sh
+
+# 每5分钟执行一次keepalive脚本
+*/5 * * * * /app/keepalive.sh
