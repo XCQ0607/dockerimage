@@ -49,7 +49,7 @@ COPY install.sh /install.sh
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     chmod +x /entrypoint.sh; \
@@ -59,6 +59,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /app/backup/backup-voce.sh; \
     chmod +x /app/backup/restore-voce.sh; \
     chmod +x /app/backup/vocechat-backup-manager.sh; \
+    chmod +x /app/backup/check-r2-connectivity.sh; \
     chmod +x /install.sh; \
     # 创建必要的目录并设置正确的权限
     mkdir -p /home/vocechat-server/data /home/user; \

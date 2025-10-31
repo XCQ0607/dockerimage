@@ -11,8 +11,8 @@ if [ -z "$R2_ACCESS_KEY_ID" ] || [ -z "$R2_SECRET_ACCESS_KEY" ] || [ -z "$R2_END
 fi
 
 # 设置s3cmd配置
-mkdir -p /home/user/.s3cfg
-cat > /home/user/.s3cfg << EOF
+mkdir -p /home/user
+cat > /home/user/s3cfg << EOF
 [default]
 access_key = $R2_ACCESS_KEY_ID
 secret_key = $R2_SECRET_ACCESS_KEY
@@ -21,7 +21,7 @@ host_bucket = $R2_BUCKET_NAME.$R2_ENDPOINT
 EOF
 
 # 查找最新的备份文件
-LATEST_BACKUP=$(s3cmd --config-file=/home/user/.s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
+LATEST_BACKUP=$(s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
 
 if [ -z "$LATEST_BACKUP" ]; then
     echo "No backup found in R2. Starting fresh VoceChat instance."
@@ -37,7 +37,7 @@ sleep 5  # 等待进程完全停止
 
 # 下载最新的备份
 echo "Downloading latest backup..."
-if s3cmd --config-file=/home/user/.s3cfg get "$LATEST_BACKUP" /tmp/latest_backup.zip; then
+if s3cmd --config-file=/home/user/s3cfg get "$LATEST_BACKUP" /tmp/latest_backup.zip; then
     echo "Backup downloaded successfully."
 else
     echo "Error: Failed to download backup from R2."

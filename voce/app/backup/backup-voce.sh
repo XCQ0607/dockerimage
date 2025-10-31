@@ -11,8 +11,8 @@ if [ -z "$R2_ACCESS_KEY_ID" ] || [ -z "$R2_SECRET_ACCESS_KEY" ] || [ -z "$R2_END
 fi
 
 # 设置s3cmd配置
-mkdir -p /home/user/.s3cfg
-cat > /home/user/.s3cfg << EOF
+mkdir -p /home/user
+cat > /home/user/s3cfg << EOF
 [default]
 access_key = $R2_ACCESS_KEY_ID
 secret_key = $R2_SECRET_ACCESS_KEY
@@ -56,7 +56,7 @@ fi
 
 # 上传到R2
 echo "Uploading backup to R2..."
-if s3cmd --config-file=/home/user/.s3cfg put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
+if s3cmd --config-file=/home/user/s3cfg put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
     echo "Backup uploaded to R2 successfully."
 else
     echo "Error: Failed to upload backup to R2."
@@ -73,9 +73,9 @@ rm -f /tmp/$BACKUP_FILE
 
 # 删除旧备份（保留最近5个）
 echo "Cleaning up old backups..."
-s3cmd --config-file=/home/user/.s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | awk '{print $4}' | tail -n +6 | while read -r OLD_BACKUP; do
+s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | awk '{print $4}' | tail -n +6 | while read -r OLD_BACKUP; do
     if [ -n "$OLD_BACKUP" ]; then
-        s3cmd --config-file=/home/user/.s3cfg del "$OLD_BACKUP"
+        s3cmd --config-file=/home/user/s3cfg del "$OLD_BACKUP"
         echo "Deleted old backup: $OLD_BACKUP"
     fi
 done
