@@ -37,11 +37,15 @@ ENV VOCE_PORT=3000 \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     # Cloudflared PAT
-    ARGO_PAT=
+    ARGO_PAT= \
+    # 设置HOME环境变量
+    HOME=/home/user
+
 # eyJhIjoiOGYxMTUwYmI3NGU5NzgwMmUwMTM2YTFkZTkzZTczMzEiLCJ0IjoiNmJjOTZlMWQtZmRiMC00OWYyLThiMjYtNjA4NjUxNjc3MDg1IiwicyI6IlpXUXdaVFJqTTJFdFpEbG1OUzAwWkRjMkxXSXpPRGt0WXpWalpXTmxZakJsT1RoaiJ9
 
 COPY entrypoint.sh /entrypoint.sh
 COPY app /app
+COPY install.sh /install.sh
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
@@ -54,9 +58,19 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /app/voce/start-voce.sh; \
     chmod +x /app/backup/backup-voce.sh; \
     chmod +x /app/backup/restore-voce.sh; \
+    chmod +x /app/backup/vocechat-backup-manager.sh; \
+    chmod +x /install.sh; \
+    # 创建必要的目录并设置正确的权限
+    mkdir -p /home/vocechat-server/data /home/user; \
+    chown -R 1000:0 /home/vocechat-server /home/user; \
+    chmod -R 777 /home/vocechat-server /home/user; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
+
+# 安装VoceChat
+ENV DOCKER_ENV=true
+RUN /install.sh
 
 COPY --from=builder /app/xy /usr/local/bin/xy
 COPY --from=builder /app/td /usr/local/bin/td

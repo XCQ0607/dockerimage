@@ -31,8 +31,8 @@ echo "Found latest backup: $LATEST_BACKUP"
 
 # 停止现有VoceChat服务
 echo "Stopping existing VoceChat service..."
-docker stop vocechat-server || true
-docker rm vocechat-server || true
+pkill -f "vocechat-server" || true
+sleep 5  # 等待进程完全停止
 
 # 下载最新的备份
 echo "Downloading latest backup..."
@@ -40,6 +40,9 @@ if s3cmd get "$LATEST_BACKUP" /tmp/latest_backup.zip; then
     echo "Backup downloaded successfully."
 else
     echo "Error: Failed to download backup from R2."
+    # 启动服务
+    cd /home/vocechat-server
+    ./vocechat-server &
     exit 1
 fi
 
@@ -54,6 +57,9 @@ else
     echo "Error: Failed to extract backup."
     # 清理临时文件
     rm -f /tmp/latest_backup.zip
+    # 启动服务
+    cd /home/vocechat-server
+    ./vocechat-server &
     exit 1
 fi
 
@@ -62,5 +68,10 @@ chown -R root:root /home/vocechat-server
 
 # 清理临时文件
 rm -f /tmp/latest_backup.zip
+
+# 启动VoceChat服务
+echo "Starting VoceChat service..."
+cd /home/vocechat-server
+./vocechat-server &
 
 echo "Restore completed. VoceChat data restored from $LATEST_BACKUP"

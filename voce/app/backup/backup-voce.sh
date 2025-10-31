@@ -37,7 +37,8 @@ BACKUP_FILE="vocechat_backup_$TIMESTAMP.zip"
 
 # 停止VoceChat服务
 echo "Stopping VoceChat service..."
-docker stop vocechat-server || true
+pkill -f "vocechat-server" || true
+sleep 5  # 等待进程完全停止
 
 # 创建备份
 echo "Creating backup archive..."
@@ -47,7 +48,8 @@ if zip -r /tmp/$BACKUP_FILE data; then
 else
     echo "Error: Failed to create backup archive."
     # 重新启动服务
-    docker start vocechat-server || true
+    cd /home/vocechat-server
+    ./vocechat-server &
     exit 1
 fi
 
@@ -60,7 +62,8 @@ else
     # 清理临时文件
     rm -f /tmp/$BACKUP_FILE
     # 重新启动服务
-    docker start vocechat-server || true
+    cd /home/vocechat-server
+    ./vocechat-server &
     exit 1
 fi
 
@@ -78,6 +81,7 @@ done
 
 # 重新启动VoceChat服务
 echo "Restarting VoceChat service..."
-docker start vocechat-server || true
+cd /home/vocechat-server
+./vocechat-server &
 
 echo "Backup completed successfully."

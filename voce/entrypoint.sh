@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# 设置HOME环境变量
+export HOME=/home/user
+
 sed -i "s/UUID/$UUID/g" /app/xy/config.json
 sed -i "s/DOMAIN/$DOMAIN/g" /app/keepalive.sh
 

@@ -6,9 +6,10 @@
 
 ## 集成的组件
 
-1. **VoceChat服务** - 基于privoce/vocechat-server官方镜像
+1. **VoceChat服务** - 通过install.sh脚本直接安装的二进制文件
 2. **R2备份功能** - 每小时自动备份VoceChat数据到Cloudflare R2存储桶
 3. **自动恢复功能** - 容器启动时自动从R2恢复最新的备份
+4. **备份管理工具** - 提供手动备份、恢复、查看备份等高级功能
 
 ## 环境变量配置
 
@@ -58,6 +59,34 @@ docker run -d \
 - 如果存在备份，则下载并恢复数据
 - 如果没有备份，则启动全新的VoceChat实例
 
+## 备份管理工具
+
+项目包含一个强大的备份管理工具 [vocechat-backup-manager.sh](file:///e:/Qoder/voce/app/backup/vocechat-backup-manager.sh)，支持以下功能：
+
+### 使用方法
+```bash
+# 执行手动备份
+/app/backup/vocechat-backup-manager.sh --backup
+
+# 恢复最新备份
+/app/backup/vocechat-backup-manager.sh --restore
+
+# 恢复指定备份
+/app/backup/vocechat-backup-manager.sh --restore s3://bucket/vocechat_backup_20231010_120000.zip
+
+# 列出所有备份
+/app/backup/vocechat-backup-manager.sh --list
+
+# 删除旧备份，保留最近3个
+/app/backup/vocechat-backup-manager.sh --delete-old 3
+
+# 设置保留备份数量为10个
+/app/backup/vocechat-backup-manager.sh --set-keep-count 10
+
+# 查看帮助
+/app/backup/vocechat-backup-manager.sh --help
+```
+
 ## 目录结构
 
 ```
@@ -65,8 +94,9 @@ docker run -d \
 ├── voce/
 │   └── start-voce.sh          # VoceChat启动脚本
 ├── backup/
-│   ├── backup-voce.sh         # 备份脚本
-│   └── restore-voce.sh        # 恢复脚本
+│   ├── backup-voce.sh         # 自动备份脚本
+│   ├── restore-voce.sh        # 自动恢复脚本
+│   └── vocechat-backup-manager.sh  # 备份管理工具
 ├── cron/
 │   └── my-crontab             # 定时任务配置
 └── supervisor/
@@ -79,3 +109,6 @@ docker run -d \
 2. 数据存储在`/home/vocechat-server/data`目录
 3. 备份功能依赖s3cmd工具与R2存储桶通信
 4. 确保R2存储桶已创建并具有正确的访问权限
+5. VoceChat现在通过直接运行二进制文件方式启动，而非Docker容器方式
+6. 所有目录都设置了正确的用户权限（1000:0）和777权限
+7. HOME环境变量已正确设置
