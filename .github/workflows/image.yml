@@ -83,13 +83,21 @@ jobs:
               # 为当前目录调用API获取提交信息，带完整Header参数
               echo "Calling API for directory: $IMAGE_NAME with full Headers"
               echo "Command: curl -s $HEADER_ARGS \"https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME\""
-              DIR_COMMIT_INFO=$(curl -s $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
+              # 添加超时设置，防止请求挂起
+              DIR_COMMIT_INFO=$(curl -s --connect-timeout 10 --max-time 30 $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
               
               # 添加调试信息，输出API返回的原始数据
               echo "DEBUG: Raw API response for $IMAGE_NAME:"
               echo "$DIR_COMMIT_INFO"
               echo "DEBUG: Length of API response: ${#DIR_COMMIT_INFO}"
               echo "DEBUG: End of API response"
+              
+              # 检查API响应是否为空
+              if [ -z "$DIR_COMMIT_INFO" ] || [ "${#DIR_COMMIT_INFO}" -eq 0 ]; then
+                echo "ERROR: Empty response from API for directory: $IMAGE_NAME"
+                echo "Skipping $dir, API returned empty response"
+                continue
+              fi
               
               # 检查API响应是否有效
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
