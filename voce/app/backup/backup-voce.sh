@@ -84,3 +84,6 @@ echo "Restarting VoceChat service..."
 /app/voce/start-voce.sh
 
 echo "Backup completed successfully."
+
+# 确保脚本正确退出
+exit 0
