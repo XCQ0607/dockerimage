@@ -47,18 +47,8 @@ jobs:
           echo "" >> $SUMMARY_FILE
 
           # 定义完整的请求头参数
-          HEADER_ARGS="-H 'accept: application/json' \
-          -H 'accept-language: zh-CN,zh;q=0.9' \
-          -H 'cache-control: no-cache' \
-          -H 'content-type: application/json' \
-          -H 'github-verified-fetch: true' \
-          -H 'pragma: no-cache' \
-          -H 'priority: u=1, i' \
-          -H 'sec-fetch-dest: empty' \
-          -H 'sec-fetch-mode: cors' \
-          -H 'sec-fetch-site: same-origin' \
-          -H 'x-github-client-version: 3683172a6fa60e6b068d50994e1579dcc36e4ead' \
-          -H 'x-requested-with: XMLHttpRequest'"
+          HEADER_ARGS="-H 'Content-Type: application/json;charset=UTF-8' \
+          -H 'accept: application/json'"
 
           # 直接遍历当前目录中的所有一级子目录（每个目录作为一个Docker镜像）
           echo "Processing directories..."
