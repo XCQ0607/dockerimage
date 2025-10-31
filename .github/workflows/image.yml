@@ -31,7 +31,7 @@ jobs:
       - name: Build and push Docker images
         run: |
           # 安装 jq 工具用于解析 JSON
-          sudo apt-get update && sudo apt-get install -y jq
+          sudo apt-get update && sudo apt-get install -y jq tree
 
           OWNER=${{ steps.repo.outputs.owner_lower }}
           REPO_NAME=$(echo '${{ github.repository }}' | cut -d'/' -f2)
@@ -39,27 +39,43 @@ jobs:
           echo "# Docker Build Summaries" > $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
 
-          # 获取仓库根目录的提交信息
-          ROOT_COMMIT_INFO=$(curl -s "https://github.com/$OWNER/$REPO_NAME/tree-commit-info/main")
-          
-          # 检查API响应是否有效
-          if ! echo "$ROOT_COMMIT_INFO" | jq empty 2>/dev/null; then
-            echo "Failed to get valid JSON from root commit info API, falling back to file system check"
-            ROOT_COMMIT_INFO=""
+          # 输出总体文件数树
+          echo "## Repository File Structure" >> $SUMMARY_FILE
+          echo '```' >> $SUMMARY_FILE
+          tree -L 3 >> $SUMMARY_FILE
+          echo '```' >> $SUMMARY_FILE
+          echo "" >> $SUMMARY_FILE
+
+          # 遍历main目录中的所有子目录（假设存在main目录）
+          # 如果没有main目录，则遍历当前目录中的所有目录
+          MAIN_DIR="."
+          if [ -d "main" ]; then
+            MAIN_DIR="main"
           fi
           
+          echo "Processing directories in: $MAIN_DIR"
+          
           # 遍历所有目录
-          for dir in */ ; do
-            # 忽略非文件夹
+          for dir in $MAIN_DIR/*/ ; do
+            # 检查目录是否存在
+            if [ ! -d "$dir" ]; then
+              echo "Skipping $dir, not a directory"
+              continue
+            fi
+            
+            # 检查目录中是否有Dockerfile
             if [ ! -f "$dir/Dockerfile" ]; then
               echo "Skipping $dir, no Dockerfile"
               continue
             fi
 
             FLAG="$dir/build.flag"
-            IMAGE_NAME="${dir%/}"
+            # 获取目录名称（去掉路径和结尾斜杠）
+            IMAGE_NAME=$(basename "$dir")
             
-            # 检查是否有文件在build.flag之后更新
+            echo "Processing directory: $dir, Image name: $IMAGE_NAME"
+            
+            # 检查是否需要重新构建
             NEEDS_REBUILD=false
             
             # 如果build.flag不存在，需要构建
@@ -67,82 +83,58 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 获取目录级别的提交信息
-              DIR_COMMIT_DATE=""
-              if [ -n "$ROOT_COMMIT_INFO" ]; then
-                DIR_COMMIT_DATE=$(echo "$ROOT_COMMIT_INFO" | jq -r --arg dirname "$IMAGE_NAME" '.[$dirname].date // empty')
-              fi
+              # 为当前目录调用API获取提交信息
+              # URL格式: https://github.com/XCQ0607/dockerimage/tree-commit-info/main/XXX
+              echo "Calling API for directory: $IMAGE_NAME"
+              DIR_COMMIT_INFO=$(curl -s "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
               
-              if [ -n "$DIR_COMMIT_DATE" ] && [ "$DIR_COMMIT_DATE" != "null" ]; then
+              # 检查API响应是否有效
+              if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
+                echo "Successfully retrieved commit info for $IMAGE_NAME"
+                
                 # 获取build.flag的修改时间
                 FLAG_DATE=$(date -d "$(git log -1 --format=%cI -- $FLAG)" +%s 2>/dev/null || stat -c %Y "$FLAG" 2>/dev/null || echo "0")
+                echo "Build flag date: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
                 
-                # 将目录提交时间转换为秒
-                DIR_DATE=$(date -d "$DIR_COMMIT_DATE" +%s 2>/dev/null || echo "0")
+                # 检查目录中是否有文件在build.flag之后更新
+                NEEDS_REBUILD_INNER=false
                 
-                # 比较时间戳
-                if [ "$DIR_DATE" -gt "$FLAG_DATE" ]; then
-                  NEEDS_REBUILD=true
-                  echo "Directory $dir has updates since last build, will rebuild"
-                else
-                  # 如果目录级别没有更新，检查目录内各个文件的提交信息
-                  echo "Checking individual files in $dir for updates..."
+                # 遍历目录中的所有文件（除了build.flag）
+                while IFS= read -r -d '' file; do
+                  # 获取文件名（不含路径）
+                  filename=$(basename "$file")
                   
-                  # 获取目录内文件的提交信息
-                  DIR_FILES_COMMIT_INFO=""
-                  DIR_FILES_COMMIT_RESPONSE=$(curl -s "https://github.com/$OWNER/$REPO_NAME/tree-commit-info/main/$IMAGE_NAME")
-                  
-                  # 检查API响应是否有效
-                  if echo "$DIR_FILES_COMMIT_RESPONSE" | jq empty 2>/dev/null; then
-                    DIR_FILES_COMMIT_INFO="$DIR_FILES_COMMIT_RESPONSE"
-                  else
-                    echo "Failed to get valid JSON from directory files commit info API"
-                  fi
-                  
-                  # 检查目录中的每个文件
-                  NEEDS_REBUILD_INNER=false
-                  if [ -n "$DIR_FILES_COMMIT_INFO" ]; then
-                    while IFS= read -r -d '' file; do
-                      # 获取文件名（不含路径）
-                      filename=$(basename "$file")
-                      
-                      # 跳过build.flag文件本身
-                      if [ "$filename" = "build.flag" ]; then
-                        continue
-                      fi
-                      
-                      # 获取文件的提交日期
-                      FILE_COMMIT_DATE=$(echo "$DIR_FILES_COMMIT_INFO" | jq -r --arg fname "$filename" '.[$fname].date // empty')
-                      
-                      if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ]; then
-                        FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
-                        
-                        if [ "$FILE_DATE" -gt "$FLAG_DATE" ]; then
-                          NEEDS_REBUILD_INNER=true
-                          echo "File $file has been updated since last build"
-                          break
-                        fi
-                      fi
-                    done < <(find "$dir" -type f -print0)
-                  else
-                    echo "Falling back to file system check for individual files"
-                    # 如果无法获取目录内文件提交信息，回退到文件系统检查
-                    UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
-                    if [ -n "$UPDATED_FILES" ]; then
-                      NEEDS_REBUILD_INNER=true
-                    fi
-                  fi
-                  
-                  if [ "$NEEDS_REBUILD_INNER" = true ]; then
-                    NEEDS_REBUILD=true
-                  else
-                    echo "Skipping $dir, no files updated since last build"
+                  # 跳过build.flag文件本身
+                  if [ "$filename" = "build.flag" ]; then
                     continue
                   fi
+                  
+                  # 从API响应中获取该文件的提交日期
+                  FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg fname "$filename" '.[$fname].date // empty')
+                  
+                  if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ]; then
+                    FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
+                    echo "File: $file, Commit date: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
+                    
+                    if [ "$FILE_DATE" -gt "$FLAG_DATE" ] 2>/dev/null; then
+                      NEEDS_REBUILD_INNER=true
+                      echo "File $file has been updated since last build"
+                      break
+                    fi
+                  else
+                    echo "No commit info for file: $file"
+                  fi
+                done < <(find "$dir" -type f -print0)
+                
+                if [ "$NEEDS_REBUILD_INNER" = true ]; then
+                  NEEDS_REBUILD=true
+                else
+                  echo "Skipping $dir, no files updated since last build"
+                  continue
                 fi
               else
-                echo "Could not get commit date for directory $dir, falling back to file system check"
-                # 如果无法获取目录提交信息，回退到原来的文件系统检查方法
+                echo "Failed to get valid JSON from commit info API for $IMAGE_NAME, falling back to file system check"
+                # 如果API调用失败，回退到文件系统检查
                 UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
                 if [ -n "$UPDATED_FILES" ]; then
                   NEEDS_REBUILD=true
