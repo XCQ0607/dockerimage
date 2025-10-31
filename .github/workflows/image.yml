@@ -67,27 +67,58 @@ jobs:
               echo "=== Checking $dir ==="
               
               # 查看自从build.flag最后一次提交以来，该目录下是否有文件变更
+              # 首先尝试使用--follow参数
               LAST_BUILD_COMMIT=$(git log -1 --format="%H" --follow -- "$FLAG" 2>/dev/null)
               
+              # 如果--follow失败，则不使用--follow参数
+              if [ -z "$LAST_BUILD_COMMIT" ]; then
+                LAST_BUILD_COMMIT=$(git log -1 --format="%H" -- "$FLAG" 2>/dev/null)
+              fi
+              
+              # 如果仍然无法获取commit，则尝试其他方法
               if [ -z "$LAST_BUILD_COMMIT" ]; then
                 # 如果无法找到上次构建的commit，默认需要重建
                 NEEDS_REBUILD=true
-                echo "Cannot find last build commit, will rebuild"
+                echo "Cannot find last build commit for $FLAG, will rebuild"
               else
                 echo "Last build commit for $dir: $LAST_BUILD_COMMIT"
                 echo "Current HEAD commit: $(git rev-parse HEAD)"
                 
-                # 获取从上次构建以来该目录的变更文件列表
-                CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
-                
-                if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
-                  NEEDS_REBUILD=true
-                  echo "Found updated files in $dir, will rebuild:"
-                  echo "$CHANGES_SINCE_LAST_BUILD"
+                # 检查是否是相同的commit
+                if [ "$LAST_BUILD_COMMIT" = "$(git rev-parse HEAD)" ]; then
+                  # 如果是相同的commit，检查是否是第一次运行（没有之前的构建记录）
+                  COMMIT_COUNT=$(git log --oneline "$FLAG" | wc -l)
+                  if [ "$COMMIT_COUNT" -le 1 ]; then
+                    # 如果build.flag只有一个commit，说明是新创建的，需要构建
+                    NEEDS_REBUILD=true
+                    echo "New build.flag detected for $dir, will rebuild"
+                  else
+                    # 检查从上次构建以来该目录的变更文件列表
+                    CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
+                    
+                    if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
+                      NEEDS_REBUILD=true
+                      echo "Found updated files in $dir, will rebuild:"
+                      echo "$CHANGES_SINCE_LAST_BUILD"
+                    else
+                      echo "Skipping $dir, no files updated since last build according to git history"
+                      echo "==="
+                      continue
+                    fi
+                  fi
                 else
-                  echo "Skipping $dir, no files updated since last build according to git history"
-                  echo "==="
-                  continue
+                  # 不同的commit，正常比较
+                  CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
+                  
+                  if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
+                    NEEDS_REBUILD=true
+                    echo "Found updated files in $dir, will rebuild:"
+                    echo "$CHANGES_SINCE_LAST_BUILD"
+                  else
+                    echo "Skipping $dir, no files updated since last build according to git history"
+                    echo "==="
+                    continue
+                  fi
                 fi
               fi
               echo "==="
