@@ -1,135 +1,135 @@
 # Docker Build Summaries
 
-## 镜像: voce
+## 镜像: rustdesk
 
 ### 构建信息
-- 目录: voce/
-- 完整镜像名: ghcr.io/xcq0607/voce:latest
+- 目录: rustdesk/
+- 完整镜像名: ghcr.io/xcq0607/rustdesk:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 52s
+- 构建耗时: 53s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/voce:latest
+FROM ghcr.io/xcq0607/rustdesk:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-voce ghcr.io/xcq0607/voce:latest
+docker run -d --name my-rustdesk ghcr.io/xcq0607/rustdesk:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/voce:latest
+docker pull ghcr.io/xcq0607/rustdesk:latest
 ```
 
 ### 构建日志
 
 ```
-#11 14.06 Setting up python3.10 (3.10.12-1~22.04.11) ...
-#11 14.58 Setting up iptables (1.8.7-1ubuntu5.2) ...
-#11 14.59 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
-#11 14.59 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
-#11 14.59 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
-#11 14.59 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
-#11 14.60 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
-#11 14.60 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
-#11 14.60 Setting up iproute2 (5.15.0-1ubuntu2) ...
-#11 14.67 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
-#11 14.71 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
-#11 14.71 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
-#11 14.71 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
-#11 14.71 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
-#11 14.71 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
-#11 14.71 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
-#11 14.72 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
-#11 14.72 Setting up python3 (3.10.6-1~22.04.1) ...
-#11 14.80 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
-#11 14.87 Adding group `docker' (GID 102) ...
-#11 14.87 Done.
-#11 15.07 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
-#11 15.07 invoke-rc.d: could not determine current runlevel
-#11 15.08 Setting up python3-six (1.16.0-3ubuntu1) ...
-#11 15.18 Setting up perl (5.34.0-3ubuntu1.5) ...
-#11 15.19 Setting up python3-dateutil (2.8.1-6) ...
-#11 15.31 Setting up python3-magic (2:0.4.24-2) ...
-#11 15.40 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
-#11 15.55 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
-#11 15.55 Setting up supervisor (4.2.1-1ubuntu1) ...
-#11 15.83 invoke-rc.d: could not determine current runlevel
-#11 15.83 invoke-rc.d: policy-rc.d denied execution of start.
-#11 15.93 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
-#11 16.03 
-#11 16.03 Creating config file /etc/ssh/sshd_config with new version
-#11 16.05 Creating SSH2 RSA key; this may take some time ...
-#11 16.51 3072 SHA256:TwHQeCNl98XzTsUhTujUHWvXrbTilAH0FmXLpHbkUa4 root@buildkitsandbox (RSA)
-#11 16.52 Creating SSH2 ECDSA key; this may take some time ...
-#11 16.52 256 SHA256:Xah7GY8xhc3u9UcIgrqxnmWSv9dOxOnrpe19EfU7y0k root@buildkitsandbox (ECDSA)
-#11 16.53 Creating SSH2 ED25519 key; this may take some time ...
-#11 16.53 256 SHA256:zo7lqk9qOh2basCRaqlPpDxhMoFg+rAmySUxtZeOUE4 root@buildkitsandbox (ED25519)
-#11 16.59 invoke-rc.d: could not determine current runlevel
-#11 16.59 invoke-rc.d: policy-rc.d denied execution of start.
-#11 16.76 Setting up s3cmd (2.2.0-1) ...
-#11 16.89 Setting up liberror-perl (0.17029-1) ...
-#11 16.89 Setting up git (1:2.34.1-1ubuntu1.15) ...
-#11 16.90 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
-#11 16.91 Processing triggers for ca-certificates (20240203~22.04.1) ...
-#11 16.92 Updating certificates in /etc/ssl/certs...
-#11 17.33 0 added, 0 removed; done.
-#11 17.33 Running hooks in /etc/ca-certificates/update.d...
-#11 17.33 done.
-#11 17.40 useradd: warning: the home directory /home/user already exists.
-#11 17.40 useradd: Not copying any file from skel directory into it.
-#11 DONE 17.5s
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+#10 17.16 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 17.16 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 17.69 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 17.76 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 17.80 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 17.80 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 17.80 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 17.80 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 17.80 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 17.80 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 17.81 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 17.81 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 17.89 Setting up binutils (2.38-4ubuntu2.10) ...
+#10 17.89 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 17.90 Setting up libexpat1-dev:amd64 (2.4.7-1ubuntu0.6) ...
+#10 17.90 Setting up libdpkg-perl (1.21.1ubuntu2.6) ...
+#10 17.90 Setting up libstdc++-11-dev:amd64 (11.4.0-1ubuntu1~22.04.2) ...
+#10 17.90 Setting up zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu9.2) ...
+#10 17.91 Setting up gcc-11 (11.4.0-1ubuntu1~22.04.2) ...
+#10 17.91 Setting up python3-lib2to3 (3.10.8-1~22.04) ...
+#10 17.99 Setting up libmysqlclient-dev (8.0.43-0ubuntu0.22.04.2) ...
+#10 17.99 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 18.14 Setting up default-libmysqlclient-dev:amd64 (1.0.8) ...
+#10 18.14 Setting up python3-distutils (3.10.8-1~22.04) ...
+#10 18.24 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 18.24 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 18.52 invoke-rc.d: could not determine current runlevel
+#10 18.52 invoke-rc.d: policy-rc.d denied execution of start.
+#10 18.62 Setting up python3-setuptools (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 18.89 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 18.99 
+#10 18.99 Creating config file /etc/ssh/sshd_config with new version
+#10 19.01 Creating SSH2 RSA key; this may take some time ...
+#10 19.48 3072 SHA256:1wAazZICLTdqufsUhuQIJW5agVrEdiZV+sFbSArPjGw root@buildkitsandbox (RSA)
+#10 19.49 Creating SSH2 ECDSA key; this may take some time ...
+#10 19.49 256 SHA256:pbeOiZFj2NT7ZC4TO35Dq5Z1P5h7OTCYVdEyLq0nq2c root@buildkitsandbox (ECDSA)
+#10 19.49 Creating SSH2 ED25519 key; this may take some time ...
+#10 19.50 256 SHA256:vY7TFW0neJg2jkjg4NV1j210NBNDq0A7QpJcQAObpOk root@buildkitsandbox (ED25519)
+#10 19.56 invoke-rc.d: could not determine current runlevel
+#10 19.56 invoke-rc.d: policy-rc.d denied execution of start.
+#10 19.74 Setting up g++-11 (11.4.0-1ubuntu1~22.04.2) ...
+#10 19.74 Setting up python3-wheel (0.37.1-2ubuntu0.22.04.1) ...
+#10 19.85 Setting up gcc (4:11.2.0-1ubuntu1) ...
+#10 19.86 Setting up dpkg-dev (1.21.1ubuntu2.6) ...
+#10 19.86 Setting up liberror-perl (0.17029-1) ...
+#10 19.86 Setting up pkg-config (0.29.2-1ubuntu3) ...
+#10 19.88 Setting up libpython3.10-dev:amd64 (3.10.12-1~22.04.11) ...
+#10 19.89 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 19.89 Setting up python3-pip (22.0.2+dfsg-1ubuntu0.7) ...
+#10 20.78 Setting up python3.10-dev (3.10.12-1~22.04.11) ...
+#10 20.78 Setting up g++ (4:11.2.0-1ubuntu1) ...
+#10 20.80 update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+#10 20.80 update-alternatives: warning: skip creation of /usr/share/man/man1/c++.1.gz because associated file /usr/share/man/man1/g++.1.gz (of link group c++) doesn't exist
+#10 20.80 Setting up build-essential (12.9ubuntu3) ...
+#10 20.80 Setting up libpython3-dev:amd64 (3.10.6-1~22.04.1) ...
+#10 20.81 Setting up python3-dev (3.10.6-1~22.04.1) ...
+#10 20.81 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 20.82 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 20.83 Updating certificates in /etc/ssl/certs...
+#10 21.24 0 added, 0 removed; done.
+#10 21.24 Running hooks in /etc/ca-certificates/update.d...
+#10 21.24 done.
+#10 DONE 22.2s
 
-#13 [stage-1  6/10] RUN /install.sh
-#13 0.769   ┌────────────────────────────────────────────────────────────────┐ 
-#13 0.769   │              vocechat-server v0.4.2 installation guide         │ 
-#13 0.769   └────────────────────────────────────────────────────────────────┘ 
-#13 0.773 
-#13 0.773 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-#13 0.773 
-#13 0.777 Reading package lists...
-#13 0.786 Building dependency tree...
-#13 0.786 Reading state information...
-#13 0.787 E: Unable to locate package libssl-dev
-#13 0.788 
-#13 0.789 -e Detected platform: [31mx86_64-unknown-linux-musl[0m.
-#13 0.789 Downloading URL: https://sh.voce.chat/vocechat-server-v0.4.2-x86_64-unknown-linux-musl.zip
-#13 0.920 #=#=#                                                                         ##O#-#                                                                        ##O=#  #                                                                      #=#=-#  #                                                                     -#O#- #   #                                                                                                                                              0.1%                                                                           0.2%                                                                           0.4%                                                                           0.6%                                                                           0.9%#                                                                          1.4%#                                                                          2.2%##                                                                         3.4%###                                                                        5.2%#####                                                                      7.9%########                                                                  11.9%#############                                                             18.3%####################                                                      28.1%#############################                                             41.6%#########################################                                 58.1%#####################################################                     74.1%###############################################################           87.7%######################################################################## 100.0%
-#13 3.686   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-#13 3.686                                  Dload  Upload   Total   Spent    Left  Speed
-#13 3.686   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   634  100   634    0     0    944      0 --:--:-- --:--:-- --:--:--   943
-#13 4.361 
-#13 4.363 Docker environment detected. Skipping service installation.
-#13 DONE 4.4s
+#12 [stage-1 5/9] COPY --from=builder /app/xy /usr/local/bin/xy
+#12 DONE 0.1s
 
-#14 [stage-1  7/10] COPY --from=builder /app/xy /usr/local/bin/xy
-#14 DONE 0.1s
+#13 [stage-1 6/9] COPY --from=builder /app/td /usr/local/bin/td
+#13 DONE 0.0s
 
-#15 [stage-1  8/10] COPY --from=builder /app/td /usr/local/bin/td
-#15 DONE 0.0s
+#14 [stage-1 7/9] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 DONE 0.0s
 
-#16 [stage-1  9/10] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
-#16 DONE 0.0s
+#15 [stage-1 8/9] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 DONE 0.1s
 
-#17 [stage-1 10/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#17 DONE 0.1s
+#16 [stage-1 9/9] RUN chmod +x /app/rustdesk-api/*.sh && chmod +x /app/rustdesk-server/*.sh
+#16 DONE 0.1s
 
-#18 exporting to image
-#18 exporting layers
-#18 exporting layers 2.3s done
-#18 writing image sha256:90b8e842dd7c37d18ceb90997cf6bd0e904bff015acdc4a9fdc11220c5e92012 done
-#18 naming to ghcr.io/xcq0607/voce:latest done
-#18 DONE 2.3s
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 3.1s done
+#17 writing image sha256:2c90eeaf7f9ccfb64b6f855820a64fcbc45025488e31c5095e6efbbcddccc987 done
+#17 naming to ghcr.io/xcq0607/rustdesk:latest done
+#17 DONE 3.1s
 
  [33m2 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 27)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 27)
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "SECRET_KEY") (line 26)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "RUSTDESK_KEY") (line 26)
 ```
 
