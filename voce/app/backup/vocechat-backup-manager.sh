@@ -56,7 +56,8 @@ check_env_vars() {
 
 # 设置s3cmd配置
 setup_s3cmd() {
-    cat > /root/.s3cfg << EOF
+    mkdir -p /home/user/.s3cfg
+    cat > /home/user/.s3cfg << EOF
 [default]
 access_key = $R2_ACCESS_KEY_ID
 secret_key = $R2_SECRET_ACCESS_KEY
@@ -116,7 +117,7 @@ perform_backup() {
 
     # 上传到R2
     echo "Uploading backup to R2..."
-    if s3cmd put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
+    if s3cmd --config-file=/home/user/.s3cfg put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
         echo -e "${GREEN}Backup uploaded to R2 successfully.${NC}"
     else
         echo -e "${RED}Error: Failed to upload backup to R2.${NC}"
@@ -146,7 +147,7 @@ perform_restore() {
     # 如果没有指定备份文件，则使用最新的备份
     if [ -z "$backup_file" ]; then
         # 查找最新的备份文件
-        backup_file=$(s3cmd ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
+        backup_file=$(s3cmd --config-file=/home/user/.s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
         
         if [ -z "$backup_file" ]; then
             echo -e "${YELLOW}No backup found in R2.${NC}"
@@ -156,7 +157,7 @@ perform_restore() {
         echo "Found latest backup: $backup_file"
     else
         # 检查指定的备份文件是否存在
-        if ! s3cmd info "$backup_file" > /dev/null 2>&1; then
+        if ! s3cmd --config-file=/home/user/.s3cfg info "$backup_file" > /dev/null 2>&1; then
             echo -e "${RED}Error: Backup file $backup_file not found in R2.${NC}"
             return 1
         fi
@@ -168,7 +169,7 @@ perform_restore() {
 
     # 下载备份
     echo "Downloading backup..."
-    if s3cmd get "$backup_file" /tmp/restore_backup.zip; then
+    if s3cmd --config-file=/home/user/.s3cfg get "$backup_file" /tmp/restore_backup.zip; then
         echo -e "${GREEN}Backup downloaded successfully.${NC}"
     else
         echo -e "${RED}Error: Failed to download backup from R2.${NC}"
@@ -193,9 +194,6 @@ perform_restore() {
         return 1
     fi
 
-    # 设置权限
-    chown -R root:root /home/vocechat-server
-
     # 清理临时文件
     rm -f /tmp/restore_backup.zip
 
@@ -209,7 +207,7 @@ perform_restore() {
 # 列出所有备份
 list_backups() {
     echo -e "${BLUE}Listing all backups in R2...${NC}"
-    s3cmd ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r
+    s3cmd --config-file=/home/user/.s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r
 }
 
 # 删除旧备份
@@ -219,7 +217,7 @@ delete_old_backups() {
     echo -e "${BLUE}Deleting old backups, keeping last $keep_count...${NC}"
     
     # 获取要删除的备份列表
-    local backups_to_delete=$(s3cmd ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | tail -n +$((keep_count + 1)) | awk '{print $4}')
+    local backups_to_delete=$(s3cmd --config-file=/home/user/.s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | tail -n +$((keep_count + 1)) | awk '{print $4}')
     
     if [ -z "$backups_to_delete" ]; then
         echo -e "${YELLOW}No old backups to delete.${NC}"
@@ -232,7 +230,7 @@ delete_old_backups() {
     # 删除旧备份
     echo "$backups_to_delete" | while read -r backup; do
         if [ -n "$backup" ]; then
-            if s3cmd del "$backup"; then
+            if s3cmd --config-file=/home/user/.s3cfg del "$backup"; then
                 echo -e "${GREEN}Deleted: $backup${NC}"
             else
                 echo -e "${RED}Failed to delete: $backup${NC}"

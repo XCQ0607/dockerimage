@@ -11,9 +11,6 @@ fi
 # 创建必要的目录
 mkdir -p /home/vocechat-server/config /home/vocechat-server/data
 
-# 设置权限（使用root用户）
-chown -R root:root /home/vocechat-server
-
 # 检查是否已经有运行中的VoceChat进程
 if pgrep -f "vocechat-server" > /dev/null; then
     echo "VoceChat service is already running."
