@@ -92,26 +92,34 @@ jobs:
             else
               # 为当前目录调用API获取提交信息，带完整Header参数
               echo "Calling API for directory: $IMAGE_NAME with full Headers"
-              DIR_COMMIT_INFO=$(curl -s $HEADER_ARGS "https://linuxrun-cors.hf.space/https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
+              echo "Command: curl -s $HEADER_ARGS \"https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME\""
+              DIR_COMMIT_INFO=$(curl -s $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
               
               # 添加调试信息，输出API返回的原始数据
-              echo "DEBUG: API response for $IMAGE_NAME:"
-              echo "$DIR_COMMIT_INFO" | jq '.' 2>/dev/null || echo "$DIR_COMMIT_INFO"
+              echo "DEBUG: Raw API response for $IMAGE_NAME:"
+              echo "$DIR_COMMIT_INFO"
+              echo "DEBUG: Length of API response: ${#DIR_COMMIT_INFO}"
               echo "DEBUG: End of API response"
               
               # 检查API响应是否有效
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
                 echo "Successfully retrieved commit info for $IMAGE_NAME"
                 
+                # 输出格式化的JSON响应
+                echo "DEBUG: Formatted JSON response:"
+                echo "$DIR_COMMIT_INFO" | jq '.'
+                
                 # 获取build.flag的修改时间（严格来自API返回的JSON数据）
                 # 修复解析逻辑，正确提取build.flag的日期
                 FLAG_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r '.["build.flag"]?.date // empty')
-                echo "DEBUG: build.flag commit date from API: $FLAG_COMMIT_DATE"
+                echo "DEBUG: build.flag commit date from API: '$FLAG_COMMIT_DATE'"
                 if [ -n "$FLAG_COMMIT_DATE" ] && [ "$FLAG_COMMIT_DATE" != "null" ] && [ -n "$FLAG_COMMIT_DATE" ]; then
                   FLAG_DATE=$(date -d "$FLAG_COMMIT_DATE" +%s 2>/dev/null || echo "0")
                   echo "Build flag date from API: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
                 else
                   echo "Failed to get build.flag date from API"
+                  echo "DEBUG: Available keys in response:"
+                  echo "$DIR_COMMIT_INFO" | jq -r 'keys[]' 2>/dev/null || echo "No keys found"
                   # 如果无法从API获取build.flag时间，则跳过此目录
                   echo "Skipping $dir, cannot get build.flag date from API"
                   continue
@@ -129,7 +137,7 @@ jobs:
                   
                   # 获取该文件的提交日期（严格来自API）
                   FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg key "$file_key" '.[$key]?.date // empty')
-                  echo "DEBUG: File $file_key commit date from API: $FILE_COMMIT_DATE"
+                  echo "DEBUG: File $file_key commit date from API: '$FILE_COMMIT_DATE'"
                   
                   if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ] && [ -n "$FILE_COMMIT_DATE" ]; then
                     FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
@@ -153,6 +161,8 @@ jobs:
                 fi
               else
                 echo "Failed to get valid JSON from commit info API for $IMAGE_NAME"
+                echo "DEBUG: Raw response that failed JSON parsing:"
+                echo "$DIR_COMMIT_INFO"
                 # 如果API调用失败，则跳过此目录
                 echo "Skipping $dir, API call failed"
                 continue
