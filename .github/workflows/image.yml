@@ -83,8 +83,45 @@ jobs:
               # 为当前目录调用API获取提交信息，带完整Header参数
               echo "Calling API for directory: $IMAGE_NAME with full Headers"
               echo "Command: curl -s $HEADER_ARGS \"https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME\""
-              # 添加超时设置，防止请求挂起
-              DIR_COMMIT_INFO=$(curl -s --connect-timeout 10 --max-time 30 $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
+              # 添加超时设置，防止请求挂起，并添加重试机制
+              DIR_COMMIT_INFO=""
+              RETRY_COUNT=0
+              MAX_RETRIES=3
+              
+              while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+                echo "Attempt $((RETRY_COUNT+1)) of $MAX_RETRIES"
+                # 使用wget作为备用方案
+                DIR_COMMIT_INFO=$(curl -s --connect-timeout 10 --max-time 30 $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME" 2>/dev/null)
+                
+                # 检查curl是否因为超时而失败
+                if [ $? -ne 0 ]; then
+                  echo "curl failed with exit code $?"
+                fi
+                
+                # 如果curl没有返回数据，尝试使用wget
+                if [ -z "$DIR_COMMIT_INFO" ] || [ "${#DIR_COMMIT_INFO}" -eq 0 ]; then
+                  echo "curl returned empty response, trying wget as fallback"
+                  DIR_COMMIT_INFO=$(wget --timeout=30 --header="Content-Type: application/json;charset=UTF-8" --header="accept: application/json" -qO- "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME" 2>/dev/null)
+                  
+                  # 检查wget是否因为超时而失败
+                  if [ $? -ne 0 ]; then
+                    echo "wget failed with exit code $?"
+                  fi
+                fi
+                
+                # 检查是否获取到数据
+                if [ -n "$DIR_COMMIT_INFO" ] && [ "${#DIR_COMMIT_INFO}" -gt 0 ]; then
+                  echo "Successfully retrieved data on attempt $((RETRY_COUNT+1))"
+                  break
+                else
+                  echo "Attempt $((RETRY_COUNT+1)) failed, response is still empty"
+                  RETRY_COUNT=$((RETRY_COUNT+1))
+                  if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                    echo "Waiting 5 seconds before retry..."
+                    sleep 5
+                  fi
+                fi
+              done
               
               # 添加调试信息，输出API返回的原始数据
               echo "DEBUG: Raw API response for $IMAGE_NAME:"
@@ -94,7 +131,7 @@ jobs:
               
               # 检查API响应是否为空
               if [ -z "$DIR_COMMIT_INFO" ] || [ "${#DIR_COMMIT_INFO}" -eq 0 ]; then
-                echo "ERROR: Empty response from API for directory: $IMAGE_NAME"
+                echo "ERROR: Empty response from API for directory: $IMAGE_NAME after $MAX_RETRIES attempts"
                 echo "Skipping $dir, API returned empty response"
                 continue
               fi
