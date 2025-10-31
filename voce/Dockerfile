@@ -32,10 +32,10 @@ ENV VOCE_PORT=3000 \
     # R2终结点，默认值为7edee57c816a663e631de31c492a6320.r2.cloudflarestorage.com，必填，示例输入：your-account.r2.cloudflarestorage.com
     R2_ENDPOINT=7edee57c816a663e631de31c492a6320.r2.cloudflarestorage.com \
     # R2存储桶名称，必填，示例输入：vocechat-backups
-    R2_BUCKET_NAME=vocechat-backups \
+    R2_BUCKET_NAME=voce \
     TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
-    DOMAIN=web3x-p.hf.space \
+    DOMAIN=web3x-voce.hf.space \
     # Cloudflared PAT
     ARGO_PAT= \
     # 设置HOME环境变量

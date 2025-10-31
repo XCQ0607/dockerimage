@@ -84,9 +84,6 @@ docker run -d \
 # 设置保留备份数量为10个
 /app/backup/vocechat-backup-manager.sh --set-keep-count 10
 
-# 测试R2连通性
-/app/backup/vocechat-backup-manager.sh --test-connectivity
-
 # 查看帮助
 /app/backup/vocechat-backup-manager.sh --help
 ```

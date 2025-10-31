@@ -28,6 +28,7 @@ cat > /home/user/s3cfg << EOF
 [default]
 access_key = $R2_ACCESS_KEY_ID
 secret_key = $R2_SECRET_ACCESS_KEY
+bucket_location = auto
 host_base = $R2_ENDPOINT
 host_bucket = $R2_BUCKET_NAME.$R2_ENDPOINT
 EOF
@@ -35,20 +36,20 @@ EOF
 echo -e "${BLUE}Testing R2 connection...${NC}"
 
 # 测试连接
-if s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ >/dev/null 2>&1; then
+if s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ >/dev/null 2>&1; then
     echo -e "${GREEN}✓ Successfully connected to R2 bucket: $R2_BUCKET_NAME${NC}"
     
     # 列出存储桶中的文件数量
-    file_count=$(s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | wc -l)
+    file_count=$(s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | wc -l)
     echo -e "${GREEN}✓ Bucket contains $file_count objects${NC}"
     
     # 检查是否有备份文件
-    backup_count=$(s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | wc -l)
+    backup_count=$(s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | wc -l)
     if [ "$backup_count" -gt 0 ]; then
         echo -e "${GREEN}✓ Found $backup_count VoceChat backup(s) in the bucket${NC}"
         
         # 显示最新的备份
-        latest_backup=$(s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
+        latest_backup=$(s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | head -n 1 | awk '{print $4}')
         echo -e "${BLUE}Latest backup: $latest_backup${NC}"
     else
         echo -e "${YELLOW}⚠ No VoceChat backups found in the bucket${NC}"

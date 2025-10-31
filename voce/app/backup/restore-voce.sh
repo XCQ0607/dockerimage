@@ -16,6 +16,7 @@ cat > /home/user/s3cfg << EOF
 [default]
 access_key = $R2_ACCESS_KEY_ID
 secret_key = $R2_SECRET_ACCESS_KEY
+bucket_location = auto
 host_base = $R2_ENDPOINT
 host_bucket = $R2_BUCKET_NAME.$R2_ENDPOINT
 EOF
