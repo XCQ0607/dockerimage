@@ -31,7 +31,7 @@ jobs:
       - name: Build and push Docker images
         run: |
           # 安装 jq 工具用于解析 JSON
-          sudo apt-get update && sudo apt-get install -y jq tree
+          sudo apt-get update && sudo apt-get install -y jq tree curl
 
           OWNER=${{ steps.repo.outputs.owner_lower }}
           REPO_NAME=$(echo '${{ github.repository }}' | cut -d'/' -f2)
@@ -46,20 +46,32 @@ jobs:
           echo '```' >> $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
 
-          # 遍历main目录中的所有子目录（假设存在main目录）
-          # 如果没有main目录，则遍历当前目录中的所有目录
-          MAIN_DIR="."
-          if [ -d "main" ]; then
-            MAIN_DIR="main"
+          # 获取主目录的项目列表
+          echo "Fetching project list from main directory..."
+          MAIN_DIR_INFO=$(curl -s -H "Accept: application/json" "https://github.com/XCQ0607/dockerimage/tree/main")
+          
+          # 检查API响应是否有效
+          if echo "$MAIN_DIR_INFO" | jq empty 2>/dev/null; then
+            echo "Successfully retrieved main directory info"
+            # 提取目录类型的项目（根据实际返回的JSON结构调整）
+            PROJECT_DIRS=$(echo "$MAIN_DIR_INFO" | jq -r '.payload.fileTree."".items[] | select(.contentType=="directory") | .name')
+            echo "Found project directories: $PROJECT_DIRS"
+          else
+            echo "Failed to get valid JSON from main directory API, falling back to local directory listing"
+            PROJECT_DIRS=$(ls -1 */ 2>/dev/null | sed 's/\/$//')
           fi
+
+          # 遍历项目目录
+          echo "Processing directories..."
           
-          echo "Processing directories in: $MAIN_DIR"
-          
-          # 遍历所有目录
-          for dir in $MAIN_DIR/*/ ; do
+          for dir in $PROJECT_DIRS; do
+            # 确保目录名末尾没有斜杠
+            dir="${dir%/}"
+            IMAGE_NAME=$dir
+            
             # 检查目录是否存在
             if [ ! -d "$dir" ]; then
-              echo "Skipping $dir, not a directory"
+              echo "Skipping $dir, directory does not exist locally"
               continue
             fi
             
@@ -70,9 +82,6 @@ jobs:
             fi
 
             FLAG="$dir/build.flag"
-            # 获取目录名称（去掉路径和结尾斜杠）
-            IMAGE_NAME=$(basename "$dir")
-            
             echo "Processing directory: $dir, Image name: $IMAGE_NAME"
             
             # 检查是否需要重新构建
@@ -83,10 +92,9 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 为当前目录调用API获取提交信息
-              # URL格式: https://github.com/XCQ0607/dockerimage/tree-commit-info/main/XXX
-              echo "Calling API for directory: $IMAGE_NAME"
-              DIR_COMMIT_INFO=$(curl -s "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
+              # 为当前目录调用API获取提交信息，带Header参数
+              echo "Calling API for directory: $IMAGE_NAME with Header"
+              DIR_COMMIT_INFO=$(curl -s -H "Accept: application/json" "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
               
               # 检查API响应是否有效
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
@@ -99,32 +107,29 @@ jobs:
                 # 检查目录中是否有文件在build.flag之后更新
                 NEEDS_REBUILD_INNER=false
                 
-                # 遍历目录中的所有文件（除了build.flag）
-                while IFS= read -r -d '' file; do
-                  # 获取文件名（不含路径）
-                  filename=$(basename "$file")
-                  
+                # 遍历API返回的所有文件，与build.flag时间进行比较
+                for file_key in $(echo "$DIR_COMMIT_INFO" | jq -r 'keys[]'); do
                   # 跳过build.flag文件本身
-                  if [ "$filename" = "build.flag" ]; then
+                  if [ "$file_key" = "build.flag" ]; then
                     continue
                   fi
                   
-                  # 从API响应中获取该文件的提交日期
-                  FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg fname "$filename" '.[$fname].date // empty')
+                  # 获取该文件的提交日期
+                  FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg key "$file_key" '.[$key].date // empty')
                   
                   if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ]; then
                     FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
-                    echo "File: $file, Commit date: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
+                    echo "File: $file_key, Commit date: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
                     
                     if [ "$FILE_DATE" -gt "$FLAG_DATE" ] 2>/dev/null; then
                       NEEDS_REBUILD_INNER=true
-                      echo "File $file has been updated since last build"
+                      echo "File $file_key has been updated since last build"
                       break
                     fi
                   else
-                    echo "No commit info for file: $file"
+                    echo "No commit info for file: $file_key"
                   fi
-                done < <(find "$dir" -type f -print0)
+                done
                 
                 if [ "$NEEDS_REBUILD_INNER" = true ]; then
                   NEEDS_REBUILD=true
