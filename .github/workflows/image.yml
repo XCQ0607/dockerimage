@@ -37,7 +37,7 @@ jobs:
 
           for dir in */ ; do
             # 忽略非文件夹
-            if [ ! -f "$dir/Dockerfile" ]; then
+            if [ ! -d "$dir" ] || [ ! -f "$dir/Dockerfile" ]; then
               echo "Skipping $dir, no Dockerfile"
               continue
             fi
@@ -51,11 +51,52 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 检查目录下是否有文件在build.flag之后更新
-              # 使用find的-newer选项来检查文件更新
-              UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
-              if [ -n "$UPDATED_FILES" ]; then
-                NEEDS_REBUILD=true
+              # 使用更精确的时间戳比较方法
+              # 获取build.flag的时间戳（纳秒级）
+              if stat -c %Y.%N "$FLAG" >/dev/null 2>&1; then
+                # GNU stat
+                FLAG_TIMESTAMP=$(stat -c %Y.%N "$FLAG")
+              elif stat -f %m "$FLAG" >/dev/null 2>&1; then
+                # BSD stat (macOS)
+                FLAG_TIMESTAMP=$(stat -f %m "$FLAG")
+              else
+                # Fallback to seconds only
+                FLAG_TIMESTAMP=$(date -r "$FLAG" +%s)
+              fi
+              
+              echo "Debug: build.flag timestamp for $dir is $FLAG_TIMESTAMP"
+              
+              # 查找目录下所有文件中最新的修改时间
+              UPDATED_FILES=""
+              NEEDS_REBUILD=false
+              while IFS= read -r -d '' file; do
+                # 跳过build.flag文件本身
+                if [ "$file" = "$FLAG" ]; then
+                  continue
+                fi
+                
+                # 获取文件时间戳
+                if stat -c %Y.%N "$file" >/dev/null 2>&1; then
+                  # GNU stat
+                  FILE_TIMESTAMP=$(stat -c %Y.%N "$file")
+                elif stat -f %m "$file" >/dev/null 2>&1; then
+                  # BSD stat (macOS)
+                  FILE_TIMESTAMP=$(stat -f %m "$file")
+                else
+                  # Fallback to seconds only
+                  FILE_TIMESTAMP=$(date -r "$file" +%s)
+                fi
+                
+                # 使用awk进行浮点数比较（更通用）
+                IS_NEWER=$(awk "BEGIN {print ($FILE_TIMESTAMP > $FLAG_TIMESTAMP)}" 2>/dev/null || echo 0)
+                echo "Debug: Comparing $file ($FILE_TIMESTAMP) with flag ($FLAG_TIMESTAMP), result: $IS_NEWER"
+                if [ "$IS_NEWER" = "1" ]; then
+                  NEEDS_REBUILD=true
+                  UPDATED_FILES="$UPDATED_FILES$file"$'\n'
+                fi
+              done < <(find "$dir" -type f -print0 2>/dev/null)
+              
+              if [ "$NEEDS_REBUILD" = true ] && [ -n "$UPDATED_FILES" ]; then
                 echo "Found updated files in $dir, will rebuild:"
                 echo "$UPDATED_FILES"
               else
