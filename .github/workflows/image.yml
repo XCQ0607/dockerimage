@@ -31,6 +31,7 @@ jobs:
       - name: Build and push Docker images
         run: |
           OWNER=${{ steps.repo.outputs.owner_lower }}
+          REPO_NAME=$(basename ${{ github.repository }})
           SUMMARY_FILE="docker_build_summaries.md"
           echo "# Docker Build Summaries" > $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
@@ -63,21 +64,28 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 使用文件修改时间进行比较（改进版）
+              # 使用GitHub REST API获取文件的最后修改时间
               echo "=== Checking $dir ==="
               
-              # 获取build.flag的修改时间（使用Git提交时间）
-              if git log -1 --format="@%ct" -- "$FLAG" >/dev/null 2>&1; then
-                FLAG_TIMESTAMP=$(git log -1 --format="@%ct" -- "$FLAG")
-                echo "Build flag timestamp: $(date -d @$FLAG_TIMESTAMP 2>/dev/null || date -r $FLAG_TIMESTAMP 2>/dev/null)"
+              # 获取build.flag的最后修改时间
+              BUILD_FLAG_URL="https://api.github.com/repos/${{ github.repository }}/commits?path=$FLAG&per_page=1"
+              echo "Getting last modified time for $FLAG from: $BUILD_FLAG_URL"
+              
+              BUILD_FLAG_RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB1_TOKEN }}" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "$BUILD_FLAG_URL")
+              
+              BUILD_FLAG_COMMIT_TIME=$(echo "$BUILD_FLAG_RESPONSE" | jq -r '.[0].commit.committer.date' 2>/dev/null)
+              if [ "$BUILD_FLAG_COMMIT_TIME" != "null" ] && [ -n "$BUILD_FLAG_COMMIT_TIME" ]; then
+                BUILD_FLAG_TIMESTAMP=$(date -d "$BUILD_FLAG_COMMIT_TIME" +%s 2>/dev/null || echo 0)
+                echo "Build flag last modified: $BUILD_FLAG_COMMIT_TIME (timestamp: $BUILD_FLAG_TIMESTAMP)"
               else
-                # 如果Git方法失败，回退到文件系统时间
-                FLAG_TIMESTAMP=$(date -r "$FLAG" +%s 2>/dev/null || echo 0)
-                echo "Build flag file system timestamp: $(date -d @$FLAG_TIMESTAMP 2>/dev/null || date -r $FLAG_TIMESTAMP 2>/dev/null)"
+                echo "Failed to get build flag commit time, falling back to file system time"
+                BUILD_FLAG_TIMESTAMP=$(date -r "$FLAG" +%s 2>/dev/null || echo 0)
               fi
               
               # 查找目录下所有文件的最新修改时间
-              LATEST_FILE_TIMESTAMP=0
+              LATEST_TIMESTAMP=$BUILD_FLAG_TIMESTAMP
               LATEST_FILE=""
               
               # 使用find遍历目录下所有文件
@@ -87,24 +95,31 @@ jobs:
                   continue
                 fi
                 
-                # 获取文件的Git提交时间
-                if git log -1 --format="@%ct" -- "$file" >/dev/null 2>&1; then
-                  FILE_TIMESTAMP=$(git log -1 --format="@%ct" -- "$file")
+                # 获取文件的最后修改时间
+                FILE_URL="https://api.github.com/repos/${{ github.repository }}/commits?path=$file&per_page=1"
+                FILE_RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB1_TOKEN }}" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  "$FILE_URL")
+                
+                FILE_COMMIT_TIME=$(echo "$FILE_RESPONSE" | jq -r '.[0].commit.committer.date' 2>/dev/null)
+                if [ "$FILE_COMMIT_TIME" != "null" ] && [ -n "$FILE_COMMIT_TIME" ]; then
+                  FILE_TIMESTAMP=$(date -d "$FILE_COMMIT_TIME" +%s 2>/dev/null || echo 0)
+                  echo "File $file last modified: $FILE_COMMIT_TIME (timestamp: $FILE_TIMESTAMP)"
                 else
-                  # 如果Git方法失败，回退到文件系统时间
+                  echo "Failed to get commit time for $file, falling back to file system time"
                   FILE_TIMESTAMP=$(date -r "$file" +%s 2>/dev/null || echo 0)
                 fi
                 
                 # 比较时间戳
-                if [ "$FILE_TIMESTAMP" -gt "$LATEST_FILE_TIMESTAMP" ]; then
-                  LATEST_FILE_TIMESTAMP=$FILE_TIMESTAMP
+                if [ "$FILE_TIMESTAMP" -gt "$LATEST_TIMESTAMP" ]; then
+                  LATEST_TIMESTAMP=$FILE_TIMESTAMP
                   LATEST_FILE="$file"
                 fi
               done < <(find "$dir" -type f -print0 2>/dev/null)
               
-              if [ "$LATEST_FILE_TIMESTAMP" -gt "$FLAG_TIMESTAMP" ] && [ "$LATEST_FILE_TIMESTAMP" -ne 0 ]; then
+              if [ "$LATEST_TIMESTAMP" -gt "$BUILD_FLAG_TIMESTAMP" ] && [ "$LATEST_TIMESTAMP" -ne 0 ]; then
                 NEEDS_REBUILD=true
-                echo "Found updated file: $LATEST_FILE (timestamp: $(date -d @$LATEST_FILE_TIMESTAMP 2>/dev/null || date -r $LATEST_FILE_TIMESTAMP 2>/dev/null))"
+                echo "Found updated file: $LATEST_FILE (timestamp: $LATEST_TIMESTAMP)"
                 echo "This file is newer than build.flag, will rebuild"
               else
                 echo "Skipping $dir, no files updated since last build"
