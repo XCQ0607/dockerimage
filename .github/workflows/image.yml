@@ -60,32 +60,13 @@ jobs:
           -H 'x-github-client-version: 3683172a6fa60e6b068d50994e1579dcc36e4ead' \
           -H 'x-requested-with: XMLHttpRequest'"
 
-          # 获取主目录的项目列表
-          echo "Fetching project list from main directory..."
-          MAIN_DIR_INFO=$(curl -s $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree/main")
-          
-          # 检查API响应是否有效
-          if echo "$MAIN_DIR_INFO" | jq empty 2>/dev/null; then
-            echo "Successfully retrieved main directory info"
-            # 提取目录类型的项目（根据实际返回的JSON结构调整）
-            PROJECT_DIRS=$(echo "$MAIN_DIR_INFO" | jq -r '.payload.fileTree."".items[] | select(.contentType=="directory") | .name')
-            echo "Found project directories: $PROJECT_DIRS"
-          else
-            echo "Failed to get valid JSON from main directory API, falling back to local directory listing"
-            PROJECT_DIRS=$(ls -1 */ 2>/dev/null | sed 's/\/$//')
-          fi
-
-          # 遍历项目目录
+          # 直接遍历当前目录中的所有一级子目录（每个目录作为一个Docker镜像）
           echo "Processing directories..."
           
-          for dir in $PROJECT_DIRS; do
-            # 确保目录名末尾没有斜杠
-            dir="${dir%/}"
-            IMAGE_NAME=$dir
-            
+          for dir in */ ; do
             # 检查目录是否存在
             if [ ! -d "$dir" ]; then
-              echo "Skipping $dir, directory does not exist locally"
+              echo "Skipping $dir, not a directory"
               continue
             fi
             
@@ -96,6 +77,9 @@ jobs:
             fi
 
             FLAG="$dir/build.flag"
+            # 获取目录名称（去掉路径和结尾斜杠）
+            IMAGE_NAME=$(basename "$dir")
+            
             echo "Processing directory: $dir, Image name: $IMAGE_NAME"
             
             # 检查是否需要重新构建
@@ -114,11 +98,19 @@ jobs:
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
                 echo "Successfully retrieved commit info for $IMAGE_NAME"
                 
-                # 获取build.flag的修改时间
-                FLAG_DATE=$(date -d "$(git log -1 --format=%cI -- $FLAG)" +%s 2>/dev/null || stat -c %Y "$FLAG" 2>/dev/null || echo "0")
-                echo "Build flag date: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
+                # 获取build.flag的修改时间（严格来自API返回的JSON数据）
+                FLAG_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r '.["build.flag"].date // empty')
+                if [ -n "$FLAG_COMMIT_DATE" ] && [ "$FLAG_COMMIT_DATE" != "null" ]; then
+                  FLAG_DATE=$(date -d "$FLAG_COMMIT_DATE" +%s 2>/dev/null || echo "0")
+                  echo "Build flag date from API: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
+                else
+                  echo "Failed to get build.flag date from API"
+                  # 如果无法从API获取build.flag时间，则跳过此目录
+                  echo "Skipping $dir, cannot get build.flag date from API"
+                  continue
+                fi
                 
-                # 检查目录中是否有文件在build.flag之后更新
+                # 检查目录中是否有文件在build.flag之后更新（所有时间都来自API）
                 NEEDS_REBUILD_INNER=false
                 
                 # 遍历API返回的所有文件，与build.flag时间进行比较
@@ -128,12 +120,12 @@ jobs:
                     continue
                   fi
                   
-                  # 获取该文件的提交日期
+                  # 获取该文件的提交日期（严格来自API）
                   FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg key "$file_key" '.[$key].date // empty')
                   
                   if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ]; then
                     FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
-                    echo "File: $file_key, Commit date: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
+                    echo "File: $file_key, Commit date from API: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
                     
                     if [ "$FILE_DATE" -gt "$FLAG_DATE" ] 2>/dev/null; then
                       NEEDS_REBUILD_INNER=true
@@ -152,17 +144,10 @@ jobs:
                   continue
                 fi
               else
-                echo "Failed to get valid JSON from commit info API for $IMAGE_NAME, falling back to file system check"
-                # 如果API调用失败，回退到文件系统检查
-                UPDATED_FILES=$(find "$dir" -type f ! -name "build.flag" -newer "$FLAG" 2>/dev/null)
-                if [ -n "$UPDATED_FILES" ]; then
-                  NEEDS_REBUILD=true
-                  echo "Found updated files in $dir (fallback method), will rebuild:"
-                  echo "$UPDATED_FILES"
-                else
-                  echo "Skipping $dir, no files updated since last build (fallback method)"
-                  continue
-                fi
+                echo "Failed to get valid JSON from commit info API for $IMAGE_NAME"
+                # 如果API调用失败，则跳过此目录
+                echo "Skipping $dir, API call failed"
+                continue
               fi
             fi
 
