@@ -67,41 +67,50 @@ jobs:
               echo "=== Checking $dir ==="
               
               # 查看自从build.flag最后一次提交以来，该目录下是否有文件变更
-              # 首先尝试使用--follow参数
-              LAST_BUILD_COMMIT=$(git log -1 --format="%H" --follow -- "$FLAG" 2>/dev/null)
+              LAST_BUILD_COMMIT=$(git log -1 --format="%H" -- "$FLAG" 2>/dev/null)
               
-              # 如果--follow失败，则不使用--follow参数
+              # 如果无法获取commit，则需要重建
               if [ -z "$LAST_BUILD_COMMIT" ]; then
-                LAST_BUILD_COMMIT=$(git log -1 --format="%H" -- "$FLAG" 2>/dev/null)
-              fi
-              
-              # 如果仍然无法获取commit，则尝试其他方法
-              if [ -z "$LAST_BUILD_COMMIT" ]; then
-                # 如果无法找到上次构建的commit，默认需要重建
                 NEEDS_REBUILD=true
                 echo "Cannot find last build commit for $FLAG, will rebuild"
               else
                 echo "Last build commit for $dir: $LAST_BUILD_COMMIT"
                 echo "Current HEAD commit: $(git rev-parse HEAD)"
                 
+                # 获取build.flag的提交历史数量
+                COMMIT_COUNT=$(git log --oneline "$FLAG" 2>/dev/null | wc -l | tr -d ' ')
+                echo "Build flag commit count: $COMMIT_COUNT"
+                
                 # 检查是否是相同的commit
                 if [ "$LAST_BUILD_COMMIT" = "$(git rev-parse HEAD)" ]; then
-                  # 如果是相同的commit，检查是否是第一次运行（没有之前的构建记录）
-                  COMMIT_COUNT=$(git log --oneline "$FLAG" | wc -l)
-                  if [ "$COMMIT_COUNT" -le 1 ]; then
-                    # 如果build.flag只有一个commit，说明是新创建的，需要构建
-                    NEEDS_REBUILD=true
-                    echo "New build.flag detected for $dir, will rebuild"
-                  else
-                    # 检查从上次构建以来该目录的变更文件列表
-                    CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
+                  # 如果是相同的commit，我们需要更仔细地检查
+                  # 检查build.flag是否有父提交
+                  if git rev-parse HEAD~1 >/dev/null 2>&1; then
+                    # 有父提交，检查从父提交到现在的变化
+                    PARENT_COMMIT=$(git rev-parse HEAD~1)
+                    echo "Parent commit: $PARENT_COMMIT"
                     
-                    if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
+                    # 检查除了build.flag之外的文件是否有变更
+                    CHANGES_SINCE_PARENT=$(git diff --name-only "$PARENT_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
+                    
+                    if [ -n "$CHANGES_SINCE_PARENT" ]; then
                       NEEDS_REBUILD=true
-                      echo "Found updated files in $dir, will rebuild:"
-                      echo "$CHANGES_SINCE_LAST_BUILD"
+                      echo "Found updated files in $dir since parent commit, will rebuild:"
+                      echo "$CHANGES_SINCE_PARENT"
                     else
-                      echo "Skipping $dir, no files updated since last build according to git history"
+                      echo "Skipping $dir, no files updated since parent commit"
+                      echo "==="
+                      continue
+                    fi
+                  else
+                    # 没有父提交，这是初始提交
+                    # 检查目录中是否有文件（除了build.flag）
+                    FILE_COUNT=$(find "$dir" -type f ! -name "build.flag" 2>/dev/null | wc -l | tr -d ' ')
+                    if [ "$FILE_COUNT" -gt 0 ]; then
+                      NEEDS_REBUILD=true
+                      echo "Initial build for $dir (contains $FILE_COUNT files), will rebuild"
+                    else
+                      echo "Skipping $dir, no files found"
                       echo "==="
                       continue
                     fi
