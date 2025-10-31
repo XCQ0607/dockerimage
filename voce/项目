@@ -20,3 +20,5 @@ curl -sSf https://s.voce.chat/update.sh | sh
 查看日志
 
 /etc/init.d/vocechat-server.sh log
+
+
