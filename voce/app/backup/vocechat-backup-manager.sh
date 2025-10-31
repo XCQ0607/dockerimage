@@ -77,8 +77,7 @@ stop_vocechat() {
 # 启动VoceChat服务
 start_vocechat() {
     echo "Starting VoceChat service..."
-    cd /home/vocechat-server
-    ./vocechat-server &
+    /app/voce/start-voce.sh
 }
 
 # 测试R2连通性
@@ -338,5 +337,7 @@ main() {
 
 # 执行主函数
 main "$@"
+
+
 
 

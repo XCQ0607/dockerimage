@@ -50,22 +50,20 @@ if zip -r /tmp/$BACKUP_FILE data; then
 else
     echo "Error: Failed to create backup archive."
     # 重新启动服务
-    cd /home/vocechat-server
-    ./vocechat-server &
+    /app/voce/start-voce.sh
     exit 1
 fi
 
 # 上传到R2
 echo "Uploading backup to R2..."
-if s3cmd --config-file=/home/user/s3cfg put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
+if s3cmd -c /home/user/s3cfg put /tmp/$BACKUP_FILE s3://$R2_BUCKET_NAME/; then
     echo "Backup uploaded to R2 successfully."
 else
     echo "Error: Failed to upload backup to R2."
     # 清理临时文件
     rm -f /tmp/$BACKUP_FILE
     # 重新启动服务
-    cd /home/vocechat-server
-    ./vocechat-server &
+    /app/voce/start-voce.sh
     exit 1
 fi
 
@@ -74,16 +72,15 @@ rm -f /tmp/$BACKUP_FILE
 
 # 删除旧备份（保留最近5个）
 echo "Cleaning up old backups..."
-s3cmd --config-file=/home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | awk '{print $4}' | tail -n +6 | while read -r OLD_BACKUP; do
+s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep vocechat_backup_ | sort -r | awk '{print $4}' | tail -n +6 | while read -r OLD_BACKUP; do
     if [ -n "$OLD_BACKUP" ]; then
-        s3cmd --config-file=/home/user/s3cfg del "$OLD_BACKUP"
+        s3cmd -c /home/user/s3cfg del "$OLD_BACKUP"
         echo "Deleted old backup: $OLD_BACKUP"
     fi
 done
 
 # 重新启动VoceChat服务
 echo "Restarting VoceChat service..."
-cd /home/vocechat-server
-./vocechat-server &
+/app/voce/start-voce.sh
 
 echo "Backup completed successfully."

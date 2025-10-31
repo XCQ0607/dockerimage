@@ -3,3 +3,6 @@
 
 # 每5分钟执行一次keepalive脚本
 */5 * * * * /app/keepalive.sh
+
+# 每分钟检测VoceChat服务健康状态
+* * * * * /app/healthcheck.sh

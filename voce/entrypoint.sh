@@ -16,4 +16,5 @@ echo "Checking for VoceChat backup restore..."
 
 # (crontab -l 2>/dev/null; echo "*/5 * * * * /app/keepalive.sh") | crontab -
 
-exec "$@"
+# 启动supervisord来管理其他服务
+exec supervisord -c /app/supervisor/supervisord.conf
