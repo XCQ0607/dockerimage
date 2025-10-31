@@ -35,6 +35,18 @@ jobs:
           echo "# Docker Build Summaries" > $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
 
+          # 获取当前提交的变更文件列表（可选，用于调试）
+          echo "=== DEBUG INFO ==="
+          echo "Current commit: $(git rev-parse HEAD)"
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            echo "Files changed in latest commit:"
+            git diff --name-only HEAD~1 HEAD || echo "No changes or unable to determine"
+          else
+            echo "First commit, no previous commit to compare"
+          fi
+          echo "=================="
+          echo ""
+
           for dir in */ ; do
             # 忽略非文件夹
             if [ ! -d "$dir" ] || [ ! -f "$dir/Dockerfile" ]; then
@@ -51,58 +63,34 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 使用更精确的时间戳比较方法
-              # 获取build.flag的时间戳（纳秒级）
-              if stat -c %Y.%N "$FLAG" >/dev/null 2>&1; then
-                # GNU stat
-                FLAG_TIMESTAMP=$(stat -c %Y.%N "$FLAG")
-              elif stat -f %m "$FLAG" >/dev/null 2>&1; then
-                # BSD stat (macOS)
-                FLAG_TIMESTAMP=$(stat -f %m "$FLAG")
+              # 使用git log来检查文件变更，这是更可靠的方式
+              echo "=== Checking $dir ==="
+              
+              # 查看自从build.flag最后一次提交以来，该目录下是否有文件变更
+              LAST_BUILD_COMMIT=$(git log -1 --format="%H" --follow -- "$FLAG" 2>/dev/null)
+              
+              if [ -z "$LAST_BUILD_COMMIT" ]; then
+                # 如果无法找到上次构建的commit，默认需要重建
+                NEEDS_REBUILD=true
+                echo "Cannot find last build commit, will rebuild"
               else
-                # Fallback to seconds only
-                FLAG_TIMESTAMP=$(date -r "$FLAG" +%s)
-              fi
-              
-              echo "Debug: build.flag timestamp for $dir is $FLAG_TIMESTAMP"
-              
-              # 查找目录下所有文件中最新的修改时间
-              UPDATED_FILES=""
-              NEEDS_REBUILD=false
-              while IFS= read -r -d '' file; do
-                # 跳过build.flag文件本身
-                if [ "$file" = "$FLAG" ]; then
+                echo "Last build commit for $dir: $LAST_BUILD_COMMIT"
+                echo "Current HEAD commit: $(git rev-parse HEAD)"
+                
+                # 获取从上次构建以来该目录的变更文件列表
+                CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
+                
+                if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
+                  NEEDS_REBUILD=true
+                  echo "Found updated files in $dir, will rebuild:"
+                  echo "$CHANGES_SINCE_LAST_BUILD"
+                else
+                  echo "Skipping $dir, no files updated since last build according to git history"
+                  echo "==="
                   continue
                 fi
-                
-                # 获取文件时间戳
-                if stat -c %Y.%N "$file" >/dev/null 2>&1; then
-                  # GNU stat
-                  FILE_TIMESTAMP=$(stat -c %Y.%N "$file")
-                elif stat -f %m "$file" >/dev/null 2>&1; then
-                  # BSD stat (macOS)
-                  FILE_TIMESTAMP=$(stat -f %m "$file")
-                else
-                  # Fallback to seconds only
-                  FILE_TIMESTAMP=$(date -r "$file" +%s)
-                fi
-                
-                # 使用awk进行浮点数比较（更通用）
-                IS_NEWER=$(awk "BEGIN {print ($FILE_TIMESTAMP > $FLAG_TIMESTAMP)}" 2>/dev/null || echo 0)
-                echo "Debug: Comparing $file ($FILE_TIMESTAMP) with flag ($FLAG_TIMESTAMP), result: $IS_NEWER"
-                if [ "$IS_NEWER" = "1" ]; then
-                  NEEDS_REBUILD=true
-                  UPDATED_FILES="$UPDATED_FILES$file"$'\n'
-                fi
-              done < <(find "$dir" -type f -print0 2>/dev/null)
-              
-              if [ "$NEEDS_REBUILD" = true ] && [ -n "$UPDATED_FILES" ]; then
-                echo "Found updated files in $dir, will rebuild:"
-                echo "$UPDATED_FILES"
-              else
-                echo "Skipping $dir, no files updated since last build"
-                continue
               fi
+              echo "==="
             fi
 
             # 这里是关键：只有当NEEDS_REBUILD为true时才继续构建
