@@ -63,72 +63,53 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 使用git log来检查文件变更，这是更可靠的方式
+              # 使用文件修改时间进行比较（改进版）
               echo "=== Checking $dir ==="
               
-              # 查看自从build.flag最后一次提交以来，该目录下是否有文件变更
-              LAST_BUILD_COMMIT=$(git log -1 --format="%H" -- "$FLAG" 2>/dev/null)
-              
-              # 如果无法获取commit，则需要重建
-              if [ -z "$LAST_BUILD_COMMIT" ]; then
-                NEEDS_REBUILD=true
-                echo "Cannot find last build commit for $FLAG, will rebuild"
+              # 获取build.flag的修改时间（使用Git提交时间）
+              if git log -1 --format="@%ct" -- "$FLAG" >/dev/null 2>&1; then
+                FLAG_TIMESTAMP=$(git log -1 --format="@%ct" -- "$FLAG")
+                echo "Build flag timestamp: $(date -d @$FLAG_TIMESTAMP 2>/dev/null || date -r $FLAG_TIMESTAMP 2>/dev/null)"
               else
-                echo "Last build commit for $dir: $LAST_BUILD_COMMIT"
-                echo "Current HEAD commit: $(git rev-parse HEAD)"
-                
-                # 获取build.flag的提交历史数量
-                COMMIT_COUNT=$(git log --oneline "$FLAG" 2>/dev/null | wc -l | tr -d ' ')
-                echo "Build flag commit count: $COMMIT_COUNT"
-                
-                # 检查是否是相同的commit
-                if [ "$LAST_BUILD_COMMIT" = "$(git rev-parse HEAD)" ]; then
-                  # 如果是相同的commit，我们需要更仔细地检查
-                  # 检查build.flag是否有父提交
-                  if git rev-parse HEAD~1 >/dev/null 2>&1; then
-                    # 有父提交，检查从父提交到现在的变化
-                    PARENT_COMMIT=$(git rev-parse HEAD~1)
-                    echo "Parent commit: $PARENT_COMMIT"
-                    
-                    # 检查除了build.flag之外的文件是否有变更
-                    CHANGES_SINCE_PARENT=$(git diff --name-only "$PARENT_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
-                    
-                    if [ -n "$CHANGES_SINCE_PARENT" ]; then
-                      NEEDS_REBUILD=true
-                      echo "Found updated files in $dir since parent commit, will rebuild:"
-                      echo "$CHANGES_SINCE_PARENT"
-                    else
-                      echo "Skipping $dir, no files updated since parent commit"
-                      echo "==="
-                      continue
-                    fi
-                  else
-                    # 没有父提交，这是初始提交
-                    # 检查目录中是否有文件（除了build.flag）
-                    FILE_COUNT=$(find "$dir" -type f ! -name "build.flag" 2>/dev/null | wc -l | tr -d ' ')
-                    if [ "$FILE_COUNT" -gt 0 ]; then
-                      NEEDS_REBUILD=true
-                      echo "Initial build for $dir (contains $FILE_COUNT files), will rebuild"
-                    else
-                      echo "Skipping $dir, no files found"
-                      echo "==="
-                      continue
-                    fi
-                  fi
-                else
-                  # 不同的commit，正常比较
-                  CHANGES_SINCE_LAST_BUILD=$(git diff --name-only "$LAST_BUILD_COMMIT" HEAD -- "$dir" 2>/dev/null | grep -v "^$FLAG$" || true)
-                  
-                  if [ -n "$CHANGES_SINCE_LAST_BUILD" ]; then
-                    NEEDS_REBUILD=true
-                    echo "Found updated files in $dir, will rebuild:"
-                    echo "$CHANGES_SINCE_LAST_BUILD"
-                  else
-                    echo "Skipping $dir, no files updated since last build according to git history"
-                    echo "==="
-                    continue
-                  fi
+                # 如果Git方法失败，回退到文件系统时间
+                FLAG_TIMESTAMP=$(date -r "$FLAG" +%s 2>/dev/null || echo 0)
+                echo "Build flag file system timestamp: $(date -d @$FLAG_TIMESTAMP 2>/dev/null || date -r $FLAG_TIMESTAMP 2>/dev/null)"
+              fi
+              
+              # 查找目录下所有文件的最新修改时间
+              LATEST_FILE_TIMESTAMP=0
+              LATEST_FILE=""
+              
+              # 使用find遍历目录下所有文件
+              while IFS= read -r -d '' file; do
+                # 跳过build.flag文件本身
+                if [ "$file" = "$FLAG" ]; then
+                  continue
                 fi
+                
+                # 获取文件的Git提交时间
+                if git log -1 --format="@%ct" -- "$file" >/dev/null 2>&1; then
+                  FILE_TIMESTAMP=$(git log -1 --format="@%ct" -- "$file")
+                else
+                  # 如果Git方法失败，回退到文件系统时间
+                  FILE_TIMESTAMP=$(date -r "$file" +%s 2>/dev/null || echo 0)
+                fi
+                
+                # 比较时间戳
+                if [ "$FILE_TIMESTAMP" -gt "$LATEST_FILE_TIMESTAMP" ]; then
+                  LATEST_FILE_TIMESTAMP=$FILE_TIMESTAMP
+                  LATEST_FILE="$file"
+                fi
+              done < <(find "$dir" -type f -print0 2>/dev/null)
+              
+              if [ "$LATEST_FILE_TIMESTAMP" -gt "$FLAG_TIMESTAMP" ] && [ "$LATEST_FILE_TIMESTAMP" -ne 0 ]; then
+                NEEDS_REBUILD=true
+                echo "Found updated file: $LATEST_FILE (timestamp: $(date -d @$LATEST_FILE_TIMESTAMP 2>/dev/null || date -r $LATEST_FILE_TIMESTAMP 2>/dev/null))"
+                echo "This file is newer than build.flag, will rebuild"
+              else
+                echo "Skipping $dir, no files updated since last build"
+                echo "==="
+                continue
               fi
               echo "==="
             fi
