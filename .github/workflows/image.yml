@@ -46,9 +46,8 @@ jobs:
           echo '```' >> $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
 
-          # 定义完整的请求头参数
-          HEADER_ARGS="-H 'Content-Type: application/json;charset=UTF-8' \
-          -H 'accept: application/json'"
+          # 定义调试开关，默认为false
+          DEBUG=false
 
           # 直接遍历当前目录中的所有一级子目录（每个目录作为一个Docker镜像）
           echo "Processing directories..."
@@ -81,69 +80,93 @@ jobs:
               echo "No build.flag found for $dir, will rebuild"
             else
               # 为当前目录调用API获取提交信息，带完整Header参数
-              echo "Calling API for directory: $IMAGE_NAME with full Headers"
-              echo "Command: wget with headers for https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME"
+              if [ "$DEBUG" = true ]; then
+                echo "Calling API for directory: $IMAGE_NAME with full Headers"
+                echo "Command: wget with headers for https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME"
+              fi
               # 直接使用wget调用API，添加重试机制
               DIR_COMMIT_INFO=""
               RETRY_COUNT=0
               MAX_RETRIES=3
               
               while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-                echo "Attempt $((RETRY_COUNT+1)) of $MAX_RETRIES"
+                if [ "$DEBUG" = true ]; then
+                  echo "Attempt $((RETRY_COUNT+1)) of $MAX_RETRIES"
+                fi
                 # 使用wget调用API，设置适当的超时时间
                 DIR_COMMIT_INFO=$(wget --timeout=30 --header="Content-Type: application/json;charset=UTF-8" --header="accept: application/json" -qO- "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME" 2>/dev/null)
                 
                 # 检查wget是否因为超时而失败
-                if [ $? -ne 0 ]; then
+                if [ "$DEBUG" = true ] && [ $? -ne 0 ]; then
                   echo "wget failed with exit code $?"
                 fi
                 
                 # 检查是否获取到数据
                 if [ -n "$DIR_COMMIT_INFO" ] && [ "${#DIR_COMMIT_INFO}" -gt 0 ]; then
-                  echo "Successfully retrieved data on attempt $((RETRY_COUNT+1))"
+                  if [ "$DEBUG" = true ]; then
+                    echo "Successfully retrieved data on attempt $((RETRY_COUNT+1))"
+                  fi
                   break
                 else
-                  echo "Attempt $((RETRY_COUNT+1)) failed, response is still empty"
+                  if [ "$DEBUG" = true ]; then
+                    echo "Attempt $((RETRY_COUNT+1)) failed, response is still empty"
+                  fi
                   RETRY_COUNT=$((RETRY_COUNT+1))
                   if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
-                    echo "Waiting 5 seconds before retry..."
+                    if [ "$DEBUG" = true ]; then
+                      echo "Waiting 5 seconds before retry..."
+                    fi
                     sleep 5
                   fi
                 fi
               done
               
               # 添加调试信息，输出API返回的原始数据
-              echo "DEBUG: Raw API response for $IMAGE_NAME:"
-              echo "$DIR_COMMIT_INFO"
-              echo "DEBUG: Length of API response: ${#DIR_COMMIT_INFO}"
-              echo "DEBUG: End of API response"
+              if [ "$DEBUG" = true ]; then
+                echo "DEBUG: Raw API response for $IMAGE_NAME:"
+                echo "$DIR_COMMIT_INFO"
+                echo "DEBUG: Length of API response: ${#DIR_COMMIT_INFO}"
+                echo "DEBUG: End of API response"
+              fi
               
               # 检查API响应是否为空
               if [ -z "$DIR_COMMIT_INFO" ] || [ "${#DIR_COMMIT_INFO}" -eq 0 ]; then
-                echo "ERROR: Empty response from API for directory: $IMAGE_NAME after $MAX_RETRIES attempts"
+                if [ "$DEBUG" = true ]; then
+                  echo "ERROR: Empty response from API for directory: $IMAGE_NAME after $MAX_RETRIES attempts"
+                fi
                 echo "Skipping $dir, API returned empty response"
                 continue
               fi
               
               # 检查API响应是否有效
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
-                echo "Successfully retrieved commit info for $IMAGE_NAME"
+                if [ "$DEBUG" = true ]; then
+                  echo "Successfully retrieved commit info for $IMAGE_NAME"
+                fi
                 
                 # 输出格式化的JSON响应
-                echo "DEBUG: Formatted JSON response:"
-                echo "$DIR_COMMIT_INFO" | jq '.'
+                if [ "$DEBUG" = true ]; then
+                  echo "DEBUG: Formatted JSON response:"
+                  echo "$DIR_COMMIT_INFO" | jq '.'
+                fi
                 
                 # 获取build.flag的修改时间（严格来自API返回的JSON数据）
                 # 修复解析逻辑，正确提取build.flag的日期
                 FLAG_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r '.["build.flag"]?.date // empty')
-                echo "DEBUG: build.flag commit date from API: '$FLAG_COMMIT_DATE'"
+                if [ "$DEBUG" = true ]; then
+                  echo "DEBUG: build.flag commit date from API: '$FLAG_COMMIT_DATE'"
+                fi
                 if [ -n "$FLAG_COMMIT_DATE" ] && [ "$FLAG_COMMIT_DATE" != "null" ] && [ -n "$FLAG_COMMIT_DATE" ]; then
                   FLAG_DATE=$(date -d "$FLAG_COMMIT_DATE" +%s 2>/dev/null || echo "0")
-                  echo "Build flag date from API: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
+                  if [ "$DEBUG" = true ]; then
+                    echo "Build flag date from API: $FLAG_DATE ($(date -d @$FLAG_DATE 2>/dev/null || echo "Invalid date"))"
+                  fi
                 else
-                  echo "Failed to get build.flag date from API"
-                  echo "DEBUG: Available keys in response:"
-                  echo "$DIR_COMMIT_INFO" | jq -r 'keys[]' 2>/dev/null || echo "No keys found"
+                  if [ "$DEBUG" = true ]; then
+                    echo "Failed to get build.flag date from API"
+                    echo "DEBUG: Available keys in response:"
+                    echo "$DIR_COMMIT_INFO" | jq -r 'keys[]' 2>/dev/null || echo "No keys found"
+                  fi
                   # 如果无法从API获取build.flag时间，则跳过此目录
                   echo "Skipping $dir, cannot get build.flag date from API"
                   continue
@@ -161,32 +184,44 @@ jobs:
                   
                   # 获取该文件的提交日期（严格来自API）
                   FILE_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r --arg key "$file_key" '.[$key]?.date // empty')
-                  echo "DEBUG: File $file_key commit date from API: '$FILE_COMMIT_DATE'"
+                  if [ "$DEBUG" = true ]; then
+                    echo "DEBUG: File $file_key commit date from API: '$FILE_COMMIT_DATE'"
+                  fi
                   
                   if [ -n "$FILE_COMMIT_DATE" ] && [ "$FILE_COMMIT_DATE" != "null" ] && [ -n "$FILE_COMMIT_DATE" ]; then
                     FILE_DATE=$(date -d "$FILE_COMMIT_DATE" +%s 2>/dev/null || echo "0")
-                    echo "File: $file_key, Commit date from API: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
+                    if [ "$DEBUG" = true ]; then
+                      echo "File: $file_key, Commit date from API: $FILE_DATE ($(date -d @$FILE_DATE 2>/dev/null || echo "Invalid date")), Flag date: $FLAG_DATE"
+                    fi
                     
                     if [ "$FILE_DATE" -gt "$FLAG_DATE" ] 2>/dev/null; then
                       NEEDS_REBUILD_INNER=true
-                      echo "File $file_key has been updated since last build"
+                      if [ "$DEBUG" = true ]; then
+                        echo "File $file_key has been updated since last build"
+                      fi
                       break
                     fi
                   else
-                    echo "No commit info for file: $file_key"
+                    if [ "$DEBUG" = true ]; then
+                      echo "No commit info for file: $file_key"
+                    fi
                   fi
                 done
                 
                 if [ "$NEEDS_REBUILD_INNER" = true ]; then
                   NEEDS_REBUILD=true
                 else
-                  echo "Skipping $dir, no files updated since last build"
+                  if [ "$DEBUG" = true ]; then
+                    echo "Skipping $dir, no files updated since last build"
+                  fi
                   continue
                 fi
               else
-                echo "Failed to get valid JSON from commit info API for $IMAGE_NAME"
-                echo "DEBUG: Raw response that failed JSON parsing:"
-                echo "$DIR_COMMIT_INFO"
+                if [ "$DEBUG" = true ]; then
+                  echo "Failed to get valid JSON from commit info API for $IMAGE_NAME"
+                  echo "DEBUG: Raw response that failed JSON parsing:"
+                  echo "$DIR_COMMIT_INFO"
+                fi
                 # 如果API调用失败，则跳过此目录
                 echo "Skipping $dir, API call failed"
                 continue
@@ -195,7 +230,9 @@ jobs:
 
             # 这里是关键：只有当NEEDS_REBUILD为true时才继续构建
             if [ "$NEEDS_REBUILD" = false ]; then
-              echo "Skipping $dir, already built and no updates"
+              if [ "$DEBUG" = true ]; then
+                echo "Skipping $dir, already built and no updates"
+              fi
               continue
             fi
 
