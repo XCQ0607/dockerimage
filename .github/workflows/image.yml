@@ -46,9 +46,23 @@ jobs:
           echo '```' >> $SUMMARY_FILE
           echo "" >> $SUMMARY_FILE
 
+          # 定义完整的请求头参数
+          HEADER_ARGS="-H 'accept: application/json' \
+          -H 'accept-language: zh-CN,zh;q=0.9' \
+          -H 'cache-control: no-cache' \
+          -H 'content-type: application/json' \
+          -H 'github-verified-fetch: true' \
+          -H 'pragma: no-cache' \
+          -H 'priority: u=1, i' \
+          -H 'sec-fetch-dest: empty' \
+          -H 'sec-fetch-mode: cors' \
+          -H 'sec-fetch-site: same-origin' \
+          -H 'x-github-client-version: 3683172a6fa60e6b068d50994e1579dcc36e4ead' \
+          -H 'x-requested-with: XMLHttpRequest'"
+
           # 获取主目录的项目列表
           echo "Fetching project list from main directory..."
-          MAIN_DIR_INFO=$(curl -s -H "Accept: application/json" "https://github.com/XCQ0607/dockerimage/tree/main")
+          MAIN_DIR_INFO=$(curl -s $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree/main")
           
           # 检查API响应是否有效
           if echo "$MAIN_DIR_INFO" | jq empty 2>/dev/null; then
@@ -92,9 +106,9 @@ jobs:
               NEEDS_REBUILD=true
               echo "No build.flag found for $dir, will rebuild"
             else
-              # 为当前目录调用API获取提交信息，带Header参数
-              echo "Calling API for directory: $IMAGE_NAME with Header"
-              DIR_COMMIT_INFO=$(curl -s -H "Accept: application/json" "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
+              # 为当前目录调用API获取提交信息，带完整Header参数
+              echo "Calling API for directory: $IMAGE_NAME with full Headers"
+              DIR_COMMIT_INFO=$(curl -s $HEADER_ARGS "https://github.com/XCQ0607/dockerimage/tree-commit-info/main/$IMAGE_NAME")
               
               # 检查API响应是否有效
               if echo "$DIR_COMMIT_INFO" | jq empty 2>/dev/null; then
