@@ -26,13 +26,17 @@ LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
 # VoceChat端口，默认值为3000，可选，示例输入：3000
 ENV VOCE_PORT=3000 \
     # R2访问密钥ID，必填，示例输入：d38a22e2fcd7a6875c98e8fadc7b4f08
-    R2_ACCESS_KEY_ID=d38a22e2fcd7a6875c98e8fadc7b4f08 \
+    # R2_ACCESS_KEY_ID=d38a22e2fcd7a6875c98e8fadc7b4f08 \
+    R2_ACCESS_KEY_ID= \
     # R2秘密访问密钥，必填，示例输入：93aca2246b740fb0b6787d605eb0ee984a42d167a53d630719b57bcd111a9e3b
-    R2_SECRET_ACCESS_KEY=93aca2246b740fb0b6787d605eb0ee984a42d167a53d630719b57bcd111a9e3b \
+    # R2_SECRET_ACCESS_KEY=93aca2246b740fb0b6787d605eb0ee984a42d167a53d630719b57bcd111a9e3b \
+    R2_SECRET_ACCESS_KEY= \
     # R2终结点，默认值为7edee57c816a663e631de31c492a6320.r2.cloudflarestorage.com，必填，示例输入：your-account.r2.cloudflarestorage.com
-    R2_ENDPOINT=7edee57c816a663e631de31c492a6320.r2.cloudflarestorage.com \
-    # R2存储桶名称，必填，示例输入：vocechat-backups
-    R2_BUCKET_NAME=voce \
+    # R2_ENDPOINT=7edee57c816a663e631de31c492a6320.r2.cloudflarestorage.com \
+    R2_ENDPOINT= \
+    # R2存储桶名称，必填，示例输入：voce
+    # R2_BUCKET_NAME=voce \
+    R2_BUCKET_NAME= \
     TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-voce.hf.space \
