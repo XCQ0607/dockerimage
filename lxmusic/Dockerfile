@@ -34,6 +34,9 @@ ENV TZ=Asia/Shanghai \
     ARGO_PAT= \
     HOME=/home/user
 
+# 添加CRON_TZ环境变量以支持定时任务时区设置
+ENV CRON_TZ=Asia/Shanghai
+
 # R2备份相关环境变量
 # R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：d38a22e2fcd7a6875c98e8fadc7b4f08
 # R2_SECRET_ACCESS_KEY：R2秘密访问密钥，默认值为空，非必填，示例输入：93aca2246b740fb0b6787d605eb0ee984a42d167a53d630719b57bcd111a9e3b
@@ -102,7 +105,10 @@ COPY app /app
 # 安装Node.js和npm
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip nodejs npm --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip --no-install-recommends; \
+    # 安装Node.js 16+ (通过nodesource仓库)
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash -; \
+    apt-get install -y nodejs; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
