@@ -81,7 +81,7 @@ ENV R2_ACCESS_KEY_ID= \
 # HC_SERVICE_NAME：健康检查服务名称，默认值为program，非必填，示例输入：your-service-name
 ENV HC_PORT=1234 \
     HC_TIME="0-0-0-0-1-0" \
-    HC_START_SCRIPT= \
+    HC_START_SCRIPT=/app/lx/start-lx.sh \
     HC_SERVICE_NAME=lxmusic
 
 # LX音乐同步服务器环境变量
