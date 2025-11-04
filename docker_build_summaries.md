@@ -115,136 +115,136 @@
 46 directories, 63 files
 ```
 
-## 镜像: lxmusic
+## 镜像: nezha
 
 ### 构建信息
-- 目录: lxmusic/
-- 完整镜像名: ghcr.io/xcq0607/lxmusic:latest
+- 目录: nezha/
+- 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 640s
+- 构建耗时: 193s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/lxmusic:latest
+FROM ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-lxmusic ghcr.io/xcq0607/lxmusic:latest
+docker run -d --name my-nezha ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/lxmusic:latest
+docker pull ghcr.io/xcq0607/nezha:latest
 ```
 
 ### 构建日志
 
 ```
-#10 559.6 Selecting previously unselected package gpg-wks-server.
-#10 559.6 Preparing to unpack .../12-gpg-wks-server_2.2.27-3ubuntu2.4_amd64.deb ...
-#10 559.6 Unpacking gpg-wks-server (2.2.27-3ubuntu2.4) ...
-#10 559.6 Selecting previously unselected package gpgsm.
-#10 559.6 Preparing to unpack .../13-gpgsm_2.2.27-3ubuntu2.4_amd64.deb ...
-#10 559.6 Unpacking gpgsm (2.2.27-3ubuntu2.4) ...
-#10 559.6 Selecting previously unselected package gnupg.
-#10 559.6 Preparing to unpack .../14-gnupg_2.2.27-3ubuntu2.4_all.deb ...
-#10 559.6 Unpacking gnupg (2.2.27-3ubuntu2.4) ...
-#10 559.6 Setting up libksba8:amd64 (1.6.0-2ubuntu0.2) ...
-#10 559.7 Setting up apt-transport-https (2.4.14) ...
-#10 559.7 Setting up libnpth0:amd64 (1.6-3build2) ...
-#10 559.7 Setting up libassuan0:amd64 (2.5.5-1build1) ...
-#10 559.7 Setting up gnupg-l10n (2.2.27-3ubuntu2.4) ...
-#10 559.7 Setting up gpgconf (2.2.27-3ubuntu2.4) ...
-#10 559.7 Setting up gpg (2.2.27-3ubuntu2.4) ...
-#10 559.7 Setting up gnupg-utils (2.2.27-3ubuntu2.4) ...
-#10 559.7 Setting up pinentry-curses (1.1.1-1build2) ...
-#10 559.7 Setting up gpg-agent (2.2.27-3ubuntu2.4) ...
-#10 560.1 Setting up gpgsm (2.2.27-3ubuntu2.4) ...
-#10 560.1 Setting up dirmngr (2.2.27-3ubuntu2.4) ...
-#10 560.2 Setting up gpg-wks-server (2.2.27-3ubuntu2.4) ...
-#10 560.2 Setting up gpg-wks-client (2.2.27-3ubuntu2.4) ...
-#10 560.2 Setting up gnupg (2.2.27-3ubuntu2.4) ...
-#10 560.2 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
-#10 560.3 
-#10 560.3 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-#10 560.3 
-#10 560.4 Get:1 https://deb.nodesource.com/node_16.x nodistro InRelease [12.1 kB]
-#10 560.5 Get:2 https://deb.nodesource.com/node_16.x nodistro/main amd64 Packages [7253 B]
-#10 560.9 Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease
-#10 561.0 Hit:4 http://archive.ubuntu.com/ubuntu jammy InRelease
-#10 561.2 Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-#10 561.3 Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
-#10 561.4 Fetched 19.4 kB in 1s (18.5 kB/s)
-#10 561.4 Reading package lists...
-#10 562.2 Building dependency tree...
-#10 562.4 Reading state information...
-#10 562.4 2 packages can be upgraded. Run 'apt list --upgradable' to see them.
-#10 562.4 [1;32m2025-11-04 18:14:43 - Repository configured successfully. To install Node.js, run: apt install nodejs -y[0m
-#10 562.4 Reading package lists...
-#10 563.2 Building dependency tree...
-#10 563.4 Reading state information...
-#10 563.5 The following NEW packages will be installed:
-#10 563.5   nodejs
-#10 563.7 0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
-#10 563.7 Need to get 27.5 MB of archives.
-#10 563.7 After this operation, 128 MB of additional disk space will be used.
-#10 563.7 Get:1 https://deb.nodesource.com/node_16.x nodistro/main amd64 nodejs amd64 16.20.2-1nodesource1 [27.5 MB]
-#10 563.9 debconf: delaying package configuration, since apt-utils is not installed
-#10 563.9 Fetched 27.5 MB in 0s (98.1 MB/s)
-#10 564.0 Selecting previously unselected package nodejs.
-#10 564.0 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14160 files and directories currently installed.)
-#10 564.0 Preparing to unpack .../nodejs_16.20.2-1nodesource1_amd64.deb ...
-#10 564.0 Unpacking nodejs (16.20.2-1nodesource1) ...
-#10 566.0 Setting up nodejs (16.20.2-1nodesource1) ...
-#10 566.1 useradd: warning: the home directory /home/user already exists.
-#10 566.1 useradd: Not copying any file from skel directory into it.
-#10 DONE 567.3s
+#10 153.6 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 153.6 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 154.2 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 154.2 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 154.2 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 154.2 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 154.2 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 154.2 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 154.2 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 154.2 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 154.2 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 154.3 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 154.3 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 154.3 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 154.3 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 154.3 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 154.3 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 154.3 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 154.3 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 154.4 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 154.4 Adding group `docker' (GID 102) ...
+#10 154.5 Done.
+#10 154.7 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 154.7 invoke-rc.d: could not determine current runlevel
+#10 154.7 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 154.8 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 154.8 Setting up python3-dateutil (2.8.1-6) ...
+#10 154.9 Setting up python3-magic (2:0.4.24-2) ...
+#10 155.0 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 155.2 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 155.2 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 155.4 invoke-rc.d: could not determine current runlevel
+#10 155.5 invoke-rc.d: policy-rc.d denied execution of start.
+#10 155.5 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 155.6 
+#10 155.6 Creating config file /etc/ssh/sshd_config with new version
+#10 155.7 Creating SSH2 RSA key; this may take some time ...
+#10 156.1 3072 SHA256:bzwzNcVPMqPPkk5z0D7sn2lhyky5IcDYHsVXJMRxHJU root@buildkitsandbox (RSA)
+#10 156.1 Creating SSH2 ECDSA key; this may take some time ...
+#10 156.1 256 SHA256:XOjo8oTrk4kROF3KnHItyBBTRuraOUYpfIgBMdpLS4k root@buildkitsandbox (ECDSA)
+#10 156.1 Creating SSH2 ED25519 key; this may take some time ...
+#10 156.1 256 SHA256:4Am+f/eb9vfAe6tG2Qdj0bIOrzaEt+k51miSkmHovlg root@buildkitsandbox (ED25519)
+#10 156.2 invoke-rc.d: could not determine current runlevel
+#10 156.2 invoke-rc.d: policy-rc.d denied execution of start.
+#10 156.3 Setting up s3cmd (2.2.0-1) ...
+#10 156.5 Setting up liberror-perl (0.17029-1) ...
+#10 156.5 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 156.5 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 156.5 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 156.5 Updating certificates in /etc/ssl/certs...
+#10 156.9 0 added, 0 removed; done.
+#10 156.9 Running hooks in /etc/ca-certificates/update.d...
+#10 156.9 done.
+#10 157.0 useradd: warning: the home directory /home/user already exists.
+#10 157.0 useradd: Not copying any file from skel directory into it.
+#10 DONE 157.9s
 
-#12 [stage-1 5/9] COPY --from=builder /app/xy /usr/local/bin/xy
-#12 DONE 0.1s
+#12 [stage-1  5/12] COPY app/install-nezha.sh /app/install-nezha.sh
+#12 DONE 0.0s
 
-#13 [stage-1 6/9] COPY --from=builder /app/td /usr/local/bin/td
-#13 DONE 0.1s
+#13 [stage-1  6/12] COPY app/nezha-start.sh /app/nezha-start.sh
+#13 DONE 0.0s
 
-#14 [stage-1 7/9] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 [stage-1  7/12] COPY app/nezha-stop.sh /app/nezha-stop.sh
 #14 DONE 0.0s
 
-#15 [stage-1 8/9] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 [stage-1  8/12] RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh
 #15 DONE 0.1s
 
-#16 [stage-1 9/9] RUN cd /app/lx && npm install --production
-#16 0.367 npm WARN config production Use `--omit=dev` instead.
-#16 2.758 
-#16 2.758 added 17 packages, and audited 18 packages in 2s
-#16 2.762 
-#16 2.762 1 high severity vulnerability
-#16 2.762 
-#16 2.762 To address all issues, run:
-#16 2.762   npm audit fix
-#16 2.762 
-#16 2.762 Run `npm audit` for details.
-#16 2.762 npm notice 
-#16 2.762 npm notice New major version of npm available! 8.19.4 -> 11.6.2
-#16 2.762 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.6.2>
-#16 2.762 npm notice Run `npm install -g npm@11.6.2` to update!
-#16 2.762 npm notice 
-#16 DONE 2.8s
+#16 [stage-1  9/12] COPY --from=builder /app/xy /usr/local/bin/xy
+#16 DONE 0.1s
 
-#17 exporting to image
-#17 exporting layers
-#17 exporting layers 3.3s done
-#17 writing image sha256:0acd09980d6c347bb6ac97a511a76a4e50202e8d7d2360fc6536046bb92037db done
-#17 naming to ghcr.io/xcq0607/lxmusic:latest done
-#17 DONE 3.4s
+#17 [stage-1 10/12] COPY --from=builder /app/td /usr/local/bin/td
+#17 DONE 0.0s
 
- [33m2 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 57)
+#18 [stage-1 11/12] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#18 DONE 0.0s
+
+#19 [stage-1 12/12] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#19 DONE 0.0s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 2.8s done
+#20 writing image sha256:211e7826a49c5e7a586a502c05e91a64a5f7f756107435afe168a63bcf9764d3 done
+#20 naming to ghcr.io/xcq0607/nezha:latest done
+#20 DONE 2.8s
+
+ [33m3 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 57)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 96)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
 ```
 
