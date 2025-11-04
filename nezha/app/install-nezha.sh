@@ -22,9 +22,8 @@ echo "使用本地nezha.sh文件..."
 cp /app/nezha.sh /tmp/nezha.sh
 chmod +x /tmp/nezha.sh
 
-# 修改nezha.sh文件，使其在容器环境中跳过初始化类型检测
-echo "修改nezha.sh文件以适应容器环境..."
-sed -i 's/check_init() {/check_init() {\n    # 在容器环境中跳过初始化类型检测\n    if [ -n "$INIT" ]; then\n        return 0\n    fi\n    init=$(readlink \/sbin\/init)\n    case "$init" in\n        *systemd*)\n            INIT=systemd\n            ;;\n        *openrc-init*|*busybox*)\n            INIT=openrc\n            ;;\n        *)\n            err "Unknown init"\n            exit 1\n            ;;\n    esac\n}/' /tmp/nezha.sh
+# 不再需要修改nezha.sh文件，因为我们已经直接修改了原始文件
+echo "准备安装哪吒监控面板..."
 
 # 设置环境变量用于自动化安装
 export AUTO_INSTALL=true

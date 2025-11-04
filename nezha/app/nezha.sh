@@ -68,6 +68,10 @@ deps_check() {
 }
 
 check_init() {
+    # 在容器环境中跳过初始化类型检测，优先使用已设置的INIT变量
+    if [ -n "$INIT" ]; then
+        return 0
+    fi
     init=$(readlink /sbin/init)
     case "$init" in
         *systemd*)
