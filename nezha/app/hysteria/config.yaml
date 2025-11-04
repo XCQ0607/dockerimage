@@ -1,4 +1,4 @@
-listen: :7861
+listen: :7862
 
 tls:
   cert: /app/hysteria/cert.pem
@@ -7,3 +7,7 @@ tls:
 auth:
   type: password
   password: UUID
+
+acl:
+  inline:
+    - default(*, 8.8.8.8)

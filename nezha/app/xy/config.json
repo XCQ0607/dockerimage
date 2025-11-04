@@ -38,6 +38,29 @@
           "tls"
         ]
       }
+    },
+    {
+      "listen": null,
+      "port": 7861,
+      "protocol": "vless",
+      "settings": {
+        "decryption": "none",
+        "clients": [
+          {
+            "email": "idx-ws",
+            "flow": "",
+            "id": "UUID"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "host": "",
+          "path": "/"
+        }
+      }
     }
   ],
   "routing": {
