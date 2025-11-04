@@ -15,7 +15,9 @@ RUN apt-get update; \
     # Download cloudflared
     wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64; \
     chmod +x cloudflared
-
+    # Download Hysteria
+    wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
+    chmod +x hysteria
 ############################################################
 
 FROM ubuntu:22.04
