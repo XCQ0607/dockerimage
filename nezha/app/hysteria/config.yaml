@@ -8,6 +8,46 @@ auth:
   type: password
   password: UUID
 
-acl:
+resolver:
+  type: udp | tcp | tls | https 
+  tcp:
+    addr: 8.8.8.8:53 
+    timeout: 4s 
+  udp:
+    addr: 8.8.4.4:53 
+    timeout: 4s
+  tls:
+    addr: 1.1.1.1:853 
+    timeout: 10s
+    sni: cloudflare-dns.com 
+    insecure: false 
+  https:
+    addr: 1.1.1.1:443 
+    timeout: 10s
+    sni: cloudflare-dns.com
+    insecure: false
   inline:
     - default(*, 8.8.8.8)
+
+sniff:
+  enable: true
+  timeout: 2s
+  tcpPorts: all
+  udpPorts: all
+
+acl:
+  inline: |
+    site(v.com) -> direct-local
+    finally -> direct
+
+outbounds:
+  - name: direct
+    type: direct
+    direct:
+      mode: 46
+
+  - name: direct-local
+    type: direct
+    direct:
+      mode: 46
+      bindIPv4: 127.0.0.1
