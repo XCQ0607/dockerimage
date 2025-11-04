@@ -116,136 +116,136 @@
 46 directories, 64 files
 ```
 
-## 镜像: lxmusic
+## 镜像: nezha
 
 ### 构建信息
-- 目录: lxmusic/
-- 完整镜像名: ghcr.io/xcq0607/lxmusic:latest
+- 目录: nezha/
+- 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 208s
+- 构建耗时: 59s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/lxmusic:latest
+FROM ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-lxmusic ghcr.io/xcq0607/lxmusic:latest
+docker run -d --name my-nezha ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/lxmusic:latest
+docker pull ghcr.io/xcq0607/nezha:latest
 ```
 
 ### 构建日志
 
 ```
-#11 164.5  37500K .......... .......... .......... .......... .......... 93%  130M 0s
-#11 164.5  37550K .......... .......... .......... .......... .......... 93%  156M 0s
-#11 164.5  37600K .......... .......... .......... .......... .......... 93%  117M 0s
-#11 164.5  37650K .......... .......... .......... .......... .......... 93%  175M 0s
-#11 164.5  37700K .......... .......... .......... .......... .......... 93%  160M 0s
-#11 164.5  37750K .......... .......... .......... .......... .......... 93%  112M 0s
-#11 164.5  37800K .......... .......... .......... .......... .......... 94%  138M 0s
-#11 164.5  37850K .......... .......... .......... .......... .......... 94%  158M 0s
-#11 164.5  37900K .......... .......... .......... .......... .......... 94%  176M 0s
-#11 164.5  37950K .......... .......... .......... .......... .......... 94%  164M 0s
-#11 164.5  38000K .......... .......... .......... .......... .......... 94%  166M 0s
-#11 164.5  38050K .......... .......... .......... .......... .......... 94% 69.3M 0s
-#11 164.5  38100K .......... .......... .......... .......... .......... 94%  154M 0s
-#11 164.5  38150K .......... .......... .......... .......... .......... 94%  178M 0s
-#11 164.5  38200K .......... .......... .......... .......... .......... 95%  334M 0s
-#11 164.5  38250K .......... .......... .......... .......... .......... 95%  285M 0s
-#11 164.5  38300K .......... .......... .......... .......... .......... 95%  329M 0s
-#11 164.5  38350K .......... .......... .......... .......... .......... 95%  343M 0s
-#11 164.5  38400K .......... .......... .......... .......... .......... 95%  173M 0s
-#11 164.5  38450K .......... .......... .......... .......... .......... 95%  167M 0s
-#11 164.5  38500K .......... .......... .......... .......... .......... 95%  208M 0s
-#11 164.5  38550K .......... .......... .......... .......... .......... 95%  185M 0s
-#11 164.5  38600K .......... .......... .......... .......... .......... 96%  244M 0s
-#11 164.5  38650K .......... .......... .......... .......... .......... 96%  215M 0s
-#11 164.5  38700K .......... .......... .......... .......... .......... 96%  252M 0s
-#11 164.5  38750K .......... .......... .......... .......... .......... 96%  241M 0s
-#11 164.5  38800K .......... .......... .......... .......... .......... 96%  233M 0s
-#11 164.5  38850K .......... .......... .......... .......... .......... 96%  254M 0s
-#11 164.5  38900K .......... .......... .......... .......... .......... 96%  253M 0s
-#11 164.5  38950K .......... .......... .......... .......... .......... 96%  209M 0s
-#11 164.5  39000K .......... .......... .......... .......... .......... 97%  276M 0s
-#11 164.5  39050K .......... .......... .......... .......... .......... 97% 88.1M 0s
-#11 164.5  39100K .......... .......... .......... .......... .......... 97% 58.0M 0s
-#11 164.5  39150K .......... .......... .......... .......... .......... 97% 97.7M 0s
-#11 164.5  39200K .......... .......... .......... .......... .......... 97%  245M 0s
-#11 164.5  39250K .......... .......... .......... .......... .......... 97%  138M 0s
-#11 164.5  39300K .......... .......... .......... .......... .......... 97%  138M 0s
-#11 164.5  39350K .......... .......... .......... .......... .......... 97%  229M 0s
-#11 164.5  39400K .......... .......... .......... .......... .......... 98%  110M 0s
-#11 164.5  39450K .......... .......... .......... .......... .......... 98%  168M 0s
-#11 164.5  39500K .......... .......... .......... .......... .......... 98%  166M 0s
-#11 164.5  39550K .......... .......... .......... .......... .......... 98%  162M 0s
-#11 164.5  39600K .......... .......... .......... .......... .......... 98%  180M 0s
-#11 164.5  39650K .......... .......... .......... .......... .......... 98%  133M 0s
-#11 164.5  39700K .......... .......... .......... .......... .......... 98%  154M 0s
-#11 164.5  39750K .......... .......... .......... .......... .......... 98%  168M 0s
-#11 164.5  39800K .......... .......... .......... .......... .......... 99%  291M 0s
-#11 164.5  39850K .......... .......... .......... .......... .......... 99%  304M 0s
-#11 164.5  39900K .......... .......... .......... .......... .......... 99%  333M 0s
-#11 164.5  39950K .......... .......... .......... .......... .......... 99%  143M 0s
-#11 164.5  40000K .......... .......... .......... .......... .......... 99%  142M 0s
-#11 164.5  40050K .......... .......... .......... .......... .......... 99% 86.4M 0s
-#11 164.5  40100K .......... .......... .......... .......... .......... 99%  169M 0s
-#11 164.5  40150K .......... .......... .......... .......... .......... 99%  152M 0s
-#11 164.5  40200K .......... .......... .......... .......... ....      100%  157M=0.3s
-#11 164.5 
-#11 164.5 2025-11-04 11:09:27 (114 MB/s) - 'cloudflared' saved [41210124/41210124]
-#11 164.5 
-#11 DONE 164.5s
+#10 18.69 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 18.69 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 19.21 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 19.22 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 19.22 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 19.22 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 19.22 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 19.23 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 19.23 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 19.23 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 19.30 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 19.34 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 19.34 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 19.34 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 19.34 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 19.34 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 19.34 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 19.35 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 19.35 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 19.43 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 19.50 Adding group `docker' (GID 102) ...
+#10 19.50 Done.
+#10 19.70 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 19.70 invoke-rc.d: could not determine current runlevel
+#10 19.71 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 19.81 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 19.82 Setting up python3-dateutil (2.8.1-6) ...
+#10 19.95 Setting up python3-magic (2:0.4.24-2) ...
+#10 20.05 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 20.20 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 20.20 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 20.48 invoke-rc.d: could not determine current runlevel
+#10 20.49 invoke-rc.d: policy-rc.d denied execution of start.
+#10 20.59 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 20.69 
+#10 20.69 Creating config file /etc/ssh/sshd_config with new version
+#10 20.71 Creating SSH2 RSA key; this may take some time ...
+#10 21.82 3072 SHA256:Y5pjNEOJQkNyWVHCapkhlNLD8Dlh5voSE4+csw6oxKo root@buildkitsandbox (RSA)
+#10 21.82 Creating SSH2 ECDSA key; this may take some time ...
+#10 21.83 256 SHA256:ZKQih0BQep9S3zpejNOxw/mh4EC1+KzF6mpxcQs+O5E root@buildkitsandbox (ECDSA)
+#10 21.83 Creating SSH2 ED25519 key; this may take some time ...
+#10 21.84 256 SHA256:ari8jNO6JSm1HyZdaNGh7P1x6f3QX4tQNoZqgGa38So root@buildkitsandbox (ED25519)
+#10 21.90 invoke-rc.d: could not determine current runlevel
+#10 21.90 invoke-rc.d: policy-rc.d denied execution of start.
+#10 22.07 Setting up s3cmd (2.2.0-1) ...
+#10 22.20 Setting up liberror-perl (0.17029-1) ...
+#10 22.21 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 22.21 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 22.23 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 22.23 Updating certificates in /etc/ssl/certs...
+#10 22.65 0 added, 0 removed; done.
+#10 22.65 Running hooks in /etc/ca-certificates/update.d...
+#10 22.65 done.
+#10 22.72 useradd: warning: the home directory /home/user already exists.
+#10 22.72 useradd: Not copying any file from skel directory into it.
+#10 DONE 23.7s
 
-#12 [stage-1 5/9] COPY --from=builder /app/xy /usr/local/bin/xy
+#12 [stage-1  5/12] COPY app/install-nezha.sh /app/install-nezha.sh
 #12 DONE 0.0s
 
-#13 [stage-1 6/9] COPY --from=builder /app/td /usr/local/bin/td
+#13 [stage-1  6/12] COPY app/nezha-start.sh /app/nezha-start.sh
 #13 DONE 0.0s
 
-#14 [stage-1 7/9] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 [stage-1  7/12] COPY app/nezha-stop.sh /app/nezha-stop.sh
 #14 DONE 0.0s
 
-#15 [stage-1 8/9] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 [stage-1  8/12] RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh
 #15 DONE 0.1s
 
-#16 [stage-1 9/9] RUN cd /app/lx && npm install --production
-#16 0.376 npm WARN config production Use `--omit=dev` instead.
-#16 3.414 
-#16 3.414 added 17 packages, and audited 18 packages in 3s
-#16 3.417 
-#16 3.417 1 high severity vulnerability
-#16 3.417 
-#16 3.417 To address all issues, run:
-#16 3.417   npm audit fix
-#16 3.417 
-#16 3.417 Run `npm audit` for details.
-#16 3.418 npm notice 
-#16 3.418 npm notice New major version of npm available! 8.19.4 -> 11.6.2
-#16 3.418 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.6.2>
-#16 3.418 npm notice Run `npm install -g npm@11.6.2` to update!
-#16 3.418 npm notice 
-#16 DONE 3.5s
+#16 [stage-1  9/12] COPY --from=builder /app/xy /usr/local/bin/xy
+#16 DONE 0.1s
 
-#17 exporting to image
-#17 exporting layers
-#17 exporting layers 3.0s done
-#17 writing image sha256:679efc353e350433a7028b503f9b6986cac69530cf33c878f9624509d6d88daf done
-#17 naming to ghcr.io/xcq0607/lxmusic:latest done
-#17 DONE 3.0s
+#17 [stage-1 10/12] COPY --from=builder /app/td /usr/local/bin/td
+#17 DONE 0.0s
 
- [33m2 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 57)
+#18 [stage-1 11/12] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#18 DONE 0.0s
+
+#19 [stage-1 12/12] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#19 DONE 0.1s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 2.8s done
+#20 writing image sha256:604fe8061ee8f10edd83c7837c661634832133486c59e0435cb0a6aacd8dabca done
+#20 naming to ghcr.io/xcq0607/nezha:latest done
+#20 DONE 2.8s
+
+ [33m3 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 57)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 96)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
 ```
 
