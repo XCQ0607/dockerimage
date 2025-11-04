@@ -22,9 +22,9 @@ sniff:
 
 acl:
   inline:
-    - domain: v.com
-      outbound: direct-local
-    - default: direct
+    - domain(v.com, direct-local)
+    - default(direct)
+
 
 outbounds:
   - name: direct
