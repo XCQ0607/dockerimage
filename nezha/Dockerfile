@@ -1,0 +1,140 @@
+FROM ubuntu:22.04 AS builder
+
+WORKDIR /app
+
+RUN apt-get update; \
+    apt-get install -y wget unzip; \
+    wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; \
+    unzip Xray-linux-64.zip; \
+    rm -f Xray-linux-64.zip; \
+    mv xray xy; \
+    wget -O td https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64; \
+    chmod +x td; \
+    wget -O supercronic https://github.com/aptible/supercronic/releases/latest/download/supercronic-linux-amd64; \
+    chmod +x supercronic; \
+    # Download cloudflared
+    wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64; \
+    chmod +x cloudflared
+
+############################################################
+
+FROM ubuntu:22.04
+
+LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
+
+# 基础环境变量
+# TZ：时区设置，默认值为Asia/Shanghai，非必填，示例输入：Asia/Shanghai
+# UUID：Xray UUID，默认值为2982f122-9649-40dc-bc15-fa3ec91d8921，非必填，示例输入：your-uuid-here
+# DOMAIN：域名设置，默认值为web3x-p.hf.space，非必填，示例输入：your-domain.hf.space
+# ARGO_PAT：Cloudflared PAT，默认值为空，非必填，示例输入：your-cloudflare-pat
+# HOME：用户主目录，默认值为/home/user，非必填，示例输入：/home/user
+ENV TZ=Asia/Shanghai \
+    UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
+    DOMAIN=web3x-p.hf.space \
+    ARGO_PAT= \
+    HOME=/home/user
+
+# R2备份相关环境变量
+# R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：your-access-key-id
+# R2_SECRET_ACCESS_KEY：R2密钥，默认值为空，非必填，示例输入：your-secret-access-key
+# R2_ENDPOINT：R2端点地址，默认值为空，非必填，示例输入：https://your-account-id.r2.cloudflarestorage.com
+# R2_BUCKET_NAME：R2存储桶名称，默认值为空，非必填，示例输入：your-bucket-name
+# BACKUP_NAME：备份文件名前缀，默认值为program，非必填，示例输入：your-program-name
+# BACKUP_SOURCE_DIR：备份源目录，默认值为/app/data，非必填，示例输入：/path/to/source
+# BACKUP_DEST_DIR：备份目标目录，默认值为/tmp，非必填，示例输入：/path/to/destination
+# BACKUP_START_SCRIPT：备份前执行的脚本路径，默认值为空，非必填，示例输入：/path/to/start-script.sh
+# BACKUP_STOP_SCRIPT：备份前停止服务的脚本路径，默认值为空，非必填，示例输入：/path/to/stop-script.sh
+# RESTORE_TARGET_DIR：恢复目标目录，默认值为/app/data，非必填，示例输入：/path/to/restore-target
+# RESTORE_SOURCE_DIR：恢复源目录（在备份文件中的路径），默认值为data，非必填，示例输入：data
+# RESTORE_DEST_DIR：恢复文件下载目录，默认值为/tmp，非必填，示例输入：/path/to/restore-destination
+# RESTORE_START_SCRIPT：恢复后启动服务的脚本路径，默认值为空，非必填，示例输入：/path/to/start-script.sh
+# RESTORE_STOP_SCRIPT：恢复前停止服务的脚本路径，默认值为空，非必填，示例输入：/path/to/stop-script.sh
+# KEEP_BACKUPS：保留备份文件数量，默认值为5，非必填，示例输入：5
+# BACKUP_TIME：备份时间设置，支持X-YEAR-X-MONTH-X-D-X-H-X-M格式或标准cron表达式，默认值为"0-0-0-1-0-0"（每小时执行一次），非必填，示例输入：0-0-0-1-0-0 或 0 * * * *
+# backup_on：是否启用备份功能，默认值为true，非必填，示例输入：true 或 false
+# hc_on：是否启用健康检查功能，默认值为true，非必填，示例输入：true 或 false
+# keep_time：保活任务执行间隔时间，支持X-YEAR-X-MONTH-X-D-X-H-X-M格式、纯数字（分钟）或标准cron表达式，默认值为"0-0-0-0-5-0"（每5分钟执行一次），非必填，示例输入：0-0-0-0-5-0 或 5 或 */5 * * * *
+ENV R2_ACCESS_KEY_ID= \
+    R2_SECRET_ACCESS_KEY= \
+    R2_ENDPOINT= \
+    R2_BUCKET_NAME= \
+    BACKUP_NAME=X-Nezha \
+    BACKUP_SOURCE_DIR=/opt/nezha/dashboard/data \
+    BACKUP_DEST_DIR=/tmp \
+    BACKUP_START_SCRIPT=/app/nezha-start.sh \
+    BACKUP_STOP_SCRIPT=/app/nezha-stop.sh \
+    RESTORE_TARGET_DIR=/opt/nezha/dashboard/data \
+    RESTORE_SOURCE_DIR=data \
+    RESTORE_DEST_DIR=/tmp \
+    RESTORE_START_SCRIPT=/app/nezha-start.sh \
+    RESTORE_STOP_SCRIPT=/app/nezha-stop.sh \
+    KEEP_BACKUPS=5 \
+    BACKUP_TIME="0-0-0-1-0-0" \
+    backup_on=true \
+    hc_on=true \
+    keep_time="0-0-0-0-5-0"
+
+# 健康检查相关环境变量
+# HC_PORT：健康检查端口，默认值为7860，非必填，示例输入：7860
+# HC_TIME：健康检查时间设置，支持X-YEAR-X-MONTH-X-D-X-H-X-M格式或标准cron表达式，默认值为"0-0-0-0-1-0"（每分钟执行一次），非必填，示例输入：0-0-0-0-1-0 或 */1 * * * *
+# HC_START_SCRIPT：健康检查失败时启动服务的脚本路径，默认值为空，非必填，示例输入：/path/to/start-script.sh
+# HC_SERVICE_NAME：健康检查服务名称，默认值为program，非必填，示例输入：your-service-name
+ENV HC_PORT=7860 \
+    HC_TIME="0-0-0-0-1-0" \
+    HC_START_SCRIPT=/app/nezha-start.sh \
+    HC_SERVICE_NAME=X-Nezha
+
+# 哪吒监控面板环境变量
+# NEZHA_SITE_TITLE：站点标题，默认值为X-Nezha，非必填，示例输入：My Dashboard
+# NEZHA_PORT：面板端口，默认值为8008，非必填，示例输入：8008
+# NEZHA_AGENT_HOSTPORT：Agent连接地址，默认值为空，非必填，示例输入：example.com:443
+# NEZHA_TLS：是否使用TLS连接Agent，默认值为false，非必填，示例输入：true 或 false
+# NEZHA_LANGUAGE：后台语言，默认值为zh_CN，非必填，示例输入：zh_CN、zh_TW 或 en_US
+# NEZHA_USERNAME：管理员用户名，默认值为admin，非必填，示例输入：admin
+# NEZHA_PASSWORD：管理员密码，默认值为admin，非必填，示例输入：strongpassword
+# NEZHA_DOCKER_INSTALL：是否使用Docker安装，默认值为true，非必填，示例输入：true 或 false
+ENV NEZHA_SITE_TITLE=X-Nezha \
+    NEZHA_PORT=7860
+    NEZHA_AGENT_HOSTPORT= \
+    NEZHA_TLS=false \
+    NEZHA_LANGUAGE=zh_CN \
+    NEZHA_USERNAME=admin \
+    NEZHA_PASSWORD=admin \
+    NEZHA_DOCKER_INSTALL=false
+
+COPY entrypoint.sh /entrypoint.sh
+COPY app /app
+
+RUN export DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip --no-install-recommends; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*; \
+    # 创建程序可能使用的所有目录并设置权限
+    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
+    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
+    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
+    chmod +x /entrypoint.sh; \
+    chmod -R 777 /app; \
+    # 设置备份脚本和cron设置脚本权限
+    chmod +x /app/backup/*.sh /app/setup-cron.sh; \
+    useradd -u 1000 -g 0 -m -s /bin/bash user; \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
+    echo $TZ > /etc/timezone
+
+# 复制自动安装脚本和启动/停止脚本并设置权限
+COPY app/install-nezha.sh /app/install-nezha.sh
+COPY app/nezha-start.sh /app/nezha-start.sh
+COPY app/nezha-stop.sh /app/nezha-stop.sh
+RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh
+
+COPY --from=builder /app/xy /usr/local/bin/xy
+COPY --from=builder /app/td /usr/local/bin/td
+COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+# Copy cloudflared binary
+COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+
+EXPOSE 7860
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["supervisord", "-c", "/app/supervisor/supervisord.conf"]
