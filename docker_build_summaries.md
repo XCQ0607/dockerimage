@@ -121,7 +121,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 63s
+- 构建耗时: 325s
 
 ### 使用方法
 
@@ -146,82 +146,82 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#11 28.47  36650K .......... .......... .......... .......... .......... 91%  193M 0s
-#11 28.47  36700K .......... .......... .......... .......... .......... 91%  223M 0s
-#11 28.47  36750K .......... .......... .......... .......... .......... 91%  219M 0s
-#11 28.47  36800K .......... .......... .......... .......... .......... 91%  176M 0s
-#11 28.47  36850K .......... .......... .......... .......... .......... 91%  206M 0s
-#11 28.47  36900K .......... .......... .......... .......... .......... 91%  113M 0s
-#11 28.47  36950K .......... .......... .......... .......... .......... 91% 87.1M 0s
-#11 28.47  37000K .......... .......... .......... .......... .......... 92% 73.5M 0s
-#11 28.47  37050K .......... .......... .......... .......... .......... 92%  176M 0s
-#11 28.47  37100K .......... .......... .......... .......... .......... 92%  303M 0s
-#11 28.47  37150K .......... .......... .......... .......... .......... 92%  355M 0s
-#11 28.47  37200K .......... .......... .......... .......... .......... 92%  294M 0s
-#11 28.47  37250K .......... .......... .......... .......... .......... 92%  360M 0s
-#11 28.47  37300K .......... .......... .......... .......... .......... 92%  350M 0s
-#11 28.47  37350K .......... .......... .......... .......... .......... 92%  337M 0s
-#11 28.47  37400K .......... .......... .......... .......... .......... 93% 90.9M 0s
-#11 28.47  37450K .......... .......... .......... .......... .......... 93% 85.8M 0s
-#11 28.48  37500K .......... .......... .......... .......... .......... 93%  198M 0s
-#11 28.48  37550K .......... .......... .......... .......... .......... 93%  129M 0s
-#11 28.48  37600K .......... .......... .......... .......... .......... 93%  122M 0s
-#11 28.48  37650K .......... .......... .......... .......... .......... 93%  202M 0s
-#11 28.48  37700K .......... .......... .......... .......... .......... 93%  291M 0s
-#11 28.48  37750K .......... .......... .......... .......... .......... 93%  288M 0s
-#11 28.48  37800K .......... .......... .......... .......... .......... 94% 94.7M 0s
-#11 28.48  37850K .......... .......... .......... .......... .......... 94%  181M 0s
-#11 28.48  37900K .......... .......... .......... .......... .......... 94%  280M 0s
-#11 28.48  37950K .......... .......... .......... .......... .......... 94%  296M 0s
-#11 28.48  38000K .......... .......... .......... .......... .......... 94%  240M 0s
-#11 28.48  38050K .......... .......... .......... .......... .......... 94%  102M 0s
-#11 28.48  38100K .......... .......... .......... .......... .......... 94%  154M 0s
-#11 28.48  38150K .......... .......... .......... .......... .......... 94%  176M 0s
-#11 28.48  38200K .......... .......... .......... .......... .......... 95%  258M 0s
-#11 28.48  38250K .......... .......... .......... .......... .......... 95%  250M 0s
-#11 28.48  38300K .......... .......... .......... .......... .......... 95%  188M 0s
-#11 28.48  38350K .......... .......... .......... .......... .......... 95%  213M 0s
-#11 28.48  38400K .......... .......... .......... .......... .......... 95% 81.9M 0s
-#11 28.48  38450K .......... .......... .......... .......... .......... 95%  140M 0s
-#11 28.48  38500K .......... .......... .......... .......... .......... 95%  106M 0s
-#11 28.48  38550K .......... .......... .......... .......... .......... 95%  185M 0s
-#11 28.48  38600K .......... .......... .......... .......... .......... 96%  241M 0s
-#11 28.48  38650K .......... .......... .......... .......... .......... 96%  352M 0s
-#11 28.48  38700K .......... .......... .......... .......... .......... 96%  101M 0s
-#11 28.48  38750K .......... .......... .......... .......... .......... 96%  216M 0s
-#11 28.48  38800K .......... .......... .......... .......... .......... 96%  290M 0s
-#11 28.48  38850K .......... .......... .......... .......... .......... 96%  358M 0s
-#11 28.48  38900K .......... .......... .......... .......... .......... 96% 68.6M 0s
-#11 28.48  38950K .......... .......... .......... .......... .......... 96%  146M 0s
-#11 28.48  39000K .......... .......... .......... .......... .......... 97%  132M 0s
-#11 28.48  39050K .......... .......... .......... .......... .......... 97%  163M 0s
-#11 28.48  39100K .......... .......... .......... .......... .......... 97%  171M 0s
-#11 28.49  39150K .......... .......... .......... .......... .......... 97%  187M 0s
-#11 28.49  39200K .......... .......... .......... .......... .......... 97%  153M 0s
-#11 28.49  39250K .......... .......... .......... .......... .......... 97%  206M 0s
-#11 28.49  39300K .......... .......... .......... .......... .......... 97%  266M 0s
-#11 28.49  39350K .......... .......... .......... .......... .......... 97%  118M 0s
-#11 28.49  39400K .......... .......... .......... .......... .......... 98%  250M 0s
-#11 28.49  39450K .......... .......... .......... .......... .......... 98%  356M 0s
-#11 28.49  39500K .......... .......... .......... .......... .......... 98%  358M 0s
-#11 28.49  39550K .......... .......... .......... .......... .......... 98%  311M 0s
-#11 28.49  39600K .......... .......... .......... .......... .......... 98%  301M 0s
-#11 28.49  39650K .......... .......... .......... .......... .......... 98%  350M 0s
-#11 28.49  39700K .......... .......... .......... .......... .......... 98%  357M 0s
-#11 28.49  39750K .......... .......... .......... .......... .......... 98%  358M 0s
-#11 28.49  39800K .......... .......... .......... .......... .......... 99%  312M 0s
-#11 28.49  39850K .......... .......... .......... .......... .......... 99%  358M 0s
-#11 28.49  39900K .......... .......... .......... .......... .......... 99%  162M 0s
-#11 28.49  39950K .......... .......... .......... .......... .......... 99% 70.1M 0s
-#11 28.49  40000K .......... .......... .......... .......... .......... 99%  103M 0s
-#11 28.49  40050K .......... .......... .......... .......... .......... 99%  154M 0s
-#11 28.49  40100K .......... .......... .......... .......... .......... 99%  161M 0s
-#11 28.49  40150K .......... .......... .......... .......... .......... 99%  142M 0s
-#11 28.49  40200K .......... .......... .......... .......... ....      100%  175M=0.3s
-#11 28.49 
-#11 28.49 2025-11-04 10:55:30 (119 MB/s) - 'cloudflared' saved [41210124/41210124]
-#11 28.49 
-#11 DONE 28.5s
+#10 283.9 update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/da/man1/editor.1.gz because associated file /usr/share/man/da/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/de/man1/editor.1.gz because associated file /usr/share/man/de/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 283.9 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 284.5 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 284.5 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 284.5 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 284.5 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 284.5 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 284.5 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 284.5 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 284.5 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 284.5 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 284.6 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 284.6 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 284.6 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 284.6 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 284.6 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 284.6 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 284.6 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 284.6 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 284.7 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 284.7 Adding group `docker' (GID 102) ...
+#10 284.7 Done.
+#10 284.9 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 284.9 invoke-rc.d: could not determine current runlevel
+#10 285.0 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 285.1 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 285.1 Setting up python3-dateutil (2.8.1-6) ...
+#10 285.2 Setting up python3-magic (2:0.4.24-2) ...
+#10 285.3 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 285.4 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 285.4 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 285.7 invoke-rc.d: could not determine current runlevel
+#10 285.7 invoke-rc.d: policy-rc.d denied execution of start.
+#10 285.8 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 285.9 
+#10 285.9 Creating config file /etc/ssh/sshd_config with new version
+#10 285.9 Creating SSH2 RSA key; this may take some time ...
+#10 286.2 3072 SHA256:cIjVoIhpQyRl3iAJj7WTcNogKx+JZX3pXqtN033UBHk root@buildkitsandbox (RSA)
+#10 286.2 Creating SSH2 ECDSA key; this may take some time ...
+#10 286.2 256 SHA256:xrdq05GPRccJ/LGWYFevTJ69p/VN8c0kNLJ75eW1s/c root@buildkitsandbox (ECDSA)
+#10 286.2 Creating SSH2 ED25519 key; this may take some time ...
+#10 286.2 256 SHA256:rFXjWIEnxtGjvqEOYgMSGU5DAPulJIGf3ZNfb8bpbfY root@buildkitsandbox (ED25519)
+#10 286.3 invoke-rc.d: could not determine current runlevel
+#10 286.3 invoke-rc.d: policy-rc.d denied execution of start.
+#10 286.5 Setting up s3cmd (2.2.0-1) ...
+#10 286.6 Setting up liberror-perl (0.17029-1) ...
+#10 286.6 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 286.6 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 286.6 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 286.6 Updating certificates in /etc/ssl/certs...
+#10 287.0 0 added, 0 removed; done.
+#10 287.0 Running hooks in /etc/ca-certificates/update.d...
+#10 287.0 done.
+#10 287.1 useradd: warning: the home directory /home/user already exists.
+#10 287.1 useradd: Not copying any file from skel directory into it.
+#10 DONE 288.0s
+
+#12 [stage-1  5/12] COPY app/install-nezha.sh /app/install-nezha.sh
+#12 DONE 0.0s
+
+#13 [stage-1  6/12] COPY app/nezha-start.sh /app/nezha-start.sh
+#13 DONE 0.0s
+
+#14 [stage-1  7/12] COPY app/nezha-stop.sh /app/nezha-stop.sh
+#14 DONE 0.0s
+
+#15 [stage-1  8/12] RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh
+#15 DONE 0.1s
 
 #16 [stage-1  9/12] COPY --from=builder /app/xy /usr/local/bin/xy
 #16 DONE 0.1s
@@ -233,18 +233,18 @@ docker pull ghcr.io/xcq0607/nezha:latest
 #18 DONE 0.0s
 
 #19 [stage-1 12/12] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#19 DONE 0.1s
+#19 DONE 0.0s
 
 #20 exporting to image
 #20 exporting layers
-#20 exporting layers 2.7s done
-#20 writing image sha256:dfca8115cffb323e2f799dc50b0e947db673263ad1190ad29c7a8a3f2ede0365 done
+#20 exporting layers 2.8s done
+#20 writing image sha256:0f695625a2163f71761ed4efd729ed3e8ee44a6a442ff9a68d032b805f863f98 done
 #20 naming to ghcr.io/xcq0607/nezha:latest done
-#20 DONE 2.7s
+#20 DONE 2.8s
 
  [33m3 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 96)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
  - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 57)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 96)
 ```
 
