@@ -34,9 +34,6 @@ ENV TZ=Asia/Shanghai \
     ARGO_PAT= \
     HOME=/home/user
 
-# 添加CRON_TZ环境变量以支持定时任务时区设置
-ENV CRON_TZ=Asia/Shanghai
-
 # R2备份相关环境变量
 # R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：d38a22e2fcd7a6875c98e8fadc7b4f08
 # R2_SECRET_ACCESS_KEY：R2秘密访问密钥，默认值为空，非必填，示例输入：93aca2246b740fb0b6787d605eb0ee984a42d167a53d630719b57bcd111a9e3b
