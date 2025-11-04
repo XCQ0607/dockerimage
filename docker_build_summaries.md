@@ -123,7 +123,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 56s
+- 构建耗时: 94s
 
 ### 使用方法
 
@@ -148,82 +148,82 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#10 18.94 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
-#10 18.94 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
-#10 18.94 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
-#10 18.94 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
-#10 18.94 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
-#10 18.94 Setting up python3.10 (3.10.12-1~22.04.11) ...
-#10 19.47 Setting up iptables (1.8.7-1ubuntu5.2) ...
-#10 19.48 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
-#10 19.48 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
-#10 19.48 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
-#10 19.49 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
-#10 19.49 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
-#10 19.49 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
-#10 19.49 Setting up iproute2 (5.15.0-1ubuntu2) ...
-#10 19.57 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
-#10 19.62 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
-#10 19.62 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
-#10 19.62 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
-#10 19.62 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
-#10 19.62 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
-#10 19.62 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
-#10 19.63 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
-#10 19.63 Setting up python3 (3.10.6-1~22.04.1) ...
-#10 19.71 Setting up systemd (249.11-0ubuntu3.17) ...
-#10 19.74 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
-#10 19.74 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
-#10 19.74 Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
-#10 19.74 Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
-#10 19.75 ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
-#10 19.75 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
-#10 19.76 Initializing machine ID from random generator.
-#10 19.94 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
-#10 20.01 Adding group `docker' (GID 105) ...
-#10 20.02 Done.
-#10 20.12 Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
-#10 20.22 Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
-#10 20.23 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
-#10 20.23 invoke-rc.d: could not determine current runlevel
-#10 20.24 Setting up python3-six (1.16.0-3ubuntu1) ...
-#10 20.34 Setting up perl (5.34.0-3ubuntu1.5) ...
-#10 20.35 Setting up python3-dateutil (2.8.1-6) ...
-#10 20.47 Setting up python3-magic (2:0.4.24-2) ...
-#10 20.56 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
-#10 20.70 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
-#10 20.71 Setting up supervisor (4.2.1-1ubuntu1) ...
-#10 20.99 invoke-rc.d: could not determine current runlevel
-#10 20.99 invoke-rc.d: policy-rc.d denied execution of start.
-#10 21.09 Created symlink /etc/systemd/system/multi-user.target.wants/supervisor.service → /lib/systemd/system/supervisor.service.
-#10 21.10 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
-#10 21.20 
-#10 21.20 Creating config file /etc/ssh/sshd_config with new version
-#10 21.22 Creating SSH2 RSA key; this may take some time ...
-#10 21.91 3072 SHA256:f31AbA5wZEF4r6gWeNKBXjev+Luc3lVBAin6cTMeVUU root@buildkitsandbox (RSA)
-#10 21.91 Creating SSH2 ECDSA key; this may take some time ...
-#10 21.92 256 SHA256:BTtPfjJYVNNVlrJ/gC5OzDWlWUFKlECRH6Z58365Ra8 root@buildkitsandbox (ECDSA)
-#10 21.92 Creating SSH2 ED25519 key; this may take some time ...
-#10 21.93 256 SHA256:h3ZToRRFXWu23y/JJhI+Pe4Lolv4jBHa+zTJ/SEKPBo root@buildkitsandbox (ED25519)
-#10 21.98 invoke-rc.d: could not determine current runlevel
-#10 21.99 invoke-rc.d: policy-rc.d denied execution of start.
-#10 22.09 Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
-#10 22.09 Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
-#10 22.16 Setting up s3cmd (2.2.0-1) ...
-#10 22.29 Setting up liberror-perl (0.17029-1) ...
-#10 22.30 Setting up git (1:2.34.1-1ubuntu1.15) ...
-#10 22.31 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
-#10 22.32 Processing triggers for ca-certificates (20240203~22.04.1) ...
-#10 22.33 Updating certificates in /etc/ssl/certs...
-#10 22.75 0 added, 0 removed; done.
-#10 22.75 Running hooks in /etc/ca-certificates/update.d...
-#10 22.75 done.
-#10 22.83 useradd: warning: the home directory /home/user already exists.
-#10 22.83 useradd: Not copying any file from skel directory into it.
-#10 DONE 23.5s
+#10 51.14 update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+#10 51.14 update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+#10 51.14 update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+#10 51.14 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 51.14 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 51.15 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 51.70 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 51.70 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 51.70 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 51.70 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 51.71 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 51.71 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 51.71 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 51.71 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 51.79 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 51.83 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 51.83 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 51.83 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 51.83 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 51.83 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 51.83 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 51.84 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 51.84 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 51.93 Setting up systemd (249.11-0ubuntu3.17) ...
+#10 51.95 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+#10 51.95 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+#10 51.95 Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+#10 51.95 Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+#10 51.96 ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+#10 51.96 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+#10 51.97 Initializing machine ID from random generator.
+#10 52.15 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 52.22 Adding group `docker' (GID 105) ...
+#10 52.23 Done.
+#10 52.33 Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+#10 52.44 Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+#10 52.45 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 52.45 invoke-rc.d: could not determine current runlevel
+#10 52.46 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 52.56 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 52.57 Setting up python3-dateutil (2.8.1-6) ...
+#10 52.70 Setting up python3-magic (2:0.4.24-2) ...
+#10 52.80 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 52.96 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 52.96 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 53.26 invoke-rc.d: could not determine current runlevel
+#10 53.26 invoke-rc.d: policy-rc.d denied execution of start.
+#10 53.36 Created symlink /etc/systemd/system/multi-user.target.wants/supervisor.service → /lib/systemd/system/supervisor.service.
+#10 53.37 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 53.46 
+#10 53.46 Creating config file /etc/ssh/sshd_config with new version
+#10 53.48 Creating SSH2 RSA key; this may take some time ...
+#10 53.65 3072 SHA256:OyPMv1O16Jw8g7jHRt2DElM/okUVeiaUUK94Y88Skp4 root@buildkitsandbox (RSA)
+#10 53.65 Creating SSH2 ECDSA key; this may take some time ...
+#10 53.66 256 SHA256:r6nFcLr61f+rirlTdBYNJZKJ8fxRW/JUnhV/aeBhUyk root@buildkitsandbox (ECDSA)
+#10 53.66 Creating SSH2 ED25519 key; this may take some time ...
+#10 53.67 256 SHA256:xSHJX8y6umSitubdVMT3gcfjIPA1gS5iTPGHjMyh6z4 root@buildkitsandbox (ED25519)
+#10 53.73 invoke-rc.d: could not determine current runlevel
+#10 53.73 invoke-rc.d: policy-rc.d denied execution of start.
+#10 53.83 Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
+#10 53.83 Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
+#10 53.91 Setting up s3cmd (2.2.0-1) ...
+#10 54.05 Setting up liberror-perl (0.17029-1) ...
+#10 54.05 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 54.06 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 54.07 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 54.08 Updating certificates in /etc/ssl/certs...
+#10 54.51 0 added, 0 removed; done.
+#10 54.51 Running hooks in /etc/ca-certificates/update.d...
+#10 54.51 done.
+#10 54.59 useradd: warning: the home directory /home/user already exists.
+#10 54.59 useradd: Not copying any file from skel directory into it.
+#10 DONE 55.6s
 
 #12 [stage-1 5/9] RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh /app/nezha.sh
-#12 DONE 0.2s
+#12 DONE 0.1s
 
 #13 [stage-1 6/9] COPY --from=builder /app/xy /usr/local/bin/xy
 #13 DONE 0.1s
@@ -239,10 +239,10 @@ docker pull ghcr.io/xcq0607/nezha:latest
 
 #17 exporting to image
 #17 exporting layers
-#17 exporting layers 2.4s done
-#17 writing image sha256:9c399f215df874403f155f257b708f3fcc47768ad7744224ade917a3e3bd4d84 done
+#17 exporting layers 2.6s done
+#17 writing image sha256:f399b232c3dfb84110265a42bcb29e05ae6862c194323d0198c5c5f9102a0504 done
 #17 naming to ghcr.io/xcq0607/nezha:latest done
-#17 DONE 2.4s
+#17 DONE 2.6s
 
  [33m3 warnings found (use docker --debug to expand):
 [0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 57)
