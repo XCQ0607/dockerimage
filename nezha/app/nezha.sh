@@ -8,6 +8,9 @@ NZ_DASHBOARD_SERVICERC="/etc/init.d/nezha-dashboard"
 # 添加自动化安装标志
 AUTO_INSTALL=true
 
+# 显式设置INIT为systemd
+INIT="systemd"
+
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'

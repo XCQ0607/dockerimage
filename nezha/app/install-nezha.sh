@@ -34,18 +34,8 @@ export NEZHA_TLS
 export NEZHA_LANGUAGE
 # 设置为独立安装模式
 export NEZHA_DOCKER_INSTALL
-# 设置初始化类型为openrc
-export INIT="openrc"
-
-# 检查系统初始化类型（在容器中已手动设置）
-# if command -v systemctl >/dev/null 2>&1; then
-#     export INIT="systemd"
-# elif [ -f "/sbin/openrc" ] || [ -f "/etc/init.d/functions" ]; then
-#     export INIT="openrc"
-# else
-#     echo "无法确定系统初始化类型"
-#     exit 1
-# fi
+# 设置初始化类型为systemd
+export INIT="systemd"
 
 # 执行安装
 echo "执行安装..."

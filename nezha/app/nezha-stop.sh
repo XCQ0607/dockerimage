@@ -5,8 +5,8 @@
 echo "停止哪吒监控面板..."
 
 # 检查系统初始化类型
-# 在容器环境中，我们显式设置INIT为openrc
-INIT="openrc"
+# 在容器环境中，我们显式设置INIT为systemd
+INIT="systemd"
 
 # 定义sudo函数以处理容器环境中没有sudo的情况
 sudo() {
