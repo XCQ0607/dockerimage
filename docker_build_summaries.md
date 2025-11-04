@@ -24,6 +24,8 @@
 │   │   └── xy
 │   ├── build.flag
 │   └── entrypoint.sh
+├── nezha
+│   └── Dockerfile
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -97,139 +99,56 @@
     ├── entrypoint.sh
     └── fiora
 
-40 directories, 54 files
+41 directories, 55 files
 ```
 
-## 镜像: lxmusic
+## 镜像: nezha
 
 ### 构建信息
-- 目录: lxmusic/
-- 完整镜像名: ghcr.io/xcq0607/lxmusic:latest
-- 构建状态: ✅ 成功
-- 构建耗时: 79s
+- 目录: nezha/
+- 完整镜像名: ghcr.io/xcq0607/nezha:latest
+- 构建状态: ❌ 失败
+- 构建耗时: 0s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/lxmusic:latest
+FROM ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-lxmusic ghcr.io/xcq0607/lxmusic:latest
+docker run -d --name my-nezha ghcr.io/xcq0607/nezha:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/lxmusic:latest
+docker pull ghcr.io/xcq0607/nezha:latest
 ```
 
 ### 构建日志
 
 ```
-#10 33.73 Selecting previously unselected package gpg-wks-server.
-#10 33.73 Preparing to unpack .../12-gpg-wks-server_2.2.27-3ubuntu2.4_amd64.deb ...
-#10 33.73 Unpacking gpg-wks-server (2.2.27-3ubuntu2.4) ...
-#10 33.75 Selecting previously unselected package gpgsm.
-#10 33.75 Preparing to unpack .../13-gpgsm_2.2.27-3ubuntu2.4_amd64.deb ...
-#10 33.75 Unpacking gpgsm (2.2.27-3ubuntu2.4) ...
-#10 33.76 Selecting previously unselected package gnupg.
-#10 33.77 Preparing to unpack .../14-gnupg_2.2.27-3ubuntu2.4_all.deb ...
-#10 33.77 Unpacking gnupg (2.2.27-3ubuntu2.4) ...
-#10 33.79 Setting up libksba8:amd64 (1.6.0-2ubuntu0.2) ...
-#10 33.79 Setting up apt-transport-https (2.4.14) ...
-#10 33.79 Setting up libnpth0:amd64 (1.6-3build2) ...
-#10 33.80 Setting up libassuan0:amd64 (2.5.5-1build1) ...
-#10 33.80 Setting up gnupg-l10n (2.2.27-3ubuntu2.4) ...
-#10 33.80 Setting up gpgconf (2.2.27-3ubuntu2.4) ...
-#10 33.81 Setting up gpg (2.2.27-3ubuntu2.4) ...
-#10 33.81 Setting up gnupg-utils (2.2.27-3ubuntu2.4) ...
-#10 33.81 Setting up pinentry-curses (1.1.1-1build2) ...
-#10 33.82 Setting up gpg-agent (2.2.27-3ubuntu2.4) ...
-#10 34.21 Setting up gpgsm (2.2.27-3ubuntu2.4) ...
-#10 34.22 Setting up dirmngr (2.2.27-3ubuntu2.4) ...
-#10 34.33 Setting up gpg-wks-server (2.2.27-3ubuntu2.4) ...
-#10 34.33 Setting up gpg-wks-client (2.2.27-3ubuntu2.4) ...
-#10 34.33 Setting up gnupg (2.2.27-3ubuntu2.4) ...
-#10 34.33 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
-#10 34.45 
-#10 34.45 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-#10 34.45 
-#10 34.58 Get:1 https://deb.nodesource.com/node_16.x nodistro InRelease [12.1 kB]
-#10 34.64 Get:2 https://deb.nodesource.com/node_16.x nodistro/main amd64 Packages [7253 B]
-#10 34.68 Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease
-#10 34.71 Hit:4 http://archive.ubuntu.com/ubuntu jammy InRelease
-#10 34.80 Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-#10 34.90 Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
-#10 34.98 Fetched 19.4 kB in 0s (39.4 kB/s)
-#10 34.98 Reading package lists...
-#10 35.83 Building dependency tree...
-#10 36.02 Reading state information...
-#10 36.03 2 packages can be upgraded. Run 'apt list --upgradable' to see them.
-#10 36.03 [1;32m2025-11-01 19:00:08 - Repository configured successfully. To install Node.js, run: apt install nodejs -y[0m
-#10 36.07 Reading package lists...
-#10 36.90 Building dependency tree...
-#10 37.08 Reading state information...
-#10 37.22 The following NEW packages will be installed:
-#10 37.22   nodejs
-#10 37.41 0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
-#10 37.41 Need to get 27.5 MB of archives.
-#10 37.41 After this operation, 128 MB of additional disk space will be used.
-#10 37.41 Get:1 https://deb.nodesource.com/node_16.x nodistro/main amd64 nodejs amd64 16.20.2-1nodesource1 [27.5 MB]
-#10 37.71 debconf: delaying package configuration, since apt-utils is not installed
-#10 37.73 Fetched 27.5 MB in 0s (71.2 MB/s)
-#10 37.74 Selecting previously unselected package nodejs.
-#10 37.74 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14160 files and directories currently installed.)
-#10 37.75 Preparing to unpack .../nodejs_16.20.2-1nodesource1_amd64.deb ...
-#10 37.75 Unpacking nodejs (16.20.2-1nodesource1) ...
-#10 39.81 Setting up nodejs (16.20.2-1nodesource1) ...
-#10 39.89 useradd: warning: the home directory /home/user already exists.
-#10 39.89 useradd: Not copying any file from skel directory into it.
-#10 DONE 41.1s
+#0 building with "default" instance using docker driver
 
-#12 [stage-1 5/9] COPY --from=builder /app/xy /usr/local/bin/xy
-#12 DONE 0.1s
-
-#13 [stage-1 6/9] COPY --from=builder /app/td /usr/local/bin/td
-#13 DONE 0.0s
-
-#14 [stage-1 7/9] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
-#14 DONE 0.0s
-
-#15 [stage-1 8/9] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#15 DONE 0.1s
-
-#16 [stage-1 9/9] RUN cd /app/lx && npm install --production
-#16 0.363 npm WARN config production Use `--omit=dev` instead.
-#16 3.296 
-#16 3.296 added 17 packages, and audited 18 packages in 3s
-#16 3.300 
-#16 3.300 1 high severity vulnerability
-#16 3.300 
-#16 3.300 To address all issues, run:
-#16 3.300   npm audit fix
-#16 3.300 
-#16 3.300 Run `npm audit` for details.
-#16 3.300 npm notice 
-#16 3.300 npm notice New major version of npm available! 8.19.4 -> 11.6.2
-#16 3.300 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.6.2>
-#16 3.300 npm notice Run `npm install -g npm@11.6.2` to update!
-#16 3.300 npm notice 
-#16 DONE 3.3s
-
-#17 exporting to image
-#17 exporting layers
-#17 exporting layers 3.0s done
-#17 writing image sha256:cc945c93369571e587a7cc5e9db50c6e7361833504495233e2ca5dd2060e70b2 done
-#17 naming to ghcr.io/xcq0607/lxmusic:latest done
-#17 DONE 3.0s
-
- [33m2 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 60)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 60)
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 8.08kB done
+#1 DONE 0.0s
+Dockerfile:98
+--------------------
+  97 |         NEZHA_PORT=7860
+  98 | >>>     NEZHA_AGENT_HOSTPORT= \
+  99 | >>>     NEZHA_TLS=false \
+ 100 | >>>     NEZHA_LANGUAGE=zh_CN \
+ 101 | >>>     NEZHA_USERNAME=admin \
+ 102 | >>>     NEZHA_PASSWORD=admin \
+ 103 | >>>     NEZHA_DOCKER_INSTALL=false
+ 104 |     
+--------------------
+ERROR: failed to build: failed to solve: dockerfile parse error on line 98: unknown instruction: NEZHA_AGENT_HOSTPORT=
 ```
 
