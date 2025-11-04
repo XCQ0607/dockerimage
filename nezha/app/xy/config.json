@@ -1,6 +1,6 @@
 {
   "log": {
-    "loglevel": "warning"
+    "loglevel": "info"
   },
   "dns": {
     "servers": [
@@ -38,6 +38,38 @@
           "tls"
         ]
       }
+    },
+    {
+      "listen": null,
+      "port": 7861,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "UUID",
+            "email": "test@local"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/app/xy/fullchain.pem",
+              "keyFile": "/app/xy/privkey.pem"
+            }
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "example.com"
+          }
+        }
+      }
     }
   ],
   "routing": {
@@ -55,7 +87,7 @@
     {
       "protocol": "freedom",
       "settings": {
-        "domainStrategy":"UseIP"
+        "domainStrategy": "UseIP"
       }
     },
     {
