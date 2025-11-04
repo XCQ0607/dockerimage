@@ -51,6 +51,7 @@ export INIT="openrc"
 echo "执行安装..."
 cd /tmp
 # 使用独立安装方式
+# 直接传递环境变量给nezha.sh脚本
 ./nezha.sh install
 
 # 检查安装是否成功

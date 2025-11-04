@@ -16,6 +16,15 @@ if [ -z "$INIT" ]; then
     fi
 fi
 
+# 定义sudo函数以处理容器环境中没有sudo的情况
+sudo() {
+    if command -v sudo > /dev/null 2>&1; then
+        command sudo "$@"
+    else
+        "$@"
+    fi
+}
+
 # 检查是否使用Docker安装
 if [ "$NEZHA_DOCKER_INSTALL" = "true" ]; then
     if command -v docker-compose >/dev/null 2>&1; then
@@ -33,9 +42,9 @@ else
     # 独立安装模式
     echo "使用独立安装模式停止哪吒监控面板..."
     if [ "$INIT" = "systemd" ]; then
-        sudo systemctl stop nezha-dashboard
+        $(sudo) systemctl stop nezha-dashboard
     elif [ "$INIT" = "openrc" ]; then
-        sudo rc-service nezha-dashboard stop
+        $(sudo) rc-service nezha-dashboard stop
     else
         echo "未知的初始化系统: $INIT"
     fi

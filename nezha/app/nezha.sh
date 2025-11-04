@@ -135,8 +135,8 @@ env_check() {
 installation_check() {
     if docker compose version >/dev/null 2>&1; then
         DOCKER_COMPOSE_COMMAND="docker compose"
-        if sudo $DOCKER_COMPOSE_COMMAND ls | grep -qw "$NZ_DASHBOARD_PATH/docker-compose.yaml" >/dev/null 2>&1; then
-            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
+        if $(sudo) $DOCKER_COMPOSE_COMMAND ls | grep -qw "$NZ_DASHBOARD_PATH/docker-compose.yaml" >/dev/null 2>&1; then
+            NEZHA_IMAGES=$($(sudo) docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
             if [ -n "$NEZHA_IMAGES" ]; then
                 echo "存在带有 nezha 仓库的 Docker 镜像："
                 echo "$NEZHA_IMAGES"
@@ -149,8 +149,8 @@ installation_check() {
         fi
     elif command -v docker-compose >/dev/null 2>&1; then
         DOCKER_COMPOSE_COMMAND="docker-compose"
-        if sudo $DOCKER_COMPOSE_COMMAND -f "$NZ_DASHBOARD_PATH/docker-compose.yaml" config >/dev/null 2>&1; then
-            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
+        if $(sudo) $DOCKER_COMPOSE_COMMAND -f "$NZ_DASHBOARD_PATH/docker-compose.yaml" config >/dev/null 2>&1; then
+            NEZHA_IMAGES=$($(sudo) docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
             if [ -n "$NEZHA_IMAGES" ]; then
                 echo "存在带有 nezha 仓库的 Docker 镜像："
                 echo "$NEZHA_IMAGES"
@@ -297,7 +297,7 @@ install() {
 
     # Nezha Monitoring Folder
     if [ ! "$FRESH_INSTALL" = 0 ]; then
-        sudo mkdir -p $NZ_DASHBOARD_PATH
+        $(sudo) mkdir -p $NZ_DASHBOARD_PATH
     else
         echo "您可能已经安装过面板端，重复安装会覆盖数据，请注意备份。"
         if [ "$AUTO_INSTALL" = true ]; then
@@ -430,31 +430,31 @@ modify_config() {
     sed -i "s/nz_hostport/${nz_hostport}/" /tmp/nezha-config.yaml
     sed -i "s/nz_tls/${nz_tls}/" /tmp/nezha-config.yaml
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
-        sed -i "s/nz_port/${nz_port}/g" /tmp/nezha-docker-compose.yaml
-        sed -i "s/nz_image_url/${Docker_IMG}/" /tmp/nezha-docker-compose.yaml
+    sed -i "s/nz_port/${nz_port}/g" /tmp/nezha-docker-compose.yaml
+    sed -i "s/nz_image_url/${Docker_IMG}/" /tmp/nezha-docker-compose.yaml
     fi
 
-    sudo mkdir -p $NZ_DASHBOARD_PATH/data
-    sudo mv -f /tmp/nezha-config.yaml ${NZ_DASHBOARD_PATH}/data/config.yaml
+    $(sudo) mkdir -p $NZ_DASHBOARD_PATH/data
+    $(sudo) mv -f /tmp/nezha-config.yaml ${NZ_DASHBOARD_PATH}/data/config.yaml
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
-        sudo mv -f /tmp/nezha-docker-compose.yaml ${NZ_DASHBOARD_PATH}/docker-compose.yaml
+        $(sudo) mv -f /tmp/nezha-docker-compose.yaml ${NZ_DASHBOARD_PATH}/docker-compose.yaml
     fi
 
     if [ "$IS_DOCKER_NEZHA" = 0 ]; then
         echo "正在下载服务文件"
         if [ "$INIT" = "systemd" ]; then
-            _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICE https://${GITHUB_RAW_URL}/services/nezha-dashboard.service >/dev/null 2>&1"
+            _download="$(sudo) wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICE https://${GITHUB_RAW_URL}/services/nezha-dashboard.service >/dev/null 2>&1"
             if ! eval "$_download"; then
                 err "文件下载失败，请检查本机能否连接 ${GITHUB_RAW_URL}"
                 return 0
             fi
         elif [ "$INIT" = "openrc" ]; then
-            _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICERC https://${GITHUB_RAW_URL}/services/nezha-dashboard >/dev/null 2>&1"
+            _download="$(sudo) wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICERC https://${GITHUB_RAW_URL}/services/nezha-dashboard >/dev/null 2>&1"
             if ! eval "$_download"; then
                 err "文件下载失败，请检查本机能否连接 ${GITHUB_RAW_URL}"
                 return 0
             fi
-            sudo chmod +x $NZ_DASHBOARD_SERVICERC
+            $(sudo) chmod +x $NZ_DASHBOARD_SERVICERC
         fi
     fi
 
@@ -490,10 +490,10 @@ restart_and_update() {
 }
 
 restart_and_update_docker() {
-    sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml pull
-    sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
+    $(sudo) $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml pull
+    $(sudo) $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
     sleep 2
-    sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml up -d
+    $(sudo) $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml up -d
 }
 
 restart_and_update_standalone() {
@@ -516,10 +516,10 @@ restart_and_update_standalone() {
     fi
 
     if [ "$INIT" = "systemd" ]; then
-        sudo systemctl daemon-reload
-        sudo systemctl stop nezha-dashboard
+        $(sudo) systemctl daemon-reload
+        $(sudo) systemctl stop nezha-dashboard
     elif [ "$INIT" = "openrc" ]; then
-        sudo rc-service nezha-dashboard stop
+        $(sudo) rc-service nezha-dashboard stop
     fi
 
     if [ -z "$CN" ]; then
@@ -528,17 +528,17 @@ restart_and_update_standalone() {
         NZ_DASHBOARD_URL="https://${GITHUB_URL}/naibahq/nezha/releases/download/${_version}/dashboard-linux-${os_arch}.zip"
     fi
 
-    sudo wget -qO $NZ_DASHBOARD_PATH/app.zip "$NZ_DASHBOARD_URL" >/dev/null 2>&1 && sudo unzip -qq -o $NZ_DASHBOARD_PATH/app.zip -d $NZ_DASHBOARD_PATH && sudo mv $NZ_DASHBOARD_PATH/dashboard-linux-$os_arch $NZ_DASHBOARD_PATH/app && sudo rm $NZ_DASHBOARD_PATH/app.zip
-    sudo chmod +x $NZ_DASHBOARD_PATH/app
+    $(sudo) wget -qO $NZ_DASHBOARD_PATH/app.zip "$NZ_DASHBOARD_URL" >/dev/null 2>&1 && $(sudo) unzip -qq -o $NZ_DASHBOARD_PATH/app.zip -d $NZ_DASHBOARD_PATH && $(sudo) mv $NZ_DASHBOARD_PATH/dashboard-linux-$os_arch $NZ_DASHBOARD_PATH/app && $(sudo) rm $NZ_DASHBOARD_PATH/app.zip
+    $(sudo) chmod +x $NZ_DASHBOARD_PATH/app
 
     sleep 2
 
     if [ "$INIT" = "systemd" ]; then
-        sudo systemctl enable nezha-dashboard
-        sudo systemctl restart nezha-dashboard
+        $(sudo) systemctl enable nezha-dashboard
+        $(sudo) systemctl restart nezha-dashboard
     elif [ "$INIT" = "openrc" ]; then
-        sudo rc-update add nezha-dashboard
-        sudo rc-service nezha-dashboard restart
+        $(sudo) rc-update add nezha-dashboard
+        $(sudo) rc-service nezha-dashboard restart
     fi
 }
 
@@ -557,14 +557,14 @@ show_log() {
 }
 
 show_dashboard_log_docker() {
-    sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml logs -f
+    $(sudo) $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml logs -f
 }
 
 show_dashboard_log_standalone() {
     if [ "$INIT" = "systemd" ]; then
-        sudo journalctl -xf -u nezha-dashboard.service
+        $(sudo) journalctl -xf -u nezha-dashboard.service
     elif [ "$INIT" = "openrc" ]; then
-        sudo tail -n 10 /var/log/nezha-dashboard.err
+        $(sudo) tail -n 10 /var/log/nezha-dashboard.err
     fi
 }
 
@@ -598,27 +598,27 @@ uninstall() {
 }
 
 uninstall_dashboard_docker() {
-    sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
-    sudo rm -rf $NZ_DASHBOARD_PATH
-    sudo docker rmi -f ghcr.io/nezhahq/nezha >/dev/null 2>&1
-    sudo docker rmi -f registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard >/dev/null 2>&1
+    $(sudo) $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
+    $(sudo) rm -rf $NZ_DASHBOARD_PATH
+    $(sudo) docker rmi -f ghcr.io/nezhahq/nezha >/dev/null 2>&1
+    $(sudo) docker rmi -f registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard >/dev/null 2>&1
 }
 
 uninstall_dashboard_standalone() {
-    sudo rm -rf $NZ_DASHBOARD_PATH
+    $(sudo) rm -rf $NZ_DASHBOARD_PATH
 
     if [ "$INIT" = "systemd" ]; then
-        sudo systemctl disable nezha-dashboard
-        sudo systemctl stop nezha-dashboard
+        $(sudo) systemctl disable nezha-dashboard
+        $(sudo) systemctl stop nezha-dashboard
     elif [ "$INIT" = "openrc" ]; then
-        sudo rc-update del nezha-dashboard
-        sudo rc-service nezha-dashboard stop
+        $(sudo) rc-update del nezha-dashboard
+        $(sudo) rc-service nezha-dashboard stop
     fi
 
     if [ "$INIT" = "systemd" ]; then
-        sudo rm $NZ_DASHBOARD_SERVICE
+        $(sudo) rm $NZ_DASHBOARD_SERVICE
     elif [ "$INIT" = "openrc" ]; then
-        sudo rm $NZ_DASHBOARD_SERVICERC
+        $(sudo) rm $NZ_DASHBOARD_SERVICERC
     fi
 }
 
