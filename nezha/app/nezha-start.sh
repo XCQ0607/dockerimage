@@ -6,23 +6,7 @@ echo "启动哪吒监控面板..."
 
 # 检查系统初始化类型
 # 在容器环境中，我们显式设置INIT为openrc
-if [ -z "$INIT" ]; then
-    # 首先检查是否在容器环境中
-    if [ -f "/.dockerenv" ] || grep -q docker /proc/1/cgroup 2>/dev/null; then
-        # 在容器环境中，我们使用openrc模式
-        INIT="openrc"
-    else
-        # 在传统系统中，检测初始化系统
-        if command -v systemctl >/dev/null 2>&1; then
-            INIT="systemd"
-        elif [ -f "/sbin/openrc" ] || [ -f "/etc/init.d/functions" ]; then
-            INIT="openrc"
-        else
-            echo "无法确定系统初始化类型"
-            exit 1
-        fi
-    fi
-fi
+INIT="openrc"
 
 # 定义sudo函数以处理容器环境中没有sudo的情况
 sudo() {

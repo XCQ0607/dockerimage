@@ -479,7 +479,17 @@ restart_and_update() {
 
     if eval "$_cmd"; then
         success "哪吒监控 重启成功"
-        info "默认地址：域名:站点访问端口"
+        # 读取配置文件中的端口号
+        if [ -f "${NZ_DASHBOARD_PATH}/data/config.yaml" ]; then
+            _port=$(grep "listen_port" ${NZ_DASHBOARD_PATH}/data/config.yaml | awk '{print $2}')
+            if [ -n "$_port" ]; then
+                info "默认地址：http://localhost:$_port"
+            else
+                info "默认地址：域名:站点访问端口"
+            fi
+        else
+            info "默认地址：域名:站点访问端口"
+        fi
     else
         err "重启失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
     fi
