@@ -123,8 +123,8 @@
 ### 构建信息
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
-- 构建状态: ❌ 失败
-- 构建耗时: 3s
+- 构建状态: ✅ 成功
+- 构建耗时: 60s
 
 ### 使用方法
 
@@ -149,18 +149,105 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#0 building with "default" instance using docker driver
+#10 16.55 update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.55 update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+#10 16.56 Setting up python3.10 (3.10.12-1~22.04.11) ...
+#10 17.06 Setting up iptables (1.8.7-1ubuntu5.2) ...
+#10 17.06 update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+#10 17.07 update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 17.07 update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+#10 17.07 update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+#10 17.07 update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+#10 17.07 update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+#10 17.07 Setting up iproute2 (5.15.0-1ubuntu2) ...
+#10 17.13 Setting up openssh-client (1:8.9p1-3ubuntu0.13) ...
+#10 17.17 update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+#10 17.17 update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+#10 17.17 update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+#10 17.17 update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+#10 17.17 update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+#10 17.17 update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+#10 17.17 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.21) ...
+#10 17.18 Setting up python3 (3.10.6-1~22.04.1) ...
+#10 17.24 Setting up systemd (249.11-0ubuntu3.17) ...
+#10 17.26 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+#10 17.26 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+#10 17.26 Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+#10 17.26 Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+#10 17.27 ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+#10 17.27 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+#10 17.27 Initializing machine ID from random generator.
+#10 17.41 Setting up docker.io (28.2.2-0ubuntu1~22.04.1) ...
+#10 17.47 Adding group `docker' (GID 105) ...
+#10 17.48 Done.
+#10 17.57 Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+#10 17.66 Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+#10 17.66 invoke-rc.d: unknown initscript, /etc/init.d/docker not found.
+#10 17.66 invoke-rc.d: could not determine current runlevel
+#10 17.67 Setting up python3-six (1.16.0-3ubuntu1) ...
+#10 17.76 Setting up perl (5.34.0-3ubuntu1.5) ...
+#10 17.76 Setting up python3-dateutil (2.8.1-6) ...
+#10 17.87 Setting up python3-magic (2:0.4.24-2) ...
+#10 17.96 Setting up python3-pkg-resources (59.6.0-1.2ubuntu0.22.04.3) ...
+#10 18.08 Setting up openssh-sftp-server (1:8.9p1-3ubuntu0.13) ...
+#10 18.09 Setting up supervisor (4.2.1-1ubuntu1) ...
+#10 18.34 invoke-rc.d: could not determine current runlevel
+#10 18.34 invoke-rc.d: policy-rc.d denied execution of start.
+#10 18.43 Created symlink /etc/systemd/system/multi-user.target.wants/supervisor.service → /lib/systemd/system/supervisor.service.
+#10 18.43 Setting up openssh-server (1:8.9p1-3ubuntu0.13) ...
+#10 18.51 
+#10 18.51 Creating config file /etc/ssh/sshd_config with new version
+#10 18.53 Creating SSH2 RSA key; this may take some time ...
+#10 18.87 3072 SHA256:1iEQXPSWqJ01/pbRoVK29+YVlI1TkljzlUYVCVo9ebE root@buildkitsandbox (RSA)
+#10 18.88 Creating SSH2 ECDSA key; this may take some time ...
+#10 18.88 256 SHA256:qLY+14VcqkJKBuMnxl/S5NQRwQS0Gq5BKhRxIFJV7KA root@buildkitsandbox (ECDSA)
+#10 18.88 Creating SSH2 ED25519 key; this may take some time ...
+#10 18.89 256 SHA256:N5DXLZxDt8int3JgK4uMM51zwpb+LTwLlpQLhDX3hmg root@buildkitsandbox (ED25519)
+#10 18.94 invoke-rc.d: could not determine current runlevel
+#10 18.94 invoke-rc.d: policy-rc.d denied execution of start.
+#10 19.03 Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
+#10 19.03 Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
+#10 19.09 Setting up s3cmd (2.2.0-1) ...
+#10 19.21 Setting up liberror-perl (0.17029-1) ...
+#10 19.21 Setting up git (1:2.34.1-1ubuntu1.15) ...
+#10 19.22 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+#10 19.23 Processing triggers for ca-certificates (20240203~22.04.1) ...
+#10 19.23 Updating certificates in /etc/ssl/certs...
+#10 19.54 0 added, 0 removed; done.
+#10 19.54 Running hooks in /etc/ca-certificates/update.d...
+#10 19.54 done.
+#10 19.59 useradd: warning: the home directory /home/user already exists.
+#10 19.59 useradd: Not copying any file from skel directory into it.
+#10 DONE 20.6s
 
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 8.29kB done
-#1 DONE 0.0s
-Dockerfile:19
---------------------
-  18 |         # Download Hysteria
-  19 | >>>     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
-  20 | >>>     chmod +x hysteria
-  21 |     ############################################################
---------------------
-ERROR: failed to build: failed to solve: dockerfile parse error on line 19: unknown instruction: wget
+#12 [stage-1  5/10] RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh /app/nezha.sh
+#12 DONE 0.1s
+
+#13 [stage-1  6/10] COPY --from=builder /app/xy /usr/local/bin/xy
+#13 DONE 0.1s
+
+#14 [stage-1  7/10] COPY --from=builder /app/td /usr/local/bin/td
+#14 DONE 0.0s
+
+#15 [stage-1  8/10] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#15 DONE 0.0s
+
+#16 [stage-1  9/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#16 DONE 0.0s
+
+#17 [stage-1 10/10] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#17 DONE 0.0s
+
+#18 exporting to image
+#18 exporting layers
+#18 exporting layers 2.1s done
+#18 writing image sha256:18eec228d8ff9da85f2437e191583a109fd493ca0f3b728887083739f2e5993e done
+#18 naming to ghcr.io/xcq0607/nezha:latest done
+#18 DONE 2.1s
+
+ [33m3 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 59)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 59)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 98)
 ```
 
