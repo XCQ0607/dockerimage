@@ -107,7 +107,7 @@ COPY app /app
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
@@ -119,6 +119,8 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     # 设置备份脚本和cron设置脚本权限
     chmod +x /app/backup/*.sh /app/setup-cron.sh; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
+    # 为user用户配置无密码sudo权限
+    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
 
