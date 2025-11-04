@@ -14,7 +14,7 @@ RUN apt-get update; \
     chmod +x supercronic; \
     # Download cloudflared
     wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64; \
-    chmod +x cloudflared
+    chmod +x cloudflared; \
     # Download Hysteria
     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
     chmod +x hysteria
