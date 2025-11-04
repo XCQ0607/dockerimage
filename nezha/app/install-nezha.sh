@@ -3,8 +3,8 @@
 # 哪吒监控面板自动安装脚本
 
 # 设置默认值
-: ${NEZHA_SITE_TITLE:="Nezha Dashboard"}
-: ${NEZHA_PORT:=8008}
+: ${NEZHA_SITE_TITLE:="X-Nezha"}
+: ${NEZHA_PORT:=7860}
 : ${NEZHA_AGENT_HOSTPORT:=""}
 : ${NEZHA_TLS:="false"}
 : ${NEZHA_LANGUAGE:="zh_CN"}

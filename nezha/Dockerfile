@@ -94,7 +94,7 @@ ENV HC_PORT=7860 \
 # NEZHA_PASSWORD：管理员密码，默认值为admin，非必填，示例输入：strongpassword
 # NEZHA_DOCKER_INSTALL：是否使用Docker安装，默认值为true，非必填，示例输入：true 或 false
 ENV NEZHA_SITE_TITLE=X-Nezha \
-    NEZHA_PORT=7860
+    NEZHA_PORT=7860 \
     NEZHA_AGENT_HOSTPORT= \
     NEZHA_TLS=false \
     NEZHA_LANGUAGE=zh_CN \
