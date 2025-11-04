@@ -123,10 +123,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     echo $TZ > /etc/timezone
 
 # 复制自动安装脚本和启动/停止脚本并设置权限
-COPY app/install-nezha.sh /app/install-nezha.sh
-COPY app/nezha-start.sh /app/nezha-start.sh
-COPY app/nezha-stop.sh /app/nezha-stop.sh
-RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh
+RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh /app/nezha.sh
 
 COPY --from=builder /app/xy /usr/local/bin/xy
 COPY --from=builder /app/td /usr/local/bin/td

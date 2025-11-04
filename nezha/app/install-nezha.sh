@@ -14,12 +14,12 @@
 
 echo "开始自动安装哪吒监控面板..."
 
-# 创建安装目录
-mkdir -p /opt/nezha/dashboard
+# 目录应该已经在Dockerfile中创建并设置了正确的权限
+# mkdir -p /opt/nezha/dashboard
 
-# 下载安装脚本
-echo "下载安装脚本..."
-curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/install.sh -o /tmp/nezha.sh
+# 复制本地的nezha.sh文件到临时目录
+echo "使用本地nezha.sh文件..."
+cp /app/nezha.sh /tmp/nezha.sh
 chmod +x /tmp/nezha.sh
 
 # 设置环境变量用于自动化安装
@@ -52,10 +52,10 @@ cd /tmp
 if [ -f "/opt/nezha/dashboard/app" ]; then
     echo "哪吒监控面板安装成功!"
     
-    # 设置哪吒监控面板数据目录权限
-    mkdir -p /opt/nezha/dashboard/data
-    chown -R 1000:0 /opt/nezha/dashboard/data
-    chmod -R 777 /opt/nezha/dashboard/data
+    # 目录权限应该已经在Dockerfile中设置正确
+    # mkdir -p /opt/nezha/dashboard/data
+    # chown -R 1000:0 /opt/nezha/dashboard/data
+    # chmod -R 777 /opt/nezha/dashboard/data
     
     echo "访问地址: http://localhost:$NEZHA_PORT"
     echo "默认用户名: $NEZHA_USERNAME"
@@ -64,7 +64,8 @@ if [ -f "/opt/nezha/dashboard/app" ]; then
     
     # 通知supervisor哪吒监控面板安装完成
     echo "通知supervisor哪吒监控面板安装完成..."
-    supervisorctl start nezha-post-install
+    # 普通用户可能无法直接控制supervisor，我们通过其他方式通知
+    # supervisorctl start nezha-post-install
 else
     echo "哪吒监控面板安装失败!"
     exit 1
