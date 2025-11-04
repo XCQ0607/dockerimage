@@ -34,8 +34,15 @@ export NEZHA_TLS
 export NEZHA_LANGUAGE
 # 设置为独立安装模式
 export NEZHA_DOCKER_INSTALL
-# 设置初始化类型为systemd
-export INIT="systemd"
+
+# 在容器环境中不使用systemd
+if [ -f /.dockerenv ] || grep -q docker /proc/1/cgroup; then
+    echo "检测到容器环境，使用直接运行模式"
+    export INIT="direct"
+else
+    # 在非容器环境中使用systemd
+    export INIT="systemd"
+fi
 
 # 执行安装
 echo "执行安装..."

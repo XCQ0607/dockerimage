@@ -8,7 +8,7 @@ NZ_DASHBOARD_SERVICERC="/etc/init.d/nezha-dashboard"
 # 添加自动化安装标志
 AUTO_INSTALL=true
 
-# 显式设置INIT为systemd
+# 显式设置INIT为systemd（默认值）
 INIT="systemd"
 
 red='\033[0;31m'
@@ -533,6 +533,12 @@ restart_and_update_standalone() {
         $(sudo) systemctl stop nezha-dashboard
     elif [ "$INIT" = "openrc" ]; then
         $(sudo) rc-service nezha-dashboard stop
+    elif [ "$INIT" = "direct" ]; then
+        # 在直接运行模式下，尝试杀死现有的进程
+        if [ -f "$NZ_DASHBOARD_PATH/dashboard.pid" ]; then
+            kill $(cat "$NZ_DASHBOARD_PATH/dashboard.pid") 2>/dev/null || true
+            rm -f "$NZ_DASHBOARD_PATH/dashboard.pid"
+        fi
     fi
 
     if [ -z "$CN" ]; then
@@ -552,6 +558,10 @@ restart_and_update_standalone() {
     elif [ "$INIT" = "openrc" ]; then
         $(sudo) rc-update add nezha-dashboard
         $(sudo) rc-service nezha-dashboard restart
+    elif [ "$INIT" = "direct" ]; then
+        # 在直接运行模式下，直接启动应用
+        nohup $NZ_DASHBOARD_PATH/app > $NZ_DASHBOARD_PATH/app.log 2>&1 &
+        echo $! > "$NZ_DASHBOARD_PATH/dashboard.pid"
     fi
 }
 
@@ -578,6 +588,8 @@ show_dashboard_log_standalone() {
         $(sudo) journalctl -xf -u nezha-dashboard.service
     elif [ "$INIT" = "openrc" ]; then
         $(sudo) tail -n 10 /var/log/nezha-dashboard.err
+    elif [ "$INIT" = "direct" ]; then
+        tail -n 10 $NZ_DASHBOARD_PATH/app.log
     fi
 }
 
@@ -626,6 +638,12 @@ uninstall_dashboard_standalone() {
     elif [ "$INIT" = "openrc" ]; then
         $(sudo) rc-update del nezha-dashboard
         $(sudo) rc-service nezha-dashboard stop
+    elif [ "$INIT" = "direct" ]; then
+        # 在直接运行模式下，尝试杀死现有的进程
+        if [ -f "$NZ_DASHBOARD_PATH/dashboard.pid" ]; then
+            kill $(cat "$NZ_DASHBOARD_PATH/dashboard.pid") 2>/dev/null || true
+            rm -f "$NZ_DASHBOARD_PATH/dashboard.pid"
+        fi
     fi
 
     if [ "$INIT" = "systemd" ]; then
