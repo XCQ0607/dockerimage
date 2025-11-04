@@ -115,7 +115,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # 设置备份脚本和cron设置脚本权限
-    chmod +x /app/backup/*.sh /app/setup-cron.sh /app/lx/*.sh; \
+    chmod +x /app/backup/*.sh /app/setup-cron.sh /app/lx/*.sh /app/setup.sh; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
