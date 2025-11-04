@@ -132,6 +132,7 @@ COPY --from=builder /app/td /usr/local/bin/td
 COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 
 EXPOSE 7860
 

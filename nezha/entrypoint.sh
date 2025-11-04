@@ -2,6 +2,7 @@
 
 sed -i "s/UUID/$UUID/g" /app/xy/config.json
 # 不再需要替换DOMAIN变量，因为keepalive.sh现在支持多个域名
+sed -i "s/UUID/$UUID/g" /app/hysteria/config.yaml
 
 # 初始化cron文件（只保留注释，实际任务由setup-cron.sh添加）
 echo "# Generated crontab file" > /app/cron/my-crontab

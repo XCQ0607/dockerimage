@@ -1,0 +1,9 @@
+listen: :7861
+
+tls:
+  cert: /app/hysteria/cert.pem
+  key: /app/hysteria/key.pem
+
+auth:
+  type: password
+  password: UUID
