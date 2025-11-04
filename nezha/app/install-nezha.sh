@@ -22,6 +22,10 @@ echo "使用本地nezha.sh文件..."
 cp /app/nezha.sh /tmp/nezha.sh
 chmod +x /tmp/nezha.sh
 
+# 修改nezha.sh文件，使其在容器环境中跳过初始化类型检测
+echo "修改nezha.sh文件以适应容器环境..."
+sed -i 's/check_init() {/check_init() {\n    # 在容器环境中跳过初始化类型检测\n    if [ -n "$INIT" ]; then\n        return 0\n    fi\n    init=$(readlink \/sbin\/init)\n    case "$init" in\n        *systemd*)\n            INIT=systemd\n            ;;\n        *openrc-init*|*busybox*)\n            INIT=openrc\n            ;;\n        *)\n            err "Unknown init"\n            exit 1\n            ;;\n    esac\n}/' /tmp/nezha.sh
+
 # 设置环境变量用于自动化安装
 export AUTO_INSTALL=true
 export NEZHA_SITE_TITLE
@@ -31,8 +35,7 @@ export NEZHA_TLS
 export NEZHA_LANGUAGE
 # 设置为独立安装模式
 export NEZHA_DOCKER_INSTALL
-
-# 在容器环境中手动设置初始化类型为openrc
+# 设置初始化类型为openrc
 export INIT="openrc"
 
 # 检查系统初始化类型（在容器中已手动设置）
