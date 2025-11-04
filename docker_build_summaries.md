@@ -25,7 +25,20 @@
 │   ├── build.flag
 │   └── entrypoint.sh
 ├── nezha
-│   └── Dockerfile
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── backup
+│   │   ├── cron
+│   │   ├── healthcheck.sh
+│   │   ├── install-nezha.sh
+│   │   ├── keepalive.sh
+│   │   ├── nezha-start.sh
+│   │   ├── nezha-stop.sh
+│   │   ├── setup-cron.sh
+│   │   ├── supervisor
+│   │   └── xy
+│   ├── build.flag
+│   └── entrypoint.sh
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -99,7 +112,7 @@
     ├── entrypoint.sh
     └── fiora
 
-41 directories, 55 files
+46 directories, 63 files
 ```
 
 ## 镜像: nezha
@@ -108,7 +121,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 0s
+- 构建耗时: 1s
 
 ### 使用方法
 
