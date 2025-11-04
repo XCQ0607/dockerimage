@@ -9,25 +9,10 @@ auth:
   password: UUID
 
 resolver:
-  type: udp | tcp | tls | https 
-  tcp:
-    addr: 8.8.8.8:53 
-    timeout: 4s 
+  type: udp
   udp:
-    addr: 8.8.4.4:53 
+    addr: 8.8.8.8:53
     timeout: 4s
-  tls:
-    addr: 1.1.1.1:853 
-    timeout: 10s
-    sni: cloudflare-dns.com 
-    insecure: false 
-  https:
-    addr: 1.1.1.1:443 
-    timeout: 10s
-    sni: cloudflare-dns.com
-    insecure: false
-  inline:
-    - default(*, 8.8.8.8)
 
 sniff:
   enable: true
@@ -36,9 +21,10 @@ sniff:
   udpPorts: all
 
 acl:
-  inline: |
-    site(v.com) -> direct-local
-    finally -> direct
+  inline:
+    - domain: v.com
+      outbound: direct-local
+    - default: direct
 
 outbounds:
   - name: direct
