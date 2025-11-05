@@ -3,7 +3,7 @@ FROM ubuntu:22.04 AS builder
 WORKDIR /app
 
 RUN apt-get update; \
-    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev; \
+    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev; \
     wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; \
     unzip Xray-linux-64.zip; \
     rm -f Xray-linux-64.zip; \
@@ -18,15 +18,49 @@ RUN apt-get update; \
     # Download Hysteria
     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
     chmod +x hysteria; \
-    # Download and compile Nginx
+    # Download and compile Nginx with all modules
     NGINX_VERSION=$(curl -s https://api.github.com/repos/nginx/nginx/tags | grep -E "release-[0-9]+" | head -1 | cut -d '"' -f 4 | cut -d '-' -f 2-); \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
     cd nginx-*; \
-    ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream --with-stream_ssl_module --with-stream_realip_module; \
+    ./configure --prefix=/app/nginx \
+                --with-http_ssl_module \
+                --with-http_v2_module \
+                --with-http_realip_module \
+                --with-http_addition_module \
+                --with-http_sub_module \
+                --with-http_dav_module \
+                --with-http_flv_module \
+                --with-http_mp4_module \
+                --with-http_gunzip_module \
+                --with-http_gzip_static_module \
+                --with-http_auth_request_module \
+                --with-http_random_index_module \
+                --with-http_secure_link_module \
+                --with-http_degradation_module \
+                --with-http_slice_module \
+                --with-http_stub_status_module \
+                --with-http_perl_module \
+                --with-mail \
+                --with-mail_ssl_module \
+                --with-stream \
+                --with-stream_ssl_module \
+                --with-stream_realip_module \
+                --with-stream_ssl_preread_module \
+                --with-compat \
+                --with-pcre \
+                --with-pcre-jit \
+                --with-threads \
+                --with-file-aio \
+                --with-http_xslt_module=dynamic \
+                --with-http_image_filter_module=dynamic \
+                --with-http_geoip_module=dynamic \
+                --with-google_perftools_module \
+                --add-module=src/http/modules/perl \
+                --add-dynamic-module=src/stream/modules; \
     make && make install; \
     cd ..; \
-    rm -rf nginx*; \
+    rm -rf nginx*;
 
 ############################################################
 
@@ -145,7 +179,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /usr/local/nginx /usr/local/nginx
+COPY --from=builder /app/nginx /usr/local/nginx
 
 EXPOSE 7860
 
