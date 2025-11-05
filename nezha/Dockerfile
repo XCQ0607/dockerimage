@@ -3,7 +3,7 @@ FROM ubuntu:22.04 AS builder
 WORKDIR /app
 
 RUN apt-get update; \
-    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev; \
+    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev curl jq; \
     wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; \
     unzip Xray-linux-64.zip; \
     rm -f Xray-linux-64.zip; \
@@ -19,11 +19,15 @@ RUN apt-get update; \
     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
     chmod +x hysteria; \
     # Download and compile Nginx with all modules
-    NGINX_VERSION=$(curl -s https://api.github.com/repos/nginx/nginx/tags | grep -E "release-[0-9]+" | head -1 | cut -d '"' -f 4 | cut -d '-' -f 2-); \
+    NGINX_VERSION=$(curl -s https://api.github.com/repos/nginx/nginx/tags | grep -Eo '"name": "release-[0-9]+(\.[0-9]+)*"' | head -1 | cut -d '"' -f 4 | cut -d '-' -f 2); \
+    if [ -z "$NGINX_VERSION" ]; then \
+        NGINX_VERSION="1.29.3"; \
+    fi; \
+    echo "Nginx version: $NGINX_VERSION"; \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
     cd nginx-*; \
-    ./configure --prefix=/app/nginx \
+    ./configure --prefix=/usr/local/nginx \
                 --with-http_ssl_module \
                 --with-http_v2_module \
                 --with-http_realip_module \
@@ -55,9 +59,7 @@ RUN apt-get update; \
                 --with-http_xslt_module=dynamic \
                 --with-http_image_filter_module=dynamic \
                 --with-http_geoip_module=dynamic \
-                --with-google_perftools_module \
-                --add-module=src/http/modules/perl \
-                --add-dynamic-module=src/stream/modules; \
+                --with-google_perftools_module; \
     make && make install; \
     cd ..; \
     rm -rf nginx*;
@@ -179,7 +181,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /app/nginx /usr/local/nginx
+COPY --from=builder /usr/local/nginx /usr/local/nginx
 
 EXPOSE 7860
 
