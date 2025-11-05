@@ -12,6 +12,11 @@ if [ -f "/app/setup-cron.sh" ]; then
     /app/setup-cron.sh
 fi
 
+# 设置Nginx配置
+if [ -f "/app/setup-nginx.sh" ]; then
+    /app/setup-nginx.sh
+fi
+
 # 检查是否需要安装哪吒dashboard
 if [ -n "$NEZHA_AGENT_HOSTPORT" ]; then
     echo "准备安装哪吒监控面板..."

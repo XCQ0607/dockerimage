@@ -109,17 +109,17 @@ COPY app /app
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo systemd --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo systemd socat nginx --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
-    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
-    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
-    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data; \
+    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
+    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
+    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # 设置备份脚本和cron设置脚本权限
-    chmod +x /app/backup/*.sh /app/setup-cron.sh; \
+    chmod +x /app/backup/*.sh /app/setup-cron.sh /app/setup-nginx.sh; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     # 为user用户配置无密码sudo权限
     echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
