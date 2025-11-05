@@ -126,7 +126,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 3s
+- 构建耗时: 32s
 
 ### 使用方法
 
@@ -151,23 +151,105 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#0 building with "default" instance using docker driver
+#11 27.88  17050K .......... .......... .......... .......... .......... 88%  360M 0s
+#11 27.88  17100K .......... .......... .......... .......... .......... 88%  213M 0s
+#11 27.88  17150K .......... .......... .......... .......... .......... 88% 91.6M 0s
+#11 27.88  17200K .......... .......... .......... .......... .......... 88%  178M 0s
+#11 27.88  17250K .......... .......... .......... .......... .......... 89%  338M 0s
+#11 27.88  17300K .......... .......... .......... .......... .......... 89%  320M 0s
+#11 27.88  17350K .......... .......... .......... .......... .......... 89%  316M 0s
+#11 27.88  17400K .......... .......... .......... .......... .......... 90%  131M 0s
+#11 27.88  17450K .......... .......... .......... .......... .......... 90% 99.3M 0s
+#11 27.88  17500K .......... .......... .......... .......... .......... 90%  177M 0s
+#11 27.88  17550K .......... .......... .......... .......... .......... 90%  120M 0s
+#11 27.88  17600K .......... .......... .......... .......... .......... 91%  135M 0s
+#11 27.88  17650K .......... .......... .......... .......... .......... 91%  250M 0s
+#11 27.88  17700K .......... .......... .......... .......... .......... 91%  230M 0s
+#11 27.88  17750K .......... .......... .......... .......... .......... 91%  348M 0s
+#11 27.88  17800K .......... .......... .......... .......... .......... 92%  358M 0s
+#11 27.88  17850K .......... .......... .......... .......... .......... 92%  324M 0s
+#11 27.88  17900K .......... .......... .......... .......... .......... 92%  269M 0s
+#11 27.88  17950K .......... .......... .......... .......... .......... 92%  359M 0s
+#11 27.88  18000K .......... .......... .......... .......... .......... 93%  148M 0s
+#11 27.89  18050K .......... .......... .......... .......... .......... 93% 77.1M 0s
+#11 27.89  18100K .......... .......... .......... .......... .......... 93% 78.2M 0s
+#11 27.89  18150K .......... .......... .......... .......... .......... 93%  193M 0s
+#11 27.89  18200K .......... .......... .......... .......... .......... 94%  251M 0s
+#11 27.89  18250K .......... .......... .......... .......... .......... 94%  135M 0s
+#11 27.89  18300K .......... .......... .......... .......... .......... 94%  126M 0s
+#11 27.89  18350K .......... .......... .......... .......... .......... 94%  168M 0s
+#11 27.89  18400K .......... .......... .......... .......... .......... 95%  244M 0s
+#11 27.89  18450K .......... .......... .......... .......... .......... 95%  353M 0s
+#11 27.89  18500K .......... .......... .......... .......... .......... 95%  299M 0s
+#11 27.89  18550K .......... .......... .......... .......... .......... 95%  357M 0s
+#11 27.89  18600K .......... .......... .......... .......... .......... 96%  351M 0s
+#11 27.89  18650K .......... .......... .......... .......... .......... 96%  351M 0s
+#11 27.89  18700K .......... .......... .......... .......... .......... 96%  171M 0s
+#11 27.89  18750K .......... .......... .......... .......... .......... 96%  160M 0s
+#11 27.89  18800K .......... .......... .......... .......... .......... 97%  229M 0s
+#11 27.89  18850K .......... .......... .......... .......... .......... 97%  345M 0s
+#11 27.89  18900K .......... .......... .......... .......... .......... 97%  283M 0s
+#11 27.89  18950K .......... .......... .......... .......... .......... 98%  343M 0s
+#11 27.89  19000K .......... .......... .......... .......... .......... 98%  361M 0s
+#11 27.89  19050K .......... .......... .......... .......... .......... 98%  359M 0s
+#11 27.89  19100K .......... .......... .......... .......... .......... 98%  289M 0s
+#11 27.89  19150K .......... .......... .......... .......... .......... 99%  359M 0s
+#11 27.89  19200K .......... .......... .......... .......... .......... 99%  351M 0s
+#11 27.89  19250K .......... .......... .......... .......... .......... 99%  276M 0s
+#11 27.89  19300K .......... .......... .......... .......... .......... 99% 93.5M 0s
+#11 27.89  19350K .......... .......... .......... ....                 100%  205M=0.2s
+#11 27.89 
+#11 27.89 2025-11-05 17:20:58 (94.1 MB/s) - 'hysteria' saved [19849400/19849400]
+#11 27.89 
+#11 27.89 /bin/sh: 1: curl: not found
+#11 27.90 --2025-11-05 17:20:58--  http://nginx.org/download/nginx-.tar.gz
+#11 27.90 Resolving nginx.org (nginx.org)... 52.58.199.22, 3.125.197.172, 2a05:d014:5c0:2601::6, ...
+#11 28.09 Connecting to nginx.org (nginx.org)|52.58.199.22|:80... connected.
+#11 28.22 HTTP request sent, awaiting response... 404 Not Found
+#11 28.36 2025-11-05 17:20:58 ERROR 404: Not Found.
+#11 28.36 
+#11 28.36 
+#11 28.36 gzip: stdin: unexpected end of file
+#11 28.36 tar: Child returned status 1
+#11 28.36 tar: Error is not recoverable: exiting now
+#11 28.36 /bin/sh: 1: cd: can't cd to nginx-*
+#11 28.36 /bin/sh: 1: ./configure: not found
+#11 28.36 make: *** No targets specified and no makefile found.  Stop.
+#11 DONE 28.5s
 
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 9.01kB done
-#1 WARN: NoEmptyContinuation: Empty continuation line (line 33)
-#1 DONE 0.0s
+#13 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
+#13 CACHED
 
- [33m1 warning found (use docker --debug to expand):
-[0m - NoEmptyContinuation: Empty continuation line (line 33)
-Dockerfile:148
+#14 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 CACHED
+
+#15 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 CACHED
+
+#16 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#16 CACHED
+
+#17 [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx
+#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::rr0380fa4pralhrgmfje9u6jk: "/app/nginx": not found
+
+#18 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
+#18 DONE 0.0s
+------
+ > [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx:
+------
+
+ [33m3 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 103)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 142)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 103)
+Dockerfile:182
 --------------------
- 146 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
- 147 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
- 148 | >>> COPY --from=builder /usr/local/nginx /usr/local/nginx
- 149 |     
- 150 |     EXPOSE 7860
+ 180 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+ 181 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+ 182 | >>> COPY --from=builder /app/nginx /usr/local/nginx
+ 183 |     
+ 184 |     EXPOSE 7860
 --------------------
-ERROR: failed to build: failed to solve: circular dependency detected on stage: builder
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::rr0380fa4pralhrgmfje9u6jk: "/app/nginx": not found
 ```
 
