@@ -22,8 +22,8 @@ sniff:
 
 acl:
   inline:
-    - domain(v.com, direct-local)
-    - default(direct)
+    - direct-local(suffix:v.com)
+    - direct(all)
 
 
 outbounds:
