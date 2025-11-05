@@ -126,7 +126,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 43s
+- 构建耗时: 39s
 
 ### 使用方法
 
@@ -151,91 +151,91 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#11 33.70 checking for int size ... 4 bytes
-#11 33.74 checking for long size ... 8 bytes
-#11 33.77 checking for long long size ... 8 bytes
-#11 33.81 checking for void * size ... 8 bytes
-#11 33.85 checking for uint32_t ... found
-#11 33.89 checking for uint64_t ... found
-#11 33.93 checking for sig_atomic_t ... found
-#11 33.96 checking for sig_atomic_t size ... 4 bytes
-#11 34.00 checking for socklen_t ... found
-#11 34.04 checking for in_addr_t ... found
-#11 34.08 checking for in_port_t ... found
-#11 34.12 checking for rlim_t ... found
-#11 34.15 checking for uintptr_t ... uintptr_t found
-#11 34.18 checking for system byte ordering ... little endian
-#11 34.21 checking for size_t size ... 8 bytes
-#11 34.25 checking for off_t size ... 8 bytes
-#11 34.29 checking for time_t size ... 8 bytes
-#11 34.33 checking for AF_INET6 ... found
-#11 34.37 checking for setproctitle() ... not found
-#11 34.41 checking for pread() ... found
-#11 34.44 checking for pwrite() ... found
-#11 34.48 checking for pwritev() ... found
-#11 34.51 checking for strerrordesc_np() ... found
-#11 34.55 checking for localtime_r() ... found
-#11 34.58 checking for clock_gettime(CLOCK_MONOTONIC) ... found
-#11 34.62 checking for posix_memalign() ... found
-#11 34.66 checking for memalign() ... found
-#11 34.70 checking for mmap(MAP_ANON|MAP_SHARED) ... found
-#11 34.73 checking for mmap("/dev/zero", MAP_SHARED) ... found
-#11 34.77 checking for System V shared memory ... found
-#11 34.81 checking for POSIX semaphores ... found
-#11 34.84 checking for struct msghdr.msg_control ... found
-#11 34.88 checking for ioctl(FIONBIO) ... found
-#11 34.92 checking for ioctl(FIONREAD) ... found
-#11 34.96 checking for struct tm.tm_gmtoff ... found
-#11 34.99 checking for struct dirent.d_namlen ... not found
-#11 35.01 checking for struct dirent.d_type ... found
-#11 35.05 checking for sysconf(_SC_NPROCESSORS_ONLN) ... found
-#11 35.08 checking for sysconf(_SC_LEVEL1_DCACHE_LINESIZE) ... found
-#11 35.12 checking for openat(), fstatat() ... found
-#11 35.15 checking for getaddrinfo() ... found
-#11 35.22 checking for PCRE2 library ... not found
-#11 35.24 checking for PCRE library ... found
-#11 35.27 checking for PCRE JIT support ... found
-#11 35.31 checking for OpenSSL library ... found
-#11 35.42 checking for zlib library ... found
-#11 35.45 checking for libxslt ... found
-#11 35.53 checking for libexslt ... found
-#11 35.61 checking for GD library ... found
-#11 35.66 checking for GD WebP support ... found
-#11 35.71 checking for perl
-#11 35.72  + perl version: This is perl 5, version 34, subversion 0 (v5.34.0) built for x86_64-linux-gnu-thread-multi
-#11 35.85  + perl interpreter multiplicity found
-#11 35.85 checking for GeoIP library ... found
-#11 35.90 checking for GeoIP IPv6 support ... found
-#11 35.94 checking for Google perftools ... not found
-#11 35.96 checking for Google perftools in /usr/local/ ... not found
-#11 35.98 checking for Google perftools in /opt/local/ ... not found
-#11 36.01 checking for Google perftools in /opt/homebrew/ ... not found
-#11 36.03 
-#11 36.03 ./configure: error: the Google perftools module requires the Google perftools
-#11 36.03 library. You can either do not enable the module or install the library.
-#11 36.03 
-#11 36.03 make: *** No rule to make target 'build', needed by 'default'.  Stop.
-#11 DONE 36.1s
+#11 32.59 checking for int size ... 4 bytes
+#11 32.63 checking for long size ... 8 bytes
+#11 32.66 checking for long long size ... 8 bytes
+#11 32.70 checking for void * size ... 8 bytes
+#11 32.74 checking for uint32_t ... found
+#11 32.78 checking for uint64_t ... found
+#11 32.82 checking for sig_atomic_t ... found
+#11 32.85 checking for sig_atomic_t size ... 4 bytes
+#11 32.89 checking for socklen_t ... found
+#11 32.93 checking for in_addr_t ... found
+#11 32.97 checking for in_port_t ... found
+#11 33.01 checking for rlim_t ... found
+#11 33.05 checking for uintptr_t ... uintptr_t found
+#11 33.08 checking for system byte ordering ... little endian
+#11 33.10 checking for size_t size ... 8 bytes
+#11 33.14 checking for off_t size ... 8 bytes
+#11 33.18 checking for time_t size ... 8 bytes
+#11 33.22 checking for AF_INET6 ... found
+#11 33.26 checking for setproctitle() ... not found
+#11 33.30 checking for pread() ... found
+#11 33.33 checking for pwrite() ... found
+#11 33.37 checking for pwritev() ... found
+#11 33.40 checking for strerrordesc_np() ... found
+#11 33.44 checking for localtime_r() ... found
+#11 33.48 checking for clock_gettime(CLOCK_MONOTONIC) ... found
+#11 33.51 checking for posix_memalign() ... found
+#11 33.55 checking for memalign() ... found
+#11 33.59 checking for mmap(MAP_ANON|MAP_SHARED) ... found
+#11 33.62 checking for mmap("/dev/zero", MAP_SHARED) ... found
+#11 33.66 checking for System V shared memory ... found
+#11 33.70 checking for POSIX semaphores ... found
+#11 33.74 checking for struct msghdr.msg_control ... found
+#11 33.78 checking for ioctl(FIONBIO) ... found
+#11 33.81 checking for ioctl(FIONREAD) ... found
+#11 33.85 checking for struct tm.tm_gmtoff ... found
+#11 33.89 checking for struct dirent.d_namlen ... not found
+#11 33.91 checking for struct dirent.d_type ... found
+#11 33.94 checking for sysconf(_SC_NPROCESSORS_ONLN) ... found
+#11 33.98 checking for sysconf(_SC_LEVEL1_DCACHE_LINESIZE) ... found
+#11 34.01 checking for openat(), fstatat() ... found
+#11 34.05 checking for getaddrinfo() ... found
+#11 34.12 checking for PCRE2 library ... not found
+#11 34.13 checking for PCRE library ... found
+#11 34.17 checking for PCRE JIT support ... found
+#11 34.21 checking for OpenSSL library ... found
+#11 34.32 checking for zlib library ... found
+#11 34.36 checking for libxslt ... found
+#11 34.44 checking for libexslt ... found
+#11 34.52 checking for GD library ... found
+#11 34.57 checking for GD WebP support ... found
+#11 34.62 checking for perl
+#11 34.62  + perl version: This is perl 5, version 34, subversion 0 (v5.34.0) built for x86_64-linux-gnu-thread-multi
+#11 34.74  + perl interpreter multiplicity found
+#11 34.75 checking for GeoIP library ... found
+#11 34.79 checking for GeoIP IPv6 support ... found
+#11 34.83 checking for Google perftools ... not found
+#11 34.86 checking for Google perftools in /usr/local/ ... not found
+#11 34.88 checking for Google perftools in /opt/local/ ... not found
+#11 34.90 checking for Google perftools in /opt/homebrew/ ... not found
+#11 34.92 
+#11 34.92 ./configure: error: the Google perftools module requires the Google perftools
+#11 34.92 library. You can either do not enable the module or install the library.
+#11 34.92 
+#11 34.93 make: *** No rule to make target 'build', needed by 'default'.  Stop.
+#11 DONE 35.2s
 
-#13 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#13 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 #13 CACHED
 
-#14 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#14 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 #14 CACHED
 
-#15 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
+#15 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 #15 CACHED
 
-#16 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#16 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
 #16 CACHED
 
-#17 [stage-1 11/11] COPY --from=builder /usr/local/nginx /usr/local/nginx
-#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::7q10fxho3i3me47wp49a75e57: "/usr/local/nginx": not found
+#17 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
+#17 CACHED
 
-#18 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
-#18 DONE 0.1s
+#18 [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx
+#18 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::4qvmcv84eppyr6mrzakd1cjuy: "/app/nginx": not found
 ------
- > [stage-1 11/11] COPY --from=builder /usr/local/nginx /usr/local/nginx:
+ > [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx:
 ------
 
  [33m3 warnings found (use docker --debug to expand):
@@ -246,10 +246,10 @@ Dockerfile:184
 --------------------
  182 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
  183 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
- 184 | >>> COPY --from=builder /usr/local/nginx /usr/local/nginx
+ 184 | >>> COPY --from=builder /app/nginx /usr/local/nginx
  185 |     
  186 |     EXPOSE 7860
 --------------------
-ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::7q10fxho3i3me47wp49a75e57: "/usr/local/nginx": not found
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::4qvmcv84eppyr6mrzakd1cjuy: "/app/nginx": not found
 ```
 
