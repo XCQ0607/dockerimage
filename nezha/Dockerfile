@@ -24,7 +24,7 @@ RUN apt-get update; \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
     cd nginx-*; \
-    ./configure --prefix=/app/nginx \
+    ./configure --prefix=/usr/local/nginx \
                 --with-http_ssl_module \
                 --with-http_v2_module \
                 --with-http_realip_module \
@@ -59,7 +59,7 @@ RUN apt-get update; \
     make && make install; \
     cd ..; \
     # 验证Nginx是否正确安装
-    ls -la /app/nginx; \
+    ls -la /usr/local/nginx; \
     rm -rf nginx-${NGINX_VERSION}*
 
 ############################################################
@@ -179,7 +179,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /app/nginx /usr/local/nginx
+COPY --from=builder /usr/local/nginx /usr/local/nginx
 
 EXPOSE 7860
 
