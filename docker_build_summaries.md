@@ -125,8 +125,8 @@
 ### 构建信息
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
-- 构建状态: ❌ 失败
-- 构建耗时: 70s
+- 构建状态: ✅ 成功
+- 构建耗时: 107s
 
 ### 使用方法
 
@@ -151,105 +151,105 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#11 64.95 test -d '/app/nginx' || mkdir -p '/app/nginx'
-#11 64.95 test -d '/app/nginx/sbin' \
-#11 64.95 	|| mkdir -p '/app/nginx/sbin'
-#11 64.96 test ! -f '/app/nginx/sbin/nginx' \
-#11 64.96 	|| mv '/app/nginx/sbin/nginx' \
-#11 64.96 		'/app/nginx/sbin/nginx.old'
-#11 64.96 cp objs/nginx '/app/nginx/sbin/nginx'
-#11 64.96 test -d '/app/nginx/conf' \
-#11 64.96 	|| mkdir -p '/app/nginx/conf'
-#11 64.96 cp conf/koi-win '/app/nginx/conf'
-#11 64.97 cp conf/koi-utf '/app/nginx/conf'
-#11 64.97 cp conf/win-utf '/app/nginx/conf'
-#11 64.97 test -f '/app/nginx/conf/mime.types' \
-#11 64.97 	|| cp conf/mime.types '/app/nginx/conf'
-#11 64.97 cp conf/mime.types '/app/nginx/conf/mime.types.default'
-#11 64.97 test -f '/app/nginx/conf/fastcgi_params' \
-#11 64.97 	|| cp conf/fastcgi_params '/app/nginx/conf'
-#11 64.97 cp conf/fastcgi_params \
-#11 64.97 	'/app/nginx/conf/fastcgi_params.default'
-#11 64.97 test -f '/app/nginx/conf/fastcgi.conf' \
-#11 64.97 	|| cp conf/fastcgi.conf '/app/nginx/conf'
-#11 64.97 cp conf/fastcgi.conf '/app/nginx/conf/fastcgi.conf.default'
-#11 64.98 test -f '/app/nginx/conf/uwsgi_params' \
-#11 64.98 	|| cp conf/uwsgi_params '/app/nginx/conf'
-#11 64.98 cp conf/uwsgi_params \
-#11 64.98 	'/app/nginx/conf/uwsgi_params.default'
-#11 64.98 test -f '/app/nginx/conf/scgi_params' \
-#11 64.98 	|| cp conf/scgi_params '/app/nginx/conf'
-#11 64.98 cp conf/scgi_params \
-#11 64.98 	'/app/nginx/conf/scgi_params.default'
-#11 64.98 test -f '/app/nginx/conf/nginx.conf' \
-#11 64.98 	|| cp conf/nginx.conf '/app/nginx/conf/nginx.conf'
-#11 64.98 cp conf/nginx.conf '/app/nginx/conf/nginx.conf.default'
-#11 64.98 test -d '/app/nginx/logs' \
-#11 64.98 	|| mkdir -p '/app/nginx/logs'
-#11 64.99 test -d '/app/nginx/logs' \
-#11 64.99 	|| mkdir -p '/app/nginx/logs'
-#11 64.99 test -d '/app/nginx/html' \
-#11 64.99 	|| cp -R html '/app/nginx'
-#11 64.99 test -d '/app/nginx/logs' \
-#11 64.99 	|| mkdir -p '/app/nginx/logs'
-#11 64.99 test -d '/app/nginx/modules' \
-#11 64.99 	|| mkdir -p '/app/nginx/modules'
-#11 64.99 test ! -f '/app/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 64.99 	|| mv '/app/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 64.99 		'/app/nginx/modules/ngx_http_xslt_filter_module.so.old'
-#11 64.99 cp objs/ngx_http_xslt_filter_module.so '/app/nginx/modules/ngx_http_xslt_filter_module.so'
-#11 64.99 test ! -f '/app/nginx/modules/ngx_http_image_filter_module.so' \
-#11 64.99 	|| mv '/app/nginx/modules/ngx_http_image_filter_module.so' \
-#11 64.99 		'/app/nginx/modules/ngx_http_image_filter_module.so.old'
-#11 64.99 cp objs/ngx_http_image_filter_module.so '/app/nginx/modules/ngx_http_image_filter_module.so'
-#11 64.99 test ! -f '/app/nginx/modules/ngx_http_geoip_module.so' \
-#11 64.99 	|| mv '/app/nginx/modules/ngx_http_geoip_module.so' \
-#11 64.99 		'/app/nginx/modules/ngx_http_geoip_module.so.old'
-#11 64.99 cp objs/ngx_http_geoip_module.so '/app/nginx/modules/ngx_http_geoip_module.so'
-#11 65.00 make[1]: Leaving directory '/app/nginx-1.29.3'
-#11 65.00 total 28
-#11 65.00 drwxr-xr-x 7 root root 4096 Nov  5 17:58 .
-#11 65.00 drwxr-xr-x 1 root root 4096 Nov  5 17:58 ..
-#11 65.00 drwxr-xr-x 2 root root 4096 Nov  5 17:58 conf
-#11 65.00 drwxr-xr-x 2 root root 4096 Nov  5 17:58 html
-#11 65.00 drwxr-xr-x 2 root root 4096 Nov  5 17:58 logs
-#11 65.00 drwxr-xr-x 2 root root 4096 Nov  5 17:58 modules
-#11 65.00 drwxr-xr-x 2 root root 4096 Nov  5 17:58 sbin
-#11 DONE 65.1s
+#11 71.56 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/auto/nginx/nginx.so
+#11 71.56 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/nginx.pm
+#11 71.56 Installing /usr/local/man/man3/nginx.3pm
+#11 71.57 Appending installation info to /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/perllocal.pod
+#11 71.59 make[2]: Leaving directory '/app/nginx-1.29.3/objs/src/http/modules/perl'
+#11 71.59 test -d '/app/nginx' || mkdir -p '/app/nginx'
+#11 71.59 test -d '/app/nginx/sbin' \
+#11 71.59 	|| mkdir -p '/app/nginx/sbin'
+#11 71.59 test ! -f '/app/nginx/sbin/nginx' \
+#11 71.59 	|| mv '/app/nginx/sbin/nginx' \
+#11 71.59 		'/app/nginx/sbin/nginx.old'
+#11 71.60 cp objs/nginx '/app/nginx/sbin/nginx'
+#11 71.60 test -d '/app/nginx/conf' \
+#11 71.60 	|| mkdir -p '/app/nginx/conf'
+#11 71.60 cp conf/koi-win '/app/nginx/conf'
+#11 71.60 cp conf/koi-utf '/app/nginx/conf'
+#11 71.61 cp conf/win-utf '/app/nginx/conf'
+#11 71.61 test -f '/app/nginx/conf/mime.types' \
+#11 71.61 	|| cp conf/mime.types '/app/nginx/conf'
+#11 71.61 cp conf/mime.types '/app/nginx/conf/mime.types.default'
+#11 71.61 test -f '/app/nginx/conf/fastcgi_params' \
+#11 71.61 	|| cp conf/fastcgi_params '/app/nginx/conf'
+#11 71.61 cp conf/fastcgi_params \
+#11 71.61 	'/app/nginx/conf/fastcgi_params.default'
+#11 71.61 test -f '/app/nginx/conf/fastcgi.conf' \
+#11 71.61 	|| cp conf/fastcgi.conf '/app/nginx/conf'
+#11 71.61 cp conf/fastcgi.conf '/app/nginx/conf/fastcgi.conf.default'
+#11 71.61 test -f '/app/nginx/conf/uwsgi_params' \
+#11 71.61 	|| cp conf/uwsgi_params '/app/nginx/conf'
+#11 71.62 cp conf/uwsgi_params \
+#11 71.62 	'/app/nginx/conf/uwsgi_params.default'
+#11 71.62 test -f '/app/nginx/conf/scgi_params' \
+#11 71.62 	|| cp conf/scgi_params '/app/nginx/conf'
+#11 71.62 cp conf/scgi_params \
+#11 71.62 	'/app/nginx/conf/scgi_params.default'
+#11 71.62 test -f '/app/nginx/conf/nginx.conf' \
+#11 71.62 	|| cp conf/nginx.conf '/app/nginx/conf/nginx.conf'
+#11 71.62 cp conf/nginx.conf '/app/nginx/conf/nginx.conf.default'
+#11 71.62 test -d '/app/nginx/logs' \
+#11 71.62 	|| mkdir -p '/app/nginx/logs'
+#11 71.62 test -d '/app/nginx/logs' \
+#11 71.62 	|| mkdir -p '/app/nginx/logs'
+#11 71.63 test -d '/app/nginx/html' \
+#11 71.63 	|| cp -R html '/app/nginx'
+#11 71.63 test -d '/app/nginx/logs' \
+#11 71.63 	|| mkdir -p '/app/nginx/logs'
+#11 71.63 test -d '/app/nginx/modules' \
+#11 71.63 	|| mkdir -p '/app/nginx/modules'
+#11 71.63 test ! -f '/app/nginx/modules/ngx_http_xslt_filter_module.so' \
+#11 71.63 	|| mv '/app/nginx/modules/ngx_http_xslt_filter_module.so' \
+#11 71.63 		'/app/nginx/modules/ngx_http_xslt_filter_module.so.old'
+#11 71.63 cp objs/ngx_http_xslt_filter_module.so '/app/nginx/modules/ngx_http_xslt_filter_module.so'
+#11 71.63 test ! -f '/app/nginx/modules/ngx_http_image_filter_module.so' \
+#11 71.63 	|| mv '/app/nginx/modules/ngx_http_image_filter_module.so' \
+#11 71.63 		'/app/nginx/modules/ngx_http_image_filter_module.so.old'
+#11 71.63 cp objs/ngx_http_image_filter_module.so '/app/nginx/modules/ngx_http_image_filter_module.so'
+#11 71.63 test ! -f '/app/nginx/modules/ngx_http_geoip_module.so' \
+#11 71.63 	|| mv '/app/nginx/modules/ngx_http_geoip_module.so' \
+#11 71.63 		'/app/nginx/modules/ngx_http_geoip_module.so.old'
+#11 71.63 cp objs/ngx_http_geoip_module.so '/app/nginx/modules/ngx_http_geoip_module.so'
+#11 71.63 make[1]: Leaving directory '/app/nginx-1.29.3'
+#11 71.64 total 28
+#11 71.64 drwxr-xr-x 7 root root 4096 Nov  5 18:03 .
+#11 71.64 drwxr-xr-x 1 root root 4096 Nov  5 18:03 ..
+#11 71.64 drwxr-xr-x 2 root root 4096 Nov  5 18:03 conf
+#11 71.64 drwxr-xr-x 2 root root 4096 Nov  5 18:03 html
+#11 71.64 drwxr-xr-x 2 root root 4096 Nov  5 18:03 logs
+#11 71.64 drwxr-xr-x 2 root root 4096 Nov  5 18:03 modules
+#11 71.64 drwxr-xr-x 2 root root 4096 Nov  5 18:03 sbin
+#11 DONE 71.7s
 
-#13 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#13 CACHED
+#13 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
+#13 DONE 0.0s
 
-#14 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-#14 CACHED
+#14 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
+#14 DONE 0.0s
 
-#15 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
-#15 CACHED
+#15 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#15 DONE 0.0s
 
-#16 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
-#16 CACHED
+#16 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#16 DONE 0.1s
 
-#17 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
-#17 CACHED
+#17 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#17 DONE 0.0s
 
 #18 [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx
-#18 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::stwubv0ft8sxc0f1kwnbgk9lw: "/app/nginx": not found
-------
- > [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx:
-------
+#18 DONE 0.0s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 2.8s done
+#19 writing image sha256:6ab27b9e27b38cb2636ee6196275c47b4e121aaba6729cc7a2f9c385a0b0c45d done
+#19 naming to ghcr.io/xcq0607/nezha:latest done
+#19 DONE 2.8s
 
  [33m3 warnings found (use docker --debug to expand):
 [0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 103)
  - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 103)
  - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 142)
-Dockerfile:182
---------------------
- 180 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
- 181 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
- 182 | >>> COPY --from=builder /app/nginx /usr/local/nginx
- 183 |     
- 184 |     EXPOSE 7860
---------------------
-ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::stwubv0ft8sxc0f1kwnbgk9lw: "/app/nginx": not found
 ```
 
