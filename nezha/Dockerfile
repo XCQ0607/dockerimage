@@ -59,7 +59,7 @@ RUN apt-get update; \
     make && make install; \
     cd ..; \
     # 验证Nginx是否正确安装
-    ls -la /usr/local/nginx; \
+    ls -la /app/nginx; \
     rm -rf nginx*;
 
 ############################################################
@@ -179,7 +179,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /app/nginx /usr/local/nginx
+COPY --from=builder /app/nginx/ /usr/local/nginx
 
 EXPOSE 7860
 
