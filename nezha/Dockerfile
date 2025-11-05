@@ -27,7 +27,7 @@ RUN apt-get update; \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
     cd nginx-*; \
-    ./configure --prefix=/usr/local/nginx \
+    ./configure --prefix=/app/nginx \
                 --with-http_ssl_module \
                 --with-http_v2_module \
                 --with-http_realip_module \
@@ -181,7 +181,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /usr/local/nginx /usr/local/nginx
+COPY --from=builder /app/nginx /usr/local/nginx
 
 EXPOSE 7860
 
