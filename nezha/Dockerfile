@@ -3,7 +3,7 @@ FROM ubuntu:22.04 AS builder
 WORKDIR /app
 
 RUN apt-get update; \
-    apt-get install -y wget unzip; \
+    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev; \
     wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; \
     unzip Xray-linux-64.zip; \
     rm -f Xray-linux-64.zip; \
@@ -17,7 +17,17 @@ RUN apt-get update; \
     chmod +x cloudflared; \
     # Download Hysteria
     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
-    chmod +x hysteria
+    chmod +x hysteria; \
+    # Download and compile Nginx
+    NGINX_VERSION=$(curl -s https://api.github.com/repos/nginx/nginx/tags | grep -E "release-[0-9]+" | head -1 | cut -d '"' -f 4 | cut -d '-' -f 2-); \
+    wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
+    tar -xzf nginx.tar.gz; \
+    cd nginx-*; \
+    ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream --with-stream_ssl_module --with-stream_realip_module; \
+    make && make install; \
+    cd ..; \
+    rm -rf nginx*; \
+
 ############################################################
 
 FROM ubuntu:22.04
@@ -109,13 +119,13 @@ COPY app /app
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo systemd socat nginx --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo systemd socat --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
-    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
-    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
-    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /etc/nginx/conf.d; \
+    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d; \
+    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d; \
+    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # 设置备份脚本和cron设置脚本权限
@@ -135,6 +145,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+COPY --from=builder /usr/local/nginx /usr/local/nginx
 
 EXPOSE 7860
 
