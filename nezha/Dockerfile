@@ -60,7 +60,7 @@ RUN apt-get update; \
     cd ..; \
     # 验证Nginx是否正确安装
     ls -la /app/nginx; \
-    rm -rf nginx*;
+    rm -rf nginx-${NGINX_VERSION}*
 
 ############################################################
 
