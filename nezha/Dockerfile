@@ -179,7 +179,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /app/nginx/ /usr/local/nginx
+COPY --from=builder /app/nginx /usr/local/nginx
 
 EXPOSE 7860
 
