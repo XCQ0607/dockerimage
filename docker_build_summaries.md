@@ -126,7 +126,7 @@
 - 目录: nezha/
 - 完整镜像名: ghcr.io/xcq0607/nezha:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 32s
+- 构建耗时: 43s
 
 ### 使用方法
 
@@ -151,105 +151,105 @@ docker pull ghcr.io/xcq0607/nezha:latest
 ### 构建日志
 
 ```
-#11 27.88  17050K .......... .......... .......... .......... .......... 88%  360M 0s
-#11 27.88  17100K .......... .......... .......... .......... .......... 88%  213M 0s
-#11 27.88  17150K .......... .......... .......... .......... .......... 88% 91.6M 0s
-#11 27.88  17200K .......... .......... .......... .......... .......... 88%  178M 0s
-#11 27.88  17250K .......... .......... .......... .......... .......... 89%  338M 0s
-#11 27.88  17300K .......... .......... .......... .......... .......... 89%  320M 0s
-#11 27.88  17350K .......... .......... .......... .......... .......... 89%  316M 0s
-#11 27.88  17400K .......... .......... .......... .......... .......... 90%  131M 0s
-#11 27.88  17450K .......... .......... .......... .......... .......... 90% 99.3M 0s
-#11 27.88  17500K .......... .......... .......... .......... .......... 90%  177M 0s
-#11 27.88  17550K .......... .......... .......... .......... .......... 90%  120M 0s
-#11 27.88  17600K .......... .......... .......... .......... .......... 91%  135M 0s
-#11 27.88  17650K .......... .......... .......... .......... .......... 91%  250M 0s
-#11 27.88  17700K .......... .......... .......... .......... .......... 91%  230M 0s
-#11 27.88  17750K .......... .......... .......... .......... .......... 91%  348M 0s
-#11 27.88  17800K .......... .......... .......... .......... .......... 92%  358M 0s
-#11 27.88  17850K .......... .......... .......... .......... .......... 92%  324M 0s
-#11 27.88  17900K .......... .......... .......... .......... .......... 92%  269M 0s
-#11 27.88  17950K .......... .......... .......... .......... .......... 92%  359M 0s
-#11 27.88  18000K .......... .......... .......... .......... .......... 93%  148M 0s
-#11 27.89  18050K .......... .......... .......... .......... .......... 93% 77.1M 0s
-#11 27.89  18100K .......... .......... .......... .......... .......... 93% 78.2M 0s
-#11 27.89  18150K .......... .......... .......... .......... .......... 93%  193M 0s
-#11 27.89  18200K .......... .......... .......... .......... .......... 94%  251M 0s
-#11 27.89  18250K .......... .......... .......... .......... .......... 94%  135M 0s
-#11 27.89  18300K .......... .......... .......... .......... .......... 94%  126M 0s
-#11 27.89  18350K .......... .......... .......... .......... .......... 94%  168M 0s
-#11 27.89  18400K .......... .......... .......... .......... .......... 95%  244M 0s
-#11 27.89  18450K .......... .......... .......... .......... .......... 95%  353M 0s
-#11 27.89  18500K .......... .......... .......... .......... .......... 95%  299M 0s
-#11 27.89  18550K .......... .......... .......... .......... .......... 95%  357M 0s
-#11 27.89  18600K .......... .......... .......... .......... .......... 96%  351M 0s
-#11 27.89  18650K .......... .......... .......... .......... .......... 96%  351M 0s
-#11 27.89  18700K .......... .......... .......... .......... .......... 96%  171M 0s
-#11 27.89  18750K .......... .......... .......... .......... .......... 96%  160M 0s
-#11 27.89  18800K .......... .......... .......... .......... .......... 97%  229M 0s
-#11 27.89  18850K .......... .......... .......... .......... .......... 97%  345M 0s
-#11 27.89  18900K .......... .......... .......... .......... .......... 97%  283M 0s
-#11 27.89  18950K .......... .......... .......... .......... .......... 98%  343M 0s
-#11 27.89  19000K .......... .......... .......... .......... .......... 98%  361M 0s
-#11 27.89  19050K .......... .......... .......... .......... .......... 98%  359M 0s
-#11 27.89  19100K .......... .......... .......... .......... .......... 98%  289M 0s
-#11 27.89  19150K .......... .......... .......... .......... .......... 99%  359M 0s
-#11 27.89  19200K .......... .......... .......... .......... .......... 99%  351M 0s
-#11 27.89  19250K .......... .......... .......... .......... .......... 99%  276M 0s
-#11 27.89  19300K .......... .......... .......... .......... .......... 99% 93.5M 0s
-#11 27.89  19350K .......... .......... .......... ....                 100%  205M=0.2s
-#11 27.89 
-#11 27.89 2025-11-05 17:20:58 (94.1 MB/s) - 'hysteria' saved [19849400/19849400]
-#11 27.89 
-#11 27.89 /bin/sh: 1: curl: not found
-#11 27.90 --2025-11-05 17:20:58--  http://nginx.org/download/nginx-.tar.gz
-#11 27.90 Resolving nginx.org (nginx.org)... 52.58.199.22, 3.125.197.172, 2a05:d014:5c0:2601::6, ...
-#11 28.09 Connecting to nginx.org (nginx.org)|52.58.199.22|:80... connected.
-#11 28.22 HTTP request sent, awaiting response... 404 Not Found
-#11 28.36 2025-11-05 17:20:58 ERROR 404: Not Found.
-#11 28.36 
-#11 28.36 
-#11 28.36 gzip: stdin: unexpected end of file
-#11 28.36 tar: Child returned status 1
-#11 28.36 tar: Error is not recoverable: exiting now
-#11 28.36 /bin/sh: 1: cd: can't cd to nginx-*
-#11 28.36 /bin/sh: 1: ./configure: not found
-#11 28.36 make: *** No targets specified and no makefile found.  Stop.
-#11 DONE 28.5s
+#11 33.70 checking for int size ... 4 bytes
+#11 33.74 checking for long size ... 8 bytes
+#11 33.77 checking for long long size ... 8 bytes
+#11 33.81 checking for void * size ... 8 bytes
+#11 33.85 checking for uint32_t ... found
+#11 33.89 checking for uint64_t ... found
+#11 33.93 checking for sig_atomic_t ... found
+#11 33.96 checking for sig_atomic_t size ... 4 bytes
+#11 34.00 checking for socklen_t ... found
+#11 34.04 checking for in_addr_t ... found
+#11 34.08 checking for in_port_t ... found
+#11 34.12 checking for rlim_t ... found
+#11 34.15 checking for uintptr_t ... uintptr_t found
+#11 34.18 checking for system byte ordering ... little endian
+#11 34.21 checking for size_t size ... 8 bytes
+#11 34.25 checking for off_t size ... 8 bytes
+#11 34.29 checking for time_t size ... 8 bytes
+#11 34.33 checking for AF_INET6 ... found
+#11 34.37 checking for setproctitle() ... not found
+#11 34.41 checking for pread() ... found
+#11 34.44 checking for pwrite() ... found
+#11 34.48 checking for pwritev() ... found
+#11 34.51 checking for strerrordesc_np() ... found
+#11 34.55 checking for localtime_r() ... found
+#11 34.58 checking for clock_gettime(CLOCK_MONOTONIC) ... found
+#11 34.62 checking for posix_memalign() ... found
+#11 34.66 checking for memalign() ... found
+#11 34.70 checking for mmap(MAP_ANON|MAP_SHARED) ... found
+#11 34.73 checking for mmap("/dev/zero", MAP_SHARED) ... found
+#11 34.77 checking for System V shared memory ... found
+#11 34.81 checking for POSIX semaphores ... found
+#11 34.84 checking for struct msghdr.msg_control ... found
+#11 34.88 checking for ioctl(FIONBIO) ... found
+#11 34.92 checking for ioctl(FIONREAD) ... found
+#11 34.96 checking for struct tm.tm_gmtoff ... found
+#11 34.99 checking for struct dirent.d_namlen ... not found
+#11 35.01 checking for struct dirent.d_type ... found
+#11 35.05 checking for sysconf(_SC_NPROCESSORS_ONLN) ... found
+#11 35.08 checking for sysconf(_SC_LEVEL1_DCACHE_LINESIZE) ... found
+#11 35.12 checking for openat(), fstatat() ... found
+#11 35.15 checking for getaddrinfo() ... found
+#11 35.22 checking for PCRE2 library ... not found
+#11 35.24 checking for PCRE library ... found
+#11 35.27 checking for PCRE JIT support ... found
+#11 35.31 checking for OpenSSL library ... found
+#11 35.42 checking for zlib library ... found
+#11 35.45 checking for libxslt ... found
+#11 35.53 checking for libexslt ... found
+#11 35.61 checking for GD library ... found
+#11 35.66 checking for GD WebP support ... found
+#11 35.71 checking for perl
+#11 35.72  + perl version: This is perl 5, version 34, subversion 0 (v5.34.0) built for x86_64-linux-gnu-thread-multi
+#11 35.85  + perl interpreter multiplicity found
+#11 35.85 checking for GeoIP library ... found
+#11 35.90 checking for GeoIP IPv6 support ... found
+#11 35.94 checking for Google perftools ... not found
+#11 35.96 checking for Google perftools in /usr/local/ ... not found
+#11 35.98 checking for Google perftools in /opt/local/ ... not found
+#11 36.01 checking for Google perftools in /opt/homebrew/ ... not found
+#11 36.03 
+#11 36.03 ./configure: error: the Google perftools module requires the Google perftools
+#11 36.03 library. You can either do not enable the module or install the library.
+#11 36.03 
+#11 36.03 make: *** No rule to make target 'build', needed by 'default'.  Stop.
+#11 DONE 36.1s
 
-#13 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
+#13 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 #13 CACHED
 
-#14 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 #14 CACHED
 
-#15 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
 #15 CACHED
 
-#16 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#16 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 #16 CACHED
 
-#17 [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx
-#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::rr0380fa4pralhrgmfje9u6jk: "/app/nginx": not found
+#17 [stage-1 11/11] COPY --from=builder /usr/local/nginx /usr/local/nginx
+#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::7q10fxho3i3me47wp49a75e57: "/usr/local/nginx": not found
 
 #18 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
-#18 DONE 0.0s
+#18 DONE 0.1s
 ------
- > [stage-1 11/11] COPY --from=builder /app/nginx /usr/local/nginx:
+ > [stage-1 11/11] COPY --from=builder /usr/local/nginx /usr/local/nginx:
 ------
 
  [33m3 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 103)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 142)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 103)
-Dockerfile:182
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 105)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 105)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 144)
+Dockerfile:184
 --------------------
- 180 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
- 181 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
- 182 | >>> COPY --from=builder /app/nginx /usr/local/nginx
- 183 |     
- 184 |     EXPOSE 7860
+ 182 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+ 183 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+ 184 | >>> COPY --from=builder /usr/local/nginx /usr/local/nginx
+ 185 |     
+ 186 |     EXPOSE 7860
 --------------------
-ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::rr0380fa4pralhrgmfje9u6jk: "/app/nginx": not found
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::7q10fxho3i3me47wp49a75e57: "/usr/local/nginx": not found
 ```
 
