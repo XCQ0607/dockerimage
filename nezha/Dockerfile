@@ -78,8 +78,8 @@ ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     ARGO_PAT= \
-    HOME=/home/user
-
+    HOME=/home/user \
+    PATH="/usr/local/bin/nginx/sbin:${PATH}" \
 # R2备份相关环境变量
 # R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：your-access-key-id
 # R2_SECRET_ACCESS_KEY：R2密钥，默认值为空，非必填，示例输入：your-secret-access-key
@@ -172,7 +172,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
 
 # 复制自动安装脚本和启动/停止脚本并设置权限
 RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh /app/nezha.sh
-RUN ln -sf /usr/local/bin/nginx/nginx /usr/local/bin/nginx
+
 
 COPY --from=builder /app/xy /usr/local/bin/xy
 COPY --from=builder /app/td /usr/local/bin/td
