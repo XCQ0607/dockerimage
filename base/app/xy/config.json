@@ -11,7 +11,7 @@
   "inbounds": [
     {
       "listen": null,
-      "port": 7863,
+      "port": 7860,
       "protocol": "vless",
       "settings": {
         "decryption": "none",
