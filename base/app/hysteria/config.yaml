@@ -1,4 +1,4 @@
-listen: :7863
+listen: 7863
 
 tls:
   cert: /app/hysteria/cert.pem
