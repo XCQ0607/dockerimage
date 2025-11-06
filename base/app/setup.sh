@@ -30,3 +30,5 @@ sudo cp /app/nginx/nginx.conf /usr/local/bin/nginx/conf/nginx.conf
 sudo cp -r /app/nginx/conf.d/* /usr/local/bin/nginx/conf.d/
 
 echo "Nginx configuration setup complete."
+
+sudo cp /app/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
