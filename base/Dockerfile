@@ -19,10 +19,7 @@ RUN apt-get update; \
     wget -O hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64; \
     chmod +x hysteria; \
     # Download and compile Nginx with all modules
-    NGINX_VERSION=$(curl -s https://api.github.com/repos/nginx/nginx/tags | grep -Eo '"name": "release-[0-9]+(\.[0-9]+)*"' | head -1 | cut -d '"' -f 4 | cut -d '-' -f 2); \
-    if [ -z "$NGINX_VERSION" ]; then \
-        NGINX_VERSION="1.29.3"; \
-    fi; \
+    NGINX_VERSION="1.29.3"; \
     echo "Nginx version: $NGINX_VERSION"; \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
