@@ -153,6 +153,11 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
 
+# 创建supervisor socket目录并设置权限
+RUN mkdir -p /var/run/supervisor; \
+    touch /var/run/supervisor/supervisor.sock; \
+    chmod 777 /var/run/supervisor; \
+    chmod 777 /var/run/supervisor/supervisor.sock
 
 # Copy binary
 COPY --from=builder /app/xy /usr/local/bin/xy
