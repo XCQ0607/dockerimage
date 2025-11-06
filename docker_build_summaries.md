@@ -17,6 +17,7 @@
 │   │   ├── setup.sh
 │   │   ├── supervisor
 │   │   └── xy
+│   ├── build.flag
 │   └── entrypoint.sh
 ├── base1.zip
 ├── base2.zip
@@ -132,7 +133,7 @@
     ├── entrypoint.sh
     └── fiora
 
-56 directories, 73 files
+56 directories, 74 files
 ```
 
 ## 镜像: base
@@ -141,7 +142,7 @@
 - 目录: base/
 - 完整镜像名: ghcr.io/xcq0607/base:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 67s
+- 构建耗时: 80s
 
 ### 使用方法
 
@@ -166,105 +167,105 @@ docker pull ghcr.io/xcq0607/base:latest
 ### 构建日志
 
 ```
-#11 62.49 objs/src/http/modules/ngx_http_grpc_module.o \
-#11 62.49 objs/src/http/modules/perl/ngx_http_perl_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_memcached_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_empty_gif_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_browser_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_secure_link_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_degradation_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_flv_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_mp4_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_hash_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_least_conn_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_random_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_keepalive_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_upstream_zone_module.o \
-#11 62.49 objs/src/http/modules/ngx_http_stub_status_module.o \
-#11 62.49 objs/src/mail/ngx_mail.o \
-#11 62.49 objs/src/mail/ngx_mail_core_module.o \
-#11 62.49 objs/src/mail/ngx_mail_handler.o \
-#11 62.49 objs/src/mail/ngx_mail_parse.o \
-#11 62.49 objs/src/mail/ngx_mail_ssl_module.o \
-#11 62.49 objs/src/mail/ngx_mail_pop3_module.o \
-#11 62.49 objs/src/mail/ngx_mail_pop3_handler.o \
-#11 62.49 objs/src/mail/ngx_mail_imap_module.o \
-#11 62.49 objs/src/mail/ngx_mail_imap_handler.o \
-#11 62.49 objs/src/mail/ngx_mail_smtp_module.o \
-#11 62.49 objs/src/mail/ngx_mail_smtp_handler.o \
-#11 62.49 objs/src/mail/ngx_mail_auth_http_module.o \
-#11 62.49 objs/src/mail/ngx_mail_proxy_module.o \
-#11 62.49 objs/src/mail/ngx_mail_realip_module.o \
-#11 62.49 objs/src/stream/ngx_stream.o \
-#11 62.49 objs/src/stream/ngx_stream_variables.o \
-#11 62.49 objs/src/stream/ngx_stream_script.o \
-#11 62.49 objs/src/stream/ngx_stream_handler.o \
-#11 62.49 objs/src/stream/ngx_stream_core_module.o \
-#11 62.49 objs/src/stream/ngx_stream_log_module.o \
-#11 62.49 objs/src/stream/ngx_stream_proxy_module.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream_round_robin.o \
-#11 62.49 objs/src/stream/ngx_stream_write_filter_module.o \
-#11 62.49 objs/src/stream/ngx_stream_ssl_module.o \
-#11 62.49 objs/src/stream/ngx_stream_realip_module.o \
-#11 62.49 objs/src/stream/ngx_stream_limit_conn_module.o \
-#11 62.49 objs/src/stream/ngx_stream_access_module.o \
-#11 62.49 objs/src/stream/ngx_stream_geo_module.o \
-#11 62.49 objs/src/stream/ngx_stream_map_module.o \
-#11 62.49 objs/src/stream/ngx_stream_split_clients_module.o \
-#11 62.49 objs/src/stream/ngx_stream_return_module.o \
-#11 62.49 objs/src/stream/ngx_stream_pass_module.o \
-#11 62.49 objs/src/stream/ngx_stream_set_module.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream_hash_module.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream_least_conn_module.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream_random_module.o \
-#11 62.49 objs/src/stream/ngx_stream_upstream_zone_module.o \
-#11 62.49 objs/src/stream/ngx_stream_ssl_preread_module.o \
-#11 62.49 objs/ngx_modules.o \
-#11 62.49 -lpthread -lcrypt -lpcre -lssl -lcrypto -lpthread -lz \
-#11 62.49 -Wl,-E -fstack-protector-strong -L/usr/local/lib -L/usr/lib/x86_64-linux-gnu/perl/5.34/CORE -lperl -ldl -lm -lpthread -lc -lcrypt \
-#11 62.49 -Wl,-E
-#11 62.53 /usr/bin/ld: cannot find -lperl: No such file or directory
-#11 62.54 collect2: error: ld returned 1 exit status
-#11 62.54 make[1]: *** [objs/Makefile:345: objs/nginx] Error 1
-#11 62.54 make[1]: Leaving directory '/app/nginx-1.29.3'
-#11 62.54 make: *** [Makefile:10: build] Error 2
-#11 62.55 ls: cannot access '/usr/local/nginx': No such file or directory
-#11 DONE 62.6s
+#11 72.27 objs/src/http/modules/ngx_http_grpc_module.o \
+#11 72.27 objs/src/http/modules/perl/ngx_http_perl_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_memcached_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_empty_gif_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_browser_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_secure_link_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_degradation_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_flv_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_mp4_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_hash_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_least_conn_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_random_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_keepalive_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_upstream_zone_module.o \
+#11 72.27 objs/src/http/modules/ngx_http_stub_status_module.o \
+#11 72.27 objs/src/mail/ngx_mail.o \
+#11 72.27 objs/src/mail/ngx_mail_core_module.o \
+#11 72.27 objs/src/mail/ngx_mail_handler.o \
+#11 72.27 objs/src/mail/ngx_mail_parse.o \
+#11 72.27 objs/src/mail/ngx_mail_ssl_module.o \
+#11 72.27 objs/src/mail/ngx_mail_pop3_module.o \
+#11 72.27 objs/src/mail/ngx_mail_pop3_handler.o \
+#11 72.27 objs/src/mail/ngx_mail_imap_module.o \
+#11 72.27 objs/src/mail/ngx_mail_imap_handler.o \
+#11 72.27 objs/src/mail/ngx_mail_smtp_module.o \
+#11 72.27 objs/src/mail/ngx_mail_smtp_handler.o \
+#11 72.27 objs/src/mail/ngx_mail_auth_http_module.o \
+#11 72.27 objs/src/mail/ngx_mail_proxy_module.o \
+#11 72.27 objs/src/mail/ngx_mail_realip_module.o \
+#11 72.27 objs/src/stream/ngx_stream.o \
+#11 72.27 objs/src/stream/ngx_stream_variables.o \
+#11 72.27 objs/src/stream/ngx_stream_script.o \
+#11 72.27 objs/src/stream/ngx_stream_handler.o \
+#11 72.27 objs/src/stream/ngx_stream_core_module.o \
+#11 72.27 objs/src/stream/ngx_stream_log_module.o \
+#11 72.27 objs/src/stream/ngx_stream_proxy_module.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream_round_robin.o \
+#11 72.27 objs/src/stream/ngx_stream_write_filter_module.o \
+#11 72.27 objs/src/stream/ngx_stream_ssl_module.o \
+#11 72.27 objs/src/stream/ngx_stream_realip_module.o \
+#11 72.27 objs/src/stream/ngx_stream_limit_conn_module.o \
+#11 72.27 objs/src/stream/ngx_stream_access_module.o \
+#11 72.27 objs/src/stream/ngx_stream_geo_module.o \
+#11 72.27 objs/src/stream/ngx_stream_map_module.o \
+#11 72.27 objs/src/stream/ngx_stream_split_clients_module.o \
+#11 72.27 objs/src/stream/ngx_stream_return_module.o \
+#11 72.27 objs/src/stream/ngx_stream_pass_module.o \
+#11 72.27 objs/src/stream/ngx_stream_set_module.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream_hash_module.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream_least_conn_module.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream_random_module.o \
+#11 72.27 objs/src/stream/ngx_stream_upstream_zone_module.o \
+#11 72.27 objs/src/stream/ngx_stream_ssl_preread_module.o \
+#11 72.27 objs/ngx_modules.o \
+#11 72.27 -lpthread -lcrypt -lpcre -lssl -lcrypto -lpthread -lz \
+#11 72.27 -Wl,-E -fstack-protector-strong -L/usr/local/lib -L/usr/lib/x86_64-linux-gnu/perl/5.34/CORE -lperl -ldl -lm -lpthread -lc -lcrypt \
+#11 72.27 -Wl,-E
+#11 72.32 /usr/bin/ld: cannot find -lperl: No such file or directory
+#11 72.33 collect2: error: ld returned 1 exit status
+#11 72.33 make[1]: *** [objs/Makefile:345: objs/nginx] Error 1
+#11 72.33 make[1]: Leaving directory '/app/nginx-1.29.3'
+#11 72.33 make: *** [Makefile:10: build] Error 2
+#11 72.33 ls: cannot access '/usr/local/nginx': No such file or directory
+#11 DONE 72.4s
 
-#12 [stage-1  5/10] COPY --from=builder /app/xy /usr/local/bin/xy
+#12 [stage-1  6/10] COPY --from=builder /app/td /usr/local/bin/td
 #12 CACHED
 
-#13 [stage-1  6/10] COPY --from=builder /app/td /usr/local/bin/td
+#13 [stage-1  7/10] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 #13 CACHED
 
-#14 [stage-1  7/10] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 [stage-1  8/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 #14 CACHED
 
-#15 [stage-1  8/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 [stage-1  9/10] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 #15 CACHED
 
-#16 [stage-1  9/10] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-#16 CACHED
+#16 [stage-1 10/10] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
+#16 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::sdfh6yzkndwbx1zoxu1tj2x5w: "/usr/local/bin/nginx": not found
 
-#17 [stage-1 10/10] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
-#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::bb2znnvysi3c5l1ukajujmp4h: "/usr/local/bin/nginx": not found
+#17 [stage-1  5/10] COPY --from=builder /app/xy /usr/local/bin/xy
+#17 CANCELED
 ------
  > [stage-1 10/10] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx:
 ------
 
  [33m2 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 106)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 106)
-Dockerfile:171
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 103)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 103)
+Dockerfile:168
 --------------------
- 169 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
- 170 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
- 171 | >>> COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
- 172 |     
- 173 |     EXPOSE 7860
+ 166 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+ 167 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+ 168 | >>> COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
+ 169 |     
+ 170 |     EXPOSE 7860
 --------------------
-ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::bb2znnvysi3c5l1ukajujmp4h: "/usr/local/bin/nginx": not found
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::sdfh6yzkndwbx1zoxu1tj2x5w: "/usr/local/bin/nginx": not found
 ```
 
