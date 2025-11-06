@@ -1,0 +1,39 @@
+listen: :7862
+
+tls:
+  cert: /app/hysteria/cert.pem
+  key: /app/hysteria/key.pem
+
+auth:
+  type: password
+  password: UUID
+
+resolver:
+  type: udp
+  udp:
+    addr: 8.8.8.8:53
+    timeout: 4s
+
+sniff:
+  enable: true
+  timeout: 2s
+  tcpPorts: all
+  udpPorts: all
+
+acl:
+  inline:
+    - domain(v.com, direct-local)
+    - default(direct)
+
+
+outbounds:
+  - name: direct
+    type: direct
+    direct:
+      mode: 46
+
+  - name: direct-local
+    type: direct
+    direct:
+      mode: 46
+      bindIPv4: 127.0.0.1
