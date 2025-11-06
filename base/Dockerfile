@@ -1,5 +1,5 @@
-FROM ubuntu:22.04 AS builder
-
+# FROM ubuntu:22.04 AS builder
+FROM debian:bookworm-slim AS builder
 WORKDIR /app
 
 RUN apt-get update; \
@@ -133,7 +133,7 @@ COPY app /app
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo socat --no-install-recommends; \
+    apt-get install -y tzdata openssh-server curl ca-certificates wget vim net-tools supervisor unzip iputils-ping telnet git iproute2 docker.io s3cmd zip sudo socat netcat --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
