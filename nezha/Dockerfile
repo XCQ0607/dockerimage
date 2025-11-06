@@ -79,7 +79,7 @@ ENV TZ=Asia/Shanghai \
     DOMAIN=web3x-p.hf.space \
     ARGO_PAT= \
     HOME=/home/user \
-    PATH="/usr/local/bin/nginx/sbin:${PATH}" \
+    PATH="/usr/local/bin/nginx/sbin:${PATH}"
 # R2备份相关环境变量
 # R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：your-access-key-id
 # R2_SECRET_ACCESS_KEY：R2密钥，默认值为空，非必填，示例输入：your-secret-access-key
