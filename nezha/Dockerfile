@@ -24,7 +24,7 @@ RUN apt-get update; \
     wget -O nginx.tar.gz "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz"; \
     tar -xzf nginx.tar.gz; \
     cd nginx-*; \
-    ./configure --prefix=/usr/local/nginx \
+    ./configure --prefix=/usr/local/bin/nginx \
                 --with-http_ssl_module \
                 --with-http_v2_module \
                 --with-http_realip_module \
@@ -157,9 +157,9 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
-    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d /usr/local/nginx/logs; \
-    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d /usr/local/nginx/logs; \
-    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/nginx/conf.d /usr/local/nginx/logs; \
+    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
+    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
+    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # 设置备份脚本和cron设置脚本权限
@@ -179,7 +179,7 @@ COPY --from=builder /app/supercronic /usr/local/bin/supercronic
 # Copy cloudflared binary
 COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-COPY --from=builder /usr/local/nginx /usr/local/nginx
+COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
 
 EXPOSE 7860
 
