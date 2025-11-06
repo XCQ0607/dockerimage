@@ -142,7 +142,7 @@
 - 目录: base/
 - 完整镜像名: ghcr.io/xcq0607/base:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 101s
+- 构建耗时: 136s
 
 ### 使用方法
 
@@ -167,77 +167,77 @@ docker pull ghcr.io/xcq0607/base:latest
 ### 构建日志
 
 ```
-#11 64.98 Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
-#11 64.98 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/auto/nginx/nginx.so
-#11 64.98 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/nginx.pm
-#11 64.98 Installing /usr/local/man/man3/nginx.3pm
-#11 64.98 Appending installation info to /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/perllocal.pod
-#11 65.00 make[2]: Leaving directory '/app/nginx-1.29.3/objs/src/http/modules/perl'
-#11 65.00 test -d '/usr/local/bin/nginx' || mkdir -p '/usr/local/bin/nginx'
-#11 65.00 test -d '/usr/local/bin/nginx/sbin' \
-#11 65.00 	|| mkdir -p '/usr/local/bin/nginx/sbin'
-#11 65.01 test ! -f '/usr/local/bin/nginx/sbin/nginx' \
-#11 65.01 	|| mv '/usr/local/bin/nginx/sbin/nginx' \
-#11 65.01 		'/usr/local/bin/nginx/sbin/nginx.old'
-#11 65.01 cp objs/nginx '/usr/local/bin/nginx/sbin/nginx'
-#11 65.01 test -d '/usr/local/bin/nginx/conf' \
-#11 65.01 	|| mkdir -p '/usr/local/bin/nginx/conf'
-#11 65.01 cp conf/koi-win '/usr/local/bin/nginx/conf'
-#11 65.02 cp conf/koi-utf '/usr/local/bin/nginx/conf'
-#11 65.02 cp conf/win-utf '/usr/local/bin/nginx/conf'
-#11 65.02 test -f '/usr/local/bin/nginx/conf/mime.types' \
-#11 65.02 	|| cp conf/mime.types '/usr/local/bin/nginx/conf'
-#11 65.02 cp conf/mime.types '/usr/local/bin/nginx/conf/mime.types.default'
-#11 65.02 test -f '/usr/local/bin/nginx/conf/fastcgi_params' \
-#11 65.02 	|| cp conf/fastcgi_params '/usr/local/bin/nginx/conf'
-#11 65.02 cp conf/fastcgi_params \
-#11 65.02 	'/usr/local/bin/nginx/conf/fastcgi_params.default'
-#11 65.02 test -f '/usr/local/bin/nginx/conf/fastcgi.conf' \
-#11 65.02 	|| cp conf/fastcgi.conf '/usr/local/bin/nginx/conf'
-#11 65.02 cp conf/fastcgi.conf '/usr/local/bin/nginx/conf/fastcgi.conf.default'
-#11 65.03 test -f '/usr/local/bin/nginx/conf/uwsgi_params' \
-#11 65.03 	|| cp conf/uwsgi_params '/usr/local/bin/nginx/conf'
-#11 65.03 cp conf/uwsgi_params \
-#11 65.03 	'/usr/local/bin/nginx/conf/uwsgi_params.default'
-#11 65.03 test -f '/usr/local/bin/nginx/conf/scgi_params' \
-#11 65.03 	|| cp conf/scgi_params '/usr/local/bin/nginx/conf'
-#11 65.03 cp conf/scgi_params \
-#11 65.03 	'/usr/local/bin/nginx/conf/scgi_params.default'
-#11 65.03 test -f '/usr/local/bin/nginx/conf/nginx.conf' \
-#11 65.03 	|| cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf'
-#11 65.03 cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf.default'
-#11 65.03 test -d '/usr/local/bin/nginx/logs' \
-#11 65.03 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 65.03 test -d '/usr/local/bin/nginx/logs' \
-#11 65.03 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 65.04 test -d '/usr/local/bin/nginx/html' \
-#11 65.04 	|| cp -R html '/usr/local/bin/nginx'
-#11 65.04 test -d '/usr/local/bin/nginx/logs' \
-#11 65.04 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 65.04 test -d '/usr/local/bin/nginx/modules' \
-#11 65.04 	|| mkdir -p '/usr/local/bin/nginx/modules'
-#11 65.04 test ! -f '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 65.04 	|| mv '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 65.04 		'/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so.old'
-#11 65.04 cp objs/ngx_http_xslt_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so'
-#11 65.04 test ! -f '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
-#11 65.04 	|| mv '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
-#11 65.04 		'/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so.old'
-#11 65.04 cp objs/ngx_http_image_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so'
-#11 65.04 test ! -f '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
-#11 65.04 	|| mv '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
-#11 65.04 		'/usr/local/bin/nginx/modules/ngx_http_geoip_module.so.old'
-#11 65.04 cp objs/ngx_http_geoip_module.so '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so'
-#11 65.05 make[1]: Leaving directory '/app/nginx-1.29.3'
-#11 65.05 total 28
-#11 65.05 drwxr-xr-x 7 root root 4096 Nov  6 03:30 .
-#11 65.05 drwxr-xr-x 1 root root 4096 Nov  6 03:30 ..
-#11 65.05 drwxr-xr-x 2 root root 4096 Nov  6 03:30 conf
-#11 65.05 drwxr-xr-x 2 root root 4096 Nov  6 03:30 html
-#11 65.05 drwxr-xr-x 2 root root 4096 Nov  6 03:30 logs
-#11 65.05 drwxr-xr-x 2 root root 4096 Nov  6 03:30 modules
-#11 65.05 drwxr-xr-x 2 root root 4096 Nov  6 03:30 sbin
-#11 DONE 65.1s
+#11 68.58 Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+#11 68.58 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/auto/nginx/nginx.so
+#11 68.58 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/nginx.pm
+#11 68.58 Installing /usr/local/man/man3/nginx.3pm
+#11 68.59 Appending installation info to /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/perllocal.pod
+#11 68.60 make[2]: Leaving directory '/app/nginx-1.29.3/objs/src/http/modules/perl'
+#11 68.61 test -d '/usr/local/bin/nginx' || mkdir -p '/usr/local/bin/nginx'
+#11 68.61 test -d '/usr/local/bin/nginx/sbin' \
+#11 68.61 	|| mkdir -p '/usr/local/bin/nginx/sbin'
+#11 68.61 test ! -f '/usr/local/bin/nginx/sbin/nginx' \
+#11 68.61 	|| mv '/usr/local/bin/nginx/sbin/nginx' \
+#11 68.61 		'/usr/local/bin/nginx/sbin/nginx.old'
+#11 68.61 cp objs/nginx '/usr/local/bin/nginx/sbin/nginx'
+#11 68.62 test -d '/usr/local/bin/nginx/conf' \
+#11 68.62 	|| mkdir -p '/usr/local/bin/nginx/conf'
+#11 68.62 cp conf/koi-win '/usr/local/bin/nginx/conf'
+#11 68.62 cp conf/koi-utf '/usr/local/bin/nginx/conf'
+#11 68.62 cp conf/win-utf '/usr/local/bin/nginx/conf'
+#11 68.62 test -f '/usr/local/bin/nginx/conf/mime.types' \
+#11 68.62 	|| cp conf/mime.types '/usr/local/bin/nginx/conf'
+#11 68.62 cp conf/mime.types '/usr/local/bin/nginx/conf/mime.types.default'
+#11 68.62 test -f '/usr/local/bin/nginx/conf/fastcgi_params' \
+#11 68.62 	|| cp conf/fastcgi_params '/usr/local/bin/nginx/conf'
+#11 68.62 cp conf/fastcgi_params \
+#11 68.62 	'/usr/local/bin/nginx/conf/fastcgi_params.default'
+#11 68.63 test -f '/usr/local/bin/nginx/conf/fastcgi.conf' \
+#11 68.63 	|| cp conf/fastcgi.conf '/usr/local/bin/nginx/conf'
+#11 68.63 cp conf/fastcgi.conf '/usr/local/bin/nginx/conf/fastcgi.conf.default'
+#11 68.63 test -f '/usr/local/bin/nginx/conf/uwsgi_params' \
+#11 68.63 	|| cp conf/uwsgi_params '/usr/local/bin/nginx/conf'
+#11 68.63 cp conf/uwsgi_params \
+#11 68.63 	'/usr/local/bin/nginx/conf/uwsgi_params.default'
+#11 68.63 test -f '/usr/local/bin/nginx/conf/scgi_params' \
+#11 68.63 	|| cp conf/scgi_params '/usr/local/bin/nginx/conf'
+#11 68.63 cp conf/scgi_params \
+#11 68.63 	'/usr/local/bin/nginx/conf/scgi_params.default'
+#11 68.63 test -f '/usr/local/bin/nginx/conf/nginx.conf' \
+#11 68.63 	|| cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf'
+#11 68.64 cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf.default'
+#11 68.64 test -d '/usr/local/bin/nginx/logs' \
+#11 68.64 	|| mkdir -p '/usr/local/bin/nginx/logs'
+#11 68.64 test -d '/usr/local/bin/nginx/logs' \
+#11 68.64 	|| mkdir -p '/usr/local/bin/nginx/logs'
+#11 68.64 test -d '/usr/local/bin/nginx/html' \
+#11 68.64 	|| cp -R html '/usr/local/bin/nginx'
+#11 68.64 test -d '/usr/local/bin/nginx/logs' \
+#11 68.64 	|| mkdir -p '/usr/local/bin/nginx/logs'
+#11 68.64 test -d '/usr/local/bin/nginx/modules' \
+#11 68.64 	|| mkdir -p '/usr/local/bin/nginx/modules'
+#11 68.64 test ! -f '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
+#11 68.64 	|| mv '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
+#11 68.64 		'/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so.old'
+#11 68.64 cp objs/ngx_http_xslt_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so'
+#11 68.64 test ! -f '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
+#11 68.64 	|| mv '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
+#11 68.64 		'/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so.old'
+#11 68.64 cp objs/ngx_http_image_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so'
+#11 68.65 test ! -f '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
+#11 68.65 	|| mv '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
+#11 68.65 		'/usr/local/bin/nginx/modules/ngx_http_geoip_module.so.old'
+#11 68.65 cp objs/ngx_http_geoip_module.so '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so'
+#11 68.65 make[1]: Leaving directory '/app/nginx-1.29.3'
+#11 68.65 total 28
+#11 68.65 drwxr-xr-x 7 root root 4096 Nov  6 03:46 .
+#11 68.65 drwxr-xr-x 1 root root 4096 Nov  6 03:46 ..
+#11 68.65 drwxr-xr-x 2 root root 4096 Nov  6 03:46 conf
+#11 68.65 drwxr-xr-x 2 root root 4096 Nov  6 03:46 html
+#11 68.65 drwxr-xr-x 2 root root 4096 Nov  6 03:46 logs
+#11 68.65 drwxr-xr-x 2 root root 4096 Nov  6 03:46 modules
+#11 68.65 drwxr-xr-x 2 root root 4096 Nov  6 03:46 sbin
+#11 DONE 68.7s
 
 #12 [stage-1  5/10] COPY --from=builder /app/xy /usr/local/bin/xy
 #12 DONE 0.0s
@@ -249,7 +249,7 @@ docker pull ghcr.io/xcq0607/base:latest
 #14 DONE 0.0s
 
 #15 [stage-1  8/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#15 DONE 0.0s
+#15 DONE 0.1s
 
 #16 [stage-1  9/10] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 #16 DONE 0.0s
@@ -260,7 +260,7 @@ docker pull ghcr.io/xcq0607/base:latest
 #18 exporting to image
 #18 exporting layers
 #18 exporting layers 2.5s done
-#18 writing image sha256:7b3bdaf5ebafe55df036de51bec5b8da027a12200dc0673e1bdc9b8b80dd04eb done
+#18 writing image sha256:e93b28784ec59de4921188a67988db66b2b2a5a215799e289e6741ce449c4a70 done
 #18 naming to ghcr.io/xcq0607/base:latest done
 #18 DONE 2.5s
 
