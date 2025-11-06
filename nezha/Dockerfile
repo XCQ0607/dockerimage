@@ -172,6 +172,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
 
 # 复制自动安装脚本和启动/停止脚本并设置权限
 RUN chmod +x /app/install-nezha.sh /app/nezha-start.sh /app/nezha-stop.sh /app/nezha.sh
+RUN ln -sf /usr/local/bin/nginx/nginx /usr/local/bin/nginx
 
 COPY --from=builder /app/xy /usr/local/bin/xy
 COPY --from=builder /app/td /usr/local/bin/td
