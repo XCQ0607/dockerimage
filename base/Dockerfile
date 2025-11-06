@@ -166,7 +166,9 @@ COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
 COPY --from=builder /app/hysteria /usr/local/bin/hysteria
 COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
 
-EXPOSE 7860
+# 开放7860-7863的TCP和UDP端口
+EXPOSE 7860-7863/tcp
+EXPOSE 7860-7863/udp
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["supervisord", "-c", "/app/supervisor/supervisord.conf"]
