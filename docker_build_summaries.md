@@ -3,6 +3,21 @@
 ## Repository File Structure
 ```
 .
+├── base
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── backup
+│   │   ├── cron
+│   │   ├── healthcheck.sh
+│   │   ├── hysteria
+│   │   ├── keepalive.sh
+│   │   ├── nginx
+│   │   ├── setup-cron.sh
+│   │   ├── setup-nginx.sh
+│   │   ├── setup.sh
+│   │   ├── supervisor
+│   │   └── xy
+│   └── entrypoint.sh
 ├── base1.zip
 ├── base2.zip
 ├── docker_build_summaries.md
@@ -117,139 +132,139 @@
     ├── entrypoint.sh
     └── fiora
 
-48 directories, 66 files
+56 directories, 73 files
 ```
 
-## 镜像: nezha
+## 镜像: base
 
 ### 构建信息
-- 目录: nezha/
-- 完整镜像名: ghcr.io/xcq0607/nezha:latest
-- 构建状态: ✅ 成功
-- 构建耗时: 132s
+- 目录: base/
+- 完整镜像名: ghcr.io/xcq0607/base:latest
+- 构建状态: ❌ 失败
+- 构建耗时: 67s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/nezha:latest
+FROM ghcr.io/xcq0607/base:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-nezha ghcr.io/xcq0607/nezha:latest
+docker run -d --name my-base ghcr.io/xcq0607/base:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/nezha:latest
+docker pull ghcr.io/xcq0607/base:latest
 ```
 
 ### 构建日志
 
 ```
-#11 81.76 make -f objs/Makefile install
-#11 81.78 make[1]: Entering directory '/app/nginx-1.29.3'
-#11 81.78 cd objs/src/http/modules/perl && make install
-#11 81.78 make[2]: Entering directory '/app/nginx-1.29.3/objs/src/http/modules/perl'
-#11 81.79 "/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- nginx.bs blib/arch/auto/nginx/nginx.bs 644
-#11 81.83 Manifying 1 pod document
-#11 81.87 Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
-#11 81.87 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/auto/nginx/nginx.so
-#11 81.87 Installing /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/nginx.pm
-#11 81.87 Installing /usr/local/man/man3/nginx.3pm
-#11 81.88 Appending installation info to /usr/local/lib/x86_64-linux-gnu/perl/5.34.0/perllocal.pod
-#11 81.90 make[2]: Leaving directory '/app/nginx-1.29.3/objs/src/http/modules/perl'
-#11 81.90 test -d '/usr/local/bin/nginx' || mkdir -p '/usr/local/bin/nginx'
-#11 81.90 test -d '/usr/local/bin/nginx/sbin' \
-#11 81.90 	|| mkdir -p '/usr/local/bin/nginx/sbin'
-#11 81.90 test ! -f '/usr/local/bin/nginx/sbin/nginx' \
-#11 81.90 	|| mv '/usr/local/bin/nginx/sbin/nginx' \
-#11 81.90 		'/usr/local/bin/nginx/sbin/nginx.old'
-#11 81.90 cp objs/nginx '/usr/local/bin/nginx/sbin/nginx'
-#11 81.91 test -d '/usr/local/bin/nginx/conf' \
-#11 81.91 	|| mkdir -p '/usr/local/bin/nginx/conf'
-#11 81.91 cp conf/koi-win '/usr/local/bin/nginx/conf'
-#11 81.91 cp conf/koi-utf '/usr/local/bin/nginx/conf'
-#11 81.91 cp conf/win-utf '/usr/local/bin/nginx/conf'
-#11 81.92 test -f '/usr/local/bin/nginx/conf/mime.types' \
-#11 81.92 	|| cp conf/mime.types '/usr/local/bin/nginx/conf'
-#11 81.92 cp conf/mime.types '/usr/local/bin/nginx/conf/mime.types.default'
-#11 81.92 test -f '/usr/local/bin/nginx/conf/fastcgi_params' \
-#11 81.92 	|| cp conf/fastcgi_params '/usr/local/bin/nginx/conf'
-#11 81.92 cp conf/fastcgi_params \
-#11 81.92 	'/usr/local/bin/nginx/conf/fastcgi_params.default'
-#11 81.92 test -f '/usr/local/bin/nginx/conf/fastcgi.conf' \
-#11 81.92 	|| cp conf/fastcgi.conf '/usr/local/bin/nginx/conf'
-#11 81.92 cp conf/fastcgi.conf '/usr/local/bin/nginx/conf/fastcgi.conf.default'
-#11 81.92 test -f '/usr/local/bin/nginx/conf/uwsgi_params' \
-#11 81.92 	|| cp conf/uwsgi_params '/usr/local/bin/nginx/conf'
-#11 81.93 cp conf/uwsgi_params \
-#11 81.93 	'/usr/local/bin/nginx/conf/uwsgi_params.default'
-#11 81.93 test -f '/usr/local/bin/nginx/conf/scgi_params' \
-#11 81.93 	|| cp conf/scgi_params '/usr/local/bin/nginx/conf'
-#11 81.93 cp conf/scgi_params \
-#11 81.93 	'/usr/local/bin/nginx/conf/scgi_params.default'
-#11 81.93 test -f '/usr/local/bin/nginx/conf/nginx.conf' \
-#11 81.93 	|| cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf'
-#11 81.93 cp conf/nginx.conf '/usr/local/bin/nginx/conf/nginx.conf.default'
-#11 81.93 test -d '/usr/local/bin/nginx/logs' \
-#11 81.93 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 81.93 test -d '/usr/local/bin/nginx/logs' \
-#11 81.93 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 81.93 test -d '/usr/local/bin/nginx/html' \
-#11 81.93 	|| cp -R html '/usr/local/bin/nginx'
-#11 81.94 test -d '/usr/local/bin/nginx/logs' \
-#11 81.94 	|| mkdir -p '/usr/local/bin/nginx/logs'
-#11 81.94 test -d '/usr/local/bin/nginx/modules' \
-#11 81.94 	|| mkdir -p '/usr/local/bin/nginx/modules'
-#11 81.94 test ! -f '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 81.94 	|| mv '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so' \
-#11 81.94 		'/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so.old'
-#11 81.94 cp objs/ngx_http_xslt_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_xslt_filter_module.so'
-#11 81.94 test ! -f '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
-#11 81.94 	|| mv '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so' \
-#11 81.94 		'/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so.old'
-#11 81.94 cp objs/ngx_http_image_filter_module.so '/usr/local/bin/nginx/modules/ngx_http_image_filter_module.so'
-#11 81.94 test ! -f '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
-#11 81.94 	|| mv '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so' \
-#11 81.94 		'/usr/local/bin/nginx/modules/ngx_http_geoip_module.so.old'
-#11 81.94 cp objs/ngx_http_geoip_module.so '/usr/local/bin/nginx/modules/ngx_http_geoip_module.so'
-#11 81.94 make[1]: Leaving directory '/app/nginx-1.29.3'
-#11 81.95 ls: cannot access '/usr/local/nginx': No such file or directory
-#11 DONE 82.0s
+#11 62.49 objs/src/http/modules/ngx_http_grpc_module.o \
+#11 62.49 objs/src/http/modules/perl/ngx_http_perl_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_memcached_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_empty_gif_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_browser_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_secure_link_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_degradation_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_flv_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_mp4_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_hash_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_least_conn_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_random_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_keepalive_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_upstream_zone_module.o \
+#11 62.49 objs/src/http/modules/ngx_http_stub_status_module.o \
+#11 62.49 objs/src/mail/ngx_mail.o \
+#11 62.49 objs/src/mail/ngx_mail_core_module.o \
+#11 62.49 objs/src/mail/ngx_mail_handler.o \
+#11 62.49 objs/src/mail/ngx_mail_parse.o \
+#11 62.49 objs/src/mail/ngx_mail_ssl_module.o \
+#11 62.49 objs/src/mail/ngx_mail_pop3_module.o \
+#11 62.49 objs/src/mail/ngx_mail_pop3_handler.o \
+#11 62.49 objs/src/mail/ngx_mail_imap_module.o \
+#11 62.49 objs/src/mail/ngx_mail_imap_handler.o \
+#11 62.49 objs/src/mail/ngx_mail_smtp_module.o \
+#11 62.49 objs/src/mail/ngx_mail_smtp_handler.o \
+#11 62.49 objs/src/mail/ngx_mail_auth_http_module.o \
+#11 62.49 objs/src/mail/ngx_mail_proxy_module.o \
+#11 62.49 objs/src/mail/ngx_mail_realip_module.o \
+#11 62.49 objs/src/stream/ngx_stream.o \
+#11 62.49 objs/src/stream/ngx_stream_variables.o \
+#11 62.49 objs/src/stream/ngx_stream_script.o \
+#11 62.49 objs/src/stream/ngx_stream_handler.o \
+#11 62.49 objs/src/stream/ngx_stream_core_module.o \
+#11 62.49 objs/src/stream/ngx_stream_log_module.o \
+#11 62.49 objs/src/stream/ngx_stream_proxy_module.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream_round_robin.o \
+#11 62.49 objs/src/stream/ngx_stream_write_filter_module.o \
+#11 62.49 objs/src/stream/ngx_stream_ssl_module.o \
+#11 62.49 objs/src/stream/ngx_stream_realip_module.o \
+#11 62.49 objs/src/stream/ngx_stream_limit_conn_module.o \
+#11 62.49 objs/src/stream/ngx_stream_access_module.o \
+#11 62.49 objs/src/stream/ngx_stream_geo_module.o \
+#11 62.49 objs/src/stream/ngx_stream_map_module.o \
+#11 62.49 objs/src/stream/ngx_stream_split_clients_module.o \
+#11 62.49 objs/src/stream/ngx_stream_return_module.o \
+#11 62.49 objs/src/stream/ngx_stream_pass_module.o \
+#11 62.49 objs/src/stream/ngx_stream_set_module.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream_hash_module.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream_least_conn_module.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream_random_module.o \
+#11 62.49 objs/src/stream/ngx_stream_upstream_zone_module.o \
+#11 62.49 objs/src/stream/ngx_stream_ssl_preread_module.o \
+#11 62.49 objs/ngx_modules.o \
+#11 62.49 -lpthread -lcrypt -lpcre -lssl -lcrypto -lpthread -lz \
+#11 62.49 -Wl,-E -fstack-protector-strong -L/usr/local/lib -L/usr/lib/x86_64-linux-gnu/perl/5.34/CORE -lperl -ldl -lm -lpthread -lc -lcrypt \
+#11 62.49 -Wl,-E
+#11 62.53 /usr/bin/ld: cannot find -lperl: No such file or directory
+#11 62.54 collect2: error: ld returned 1 exit status
+#11 62.54 make[1]: *** [objs/Makefile:345: objs/nginx] Error 1
+#11 62.54 make[1]: Leaving directory '/app/nginx-1.29.3'
+#11 62.54 make: *** [Makefile:10: build] Error 2
+#11 62.55 ls: cannot access '/usr/local/nginx': No such file or directory
+#11 DONE 62.6s
 
-#13 [stage-1  6/11] COPY --from=builder /app/xy /usr/local/bin/xy
-#13 DONE 0.1s
+#12 [stage-1  5/10] COPY --from=builder /app/xy /usr/local/bin/xy
+#12 CACHED
 
-#14 [stage-1  7/11] COPY --from=builder /app/td /usr/local/bin/td
-#14 DONE 0.0s
+#13 [stage-1  6/10] COPY --from=builder /app/td /usr/local/bin/td
+#13 CACHED
 
-#15 [stage-1  8/11] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
-#15 DONE 0.0s
+#14 [stage-1  7/10] COPY --from=builder /app/supercronic /usr/local/bin/supercronic
+#14 CACHED
 
-#16 [stage-1  9/11] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
-#16 DONE 0.1s
+#15 [stage-1  8/10] COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+#15 CACHED
 
-#17 [stage-1 10/11] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
-#17 DONE 0.0s
+#16 [stage-1  9/10] COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+#16 CACHED
 
-#18 [stage-1 11/11] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
-#18 DONE 0.0s
+#17 [stage-1 10/10] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
+#17 ERROR: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::bb2znnvysi3c5l1ukajujmp4h: "/usr/local/bin/nginx": not found
+------
+ > [stage-1 10/10] COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx:
+------
 
-#19 exporting to image
-#19 exporting layers
-#19 exporting layers 2.9s done
-#19 writing image sha256:561b9c10ba80ccdaa6d203052f6f62ddcc65a53e19b32c17eb46b2eb87be42b0 done
-#19 naming to ghcr.io/xcq0607/nezha:latest done
-#19 DONE 2.9s
-
- [33m3 warnings found (use docker --debug to expand):
-[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 103)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 103)
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "NEZHA_PASSWORD") (line 142)
+ [33m2 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_ACCESS_KEY_ID") (line 106)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "R2_SECRET_ACCESS_KEY") (line 106)
+Dockerfile:171
+--------------------
+ 169 |     COPY --from=builder /app/cloudflared /usr/local/bin/cloudflared
+ 170 |     COPY --from=builder /app/hysteria /usr/local/bin/hysteria
+ 171 | >>> COPY --from=builder /usr/local/bin/nginx /usr/local/bin/nginx
+ 172 |     
+ 173 |     EXPOSE 7860
+--------------------
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 53d5b372-3a00-4865-8d81-0d2be474f41b::bb2znnvysi3c5l1ukajujmp4h: "/usr/local/bin/nginx": not found
 ```
 
