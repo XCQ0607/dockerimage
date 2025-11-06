@@ -59,7 +59,7 @@ RUN apt-get update; \
     make && make install; \
     cd ..; \
     # 验证Nginx是否正确安装
-    ls -la /usr/local/nginx; \
+    ls -la /usr/local/bin/nginx; \
     rm -rf nginx-${NGINX_VERSION}*
 ############################################################
 
@@ -77,8 +77,7 @@ ENV TZ=Asia/Shanghai \
     UUID=2982f122-9649-40dc-bc15-fa3ec91d8921 \
     DOMAIN=web3x-p.hf.space \
     ARGO_PAT= \
-    HOME=/home/user \
-    PATH="/usr/local/bin/nginx/sbin:${PATH}"
+    HOME=/home/user
 
 # R2备份相关环境变量
 # R2_ACCESS_KEY_ID：R2访问密钥ID，默认值为空，非必填，示例输入：your-access-key-id
