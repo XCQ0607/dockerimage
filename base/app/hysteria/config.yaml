@@ -1,4 +1,4 @@
-listen: :7862
+listen: :7863
 
 tls:
   cert: /app/hysteria/cert.pem
@@ -22,18 +22,19 @@ sniff:
 
 acl:
   inline:
-    - domain(v.com, direct-local)
-    - default(direct)
-
+    - direct_local(domain:v.com)
+    - direct(all)
 
 outbounds:
   - name: direct
     type: direct
     direct:
       mode: 46
+      fastOpen: false
 
-  - name: direct-local
+  - name: direct_local
     type: direct
     direct:
       mode: 46
       bindIPv4: 127.0.0.1
+      fastOpen: false

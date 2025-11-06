@@ -60,7 +60,7 @@ BACKUP_FILE="${BACKUP_NAME}_backup_$TIMESTAMP.zip"
 # 停止服务（如果指定了停止脚本）
 if [ -n "$BACKUP_STOP_SCRIPT" ] && [ -f "$BACKUP_STOP_SCRIPT" ]; then
     echo "Stopping service with script: $BACKUP_STOP_SCRIPT"
-    timeout $TIMEOUT bash -c "$BACKUP_STOP_SCRIPT" || true
+    timeout $TIMEOUT eval "$BACKUP_STOP_SCRIPT" || true
     sleep 5  # 等待进程完全停止
 fi
 
@@ -74,7 +74,7 @@ else
     # 重新启动服务（如果指定了启动脚本）
     if [ -n "$BACKUP_START_SCRIPT" ] && [ -f "$BACKUP_START_SCRIPT" ]; then
         echo "Restarting service with script: $BACKUP_START_SCRIPT"
-        timeout $TIMEOUT bash -c "$BACKUP_START_SCRIPT" || true
+        timeout $TIMEOUT eval "$BACKUP_START_SCRIPT" || true
     fi
     exit 1
 fi
@@ -90,7 +90,7 @@ else
     # 重新启动服务（如果指定了启动脚本）
     if [ -n "$BACKUP_START_SCRIPT" ] && [ -f "$BACKUP_START_SCRIPT" ]; then
         echo "Restarting service with script: $BACKUP_START_SCRIPT"
-        timeout $TIMEOUT bash -c "$BACKUP_START_SCRIPT" || true
+        timeout $TIMEOUT eval "$BACKUP_START_SCRIPT" || true
     fi
     exit 1
 fi
@@ -100,7 +100,7 @@ rm -f "$BACKUP_DEST_DIR/$BACKUP_FILE"
 
 # 删除旧备份（保留指定数量）
 echo "Cleaning up old backups, keeping last $KEEP_BACKUPS..."
-timeout $TIMEOUT bash -c "s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep \"${BACKUP_NAME}_backup_\" | sort -r | awk '{print \$4}' | tail -n +$((KEEP_BACKUPS + 1))" | while read -r OLD_BACKUP; do
+timeout $TIMEOUT s3cmd -c /home/user/s3cfg ls s3://$R2_BUCKET_NAME/ | grep "${BACKUP_NAME}_backup_" | sort -r | awk '{print $4}' | tail -n +$((KEEP_BACKUPS + 1)) | while read -r OLD_BACKUP; do
     if [ -n "$OLD_BACKUP" ]; then
         timeout $TIMEOUT s3cmd -c /home/user/s3cfg del "$OLD_BACKUP"
         echo "Deleted old backup: $OLD_BACKUP"
@@ -110,7 +110,7 @@ done
 # 重新启动服务（如果指定了启动脚本）
 if [ -n "$BACKUP_START_SCRIPT" ] && [ -f "$BACKUP_START_SCRIPT" ]; then
     echo "Restarting service with script: $BACKUP_START_SCRIPT"
-    timeout $TIMEOUT bash -c "$BACKUP_START_SCRIPT" || true
+    timeout $TIMEOUT eval "$BACKUP_START_SCRIPT" || true
 fi
 
 echo "Backup completed successfully."

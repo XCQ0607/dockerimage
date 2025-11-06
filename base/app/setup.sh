@@ -29,8 +29,4 @@ mkdir -p /usr/local/bin/nginx/conf.d/stream
 cp /app/nginx/nginx.conf /usr/local/bin/nginx/conf/nginx.conf
 cp -r /app/nginx/conf.d/* /usr/local/bin/nginx/conf.d/
 
-# Set proper permissions
-chown -R root:root /usr/local/bin/nginx 2>/dev/null || echo "Could not change ownership of /usr/local/bin/nginx"
-chmod -R 755 /usr/local/bin/nginx 2>/dev/null || echo "Could not change permissions of /usr/local/bin/nginx"
-
 echo "Nginx configuration setup complete."
