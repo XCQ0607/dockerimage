@@ -157,16 +157,22 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     # 创建程序可能使用的所有目录并设置权限
-    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
-    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
-    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d /usr/local/bin/nginx/logs; \
+    mkdir -p /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d; \
+    chown -R 1000:0 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d; \
+    chmod -R 777 /app/data /app/backup /app/cron /app/supervisor /app/xy /home/user /tmp /opt/nezha/dashboard /opt/nezha/dashboard/data /usr/local/bin/nginx/conf.d; \
     chmod +x /entrypoint.sh; \
     chmod -R 777 /app; \
     # 设置备份脚本和cron设置脚本权限
-    chmod +x /app/backup/*.sh /app/setup-cron.sh /app/setup-nginx.sh; \
+    chmod +x /app/backup/*.sh /app/setup-cron.sh; \
     useradd -u 1000 -g 0 -m -s /bin/bash user; \
     # 为user用户配置无密码sudo权限
     echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
+    # 确保用户具有完整的root权限
+    usermod -aG root user; \
+    usermod -aG sudo user; \
+    # 设置用户家目录权限
+    chown -R 1000:0 /home/user; \
+    chmod 755 /home/user; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
 

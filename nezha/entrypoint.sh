@@ -13,9 +13,20 @@ if [ -f "/app/setup-cron.sh" ]; then
 fi
 
 # 设置Nginx配置
-if [ -f "/app/setup-nginx.sh" ]; then
-    /app/setup-nginx.sh
-fi
+echo "Setting up Nginx configuration..."
+
+# Create necessary directories
+mkdir -p /usr/local/bin/nginx/conf.d
+
+# Copy configuration files
+cp /app/nginx/nginx.conf /usr/local/bin/nginx/conf/nginx.conf
+cp /app/nginx/conf.d/hysteria.conf /usr/local/bin/nginx/conf.d/hysteria.conf
+
+# Set proper permissions
+chown -R root:root /usr/local/bin/nginx 2>/dev/null || echo "Could not change ownership of /usr/local/bin/nginx"
+chmod -R 755 /usr/local/bin/nginx 2>/dev/null || echo "Could not change permissions of /usr/local/bin/nginx"
+
+echo "Nginx configuration setup complete."
 
 # 检查是否需要安装哪吒dashboard
 if [ -n "$NEZHA_AGENT_HOSTPORT" ]; then
