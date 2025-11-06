@@ -3,7 +3,7 @@ FROM ubuntu:22.04 AS builder
 WORKDIR /app
 
 RUN apt-get update; \
-    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev curl jq; \
+    apt-get install -y wget unzip build-essential libpcre3-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev curl jq libperl-dev; \
     wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; \
     unzip Xray-linux-64.zip; \
     rm -f Xray-linux-64.zip; \
