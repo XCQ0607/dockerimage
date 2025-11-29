@@ -20,7 +20,7 @@ RUN npm install --production
 # 只要CAMOUFOX_VERSION不变，这一层就会被缓存。这层体积最大，缓存命中至关重要。
 ARG CAMOUFOX_VERSION=135.0.1-beta.24
 RUN wget -O camoufox.zip "https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip" && \
-    7z x camoufox.zip && \
+    7z x camoufox.zip -o/app/camoufox && \
     rm camoufox.zip && \
     chmod +x /app/camoufox/camoufox
 
