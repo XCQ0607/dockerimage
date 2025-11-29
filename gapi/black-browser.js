@@ -403,6 +403,7 @@ class ProxySystem extends EventTarget {
         const textDecoder = new TextDecoder();
         let fullBody = "";
 
+        let buffer = "";
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -410,10 +411,19 @@ class ProxySystem extends EventTarget {
           const chunk = textDecoder.decode(value, { stream: true });
 
           if (mode === "real") {
-            this._transmitChunk(chunk, operationId);
+            buffer += chunk;
+            let newlineIndex;
+            while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+              const line = buffer.substring(0, newlineIndex + 1);
+              buffer = buffer.substring(newlineIndex + 1);
+              this._transmitChunk(line, operationId);
+            }
           } else {
             fullBody += chunk;
           }
+        }
+        if (mode === "real" && buffer.length > 0) {
+          this._transmitChunk(buffer, operationId);
         }
 
         if (mode === "fake") {
