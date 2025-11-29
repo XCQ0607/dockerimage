@@ -27,7 +27,15 @@
 │   ├── entrypoint.sh
 │   └── supervisord.conf
 ├── gapi
-│   └── Dockerfile
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── black-browser.js
+│   ├── build.flag
+│   ├── models.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── save-auth.js
+│   └── unified-server.js
 ├── lxmusic
 │   ├── Dockerfile
 │   ├── app
@@ -134,7 +142,7 @@
     ├── entrypoint.sh
     └── fiora
 
-57 directories, 74 files
+57 directories, 82 files
 ```
 
 ## 镜像: gapi
@@ -143,7 +151,7 @@
 - 目录: gapi/
 - 完整镜像名: ghcr.io/xcq0607/gapi:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 2s
+- 构建耗时: 31s
 
 ### 使用方法
 
@@ -168,64 +176,105 @@ docker pull ghcr.io/xcq0607/gapi:latest
 ### 构建日志
 
 ```
-#0 building with "default" instance using docker driver
-
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.70kB done
-#1 DONE 0.0s
-
-#2 [internal] load metadata for docker.io/library/node:18-slim
-#2 ...
-
-#3 [auth] library/node:pull token for registry-1.docker.io
-#3 DONE 0.0s
-
-#2 [internal] load metadata for docker.io/library/node:18-slim
-#2 DONE 0.9s
-
-#4 [internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
-
-#5 [internal] load build context
-#5 transferring context: 2B done
-#5 DONE 0.0s
-
-#6 [6/8] RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox
-#6 CACHED
-
-#7 [2/8] WORKDIR /app
-#7 CACHED
-
-#8 [3/8] RUN apt-get update && apt-get install -y     curl     libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcups2     libdbus-1-3 libdrm2 libgbm1 libgtk-3-0 libnspr4 libnss3 libx11-6     libx11-xcb1 libxcb1 libxcomposite1 libxdamage1 libxext6 libxfixes3     libxrandr2 libxss1 libxtst6 xvfb     && rm -rf /var/lib/apt/lists/*
-#8 CACHED
+#8 16.62 Setting up libx11-xcb1:amd64 (2:1.8.4-2+deb12u2) ...
+#8 16.63 Setting up fontconfig (2.14.1-4) ...
+#8 16.63 Regenerating fonts cache... done.
+#8 19.07 Setting up libdrm-nouveau2:amd64 (2.4.114-1+b1) ...
+#8 19.07 Setting up libxdamage1:amd64 (1:1.1.6-1) ...
+#8 19.07 Setting up libxpm4:amd64 (1:3.5.12-1.1+deb12u1) ...
+#8 19.08 Setting up libxrender1:amd64 (1:0.9.10-1.1) ...
+#8 19.08 Setting up libgbm1:amd64 (22.3.6-1+deb12u1) ...
+#8 19.08 Setting up libdrm-radeon1:amd64 (2.4.114-1+b1) ...
+#8 19.08 Setting up libpango-1.0-0:amd64 (1.50.12+ds-1) ...
+#8 19.09 Setting up libdrm-intel1:amd64 (2.4.114-1+b1) ...
+#8 19.09 Setting up libgl1-mesa-dri:amd64 (22.3.6-1+deb12u1) ...
+#8 19.09 Setting up libxext6:amd64 (2:1.3.4-1+b1) ...
+#8 19.10 Setting up xfonts-utils (1:7.7+6) ...
+#8 19.10 Setting up libcairo2:amd64 (1.16.0-7) ...
+#8 19.10 Setting up libxxf86vm1:amd64 (1:1.1.4-1+b2) ...
+#8 19.11 Setting up dbus-user-session (1.14.10-1~deb12u1) ...
+#8 19.11 Setting up xfonts-base (1:1.0.5+nmu1) ...
+#8 19.15 Setting up adwaita-icon-theme (43-1) ...
+#8 19.19 update-alternatives: using /usr/share/icons/Adwaita/cursor.theme to provide /usr/share/icons/default/index.theme (x-cursor-theme) in auto mode
+#8 19.19 Setting up libxfixes3:amd64 (1:6.0.0-2) ...
+#8 19.20 Setting up libxinerama1:amd64 (2:1.1.4-3) ...
+#8 19.20 Setting up libxrandr2:amd64 (2:1.5.2-2+b1) ...
+#8 19.20 Setting up libxt6:amd64 (1:1.2.1-1.1) ...
+#8 19.20 Setting up libcups2:amd64 (2.4.2-3+deb12u9) ...
+#8 19.21 Setting up xauth (1:1.1.2-1) ...
+#8 19.21 Setting up libgdk-pixbuf2.0-bin (2.42.10+dfsg-1+deb12u2) ...
+#8 19.21 Setting up libcairo-gobject2:amd64 (1.16.0-7) ...
+#8 19.21 Setting up libxss1:amd64 (1:1.2.3-1) ...
+#8 19.21 Setting up libpangoft2-1.0-0:amd64 (1.50.12+ds-1) ...
+#8 19.22 Setting up libpangocairo-1.0-0:amd64 (1.50.12+ds-1) ...
+#8 19.22 Setting up libxmu6:amd64 (2:1.1.3-3) ...
+#8 19.22 Setting up libglx-mesa0:amd64 (22.3.6-1+deb12u1) ...
+#8 19.23 Setting up libxi6:amd64 (2:1.8-1+b1) ...
+#8 19.23 Setting up libglx0:amd64 (1.6.0-1) ...
+#8 19.23 Setting up libxtst6:amd64 (2:1.2.3-1.1) ...
+#8 19.23 Setting up libxcursor1:amd64 (1:1.2.1-1) ...
+#8 19.24 Setting up dconf-service (0.40.0-4) ...
+#8 19.24 Setting up libxaw7:amd64 (2:1.0.14-1) ...
+#8 19.24 Setting up libatspi2.0-0:amd64 (2.46.0-5) ...
+#8 19.24 Setting up librsvg2-2:amd64 (2.54.7+dfsg-1~deb12u1) ...
+#8 19.24 Setting up libatk-bridge2.0-0:amd64 (2.46.0-5) ...
+#8 19.25 Setting up libgl1:amd64 (1.6.0-1) ...
+#8 19.25 Setting up librsvg2-common:amd64 (2.54.7+dfsg-1~deb12u1) ...
+#8 19.25 Setting up dconf-gsettings-backend:amd64 (0.40.0-4) ...
+#8 19.26 Setting up x11-xkb-utils (7.7+7) ...
+#8 19.26 Setting up xserver-common (2:21.1.7-3+deb12u11) ...
+#8 19.26 Setting up libgtk-3-common (3.24.38-2~deb12u3) ...
+#8 19.26 Setting up gsettings-desktop-schemas (43.0-1) ...
+#8 19.26 Setting up libgtk-3-0:amd64 (3.24.38-2~deb12u3) ...
+#8 19.28 Setting up xvfb (2:21.1.7-3+deb12u11) ...
+#8 19.28 Setting up libgtk-3-bin (3.24.38-2~deb12u3) ...
+#8 19.28 Setting up at-spi2-core (2.46.0-5) ...
+#8 19.29 Processing triggers for libc-bin (2.36-9+deb12u10) ...
+#8 19.30 Processing triggers for ca-certificates (20230311+deb12u1) ...
+#8 19.30 Updating certificates in /etc/ssl/certs...
+#8 19.63 0 added, 0 removed; done.
+#8 19.63 Running hooks in /etc/ca-certificates/update.d...
+#8 19.63 done.
+#8 19.64 Processing triggers for libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-1+deb12u2) ...
+#8 DONE 20.3s
 
 #9 [4/8] COPY package*.json ./
-#9 CACHED
+#9 DONE 0.0s
 
 #10 [5/8] RUN npm install --production
-#10 CACHED
+#10 0.194 npm warn config production Use `--omit=dev` instead.
+#10 3.902 
+#10 3.902 added 83 packages, and audited 84 packages in 4s
+#10 3.902 
+#10 3.902 14 packages are looking for funding
+#10 3.902   run `npm fund` for details
+#10 3.904 
+#10 3.904 found 0 vulnerabilities
+#10 3.905 npm notice
+#10 3.905 npm notice New major version of npm available! 10.8.2 -> 11.6.4
+#10 3.905 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.4
+#10 3.905 npm notice To update run: npm install -g npm@11.6.4
+#10 3.905 npm notice
+#10 DONE 4.0s
 
-#11 [7/8] COPY unified-server.js black-browser.js models.json ./
-#11 ERROR: failed to calculate checksum of ref 25309008-d3b6-4795-9b53-5704e2dd5a06::p5sbk6y8rozzj9isalnzsrunl: "/unified-server.js": not found
-
-#12 [1/8] FROM docker.io/library/node:18-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e
-#12 resolve docker.io/library/node:18-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e done
-#12 sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e 6.49kB / 6.49kB done
-#12 sha256:fc3faf127a182135fd956e68d570b1932a758f8008866d8dd6e131cf89de9605 1.93kB / 1.93kB done
-#12 sha256:101e0128c8ea90af6e5eba2abbae8486503c6383c35cb30e2c60842a5a288479 6.54kB / 6.54kB done
-#12 CANCELED
+#11 [6/8] RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox
+#11 0.131 curl: no URL specified!
+#11 0.131 curl: try 'curl --help' or 'curl --manual' for more information
+#11 ERROR: process "/bin/sh -c curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox" did not complete successfully: exit code: 2
 ------
- > [7/8] COPY unified-server.js black-browser.js models.json ./:
+ > [6/8] RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox:
+0.131 curl: no URL specified!
+0.131 curl: try 'curl --help' or 'curl --manual' for more information
 ------
-Dockerfile:29
+Dockerfile:22
 --------------------
-  27 |     # 4. 【核心优化】现在，才拷贝你经常变动的代码文件。
-  28 |     # 这一步放在后面，确保你修改代码时，前面所有重量级的层都能利用缓存。
-  29 | >>> COPY unified-server.js black-browser.js models.json ./
-  30 |     
-  31 |     # 5. [保持不变] 创建目录并设置权限。
+  21 |     ARG CAMOUFOX_URL
+  22 | >>> RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz && \
+  23 | >>>     tar -xzf camoufox-linux.tar.gz && \
+  24 | >>>     rm camoufox-linux.tar.gz && \
+  25 | >>>     chmod +x /app/camoufox-linux/camoufox
+  26 |     
 --------------------
-ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 25309008-d3b6-4795-9b53-5704e2dd5a06::p5sbk6y8rozzj9isalnzsrunl: "/unified-server.js": not found
+ERROR: failed to build: failed to solve: process "/bin/sh -c curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox" did not complete successfully: exit code: 2
 ```
 
