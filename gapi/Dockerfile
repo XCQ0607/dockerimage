@@ -1,5 +1,8 @@
 # Dockerfile (进一步优化版)
 FROM node:18-slim
+
+LABEL org.opencontainers.image.source="https://github.com/XCQ0607/dockerimage"
+
 WORKDIR /app
 
 # 1. [保持不变] 安装最稳定、最不常变化的系统依赖。
@@ -45,3 +48,4 @@ ENV CAMOUFOX_EXECUTABLE_PATH=/app/camoufox/camoufox
 
 # 定义容器启动命令
 CMD ["node", "unified-server.js"]
+
