@@ -485,6 +485,7 @@ class ProxySystem extends EventTarget {
 
   _transmitChunk(chunk, operationId) {
     if (!chunk) return;
+    Logger.output(`[DEBUG] Chunk data (first 200 chars): ${chunk.substring(0, 200)}`);
     this.connectionManager.transmit({
       request_id: operationId,
       event_type: "chunk",
