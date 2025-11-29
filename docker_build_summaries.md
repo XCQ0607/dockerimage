@@ -151,7 +151,7 @@
 - 目录: gapi/
 - 完整镜像名: ghcr.io/xcq0607/gapi:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 31s
+- 构建耗时: 46s
 
 ### 使用方法
 
@@ -176,105 +176,105 @@ docker pull ghcr.io/xcq0607/gapi:latest
 ### 构建日志
 
 ```
-#8 16.62 Setting up libx11-xcb1:amd64 (2:1.8.4-2+deb12u2) ...
-#8 16.63 Setting up fontconfig (2.14.1-4) ...
-#8 16.63 Regenerating fonts cache... done.
-#8 19.07 Setting up libdrm-nouveau2:amd64 (2.4.114-1+b1) ...
-#8 19.07 Setting up libxdamage1:amd64 (1:1.1.6-1) ...
-#8 19.07 Setting up libxpm4:amd64 (1:3.5.12-1.1+deb12u1) ...
-#8 19.08 Setting up libxrender1:amd64 (1:0.9.10-1.1) ...
-#8 19.08 Setting up libgbm1:amd64 (22.3.6-1+deb12u1) ...
-#8 19.08 Setting up libdrm-radeon1:amd64 (2.4.114-1+b1) ...
-#8 19.08 Setting up libpango-1.0-0:amd64 (1.50.12+ds-1) ...
-#8 19.09 Setting up libdrm-intel1:amd64 (2.4.114-1+b1) ...
-#8 19.09 Setting up libgl1-mesa-dri:amd64 (22.3.6-1+deb12u1) ...
-#8 19.09 Setting up libxext6:amd64 (2:1.3.4-1+b1) ...
-#8 19.10 Setting up xfonts-utils (1:7.7+6) ...
-#8 19.10 Setting up libcairo2:amd64 (1.16.0-7) ...
-#8 19.10 Setting up libxxf86vm1:amd64 (1:1.1.4-1+b2) ...
-#8 19.11 Setting up dbus-user-session (1.14.10-1~deb12u1) ...
-#8 19.11 Setting up xfonts-base (1:1.0.5+nmu1) ...
-#8 19.15 Setting up adwaita-icon-theme (43-1) ...
-#8 19.19 update-alternatives: using /usr/share/icons/Adwaita/cursor.theme to provide /usr/share/icons/default/index.theme (x-cursor-theme) in auto mode
-#8 19.19 Setting up libxfixes3:amd64 (1:6.0.0-2) ...
-#8 19.20 Setting up libxinerama1:amd64 (2:1.1.4-3) ...
-#8 19.20 Setting up libxrandr2:amd64 (2:1.5.2-2+b1) ...
-#8 19.20 Setting up libxt6:amd64 (1:1.2.1-1.1) ...
-#8 19.20 Setting up libcups2:amd64 (2.4.2-3+deb12u9) ...
-#8 19.21 Setting up xauth (1:1.1.2-1) ...
-#8 19.21 Setting up libgdk-pixbuf2.0-bin (2.42.10+dfsg-1+deb12u2) ...
-#8 19.21 Setting up libcairo-gobject2:amd64 (1.16.0-7) ...
-#8 19.21 Setting up libxss1:amd64 (1:1.2.3-1) ...
-#8 19.21 Setting up libpangoft2-1.0-0:amd64 (1.50.12+ds-1) ...
-#8 19.22 Setting up libpangocairo-1.0-0:amd64 (1.50.12+ds-1) ...
-#8 19.22 Setting up libxmu6:amd64 (2:1.1.3-3) ...
-#8 19.22 Setting up libglx-mesa0:amd64 (22.3.6-1+deb12u1) ...
-#8 19.23 Setting up libxi6:amd64 (2:1.8-1+b1) ...
-#8 19.23 Setting up libglx0:amd64 (1.6.0-1) ...
-#8 19.23 Setting up libxtst6:amd64 (2:1.2.3-1.1) ...
-#8 19.23 Setting up libxcursor1:amd64 (1:1.2.1-1) ...
-#8 19.24 Setting up dconf-service (0.40.0-4) ...
-#8 19.24 Setting up libxaw7:amd64 (2:1.0.14-1) ...
-#8 19.24 Setting up libatspi2.0-0:amd64 (2.46.0-5) ...
-#8 19.24 Setting up librsvg2-2:amd64 (2.54.7+dfsg-1~deb12u1) ...
-#8 19.24 Setting up libatk-bridge2.0-0:amd64 (2.46.0-5) ...
-#8 19.25 Setting up libgl1:amd64 (1.6.0-1) ...
-#8 19.25 Setting up librsvg2-common:amd64 (2.54.7+dfsg-1~deb12u1) ...
-#8 19.25 Setting up dconf-gsettings-backend:amd64 (0.40.0-4) ...
-#8 19.26 Setting up x11-xkb-utils (7.7+7) ...
-#8 19.26 Setting up xserver-common (2:21.1.7-3+deb12u11) ...
-#8 19.26 Setting up libgtk-3-common (3.24.38-2~deb12u3) ...
-#8 19.26 Setting up gsettings-desktop-schemas (43.0-1) ...
-#8 19.26 Setting up libgtk-3-0:amd64 (3.24.38-2~deb12u3) ...
-#8 19.28 Setting up xvfb (2:21.1.7-3+deb12u11) ...
-#8 19.28 Setting up libgtk-3-bin (3.24.38-2~deb12u3) ...
-#8 19.28 Setting up at-spi2-core (2.46.0-5) ...
-#8 19.29 Processing triggers for libc-bin (2.36-9+deb12u10) ...
-#8 19.30 Processing triggers for ca-certificates (20230311+deb12u1) ...
-#8 19.30 Updating certificates in /etc/ssl/certs...
-#8 19.63 0 added, 0 removed; done.
-#8 19.63 Running hooks in /etc/ca-certificates/update.d...
-#8 19.63 done.
-#8 19.64 Processing triggers for libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-1+deb12u2) ...
-#8 DONE 20.3s
-
-#9 [4/8] COPY package*.json ./
-#9 DONE 0.0s
-
-#10 [5/8] RUN npm install --production
-#10 0.194 npm warn config production Use `--omit=dev` instead.
-#10 3.902 
-#10 3.902 added 83 packages, and audited 84 packages in 4s
-#10 3.902 
-#10 3.902 14 packages are looking for funding
-#10 3.902   run `npm fund` for details
-#10 3.904 
-#10 3.904 found 0 vulnerabilities
-#10 3.905 npm notice
-#10 3.905 npm notice New major version of npm available! 10.8.2 -> 11.6.4
-#10 3.905 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.4
-#10 3.905 npm notice To update run: npm install -g npm@11.6.4
-#10 3.905 npm notice
-#10 DONE 4.0s
-
-#11 [6/8] RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox
-#11 0.131 curl: no URL specified!
-#11 0.131 curl: try 'curl --help' or 'curl --manual' for more information
-#11 ERROR: process "/bin/sh -c curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox" did not complete successfully: exit code: 2
+#11 10.76   inflating: fonts/windows/palab.ttf  
+#11 10.77   inflating: fonts/windows/palabi.ttf  
+#11 10.77   inflating: fonts/windows/palai.ttf  
+#11 10.77   inflating: fonts/windows/phagspa.ttf  
+#11 10.77   inflating: fonts/windows/phagspab.ttf  
+#11 10.77   inflating: fonts/windows/segmdl2.ttf  
+#11 10.78   inflating: fonts/windows/segoepr.ttf  
+#11 10.78   inflating: fonts/windows/segoeprb.ttf  
+#11 10.78   inflating: fonts/windows/segoesc.ttf  
+#11 10.79   inflating: fonts/windows/segoescb.ttf  
+#11 10.79   inflating: fonts/windows/segoeui.ttf  
+#11 10.80   inflating: fonts/windows/segoeuib.ttf  
+#11 10.81   inflating: fonts/windows/segoeuii.ttf  
+#11 10.82   inflating: fonts/windows/segoeuil.ttf  
+#11 10.82   inflating: fonts/windows/segoeuisl.ttf  
+#11 10.83   inflating: fonts/windows/segoeuiz.ttf  
+#11 10.84   inflating: fonts/windows/seguibl.ttf  
+#11 10.84   inflating: fonts/windows/seguibli.ttf  
+#11 10.84   inflating: fonts/windows/seguiemj.ttf  
+#11 10.86   inflating: fonts/windows/seguihis.ttf  
+#11 10.88   inflating: fonts/windows/seguili.ttf  
+#11 10.88   inflating: fonts/windows/seguisb.ttf  
+#11 10.89   inflating: fonts/windows/seguisbi.ttf  
+#11 10.90   inflating: fonts/windows/seguisli.ttf  
+#11 10.90   inflating: fonts/windows/seguisym.ttf  
+#11 10.92   inflating: fonts/windows/simsun.ttc  
+#11 11.07   inflating: fonts/windows/simsunb.ttf  
+#11 11.21   inflating: fonts/windows/sylfaen.ttf  
+#11 11.21   inflating: fonts/windows/symbol.ttf  
+#11 11.21   inflating: fonts/windows/tahoma.ttf  
+#11 11.22   inflating: fonts/windows/tahomabd.ttf  
+#11 11.23   inflating: fonts/windows/taile.ttf  
+#11 11.23   inflating: fonts/windows/taileb.ttf  
+#11 11.23   inflating: fonts/windows/times.ttf  
+#11 11.24   inflating: fonts/windows/timesbd.ttf  
+#11 11.25   inflating: fonts/windows/timesbi.ttf  
+#11 11.26   inflating: fonts/windows/timesi.ttf  
+#11 11.27   inflating: fonts/windows/trebuc.ttf  
+#11 11.27   inflating: fonts/windows/trebucbd.ttf  
+#11 11.28   inflating: fonts/windows/trebucbi.ttf  
+#11 11.28   inflating: fonts/windows/trebucit.ttf  
+#11 11.28   inflating: fonts/windows/verdana.ttf  
+#11 11.28   inflating: fonts/windows/verdanab.ttf  
+#11 11.29   inflating: fonts/windows/verdanai.ttf  
+#11 11.29   inflating: fonts/windows/verdanaz.ttf  
+#11 11.29   inflating: fonts/windows/webdings.ttf  
+#11 11.29   inflating: fonts/windows/wingding.ttf  
+#11 11.29    creating: gmp-clearkey/
+#11 11.29    creating: gmp-clearkey/0.1/
+#11 11.29   inflating: gmp-clearkey/0.1/libclearkey.so  
+#11 11.29   inflating: gmp-clearkey/0.1/manifest.json  
+#11 11.29   inflating: libfreeblpriv3.so       
+#11 11.30   inflating: libgkcodecs.so          
+#11 11.37   inflating: libipcclientcerts.so    
+#11 11.38   inflating: liblgpllibs.so          
+#11 11.38   inflating: libmozavcodec.so        
+#11 11.41   inflating: libmozavutil.so         
+#11 11.42   inflating: libmozgtk.so            
+#11 11.42   inflating: libmozsandbox.so        
+#11 11.42   inflating: libmozsqlite3.so        
+#11 11.43   inflating: libmozwayland.so        
+#11 11.43   inflating: libnspr4.so             
+#11 11.43   inflating: libnss3.so              
+#11 11.44   inflating: libnssckbi.so           
+#11 11.44   inflating: libnssutil3.so          
+#11 11.45   inflating: libplc4.so              
+#11 11.45   inflating: libplds4.so             
+#11 11.45   inflating: libsmime3.so            
+#11 11.45   inflating: libsoftokn3.so          
+#11 11.45   inflating: libssl3.so              
+#11 11.45   inflating: libxul.so               
+#11 12.68   inflating: omni.ja                 
+#11 12.92   inflating: platform.ini            
+#11 12.92   inflating: precomplete             
+#11 12.92   inflating: properties.json         
+#11 12.92  extracting: removed-files           
+#11 ERROR: process "/bin/sh -c curl -sSL \"https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip\" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
 ------
- > [6/8] RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox:
-0.131 curl: no URL specified!
-0.131 curl: try 'curl --help' or 'curl --manual' for more information
+ > [6/8] RUN curl -sSL "https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox:
+10.88   inflating: fonts/windows/seguisb.ttf  
+10.89   inflating: fonts/windows/seguisbi.ttf  
+10.90   inflating: fonts/windows/seguisli.ttf  
+10.90   inflating: fonts/windows/seguisym.ttf  
+10.92   inflating: fonts/windows/simsun.ttc  
+11.07   inflating: fonts/windows/simsunb.ttf  
+
+12.92   inflating: precomplete             
+12.92   inflating: properties.json         
+12.92  extracting: removed-files           
 ------
 Dockerfile:22
 --------------------
-  21 |     ARG CAMOUFOX_URL
-  22 | >>> RUN curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz && \
-  23 | >>>     tar -xzf camoufox-linux.tar.gz && \
-  24 | >>>     rm camoufox-linux.tar.gz && \
-  25 | >>>     chmod +x /app/camoufox-linux/camoufox
+  21 |     ARG CAMOUFOX_VERSION=135.0.1-beta.24
+  22 | >>> RUN curl -sSL "https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip" -o camoufox.zip && \
+  23 | >>>     unzip camoufox.zip && \
+  24 | >>>     rm camoufox.zip && \
+  25 | >>>     chmod +x /app/camoufox/camoufox
   26 |     
 --------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c curl -sSL ${CAMOUFOX_URL} -o camoufox-linux.tar.gz &&     tar -xzf camoufox-linux.tar.gz &&     rm camoufox-linux.tar.gz &&     chmod +x /app/camoufox-linux/camoufox" did not complete successfully: exit code: 2
+ERROR: failed to build: failed to solve: process "/bin/sh -c curl -sSL \"https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip\" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
 ```
 
