@@ -151,7 +151,7 @@
 - 目录: gapi/
 - 完整镜像名: ghcr.io/xcq0607/gapi:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 56s
+- 构建耗时: 49s
 
 ### 使用方法
 
@@ -176,105 +176,105 @@ docker pull ghcr.io/xcq0607/gapi:latest
 ### 构建日志
 
 ```
-#11 18.15   inflating: fonts/windows/palab.ttf  
-#11 18.16   inflating: fonts/windows/palabi.ttf  
-#11 18.16   inflating: fonts/windows/palai.ttf  
-#11 18.17   inflating: fonts/windows/phagspa.ttf  
-#11 18.17   inflating: fonts/windows/phagspab.ttf  
-#11 18.17   inflating: fonts/windows/segmdl2.ttf  
-#11 18.17   inflating: fonts/windows/segoepr.ttf  
-#11 18.17   inflating: fonts/windows/segoeprb.ttf  
-#11 18.17   inflating: fonts/windows/segoesc.ttf  
-#11 18.18   inflating: fonts/windows/segoescb.ttf  
-#11 18.18   inflating: fonts/windows/segoeui.ttf  
-#11 18.19   inflating: fonts/windows/segoeuib.ttf  
-#11 18.20   inflating: fonts/windows/segoeuii.ttf  
-#11 18.21   inflating: fonts/windows/segoeuil.ttf  
-#11 18.22   inflating: fonts/windows/segoeuisl.ttf  
-#11 18.22   inflating: fonts/windows/segoeuiz.ttf  
-#11 18.23   inflating: fonts/windows/seguibl.ttf  
-#11 18.23   inflating: fonts/windows/seguibli.ttf  
-#11 18.24   inflating: fonts/windows/seguiemj.ttf  
-#11 18.26   inflating: fonts/windows/seguihis.ttf  
-#11 18.27   inflating: fonts/windows/seguili.ttf  
-#11 18.27   inflating: fonts/windows/seguisb.ttf  
-#11 18.28   inflating: fonts/windows/seguisbi.ttf  
-#11 18.29   inflating: fonts/windows/seguisli.ttf  
-#11 18.29   inflating: fonts/windows/seguisym.ttf  
-#11 18.31   inflating: fonts/windows/simsun.ttc  
-#11 18.46   inflating: fonts/windows/simsunb.ttf  
-#11 18.60   inflating: fonts/windows/sylfaen.ttf  
-#11 18.60   inflating: fonts/windows/symbol.ttf  
-#11 18.60   inflating: fonts/windows/tahoma.ttf  
-#11 18.61   inflating: fonts/windows/tahomabd.ttf  
-#11 18.62   inflating: fonts/windows/taile.ttf  
-#11 18.62   inflating: fonts/windows/taileb.ttf  
-#11 18.62   inflating: fonts/windows/times.ttf  
-#11 18.63   inflating: fonts/windows/timesbd.ttf  
-#11 18.64   inflating: fonts/windows/timesbi.ttf  
-#11 18.65   inflating: fonts/windows/timesi.ttf  
-#11 18.66   inflating: fonts/windows/trebuc.ttf  
-#11 18.66   inflating: fonts/windows/trebucbd.ttf  
-#11 18.67   inflating: fonts/windows/trebucbi.ttf  
-#11 18.67   inflating: fonts/windows/trebucit.ttf  
-#11 18.67   inflating: fonts/windows/verdana.ttf  
-#11 18.67   inflating: fonts/windows/verdanab.ttf  
-#11 18.68   inflating: fonts/windows/verdanai.ttf  
-#11 18.68   inflating: fonts/windows/verdanaz.ttf  
-#11 18.68   inflating: fonts/windows/webdings.ttf  
-#11 18.68   inflating: fonts/windows/wingding.ttf  
-#11 18.68    creating: gmp-clearkey/
-#11 18.68    creating: gmp-clearkey/0.1/
-#11 18.68   inflating: gmp-clearkey/0.1/libclearkey.so  
-#11 18.68   inflating: gmp-clearkey/0.1/manifest.json  
-#11 18.68   inflating: libfreeblpriv3.so       
-#11 18.69   inflating: libgkcodecs.so          
-#11 18.76   inflating: libipcclientcerts.so    
-#11 18.77   inflating: liblgpllibs.so          
-#11 18.77   inflating: libmozavcodec.so        
-#11 18.80   inflating: libmozavutil.so         
-#11 18.81   inflating: libmozgtk.so            
-#11 18.81   inflating: libmozsandbox.so        
-#11 18.81   inflating: libmozsqlite3.so        
-#11 18.82   inflating: libmozwayland.so        
-#11 18.82   inflating: libnspr4.so             
-#11 18.82   inflating: libnss3.so              
-#11 18.83   inflating: libnssckbi.so           
-#11 18.83   inflating: libnssutil3.so          
-#11 18.84   inflating: libplc4.so              
-#11 18.84   inflating: libplds4.so             
-#11 18.84   inflating: libsmime3.so            
-#11 18.84   inflating: libsoftokn3.so          
-#11 18.84   inflating: libssl3.so              
-#11 18.84   inflating: libxul.so               
-#11 20.07   inflating: omni.ja                 
-#11 20.31   inflating: platform.ini            
-#11 20.31   inflating: precomplete             
-#11 20.31   inflating: properties.json         
-#11 20.31  extracting: removed-files           
-#11 ERROR: process "/bin/sh -c curl -sSL \"https://ghfast.top/https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip\" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
+#11 18.80 693600K .......... .......... .......... .......... .......... 99%  184M 0s
+#11 18.80 693650K .......... .......... .......... .......... .......... 99%  222M 0s
+#11 18.80 693700K .......... .......... .......... .......... .......... 99%  166M 0s
+#11 18.80 693750K .......... .......... .......... .......... .......... 99%  181M 0s
+#11 18.80 693800K .......... .......... .......... .......... .......... 99%  213M 0s
+#11 18.80 693850K .......... .......... .......... .......... .......... 99%  241M 0s
+#11 18.80 693900K .......... .......... .......... .......... .......... 99%  239M 0s
+#11 18.80 693950K .......... .......... .......... .......... .......... 99%  189M 0s
+#11 18.80 694000K .......... .......... .......... .......... .......... 99%  235M 0s
+#11 18.80 694050K .......... .......... .......... .......... .......... 99%  233M 0s
+#11 18.80 694100K .......... .......... .......... .......... .......... 99%  243M 0s
+#11 18.80 694150K .......... .......... .......... .......... .......... 99%  182M 0s
+#11 18.80 694200K .......... .......... .......... .......... .......... 99%  227M 0s
+#11 18.80 694250K .......... .......... .......... .......... .......... 99%  246M 0s
+#11 18.80 694300K .......... .......... .......... .......... .......... 99%  232M 0s
+#11 18.80 694350K .......... .......... .......... .......... .......... 99%  196M 0s
+#11 18.80 694400K .......... .......... .......... .......... .......... 99%  215M 0s
+#11 18.80 694450K .......... .......... .......... .......... .......... 99%  237M 0s
+#11 18.80 694500K .......... .......... .......... .......... .......... 99%  232M 0s
+#11 18.80 694550K .......... .......... .......... .......... .......... 99%  208M 0s
+#11 18.80 694600K .......... .......... .......... .......... .......... 99%  226M 0s
+#11 18.80 694650K .......... .......... .......... .......... .......... 99%  233M 0s
+#11 18.80 694700K .......... .......... .......... .......... .......... 99%  245M 0s
+#11 18.80 694750K .......... .......... .......... .......... .......... 99%  196M 0s
+#11 18.80 694800K .......... .......... .......... .......... .......... 99%  228M 0s
+#11 18.80 694850K .......... .......... .......... .......... .......... 99%  227M 0s
+#11 18.80 694900K .......... .......... .......... .......... .......... 99%  238M 0s
+#11 18.80 694950K .......... .......... .......... .......... .......... 99%  219M 0s
+#11 18.80 695000K .......... .......... .......... .......... .......... 99%  241M 0s
+#11 18.80 695050K .......... .......... .......... .......... .......... 99%  202M 0s
+#11 18.80 695100K .......... .......... .......... .......... .......... 99%  243M 0s
+#11 18.80 695150K .......... .......... .......... .......... .......... 99%  197M 0s
+#11 18.80 695200K .......... .......... .......... .......... .......... 99%  243M 0s
+#11 18.80 695250K .......... .......... .......... .......... .......... 99%  231M 0s
+#11 18.80 695300K .......... .......... .......... .......... .......... 99%  217M 0s
+#11 18.80 695350K .......... .......... .......... .......... .......... 99%  221M 0s
+#11 18.80 695400K .......... .......... .......... .......... .......... 99%  242M 0s
+#11 18.80 695450K .......... .......... .......... .......... .......... 99%  239M 0s
+#11 18.80 695500K .......... .......... .......... .......... .......... 99%  246M 0s
+#11 18.80 695550K .......... .......... .......... .......... .......... 99%  192M 0s
+#11 18.80 695600K .......... .......... .......... .......... .......... 99%  249M 0s
+#11 18.80 695650K .......... .......... .......... .......... .......... 99%  242M 0s
+#11 18.80 695700K .......... .......... .......... .......... .......... 99%  248M 0s
+#11 18.80 695750K .......... .......... .......... .......... .......... 99%  197M 0s
+#11 18.80 695800K .......... .......... .......... .......... .......... 99%  243M 0s
+#11 18.80 695850K .......... .......... .......... .......... .......... 99%  240M 0s
+#11 18.80 695900K .......... .......... .......... .......... .......... 99%  204M 0s
+#11 18.80 695950K .......... .......... .......... .......... .......... 99%  241M 0s
+#11 18.80 696000K .......                                               100%  162M=4.0s
+#11 18.80 
+#11 18.80 2025-11-29 16:28:37 (170 MB/s) - 'camoufox.zip' saved [712711368/712711368]
+#11 18.80 
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U4e38#U30b3#U3099 ProN W4.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ丸ゴ ProN W4.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U660e#U671d ProN.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ明朝 ProN.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W0.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W0.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W1.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W1.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W2.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W2.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W3.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W3.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W4.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W4.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W5.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W5.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W6.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W6.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W7.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W7.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W8.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W8.ttc),
+#11 18.80          continuing with "central" filename version
+#11 18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W9.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W9.ttc),
+#11 18.80          continuing with "central" filename version
+#11 ERROR: process "/bin/sh -c wget -O camoufox.zip \"https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip\" &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
 ------
- > [6/8] RUN curl -sSL "https://ghfast.top/https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox:
-18.27   inflating: fonts/windows/seguisb.ttf  
-18.28   inflating: fonts/windows/seguisbi.ttf  
-18.29   inflating: fonts/windows/seguisli.ttf  
-18.29   inflating: fonts/windows/seguisym.ttf  
-18.31   inflating: fonts/windows/simsun.ttc  
-
-20.31   inflating: platform.ini            
-20.31   inflating: precomplete             
-20.31   inflating: properties.json         
-20.31  extracting: removed-files           
+ > [6/8] RUN wget -O camoufox.zip "https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip" &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox:
+18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W5.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W5.ttc),
+18.80          continuing with "central" filename version
+18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W6.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W6.ttc),
+18.80          continuing with "central" filename version
+18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W7.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W7.ttc),
+18.80          continuing with "central" filename version
+18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W8.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W8.ttc),
+18.80          continuing with "central" filename version
+18.80 fonts/macos/#U30d2#U30e9#U30ad#U3099#U30ce#U89d2#U30b3#U3099#U30b7#U30c3#U30af W9.ttc:  mismatching "local" filename (fonts/macos/ヒラギノ角ゴシック W9.ttc),
+18.80          continuing with "central" filename version
 ------
 Dockerfile:22
 --------------------
   21 |     ARG CAMOUFOX_VERSION=135.0.1-beta.24
-  22 | >>> RUN curl -sSL "https://ghfast.top/https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip" -o camoufox.zip && \
+  22 | >>> RUN wget -O camoufox.zip "https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip" && \
   23 | >>>     unzip camoufox.zip && \
   24 | >>>     rm camoufox.zip && \
   25 | >>>     chmod +x /app/camoufox/camoufox
   26 |     
 --------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c curl -sSL \"https://ghfast.top/https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip\" -o camoufox.zip &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
+ERROR: failed to build: failed to solve: process "/bin/sh -c wget -O camoufox.zip \"https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip\" &&     unzip camoufox.zip &&     rm camoufox.zip &&     chmod +x /app/camoufox/camoufox" did not complete successfully: exit code: 1
 ```
 
