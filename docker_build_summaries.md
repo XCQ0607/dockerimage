@@ -4,7 +4,15 @@
 ```
 .
 ├── Gapi
-│   └── Dockerfile
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── black-browser.js
+│   ├── build.flag
+│   ├── models.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── save-auth.js
+│   └── unified-server.js
 ├── base
 │   ├── Dockerfile
 │   ├── app
@@ -134,7 +142,7 @@
     ├── entrypoint.sh
     └── fiora
 
-57 directories, 74 files
+57 directories, 82 files
 ```
 
 ## 镜像: Gapi
@@ -143,7 +151,7 @@
 - 目录: Gapi/
 - 完整镜像名: ghcr.io/xcq0607/Gapi:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 0s
+- 构建耗时: 1s
 
 ### 使用方法
 
