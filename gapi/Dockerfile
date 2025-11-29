@@ -19,7 +19,7 @@ RUN npm install --production
 # 3. 【核心优化】将浏览器下载和解压作为独立的一层。
 # 只要CAMOUFOX_VERSION不变，这一层就会被缓存。这层体积最大，缓存命中至关重要。
 ARG CAMOUFOX_VERSION=135.0.1-beta.24
-RUN curl -sSL "https://mirror.ghproxy.com/https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip" -o camoufox.zip && \
+RUN curl -sSL "https://ghfast.top/https://github.com/daijro/camoufox/releases/download/v135.0.1-beta.24/camoufox-135.0.1-beta.24-lin.x86_64.zip" -o camoufox.zip && \
     unzip camoufox.zip && \
     rm camoufox.zip && \
     chmod +x /app/camoufox/camoufox
@@ -45,3 +45,4 @@ ENV CAMOUFOX_EXECUTABLE_PATH=/app/camoufox/camoufox
 
 # 定义容器启动命令
 CMD ["node", "unified-server.js"]
+
