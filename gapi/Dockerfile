@@ -4,7 +4,7 @@ WORKDIR /app
 
 # 1. [保持不变] 安装最稳定、最不常变化的系统依赖。
 RUN apt-get update && apt-get install -y \
-    curl wget unzip \
+    curl wget unzip p7zip-full \
     libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcups2 \
     libdbus-1-3 libdrm2 libgbm1 libgtk-3-0 libnspr4 libnss3 libx11-6 \
     libx11-xcb1 libxcb1 libxcomposite1 libxdamage1 libxext6 libxfixes3 \
@@ -20,7 +20,7 @@ RUN npm install --production
 # 只要CAMOUFOX_VERSION不变，这一层就会被缓存。这层体积最大，缓存命中至关重要。
 ARG CAMOUFOX_VERSION=135.0.1-beta.24
 RUN wget -O camoufox.zip "https://github.com/daijro/camoufox/releases/download/v${CAMOUFOX_VERSION}/camoufox-${CAMOUFOX_VERSION}-lin.x86_64.zip" && \
-    unzip camoufox.zip && \
+    7z x camoufox.zip && \
     rm camoufox.zip && \
     chmod +x /app/camoufox/camoufox
 
