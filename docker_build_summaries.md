@@ -163,136 +163,136 @@
 60 directories, 97 files
 ```
 
-## 镜像: gwebdav
+## 镜像: gapi
 
 ### 构建信息
-- 目录: gwebdav/
-- 完整镜像名: ghcr.io/xcq0607/gwebdav:latest
+- 目录: gapi/
+- 完整镜像名: ghcr.io/xcq0607/gapi:latest
 - 构建状态: ✅ 成功
-- 构建耗时: 48s
+- 构建耗时: 180s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/gwebdav:latest
+FROM ghcr.io/xcq0607/gapi:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-gwebdav ghcr.io/xcq0607/gwebdav:latest
+docker run -d --name my-gapi ghcr.io/xcq0607/gapi:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/gwebdav:latest
+docker pull ghcr.io/xcq0607/gapi:latest
 ```
 
 ### 构建日志
 
 ```
-#9 3.626 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4935 files and directories currently installed.)
-#9 3.631 Preparing to unpack .../openssl_3.5.4-1~deb13u1_amd64.deb ...
-#9 3.632 Unpacking openssl (3.5.4-1~deb13u1) ...
-#9 3.697 Selecting previously unselected package ca-certificates.
-#9 3.699 Preparing to unpack .../ca-certificates_20250419_all.deb ...
-#9 3.700 Unpacking ca-certificates (20250419) ...
-#9 3.746 Setting up openssl (3.5.4-1~deb13u1) ...
-#9 3.751 Setting up ca-certificates (20250419) ...
-#9 3.844 debconf: unable to initialize frontend: Dialog
-#9 3.844 debconf: (TERM is not set, so the dialog frontend is not usable.)
-#9 3.844 debconf: falling back to frontend: Readline
-#9 3.844 debconf: unable to initialize frontend: Readline
-#9 3.845 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
-#9 3.845 debconf: falling back to frontend: Teletype
-#9 3.850 debconf: unable to initialize frontend: Teletype
-#9 3.850 debconf: (This frontend requires a controlling tty.)
-#9 3.850 debconf: falling back to frontend: Noninteractive
-#9 4.350 Updating certificates in /etc/ssl/certs...
-#9 5.008 150 added, 0 removed; done.
-#9 5.027 Processing triggers for ca-certificates (20250419) ...
-#9 5.031 Updating certificates in /etc/ssl/certs...
-#9 5.595 0 added, 0 removed; done.
-#9 5.595 Running hooks in /etc/ca-certificates/update.d...
-#9 5.597 done.
-#9 DONE 5.7s
+#11 3.299 533900K .......... .......... .......... .......... .......... 76%  192M 1s
+#11 3.299 533950K .......... .......... .......... .......... .......... 76%  146M 1s
+#11 3.300 534000K .......... .......... .......... .......... .......... 76%  141M 1s
+#11 3.300 534050K .......... .......... .......... .......... .......... 76%  242M 1s
+#11 3.300 534100K .......... .......... .......... .......... .......... 76%  172M 1s
+#11 3.301 534150K .......... .......... .......... .......... .......... 76%  196M 1s
+#11 3.301 534200K .......... .......... .......... .......... .......... 76%  149M 1s
+#11 3.301 534250K .......... .......... .......... .......... .......... 76%  190M 1s
+#11 3.301 534300K .......... .......... .......... .......... .......... 76%  145M 1s
+#11 3.302 534350K .......... .......... .......... .......... .......... 76%  176M 1s
+#11 3.302 534400K .......... .......... .......... .......... .......... 76%  179M 1s
+#11 3.302 534450K .......... .......... .......... .......... .......... 76%  218M 1s
+#11 3.303 534500K .......... .......... .......... .......... .......... 76%  172M 1s
+#11 3.303 534550K .......... .......... .......... .......... .......... 76%  176M 1s
+#11 3.303 534600K .......... .......... .......... .......... .......... 76%  184M 1s
+#11 3.303 534650K .......... .......... .......... .......... .......... 76%  198M 1s
+#11 3.304 534700K .......... .......... .......... .......... .......... 76%  151M 1s
+#11 3.304 534750K .......... .......... .......... .......... .......... 76%  189M 1s
+#11 3.304 534800K .......... .......... .......... .......... .......... 76%  165M 1s
+#11 3.304 534850K .......... .......... .......... .......... .......... 76%  165M 1s
+#11 3.305 534900K .......... .......... .......... .......... .......... 76%  138M 1s
+#11 3.305 534950K .......... .......... .......... .......... .......... 76%  138M 1s
+#11 3.305 535000K .......... .......... .......... .......... .......... 76%  194M 1s
+#11 3.306 535050K .......... .......... .......... .......... .......... 76%  142M 1s
+#11 3.306 535100K .......... .......... .......... .......... .......... 76%  166M 1s
+#11 3.306 535150K .......... .......... .......... .......... .......... 76%  167M 1s
+#11 3.307 535200K .......... .......... .......... .......... .......... 76%  135M 1s
+#11 3.307 535250K .......... .......... .......... .......... .......... 76%  183M 1s
+#11 3.307 535300K .......... .......... .......... .......... .......... 76% 99.5M 1s
+#11 3.308 535350K .......... .......... .......... .......... .......... 76%  165M 1s
+#11 3.309 535400K .......... .......... .......... .......... .......... 76%  116M 1s
+#11 3.309 535450K .......... .......... .......... .......... .......... 76%  273M 1s
+#11 3.309 535500K .......... .......... .......... .......... .......... 76%  256M 1s
+#11 3.309 535550K .......... .......... .......... .......... .......... 76% 82.7M 1s
+#11 3.309 535600K .......... .......... .......... .......... .......... 76% 86.1M 1s
+#11 3.311 535650K .......... .......... .......... .......... .......... 76%  259M 1s
+#11 3.311 535700K .......... .......... .......... .......... .......... 76%  249M 1s
+#11 3.311 535750K .......... .......... .......... .......... .......... 76%  275M 1s
+#11 3.311 535800K .......... .......... .......... .......... .......... 76%  217M 1s
+#11 3.311 535850K .......... .......... .......... .......... .......... 76% 70.9M 1s
+#11 3.312 535900K .......... .......... .......... .......... .......... 77%  108M 1s
+#11 3.312 535950K .......... .......... .......... .......... .......... 77%  221M 1s
+#11 3.312 536000K .......... .......... .......... .......... .......... 77%  123M 1s
+#11 3.314 536050K .......... .......... .......... .......... .......... 77%  154M 1s
+#11 3.314 536100K .......... .......... .......... .......... .......... 77%  223M 1s
+#11 3.314 536150K .......... .......... .......... .......... .......... 77%  245M 1s
+#11 3.314 536200K .......... .......... .......... .......... .......... 77%  272M 1s
+#11 3.314 536250K .......... .......... .......... .......... .......... 77%  245M 1s
+#11 3.314 536300K .......... .......... .......... .......... .......... 77%  187M 1s
+#11 3.314 536350K .......... .......... .......... .......... .......... 77% 58.0M 1s
+#11 3.315 536400K .......... .......... .......... .......... .......... 77%  209M 1s
+#11 3.315 536450K .......... .......... .......... .......... .......... 77%  250M 1s
+#11 3.315 536500K .......... .......... .......... .......... .......... 77%  111M 1s
+#11 3.317 536550K .......... .......... .......... .......... .......... 77%  220M 1s
+#11 3.317 536600K .......... .......... .......... .......... .......... 77%  243M 1s
+#11 3.317 536650K .......... .......... .......... .......... .......... 77%  259M 1s
+#11 3.317 536700K .......... .......... .......... .......... .......... 77%  280M 1s
+#11 3.317 536750K .......... .......... .......... .......... .......... 77%  230M 1s
+#11 3.317 536800K .......... .......... .......... .......... .......... 77%  280M 1s
+#11 3.317 536850K .......... .......... .......... .......... .......... 77% 78.5M 1s
+#11 3.317 536900K .......... .......... .......... .......... .......... 77% 90.8M 1s
+#11 3.320 536950K .......... .......... .......... .......... .......... 77%  309M 1s
+#11 3.320 537000K .......... .......... .......... .......... .......... 77%  198M 1s
+#11 3.320 537050K .......... .......... .......... .......... .......... 77%  283M 1s
+#11 3.320 537100K .......... .......... .......... .......... .......... 77%  273M 1s
+#11 3.320 537150K .......... .......... .......... .......... ......
+#11 3.320 [output clipped, log limit 200KiB/s reached]
+#11 4.016 
+#11 4.016 7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+#11 4.016 p7zip Version 16.02 (locale=C,Utf16=off,HugeFiles=on,64 bits,4 CPUs AMD EPYC 7763 64-Core Processor                 (A00F11),ASM,AES-NI)
+#11 4.016 
+#11 4.016 Scanning the drive for archives:
+#11 4.016 1 file, 712711368 bytes (680 MiB)
+#11 4.016 
+#11 4.016 Extracting archive: camoufox.zip
+#11 13.01 --
+#11 13.01 Path = camoufox.zip
+#11 13.01 Type = zip
+#11 13.01 Physical Size = 712711368
+#11 13.01 
+#11 13.01 Everything is Ok
+#11 13.01 
+#11 13.01 Folders: 19
+#11 13.01 Files: 698
+#11 13.01 Size:       1321895211
+#11 13.01 Compressed: 712711368
+#11 DONE 14.9s
 
-#10 [stage-1 3/6] WORKDIR /root/
-#10 DONE 0.0s
-
-#11 [stage-0 1/3] FROM docker.io/library/golang:latest@sha256:698183780de28062f4ef46f82a79ec0ae69d2d22f7b160cf69f71ea8d98bf25d
-#11 resolve docker.io/library/golang:latest@sha256:698183780de28062f4ef46f82a79ec0ae69d2d22f7b160cf69f71ea8d98bf25d done
-#11 sha256:406139dc5f8e5d79c709b8e637a0c1fc5907ed1521964b3ae419d4ecb002560e 2.32kB / 2.32kB done
-#11 sha256:53c88f1dfeb79b2f207f7f1a03a45e0dc5ed208b9f496de16b98f81189dc0392 49.29MB / 49.29MB 0.6s done
-#11 sha256:eae668646f447b181fe300ae6756351b6167aa2578be449b167ba79ed4926798 25.61MB / 25.61MB 0.4s done
-#11 sha256:698183780de28062f4ef46f82a79ec0ae69d2d22f7b160cf69f71ea8d98bf25d 9.69kB / 9.69kB done
-#11 sha256:8a14b4331ccfa06f64ae6f1ef82fea31a0af3a8792e62473e770745f87444120 3.04kB / 3.04kB done
-#11 sha256:ff2e6e687b6ce78177a4cac678dd533c8e72b97469f030783b6bb491f681fd4c 67.78MB / 67.78MB 1.9s
-#11 extracting sha256:53c88f1dfeb79b2f207f7f1a03a45e0dc5ed208b9f496de16b98f81189dc0392 1.9s done
-#11 sha256:640989307fdd100137c7737c7f5e3a500b556c52e0270eb54eee3cd2862a1e73 102.11MB / 102.11MB 1.7s done
-#11 sha256:7c9d4a4eea0de466b378fec1876ea74acd9465fc6a1d15368a117eeacaa21b7d 58.72MB / 60.15MB 1.9s
-#11 sha256:65722e576e26f93f6cfbc2982f965aea739a47d43bea194a2dd0f4b344e01d82 126B / 126B 1.8s done
-#11 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 1.8s done
-#11 extracting sha256:eae668646f447b181fe300ae6756351b6167aa2578be449b167ba79ed4926798 0.7s done
-#11 extracting sha256:ff2e6e687b6ce78177a4cac678dd533c8e72b97469f030783b6bb491f681fd4c 2.5s done
-#11 extracting sha256:640989307fdd100137c7737c7f5e3a500b556c52e0270eb54eee3cd2862a1e73 0.8s
-#11 extracting sha256:640989307fdd100137c7737c7f5e3a500b556c52e0270eb54eee3cd2862a1e73 2.3s done
-#11 extracting sha256:7c9d4a4eea0de466b378fec1876ea74acd9465fc6a1d15368a117eeacaa21b7d
-#11 extracting sha256:7c9d4a4eea0de466b378fec1876ea74acd9465fc6a1d15368a117eeacaa21b7d 4.1s done
-#11 extracting sha256:65722e576e26f93f6cfbc2982f965aea739a47d43bea194a2dd0f4b344e01d82
-#11 extracting sha256:65722e576e26f93f6cfbc2982f965aea739a47d43bea194a2dd0f4b344e01d82 done
-#11 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
-#11 DONE 14.3s
-
-#12 [stage-0 2/3] COPY . /go/src/github.com/mikea/gdrive-webdav/
+#12 [7/8] COPY unified-server.js black-browser.js models.json ./
 #12 DONE 0.0s
 
-#13 [stage-0 3/3] RUN cd /go/src/github.com/mikea/gdrive-webdav/ && go install .
-#13 0.140 go: downloading github.com/sirupsen/logrus v1.9.3
-#13 0.140 go: downloading golang.org/x/net v0.46.0
-#13 0.168 go: downloading github.com/pmylund/go-cache v2.1.0+incompatible
-#13 0.196 go: downloading golang.org/x/oauth2 v0.33.0
-#13 0.198 go: downloading google.golang.org/api v0.254.0
-#13 0.344 go: downloading golang.org/x/sys v0.37.0
-#13 3.676 go: downloading cloud.google.com/go/auth v0.17.0
-#13 3.676 go: downloading github.com/googleapis/gax-go/v2 v2.15.0
-#13 3.694 go: downloading cloud.google.com/go/auth/oauth2adapt v0.2.8
-#13 3.747 go: downloading cloud.google.com/go/compute/metadata v0.9.0
-#13 3.761 go: downloading github.com/google/s2a-go v0.1.9
-#13 3.767 go: downloading google.golang.org/grpc v1.76.0
-#13 3.771 go: downloading github.com/google/uuid v1.6.0
-#13 3.791 go: downloading go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.62.0
-#13 3.839 go: downloading github.com/googleapis/enterprise-certificate-proxy v0.3.6
-#13 4.084 go: downloading google.golang.org/protobuf v1.36.10
-#13 4.085 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20251022142026-3a174f9686a8
-#13 4.099 go: downloading github.com/felixge/httpsnoop v1.0.4
-#13 4.108 go: downloading go.opentelemetry.io/otel v1.37.0
-#13 4.339 go: downloading go.opentelemetry.io/otel/metric v1.37.0
-#13 4.352 go: downloading go.opentelemetry.io/otel/trace v1.37.0
-#13 4.366 go: downloading github.com/go-logr/logr v1.4.3
-#13 4.367 go: downloading golang.org/x/text v0.30.0
-#13 4.393 go: downloading github.com/go-logr/stdr v1.2.2
-#13 4.402 go: downloading go.opentelemetry.io/auto/sdk v1.1.0
-#13 4.419 go: downloading golang.org/x/crypto v0.43.0
-#13 DONE 25.6s
+#13 [8/8] RUN mkdir -p ./auth && chown -R node:node /app
+#13 DONE 4.1s
 
-#14 [stage-1 4/6] COPY --from=0 /go/bin/gdrive-webdav .
-#14 DONE 0.0s
-
-#15 [stage-1 5/6] COPY entrypoint.sh .
-#15 DONE 0.0s
-
-#16 [stage-1 6/6] RUN chmod +x entrypoint.sh
-#16 DONE 0.1s
-
-#17 exporting to image
-#17 exporting layers
-#17 exporting layers 0.3s done
-#17 writing image sha256:ed222b811a2d7c737d436f870b33e4c44e1eae1ecf43d2bd3ceedc2433fbf490 done
-#17 naming to ghcr.io/xcq0607/gwebdav:latest done
-#17 DONE 0.3s
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 4.1s done
+#14 writing image sha256:4a676eb6ed152f91341c7074cde7a9ec7d9786dcdff3e5dbf64738b03de9f4e8 done
+#14 naming to ghcr.io/xcq0607/gapi:latest done
+#14 DONE 4.1s
 ```
 
