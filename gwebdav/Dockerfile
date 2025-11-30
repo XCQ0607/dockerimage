@@ -1,5 +1,8 @@
 # Build
 FROM golang:latest
+
+LABEL org.opencontainers.image.source="https://github.com/XCQ0607/gapi"
+
 COPY . /go/src/github.com/mikea/gdrive-webdav/
 RUN cd /go/src/github.com/mikea/gdrive-webdav/ && go install .
 
@@ -15,3 +18,4 @@ RUN chmod +x entrypoint.sh
 
 EXPOSE 8765
 ENTRYPOINT ["./entrypoint.sh"]
+
