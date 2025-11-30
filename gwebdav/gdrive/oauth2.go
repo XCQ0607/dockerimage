@@ -31,14 +31,33 @@ func newHTTPClient(ctx context.Context, clientID string, clientSecret string) *h
 
 	tok, err := getTokenFromFile()
 	if err != nil {
-		tok = getTokenFromWeb(ctx, config)
-		err = saveToken(tok)
+		tok, err = getTokenFromEnvJSON()
 		if err != nil {
-			log.Errorf("An error occurred saving token file: %v\n", err)
+			tok = getTokenFromWeb(ctx, config)
+			err = saveToken(tok)
+			if err != nil {
+				log.Errorf("An error occurred saving token file: %v\n", err)
+			}
+			// Print token to stdout for stateless deployments
+			val, _ := json.Marshal(tok)
+			fmt.Printf("Token JSON (save this to GOOGLE_TOKEN_JSON env var for stateless deployment):\n%s\n", string(val))
 		}
 	}
 
 	return config.Client(ctx, tok)
+}
+
+func getTokenFromEnvJSON() (*oauth2.Token, error) {
+	jsonStr := os.Getenv("GOOGLE_TOKEN_JSON")
+	if jsonStr == "" {
+		return nil, fmt.Errorf("GOOGLE_TOKEN_JSON not set")
+	}
+	t := &oauth2.Token{}
+	err := json.Unmarshal([]byte(jsonStr), t)
+	if err != nil {
+		return nil, err
+	}
+	return t, nil
 }
 
 func tokenFile() (string, error) {
