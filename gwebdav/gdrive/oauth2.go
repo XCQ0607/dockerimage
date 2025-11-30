@@ -83,8 +83,12 @@ func getTokenFromWeb(ctx context.Context, config *oauth2.Config) *oauth2.Token {
 		"authorization code: \n%v\n", authURL)
 
 	var code string
-	if _, err := fmt.Scan(&code); err != nil {
-		log.Panicf("Unable to read authorization code %v", err)
+	if envCode := os.Getenv("GOOGLE_AUTH_CODE"); envCode != "" {
+		code = envCode
+	} else {
+		if _, err := fmt.Scan(&code); err != nil {
+			log.Panicf("Unable to read authorization code %v", err)
+		}
 	}
 
 	tok, err := config.Exchange(ctx, code)

@@ -20,6 +20,8 @@ var (
 	clientSecret = flag.String("client-secret", "", "OAuth client secret")
 	debug        = flag.Bool("debug", false, "print debug info")
 	trace        = flag.Bool("trace", false, "print trace info")
+	username     = flag.String("username", "", "Basic Auth username")
+	password     = flag.String("password", "", "Basic Auth password")
 )
 
 func main() {
@@ -56,7 +58,12 @@ func main() {
 
 	http.HandleFunc("/debug/gc", gcHandler)
 	http.HandleFunc("/favicon.ico", notFoundHandler)
-	http.HandleFunc("/", handler.ServeHTTP)
+
+	if *username != "" && *password != "" {
+		http.HandleFunc("/", basicAuth(handler.ServeHTTP, *username, *password))
+	} else {
+		http.HandleFunc("/", handler.ServeHTTP)
+	}
 
 	log.Info("Listening on: ", *addr)
 
@@ -80,4 +87,17 @@ func gcHandler(w http.ResponseWriter, _ *http.Request) {
 
 func notFoundHandler(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(404)
+}
+
+func basicAuth(handler http.HandlerFunc, username, password string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		user, pass, ok := r.BasicAuth()
+		if !ok || user != username || pass != password {
+			w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
+			w.WriteHeader(401)
+			w.Write([]byte("Unauthorized.\n"))
+			return
+		}
+		handler(w, r)
+	}
 }

@@ -33,5 +33,10 @@ if [ "$TRACE" = "1" ] || [ "$TRACE" = "true" ]; then
     ARGS="$ARGS --trace"
 fi
 
+# Check for WEBDAV_USERNAME and WEBDAV_PASSWORD environment variables
+if [ -n "$WEBDAV_USERNAME" ] && [ -n "$WEBDAV_PASSWORD" ]; then
+    ARGS="$ARGS --username=$WEBDAV_USERNAME --password=$WEBDAV_PASSWORD"
+fi
+
 # Execute the application with the constructed arguments
 exec ./gdrive-webdav $ARGS
