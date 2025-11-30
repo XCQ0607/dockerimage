@@ -395,7 +395,7 @@ class ProxySystem extends EventTarget {
         };
 
         const jsonString = JSON.stringify(fakeGoogleResponse);
-        this._transmitChunk(jsonString, operationId);
+        this._transmitChunk(`data: ${jsonString}\n\n`, operationId);
         Logger.output("图片数据已封装并发送。");
       } else {
         // --- 原有的文本/流式处理逻辑 ---
