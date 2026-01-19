@@ -21,6 +21,14 @@ jobs:
         id: repo
         run: echo "owner_lower=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
+      # --- 新增步骤：配置 QEMU 以支持非原生架构 (如 ARM64) ---
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # --- 新增步骤：配置 Buildx 构建器 ---
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -151,7 +159,6 @@ jobs:
                 fi
                 
                 # 获取build.flag的修改时间（严格来自API返回的JSON数据）
-                # 修复解析逻辑，正确提取build.flag的日期
                 FLAG_COMMIT_DATE=$(echo "$DIR_COMMIT_INFO" | jq -r '.["build.flag"]?.date // empty')
                 if [ "$DEBUG" = true ]; then
                   echo "DEBUG: build.flag commit date from API: '$FLAG_COMMIT_DATE'"
@@ -237,17 +244,30 @@ jobs:
             fi
 
             IMAGE="ghcr.io/$OWNER/$IMAGE_NAME:latest"
-            echo "Building and pushing $IMAGE"
+            echo "Building and pushing Multi-Arch $IMAGE"
 
             START_TIME=$(date +%s)
-            # 使用--progress=plain来增加日志输出
-            docker build --progress=plain -t $IMAGE "$dir" 2>&1 | tee build.log
+            
+            # --- 修改开始：使用 buildx 进行多架构构建 ---
+            
+            # 使用 docker buildx build
+            # --platform: 指定需要构建的架构
+            # --push: 直接推送（多架构构建必须直接 push，不能 load 到本地）
+            # --progress=plain: 保持详细日志
+            docker buildx build \
+              --platform linux/amd64,linux/arm64 \
+              --progress=plain \
+              -t $IMAGE \
+              --push \
+              "$dir" 2>&1 | tee build.log
+            
+            # 获取退出码 (tee 会传递管道前的退出码，如果 bash 设置了 pipefail。这里依赖 PIPESTATUS)
             BUILD_STATUS=${PIPESTATUS[0]}
             
-            # 如果构建成功，则推送镜像
-            if [ $BUILD_STATUS -eq 0 ]; then
-              docker push $IMAGE
-            fi
+            # 注意：因为加了 --push 参数，构建成功后会自动推送，无需单独的 docker push 命令
+            # 所以这里删除了原来的 if [ $BUILD_STATUS -eq 0 ]; then docker push; fi 逻辑
+            
+            # --- 修改结束 ---
             
             END_TIME=$(date +%s)
             DURATION=$((END_TIME - START_TIME))
@@ -257,6 +277,7 @@ jobs:
             echo "### 构建信息" >> $SUMMARY_FILE
             echo "- 目录: $dir" >> $SUMMARY_FILE
             echo "- 完整镜像名: $IMAGE" >> $SUMMARY_FILE
+            echo "- 架构支持: linux/amd64, linux/arm64" >> $SUMMARY_FILE
             echo "- 构建状态: $( [ $BUILD_STATUS -eq 0 ] && echo ✅ 成功 || echo ❌ 失败 )" >> $SUMMARY_FILE
             echo "- 构建耗时: ${DURATION}s" >> $SUMMARY_FILE
             echo "" >> $SUMMARY_FILE
@@ -294,12 +315,10 @@ jobs:
             echo '```' >> $SUMMARY_FILE
             echo "" >> $SUMMARY_FILE
 
-            # --- 修改部分开始：确保只有成功时才更新flag ---
-            
+            # 只有当构建成功 (0) 时，才写入新的时间并 git add flag
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
 
-            # 只有当构建成功 (0) 时，才写入新的时间并 git add flag
             if [ $BUILD_STATUS -eq 0 ]; then
                 echo "Build Success: Updating flag for $dir"
                 echo "Built on $(date)" > "$FLAG"
@@ -315,8 +334,6 @@ jobs:
             git commit -m "Update build info for $dir" || echo "Nothing to commit for $dir"
             git push
             
-            # --- 修改部分结束 ---
-
           done
 
           # 将构建总结输出到 GitHub Actions 摘要
