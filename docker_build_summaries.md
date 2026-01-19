@@ -89,6 +89,8 @@
 │   │   └── xy
 │   ├── build.flag
 │   └── entrypoint.sh
+├── ros2-dev
+│   └── Dockerfile
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -162,139 +164,139 @@
     ├── entrypoint.sh
     └── fiora
 
-60 directories, 99 files
+61 directories, 100 files
 ```
 
-## 镜像: gapi
+## 镜像: ros2-dev
 
 ### 构建信息
-- 目录: gapi/
-- 完整镜像名: ghcr.io/xcq0607/gapi:latest
-- 构建状态: ✅ 成功
-- 构建耗时: 228s
+- 目录: ros2-dev/
+- 完整镜像名: ghcr.io/xcq0607/ros2-dev:latest
+- 构建状态: ❌ 失败
+- 构建耗时: 60s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/gapi:latest
+FROM ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-gapi ghcr.io/xcq0607/gapi:latest
+docker run -d --name my-ros2-dev ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/gapi:latest
+docker pull ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 ### 构建日志
 
 ```
-#11 4.081 668550K .......... .......... .......... .......... .......... 96%  218M 0s
-#11 4.081 668600K .......... .......... .......... .......... .......... 96%  273M 0s
-#11 4.081 668650K .......... .......... .......... .......... .......... 96%  125M 0s
-#11 4.082 668700K .......... .......... .......... .......... .......... 96% 94.3M 0s
-#11 4.082 668750K .......... .......... .......... .......... .......... 96% 84.6M 0s
-#11 4.083 668800K .......... .......... .......... .......... .......... 96%  215M 0s
-#11 4.083 668850K .......... .......... .......... .......... .......... 96%  169M 0s
-#11 4.083 668900K .......... .......... .......... .......... .......... 96%  119M 0s
-#11 4.084 668950K .......... .......... .......... .......... .......... 96%  167M 0s
-#11 4.084 669000K .......... .......... .......... .......... .......... 96%  240M 0s
-#11 4.084 669050K .......... .......... .......... .......... .......... 96%  159M 0s
-#11 4.084 669100K .......... .......... .......... .......... .......... 96%  149M 0s
-#11 4.085 669150K .......... .......... .......... .......... .......... 96%  229M 0s
-#11 4.085 669200K .......... .......... .......... .......... .......... 96%  369M 0s
-#11 4.085 669250K .......... .......... .......... .......... .......... 96%  389M 0s
-#11 4.085 669300K .......... .......... .......... .......... .......... 96%  112M 0s
-#11 4.086 669350K .......... .......... .......... .......... .......... 96%  148M 0s
-#11 4.086 669400K .......... .......... .......... .......... .......... 96%  162M 0s
-#11 4.086 669450K .......... .......... .......... .......... .......... 96%  157M 0s
-#11 4.087 669500K .......... .......... .......... .......... .......... 96%  214M 0s
-#11 4.087 669550K .......... .......... .......... .......... .......... 96%  295M 0s
-#11 4.087 669600K .......... .......... .......... .......... .......... 96%  356M 0s
-#11 4.087 669650K .......... .......... .......... .......... .......... 96%  281M 0s
-#11 4.087 669700K .......... .......... .......... .......... .......... 96% 89.7M 0s
-#11 4.088 669750K .......... .......... .......... .......... .......... 96%  146M 0s
-#11 4.088 669800K .......... .......... .......... .......... .......... 96%  149M 0s
-#11 4.088 669850K .......... .......... .......... .......... .......... 96%  164M 0s
-#11 4.089 669900K .......... .......... .......... .......... .......... 96%  178M 0s
-#11 4.089 669950K .......... .......... .......... .......... .......... 96%  140M 0s
-#11 4.089 670000K .......... .......... .......... .......... .......... 96%  117M 0s
-#11 4.090 670050K .......... .......... .......... .......... .......... 96%  150M 0s
-#11 4.090 670100K .......... .......... .......... .......... .......... 96%  134M 0s
-#11 4.091 670150K .......... .......... .......... .......... .......... 96%  182M 0s
-#11 4.091 670200K .......... .......... .......... .......... .......... 96%  157M 0s
-#11 4.091 670250K .......... .......... .......... .......... .......... 96%  132M 0s
-#11 4.092 670300K .......... .......... .......... .......... .......... 96%  162M 0s
-#11 4.092 670350K .......... .......... .......... .......... .......... 96%  150M 0s
-#11 4.092 670400K .......... .......... .......... .......... .......... 96%  135M 0s
-#11 4.093 670450K .......... .......... .......... .......... .......... 96%  227M 0s
-#11 4.093 670500K .......... .......... .......... .......... .......... 96%  324M 0s
-#11 4.093 670550K .......... .......... .......... .......... .......... 96%  128M 0s
-#11 4.093 670600K .......... .......... .......... .......... .......... 96%  156M 0s
-#11 4.094 670650K .......... .......... .......... .......... .......... 96%  242M 0s
-#11 4.094 670700K .......... .......... .......... .......... .......... 96%  390M 0s
-#11 4.094 670750K .......... .......... .......... .......... .......... 96%  287M 0s
-#11 4.094 670800K .......... .......... .......... .......... .......... 96%  142M 0s
-#11 4.094 670850K .......... .......... .......... .......... .......... 96%  136M 0s
-#11 4.095 670900K .......... .......... .......... .......... .......... 96%  128M 0s
-#11 4.095 670950K .......... .......... .......... .......... .......... 96%  119M 0s
-#11 4.095 671000K .......... .......... .......... .......... .......... 96%  143M 0s
-#11 4.096 671050K .......... .......... .......... .......... .......... 96%  156M 0s
-#11 4.096 671100K .......... .......... .......... .......... .......... 96%  135M 0s
-#11 4.096 671150K .......... .......... .......... .......... .......... 96%  122M 0s
-#11 4.097 671200K .......... .......... .......... .......... .......... 96%  168M 0s
-#11 4.097 671250K .......... .......... .......... .......... .......... 96%  170M 0s
-#11 4.098 671300K .......... .......... .......... .......... .......... 96%  297M 0s
-#11 4.098 671350K .......... .......... .......... .......... .......... 96%  287M 0s
-#11 4.098 671400K .......... .......... .......... .......... .......... 96%  395M 0s
-#11 4.098 671450K .......... .......... .......... .......... .......... 96%  202M 0s
-#11 4.098 671500K .......... .......... .......... .......... .......... 96% 88.2M 0s
-#11 4.099 671550K .......... .......... .......... .......... .......... 96%  154M 0s
-#11 4.099 671600K .......... .......... .......... .......... .......... 96%  125M 0s
-#11 4.099 671650K .......... .......... .......... .......... .......... 96%  127M 0s
-#11 4.100 671700K .......... .......... .......... .......... .......... 96%  202M 0s
-#11 4.100 671750K .......... .......... .......... .......... .......... 96%  171M 0s
-#11 4.100 671800K .......... .......... .
-#11 4.100 [output clipped, log limit 200KiB/s reached]
-#11 4.219 
-#11 4.219 7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
-#11 4.219 p7zip Version 16.02 (locale=C,Utf16=off,HugeFiles=on,64 bits,4 CPUs AMD EPYC 7763 64-Core Processor                 (A00F11),ASM,AES-NI)
-#11 4.219 
-#11 4.219 Scanning the drive for archives:
-#11 4.219 1 file, 712711368 bytes (680 MiB)
-#11 4.219 
-#11 4.219 Extracting archive: camoufox.zip
-#11 13.22 --
-#11 13.22 Path = camoufox.zip
-#11 13.22 Type = zip
-#11 13.22 Physical Size = 712711368
-#11 13.22 
-#11 13.22 Everything is Ok
-#11 13.22 
-#11 13.22 Folders: 19
-#11 13.22 Files: 698
-#11 13.22 Size:       1321895211
-#11 13.22 Compressed: 712711368
-#11 DONE 15.4s
+#5 extracting sha256:5b3b6a798b5088fee7bc0bfb188bdd445113b407842d17edf502e09f2fc1b536 0.3s done
+#5 extracting sha256:ecd839ce83db999d5035a7a3825b0dfa72a58cb764b8a8ea0c500fbed89b583b done
+#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 520.09MB / 810.98MB 4.3s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 578.04MB / 810.98MB 4.6s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 642.78MB / 810.98MB 5.0s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 701.50MB / 810.98MB 5.3s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 742.39MB / 810.98MB 5.5s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 801.11MB / 810.98MB 5.8s
+#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 810.98MB / 810.98MB 6.4s done
+#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b 5.0s
+#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b 6.8s done
+#5 extracting sha256:72dabda1f44ba2f0c461142f451ba75451f7348aa265fbe6a04dd0ff2654448d
+#5 extracting sha256:72dabda1f44ba2f0c461142f451ba75451f7348aa265fbe6a04dd0ff2654448d done
+#5 extracting sha256:58aaf05f7e4717206bdef277969fefae295f0aeb84ad86377ce147c6e467ce29 0.1s
+#5 extracting sha256:58aaf05f7e4717206bdef277969fefae295f0aeb84ad86377ce147c6e467ce29 2.2s done
+#5 extracting sha256:d7e9ae4043d817eb2f5f8b33584b61dd9859d8733be7d8c069ae9efe648e3d28
+#5 extracting sha256:d7e9ae4043d817eb2f5f8b33584b61dd9859d8733be7d8c069ae9efe648e3d28 done
+#5 extracting sha256:f3c9c540e89d0a29bced540968ac923c8677aab6a43d85b536f173a4e668d7a7 done
+#5 extracting sha256:d89d0b0792ec60ed6744e3a288f76caa6009884e44c6cd98add8055465bd325c 0.1s
+#5 extracting sha256:d89d0b0792ec60ed6744e3a288f76caa6009884e44c6cd98add8055465bd325c 1.2s done
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 5.1s
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 10.4s
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 15.4s
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 20.4s
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 25.5s
+#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 27.1s done
+#5 extracting sha256:6b0d10a978dbe4580db54f41cd5d3a30f610b33117244b68202c3105ca5aa40d
+#5 extracting sha256:6b0d10a978dbe4580db54f41cd5d3a30f610b33117244b68202c3105ca5aa40d 5.0s done
+#5 DONE 52.1s
 
-#12 [7/8] COPY unified-server.js black-browser.js models.json ./
-#12 DONE 0.0s
+#6 [2/6] RUN apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*
+#6 0.500 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+#6 0.514 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+#6 0.547 Get:3 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
+#6 0.621 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1774 kB]
+#6 0.787 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+#6 0.800 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1741 kB]
+#6 0.856 Get:7 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+#6 0.925 Get:8 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+#6 1.152 Get:9 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [60.9 kB]
+#6 1.299 Get:10 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+#6 1.300 Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+#6 1.302 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+#6 1.308 Get:13 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6205 kB]
+#6 1.351 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6411 kB]
+#6 1.412 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1600 kB]
+#6 1.419 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [69.2 kB]
+#6 1.420 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3968 kB]
+#6 1.469 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.9 kB]
+#6 1.470 Get:19 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [37.2 kB]
+#6 1.990 Get:20 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1289 kB]
+#6 2.023 Get:21 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3637 kB]
+#6 2.722 Fetched 47.2 MB in 2s (19.4 MB/s)
+#6 2.722 Reading package lists...
+#6 3.609 Reading package lists...
+#6 4.443 Building dependency tree...
+#6 4.616 Reading state information...
+#6 4.633 E: Unable to locate package ros-humble-px4-msgs
+#6 ERROR: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+------
+ > [2/6] RUN apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*:
+1.419 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [69.2 kB]
+1.420 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3968 kB]
+1.469 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.9 kB]
+1.470 Get:19 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [37.2 kB]
+1.990 Get:20 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1289 kB]
+2.023 Get:21 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3637 kB]
 
-#13 [8/8] RUN mkdir -p ./auth && chown -R node:node /app
-#13 DONE 3.9s
 
-#14 exporting to image
-#14 exporting layers
-#14 exporting layers 4.1s done
-#14 writing image sha256:56e6bb0dd288ecc52f4452f45ccec639d4bd1ef802d1a64ae779ca57f8e4c9d0 done
-#14 naming to ghcr.io/xcq0607/gapi:latest done
-#14 DONE 4.1s
+
+4.633 E: Unable to locate package ros-humble-px4-msgs
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - UndefinedVar: Usage of undefined variable '$LD_LIBRARY_PATH' (line 50)
+Dockerfile:9
+--------------------
+   8 |     # 1. 安装基础工具、ROS组件、CycloneDDS
+   9 | >>> RUN apt-get update && apt-get install -y \
+  10 | >>>     ros-humble-foxglove-bridge \
+  11 | >>>     ros-humble-rmw-cyclonedds-cpp \
+  12 | >>>     ros-humble-cv-bridge \
+  13 | >>>     ros-humble-vision-msgs \
+  14 | >>>     ros-humble-px4-msgs \
+  15 | >>>     build-essential \
+  16 | >>>     cmake \
+  17 | >>>     git \
+  18 | >>>     wget \
+  19 | >>>     nano \
+  20 | >>>     tmux \
+  21 | >>>     iputils-ping \
+  22 | >>>     net-tools \
+  23 | >>>     python3-pip \
+  24 | >>>     python3-opencv \
+  25 | >>>     && rm -rf /var/lib/apt/lists/*
+  26 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
 ```
 
