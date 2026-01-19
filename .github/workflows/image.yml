@@ -294,13 +294,29 @@ jobs:
             echo '```' >> $SUMMARY_FILE
             echo "" >> $SUMMARY_FILE
 
-            # 创建 flag 文件并 commit 回仓库
-            echo "Built on $(date)" > "$FLAG"
+            # --- 修改部分开始：确保只有成功时才更新flag ---
+            
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
-            git add "$FLAG" "$SUMMARY_FILE"
-            git commit -m "Add build flag and summary for $dir"
+
+            # 只有当构建成功 (0) 时，才写入新的时间并 git add flag
+            if [ $BUILD_STATUS -eq 0 ]; then
+                echo "Build Success: Updating flag for $dir"
+                echo "Built on $(date)" > "$FLAG"
+                git add "$FLAG"
+            else
+                echo "Build Failed: NOT updating flag for $dir"
+            fi
+
+            # 始终提交 summary 文件 (包含错误日志)
+            git add "$SUMMARY_FILE"
+            
+            # 提交 (添加 || echo 避免无变更时脚本报错停止)
+            git commit -m "Update build info for $dir" || echo "Nothing to commit for $dir"
             git push
+            
+            # --- 修改部分结束 ---
+
           done
 
           # 将构建总结输出到 GitHub Actions 摘要
