@@ -1,7 +1,12 @@
 # -------------------------------------------
 # Image B: Jetson 部署专用 (ARM64)
 # -------------------------------------------
-FROM ros/humble-ros-base
+FROM ros/ros:humble-ros-base
+
+
+LABEL org.opencontainers.image.source=https://github.com/XCQ0607/dockerimage
+LABEL org.opencontainers.image.description="ROS2 Development Image"
+LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
 
