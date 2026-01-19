@@ -204,25 +204,25 @@ docker pull ghcr.io/xcq0607/ros2-ops:latest
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.14kB done
+#1 transferring dockerfile: 1.33kB done
 #1 DONE 0.0s
 
-#2 [auth] ros/humble-ros-base:pull token for registry-1.docker.io
+#2 [auth] ros/ros:pull token for registry-1.docker.io
 #2 DONE 0.0s
 
-#3 [internal] load metadata for docker.io/ros/humble-ros-base:latest
+#3 [internal] load metadata for docker.io/ros/ros:humble-ros-base
 #3 ERROR: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
 ------
- > [internal] load metadata for docker.io/ros/humble-ros-base:latest:
+ > [internal] load metadata for docker.io/ros/ros:humble-ros-base:
 ------
 Dockerfile:4
 --------------------
    2 |     # Image B: Jetson 部署专用 (ARM64)
    3 |     # -------------------------------------------
-   4 | >>> FROM ros/humble-ros-base
+   4 | >>> FROM ros/ros:humble-ros-base
    5 |     
-   6 |     ENV DEBIAN_FRONTEND=noninteractive
+   6 |     
 --------------------
-ERROR: failed to build: failed to solve: ros/humble-ros-base: failed to resolve source metadata for docker.io/ros/humble-ros-base:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+ERROR: failed to build: failed to solve: ros/ros:humble-ros-base: failed to resolve source metadata for docker.io/ros/ros:humble-ros-base: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
 ```
 
