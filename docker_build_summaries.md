@@ -176,7 +176,7 @@
 - 目录: ros2-ops/
 - 完整镜像名: ghcr.io/xcq0607/ros2-ops:latest
 - 构建状态: ❌ 失败
-- 构建耗时: 4s
+- 构建耗时: 1s
 
 ### 使用方法
 
@@ -204,25 +204,25 @@ docker pull ghcr.io/xcq0607/ros2-ops:latest
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.15kB done
+#1 transferring dockerfile: 1.14kB done
 #1 DONE 0.0s
 
-#2 [auth] osrf/ros:pull token for registry-1.docker.io
+#2 [auth] ros/humble-ros-base:pull token for registry-1.docker.io
 #2 DONE 0.0s
 
-#3 [internal] load metadata for docker.io/osrf/ros:humble-ros-base
-#3 ERROR: docker.io/osrf/ros:humble-ros-base: not found
+#3 [internal] load metadata for docker.io/ros/humble-ros-base:latest
+#3 ERROR: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
 ------
- > [internal] load metadata for docker.io/osrf/ros:humble-ros-base:
+ > [internal] load metadata for docker.io/ros/humble-ros-base:latest:
 ------
 Dockerfile:4
 --------------------
    2 |     # Image B: Jetson 部署专用 (ARM64)
    3 |     # -------------------------------------------
-   4 | >>> FROM osrf/ros:humble-ros-base
+   4 | >>> FROM ros/humble-ros-base
    5 |     
    6 |     ENV DEBIAN_FRONTEND=noninteractive
 --------------------
-ERROR: failed to build: failed to solve: osrf/ros:humble-ros-base: failed to resolve source metadata for docker.io/osrf/ros:humble-ros-base: docker.io/osrf/ros:humble-ros-base: not found
+ERROR: failed to build: failed to solve: ros/humble-ros-base: failed to resolve source metadata for docker.io/ros/humble-ros-base:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
 ```
 
