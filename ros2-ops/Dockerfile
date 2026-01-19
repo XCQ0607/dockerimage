@@ -1,7 +1,7 @@
 # -------------------------------------------
 # Image B: Jetson 部署专用 (ARM64)
 # -------------------------------------------
-FROM osrf/ros:humble-ros-base
+FROM ros/humble-ros-base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
