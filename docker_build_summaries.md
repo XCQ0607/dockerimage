@@ -90,7 +90,8 @@
 │   ├── build.flag
 │   └── entrypoint.sh
 ├── ros2-dev
-│   └── Dockerfile
+│   ├── Dockerfile
+│   └── build.flag
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -164,7 +165,7 @@
     ├── entrypoint.sh
     └── fiora
 
-61 directories, 100 files
+61 directories, 101 files
 ```
 
 ## 镜像: ros2-dev
@@ -172,8 +173,8 @@
 ### 构建信息
 - 目录: ros2-dev/
 - 完整镜像名: ghcr.io/xcq0607/ros2-dev:latest
-- 构建状态: ❌ 失败
-- 构建耗时: 60s
+- 构建状态: ✅ 成功
+- 构建耗时: 928s
 
 ### 使用方法
 
@@ -198,105 +199,105 @@ docker pull ghcr.io/xcq0607/ros2-dev:latest
 ### 构建日志
 
 ```
-#5 extracting sha256:5b3b6a798b5088fee7bc0bfb188bdd445113b407842d17edf502e09f2fc1b536 0.3s done
-#5 extracting sha256:ecd839ce83db999d5035a7a3825b0dfa72a58cb764b8a8ea0c500fbed89b583b done
-#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 520.09MB / 810.98MB 4.3s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 578.04MB / 810.98MB 4.6s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 642.78MB / 810.98MB 5.0s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 701.50MB / 810.98MB 5.3s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 742.39MB / 810.98MB 5.5s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 801.11MB / 810.98MB 5.8s
-#5 sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 810.98MB / 810.98MB 6.4s done
-#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b 5.0s
-#5 extracting sha256:5a1e1824e50f15537f4e31add7722621bc890f927e27f1505e54da0b51bc4c1b 6.8s done
-#5 extracting sha256:72dabda1f44ba2f0c461142f451ba75451f7348aa265fbe6a04dd0ff2654448d
-#5 extracting sha256:72dabda1f44ba2f0c461142f451ba75451f7348aa265fbe6a04dd0ff2654448d done
-#5 extracting sha256:58aaf05f7e4717206bdef277969fefae295f0aeb84ad86377ce147c6e467ce29 0.1s
-#5 extracting sha256:58aaf05f7e4717206bdef277969fefae295f0aeb84ad86377ce147c6e467ce29 2.2s done
-#5 extracting sha256:d7e9ae4043d817eb2f5f8b33584b61dd9859d8733be7d8c069ae9efe648e3d28
-#5 extracting sha256:d7e9ae4043d817eb2f5f8b33584b61dd9859d8733be7d8c069ae9efe648e3d28 done
-#5 extracting sha256:f3c9c540e89d0a29bced540968ac923c8677aab6a43d85b536f173a4e668d7a7 done
-#5 extracting sha256:d89d0b0792ec60ed6744e3a288f76caa6009884e44c6cd98add8055465bd325c 0.1s
-#5 extracting sha256:d89d0b0792ec60ed6744e3a288f76caa6009884e44c6cd98add8055465bd325c 1.2s done
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 5.1s
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 10.4s
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 15.4s
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 20.4s
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 25.5s
-#5 extracting sha256:3c1550f451c47aecc9feaebbcb8667811862a6790dbd0d71fd3a1a5549a3810c 27.1s done
-#5 extracting sha256:6b0d10a978dbe4580db54f41cd5d3a30f610b33117244b68202c3105ca5aa40d
-#5 extracting sha256:6b0d10a978dbe4580db54f41cd5d3a30f610b33117244b68202c3105ca5aa40d 5.0s done
-#5 DONE 52.1s
+#9 753.0 -- Up-to-date: /usr/local/share
+#9 753.0 -- Installing: /usr/local/share/microcdr
+#9 753.0 -- Installing: /usr/local/share/microcdr/cmake
+#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrTargets-release.cmake
+#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrConfigVersion.cmake
+#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrConfig.cmake
+#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrTargets.cmake
+#9 753.0 -- Up-to-date: /usr/local
+#9 753.0 -- Up-to-date: /usr/local/lib
+#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so
+#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so.3.0
+#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so.3.0.0
+#9 753.0 -- Up-to-date: /usr/local/include
+#9 753.0 -- Up-to-date: /usr/local/include/uxr
+#9 753.0 -- Installing: /usr/local/include/uxr/client
+#9 753.0 -- Installing: /usr/local/include/uxr/client/transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/visibility.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/defines.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/config.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/multithread
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/discovery
+#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/client.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/communication
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/session.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/type
+#9 753.0 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/util
+#9 753.0 -- Installing: /usr/local/include/uxr/client/util/ping.h
+#9 753.0 -- Installing: /usr/local/include/uxr/client/util/time.h
+#9 753.0 -- Up-to-date: /usr/local/share
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
+#9 DONE 753.6s
 
-#6 [2/6] RUN apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*
-#6 0.500 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-#6 0.514 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-#6 0.547 Get:3 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
-#6 0.621 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1774 kB]
-#6 0.787 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-#6 0.800 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1741 kB]
-#6 0.856 Get:7 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-#6 0.925 Get:8 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
-#6 1.152 Get:9 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [60.9 kB]
-#6 1.299 Get:10 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
-#6 1.300 Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
-#6 1.302 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
-#6 1.308 Get:13 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6205 kB]
-#6 1.351 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6411 kB]
-#6 1.412 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1600 kB]
-#6 1.419 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [69.2 kB]
-#6 1.420 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3968 kB]
-#6 1.469 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.9 kB]
-#6 1.470 Get:19 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [37.2 kB]
-#6 1.990 Get:20 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1289 kB]
-#6 2.023 Get:21 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3637 kB]
-#6 2.722 Fetched 47.2 MB in 2s (19.4 MB/s)
-#6 2.722 Reading package lists...
-#6 3.609 Reading package lists...
-#6 4.443 Building dependency tree...
-#6 4.616 Reading state information...
-#6 4.633 E: Unable to locate package ros-humble-px4-msgs
-#6 ERROR: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
-------
- > [2/6] RUN apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*:
-1.419 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [69.2 kB]
-1.420 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3968 kB]
-1.469 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.9 kB]
-1.470 Get:19 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [37.2 kB]
-1.990 Get:20 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1289 kB]
-2.023 Get:21 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3637 kB]
+#10 [6/6] WORKDIR /home/ros2/workspace
+#10 DONE 0.0s
 
-
-
-4.633 E: Unable to locate package ros-humble-px4-msgs
-------
-
- [33m1 warning found (use docker --debug to expand):
-[0m - UndefinedVar: Usage of undefined variable '$LD_LIBRARY_PATH' (line 50)
-Dockerfile:9
---------------------
-   8 |     # 1. 安装基础工具、ROS组件、CycloneDDS
-   9 | >>> RUN apt-get update && apt-get install -y \
-  10 | >>>     ros-humble-foxglove-bridge \
-  11 | >>>     ros-humble-rmw-cyclonedds-cpp \
-  12 | >>>     ros-humble-cv-bridge \
-  13 | >>>     ros-humble-vision-msgs \
-  14 | >>>     ros-humble-px4-msgs \
-  15 | >>>     build-essential \
-  16 | >>>     cmake \
-  17 | >>>     git \
-  18 | >>>     wget \
-  19 | >>>     nano \
-  20 | >>>     tmux \
-  21 | >>>     iputils-ping \
-  22 | >>>     net-tools \
-  23 | >>>     python3-pip \
-  24 | >>>     python3-opencv \
-  25 | >>>     && rm -rf /var/lib/apt/lists/*
-  26 |     
---------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-foxglove-bridge     ros-humble-rmw-cyclonedds-cpp     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-px4-msgs     build-essential     cmake     git     wget     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 9.1s done
+#11 writing image sha256:cca2c3008d98f972c09903c964b47a6503afa4d0de7e2f8c72a5ca2f711129e3 done
+#11 naming to ghcr.io/xcq0607/ros2-dev:latest done
+#11 DONE 9.1s
 ```
 
