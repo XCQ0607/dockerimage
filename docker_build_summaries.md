@@ -90,10 +90,10 @@
 │   ├── build.flag
 │   └── entrypoint.sh
 ├── ros2-dev
+│   └── Dockerfile
+├── ros2-ops
 │   ├── Dockerfile
 │   └── build.flag
-├── ros2-ops
-│   └── Dockerfile
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -170,137 +170,137 @@
 62 directories, 102 files
 ```
 
-## 镜像: ros2-ops
+## 镜像: ros2-dev
 
 ### 构建信息
-- 目录: ros2-ops/
-- 完整镜像名: ghcr.io/xcq0607/ros2-ops:latest
+- 目录: ros2-dev/
+- 完整镜像名: ghcr.io/xcq0607/ros2-dev:latest
 - 架构支持: linux/amd64, linux/arm64
 - 构建状态: ✅ 成功
-- 构建耗时: 9240s
+- 构建耗时: 836s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/ros2-ops:latest
+FROM ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-ros2-ops ghcr.io/xcq0607/ros2-ops:latest
+docker run -d --name my-ros2-dev ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/ros2-ops:latest
+docker pull ghcr.io/xcq0607/ros2-dev:latest
 ```
 
 ### 构建日志
 
 ```
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/visibility.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/defines.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/config.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/multithread
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/discovery
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/client.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/communication
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/session.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
-#15 8890.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/type
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/util
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/util/ping.h
-#15 8890.1 -- Installing: /usr/local/include/uxr/client/util/time.h
-#15 8890.1 -- Up-to-date: /usr/local/share
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client/cmake
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
-#15 8890.1 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
-#15 DONE 8890.9s
+#15 767.2 -- Installing: /usr/local/include/uxr/client/transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/visibility.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/defines.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/config.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/multithread
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/discovery
+#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/client.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/communication
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/session.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
+#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/type
+#15 767.3 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/util
+#15 767.3 -- Installing: /usr/local/include/uxr/client/util/ping.h
+#15 767.3 -- Installing: /usr/local/include/uxr/client/util/time.h
+#15 767.3 -- Up-to-date: /usr/local/share
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
+#15 DONE 767.8s
 
 #17 [linux/arm64 6/6] WORKDIR /home/ros2/workspace
 #17 DONE 0.0s
 
 #18 exporting to image
 #18 exporting layers
-#18 exporting layers 29.6s done
-#18 exporting manifest sha256:27b5f1ef39ac516c3f692ed4d16c93ca527292d8e3ffca09e25c3f892544d414 done
-#18 exporting config sha256:48d70e35db30b4b115f96dfe54fa05f4013d3b19f3241160444dae629e73344b done
-#18 exporting attestation manifest sha256:2a1cf6418367ee7e01d650a3fa4c74924e452c84ace97dc4e1e6734cdeaede80 done
-#18 exporting manifest sha256:0552d1671459d3c0760162528014e59b46e846973daf34c1917430aa06f0ca9f done
-#18 exporting config sha256:93f3a97247c3719913627182cc8c41ef50d270b8c21e5493b106c8267ccddeff done
-#18 exporting attestation manifest sha256:84d14cb242d02805e41c44cfc510e7676afc9113bdf49f4685a1f17712c767a5 0.0s done
-#18 exporting manifest list sha256:5cf3db09d027b068d652f54dc2bb65c73c8b026469a4234118c308eb22f9464d done
+#18 exporting layers 3.2s done
+#18 exporting manifest sha256:a725d4b32830fd4a3e1863574a7e5b18b5d2e17b5615fd88c0fc10cc9310f039 done
+#18 exporting config sha256:94a9e0018b7d31e58d51ec1fa9b085073b25ec1d1ad55824d18eadcc9fccfd9c done
+#18 exporting attestation manifest sha256:53989cbcfa1fd27adbfb8ed9b43a8580ca44b146a59be41de9f37e7644b95e5e done
+#18 exporting manifest sha256:f578de9564a5d57ce08332a5ae97ebc049b418dcc17fdb207af1091373da3a54 done
+#18 exporting config sha256:9ca5eb2b6d99439051210b0e9f4a5a5a4f5071e1c1f0e9c765a793c7e9c2ae47 done
+#18 exporting attestation manifest sha256:3fa4c509859a2a7cc9564f4a84dbeea986cf5093a9c7d2c48826658b094be802 done
+#18 exporting manifest list sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952 done
 #18 pushing layers
 #18 ...
 
-#19 [auth] xcq0607/ros2-ops:pull,push token for ghcr.io
+#19 [auth] xcq0607/ros2-dev:pull,push token for ghcr.io
 #19 DONE 0.0s
 
 #18 exporting to image
-#18 pushing layers 17.4s done
-#18 pushing manifest for ghcr.io/xcq0607/ros2-ops:latest@sha256:5cf3db09d027b068d652f54dc2bb65c73c8b026469a4234118c308eb22f9464d
-#18 pushing manifest for ghcr.io/xcq0607/ros2-ops:latest@sha256:5cf3db09d027b068d652f54dc2bb65c73c8b026469a4234118c308eb22f9464d 2.5s done
-#18 DONE 49.6s
+#18 pushing layers 6.7s done
+#18 pushing manifest for ghcr.io/xcq0607/ros2-dev:latest@sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952
+#18 pushing manifest for ghcr.io/xcq0607/ros2-dev:latest@sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952 2.3s done
+#18 DONE 12.2s
 ```
 
