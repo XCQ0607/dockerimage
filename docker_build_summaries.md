@@ -92,6 +92,8 @@
 ├── ros2-dev
 │   ├── Dockerfile
 │   └── build.flag
+├── ros2-ops
+│   └── Dockerfile
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -165,139 +167,62 @@
     ├── entrypoint.sh
     └── fiora
 
-61 directories, 101 files
+62 directories, 102 files
 ```
 
-## 镜像: ros2-dev
+## 镜像: ros2-ops
 
 ### 构建信息
-- 目录: ros2-dev/
-- 完整镜像名: ghcr.io/xcq0607/ros2-dev:latest
-- 构建状态: ✅ 成功
-- 构建耗时: 928s
+- 目录: ros2-ops/
+- 完整镜像名: ghcr.io/xcq0607/ros2-ops:latest
+- 构建状态: ❌ 失败
+- 构建耗时: 4s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/ros2-dev:latest
+FROM ghcr.io/xcq0607/ros2-ops:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-ros2-dev ghcr.io/xcq0607/ros2-dev:latest
+docker run -d --name my-ros2-ops ghcr.io/xcq0607/ros2-ops:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/ros2-dev:latest
+docker pull ghcr.io/xcq0607/ros2-ops:latest
 ```
 
 ### 构建日志
 
 ```
-#9 753.0 -- Up-to-date: /usr/local/share
-#9 753.0 -- Installing: /usr/local/share/microcdr
-#9 753.0 -- Installing: /usr/local/share/microcdr/cmake
-#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrTargets-release.cmake
-#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrConfigVersion.cmake
-#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrConfig.cmake
-#9 753.0 -- Installing: /usr/local/share/microcdr/cmake/microcdrTargets.cmake
-#9 753.0 -- Up-to-date: /usr/local
-#9 753.0 -- Up-to-date: /usr/local/lib
-#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so
-#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so.3.0
-#9 753.0 -- Installing: /usr/local/lib/libmicroxrcedds_client.so.3.0.0
-#9 753.0 -- Up-to-date: /usr/local/include
-#9 753.0 -- Up-to-date: /usr/local/include/uxr
-#9 753.0 -- Installing: /usr/local/include/uxr/client
-#9 753.0 -- Installing: /usr/local/include/uxr/client/transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/visibility.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/defines.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/config.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/multithread
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/discovery
-#9 753.0 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/client.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/communication
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/session.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/type
-#9 753.0 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/util
-#9 753.0 -- Installing: /usr/local/include/uxr/client/util/ping.h
-#9 753.0 -- Installing: /usr/local/include/uxr/client/util/time.h
-#9 753.0 -- Up-to-date: /usr/local/share
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
-#9 753.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
-#9 DONE 753.6s
+#0 building with "default" instance using docker driver
 
-#10 [6/6] WORKDIR /home/ros2/workspace
-#10 DONE 0.0s
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.15kB done
+#1 DONE 0.0s
 
-#11 exporting to image
-#11 exporting layers
-#11 exporting layers 9.1s done
-#11 writing image sha256:cca2c3008d98f972c09903c964b47a6503afa4d0de7e2f8c72a5ca2f711129e3 done
-#11 naming to ghcr.io/xcq0607/ros2-dev:latest done
-#11 DONE 9.1s
+#2 [auth] osrf/ros:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/osrf/ros:humble-ros-base
+#3 ERROR: docker.io/osrf/ros:humble-ros-base: not found
+------
+ > [internal] load metadata for docker.io/osrf/ros:humble-ros-base:
+------
+Dockerfile:4
+--------------------
+   2 |     # Image B: Jetson 部署专用 (ARM64)
+   3 |     # -------------------------------------------
+   4 | >>> FROM osrf/ros:humble-ros-base
+   5 |     
+   6 |     ENV DEBIAN_FRONTEND=noninteractive
+--------------------
+ERROR: failed to build: failed to solve: osrf/ros:humble-ros-base: failed to resolve source metadata for docker.io/osrf/ros:humble-ros-base: docker.io/osrf/ros:humble-ros-base: not found
 ```
 
