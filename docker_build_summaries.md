@@ -90,7 +90,8 @@
 │   ├── build.flag
 │   └── entrypoint.sh
 ├── ros2-dev
-│   └── Dockerfile
+│   ├── Dockerfile
+│   └── build.flag
 ├── ros2-ops
 │   ├── Dockerfile
 │   └── build.flag
@@ -167,140 +168,140 @@
     ├── entrypoint.sh
     └── fiora
 
-62 directories, 102 files
+62 directories, 103 files
 ```
 
-## 镜像: ros2-dev
+## 镜像: gapi
 
 ### 构建信息
-- 目录: ros2-dev/
-- 完整镜像名: ghcr.io/xcq0607/ros2-dev:latest
+- 目录: gapi/
+- 完整镜像名: ghcr.io/xcq0607/gapi:latest
 - 架构支持: linux/amd64, linux/arm64
-- 构建状态: ✅ 成功
-- 构建耗时: 836s
+- 构建状态: ❌ 失败
+- 构建耗时: 358s
 
 ### 使用方法
 
 #### 在 Dockerfile 中使用:
 
 ```Dockerfile
-FROM ghcr.io/xcq0607/ros2-dev:latest
+FROM ghcr.io/xcq0607/gapi:latest
 ```
 
 #### 使用 docker run 命令运行:
 
 ```bash
-docker run -d --name my-ros2-dev ghcr.io/xcq0607/ros2-dev:latest
+docker run -d --name my-gapi ghcr.io/xcq0607/gapi:latest
 ```
 
 #### 拉取镜像到本地:
 
 ```bash
-docker pull ghcr.io/xcq0607/ros2-dev:latest
+docker pull ghcr.io/xcq0607/gapi:latest
 ```
 
 ### 构建日志
 
 ```
-#15 767.2 -- Installing: /usr/local/include/uxr/client/transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/visibility.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/defines.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/config.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/multithread
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/discovery
-#15 767.2 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/client.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/communication
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/session.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
-#15 767.2 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/type
-#15 767.3 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/util
-#15 767.3 -- Installing: /usr/local/include/uxr/client/util/ping.h
-#15 767.3 -- Installing: /usr/local/include/uxr/client/util/time.h
-#15 767.3 -- Up-to-date: /usr/local/share
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
-#15 767.3 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
-#15 DONE 767.8s
+#20 32.81 693700K .......... .......... .......... .......... .......... 99% 22.3M 0s
+#20 32.82 693750K .......... .......... .......... .......... .......... 99% 21.6M 0s
+#20 32.82 693800K .......... .......... .......... .......... .......... 99% 22.2M 0s
+#20 32.82 693850K .......... .......... .......... .......... .......... 99% 23.1M 0s
+#20 32.82 693900K .......... .......... .......... .......... .......... 99% 22.5M 0s
+#20 32.83 693950K .......... .......... .......... .......... .......... 99% 17.1M 0s
+#20 32.83 694000K .......... .......... .......... .......... .......... 99% 21.8M 0s
+#20 32.83 694050K .......... .......... .......... .......... .......... 99% 20.3M 0s
+#20 32.83 694100K .......... .......... .......... .......... .......... 99% 21.2M 0s
+#20 32.84 694150K .......... .......... .......... .......... .......... 99% 22.8M 0s
+#20 32.84 694200K .......... .......... .......... .......... .......... 99% 21.6M 0s
+#20 32.84 694250K .......... .......... .......... .......... .......... 99% 22.2M 0s
+#20 32.84 694300K .......... .......... .......... .......... .......... 99% 22.3M 0s
+#20 32.84 694350K .......... .......... .......... .......... .......... 99% 16.5M 0s
+#20 32.85 694400K .......... .......... .......... .......... .......... 99% 20.2M 0s
+#20 32.85 694450K .......... .......... .......... .......... .......... 99% 23.3M 0s
+#20 32.85 694500K .......... .......... .......... .......... .......... 99% 21.6M 0s
+#20 32.85 694550K .......... .......... .......... .......... .......... 99% 22.2M 0s
+#20 32.86 694600K .......... .......... .......... .......... .......... 99% 21.3M 0s
+#20 32.86 694650K .......... .......... .......... .......... .......... 99% 23.1M 0s
+#20 32.86 694700K .......... .......... .......... .......... .......... 99% 22.7M 0s
+#20 32.86 694750K .......... .......... .......... .......... .......... 99% 17.6M 0s
+#20 32.87 694800K .......... .......... .......... .......... .......... 99% 23.9M 0s
+#20 32.87 694850K .......... .......... .......... .......... .......... 99% 22.3M 0s
+#20 32.87 694900K .......... .......... .......... .......... .......... 99% 20.8M 0s
+#20 32.87 694950K .......... .......... .......... .......... .......... 99% 21.8M 0s
+#20 32.87 695000K .......... .......... .......... .......... .......... 99% 20.9M 0s
+#20 32.88 695050K .......... .......... .......... .......... .......... 99% 24.4M 0s
+#20 32.88 695100K .......... .......... .......... .......... .......... 99% 20.6M 0s
+#20 32.88 695150K .......... .......... .......... .......... .......... 99% 17.1M 0s
+#20 32.88 695200K .......... .......... .......... .......... .......... 99% 21.9M 0s
+#20 32.89 695250K .......... .......... .......... .......... .......... 99% 22.2M 0s
+#20 32.89 695300K .......... .......... .......... .......... .......... 99% 21.0M 0s
+#20 32.89 695350K .......... .......... .......... .......... .......... 99% 21.0M 0s
+#20 32.89 695400K .......... .......... .......... .......... .......... 99% 22.0M 0s
+#20 32.90 695450K .......... .......... .......... .......... .......... 99% 22.3M 0s
+#20 32.90 695500K .......... .......... .......... .......... .......... 99% 22.5M 0s
+#20 32.90 695550K .......... .......... .......... .......... .......... 99% 16.5M 0s
+#20 32.90 695600K .......... .......... .......... .......... .......... 99% 24.4M 0s
+#20 32.90 695650K .......... .......... .......... .......... .......... 99% 25.7M 0s
+#20 32.91 695700K .......... .......... .......... .......... .......... 99% 23.0M 0s
+#20 32.91 695750K .......... .......... .......... .......... .......... 99% 21.1M 0s
+#20 32.91 695800K .......... .......... .......... .......... .......... 99% 22.4M 0s
+#20 32.91 695850K .......... .......... .......... .......... .......... 99% 21.2M 0s
+#20 32.92 695900K .......... .......... .......... .......... .......... 99% 22.2M 0s
+#20 32.92 695950K .......... .......... .......... .......... .......... 99% 18.5M 0s
+#20 32.92 696000K .......                                               100% 13.4T=32s
+#20 32.92 
+#20 32.92 2026-01-20 13:53:03 (21.0 MB/s) - 'camoufox.zip' saved [712711368/712711368]
+#20 32.92 
+#20 33.02 
+#20 33.02 7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+#20 33.02 p7zip Version 16.02 (locale=C,Utf16=off,HugeFiles=on,64 bits,4 CPUs LE)
+#20 33.02 
+#20 33.02 Scanning the drive for archives:
+#20 33.02 1 file, 712711368 bytes (680 MiB)
+#20 33.02 
+#20 33.02 Extracting archive: camoufox.zip
+#20 66.23 --
+#20 66.23 Path = camoufox.zip
+#20 66.23 Type = zip
+#20 66.23 Physical Size = 712711368
+#20 66.23 
+#20 66.23 Everything is Ok
+#20 66.23 
+#20 66.23 Folders: 19
+#20 66.23 Files: 698
+#20 66.23 Size:       1321895211
+#20 66.23 Compressed: 712711368
+#20 DONE 69.4s
 
-#17 [linux/arm64 6/6] WORKDIR /home/ros2/workspace
-#17 DONE 0.0s
+#21 [linux/arm64 7/8] COPY unified-server.js black-browser.js models.json ./
+#21 DONE 0.0s
 
-#18 exporting to image
-#18 exporting layers
-#18 exporting layers 3.2s done
-#18 exporting manifest sha256:a725d4b32830fd4a3e1863574a7e5b18b5d2e17b5615fd88c0fc10cc9310f039 done
-#18 exporting config sha256:94a9e0018b7d31e58d51ec1fa9b085073b25ec1d1ad55824d18eadcc9fccfd9c done
-#18 exporting attestation manifest sha256:53989cbcfa1fd27adbfb8ed9b43a8580ca44b146a59be41de9f37e7644b95e5e done
-#18 exporting manifest sha256:f578de9564a5d57ce08332a5ae97ebc049b418dcc17fdb207af1091373da3a54 done
-#18 exporting config sha256:9ca5eb2b6d99439051210b0e9f4a5a5a4f5071e1c1f0e9c765a793c7e9c2ae47 done
-#18 exporting attestation manifest sha256:3fa4c509859a2a7cc9564f4a84dbeea986cf5093a9c7d2c48826658b094be802 done
-#18 exporting manifest list sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952 done
-#18 pushing layers
-#18 ...
+#22 [linux/arm64 8/8] RUN mkdir -p ./auth && chown -R node:node /app
+#22 DONE 4.0s
 
-#19 [auth] xcq0607/ros2-dev:pull,push token for ghcr.io
-#19 DONE 0.0s
+#23 exporting to image
+#23 exporting layers
+#23 exporting layers 69.3s done
+#23 ...
 
-#18 exporting to image
-#18 pushing layers 6.7s done
-#18 pushing manifest for ghcr.io/xcq0607/ros2-dev:latest@sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952
-#18 pushing manifest for ghcr.io/xcq0607/ros2-dev:latest@sha256:dc2b0e55be250d29e315b6c4d6aa12f1c28778f421ab3e1b1a8110e0d625f952 2.3s done
-#18 DONE 12.2s
+#24 [auth] xcq0607/gapi:pull,push token for ghcr.io
+#24 DONE 0.0s
+
+#23 exporting to image
+#23 exporting manifest sha256:a88c81549e4a84be3dc43972f4574e04b4b283d91512e2783e814fbf1fe5bbab done
+#23 exporting config sha256:8ae6018a4d4e93ba4bb598c0beb2a155f1fe0c3235accb07c7439676d33980aa done
+#23 exporting attestation manifest sha256:004a2c597aec166ad2afb5d2143a06e597a2ff8532b745317b38c56963cd95c1 done
+#23 exporting manifest sha256:c38fd551c28d1fa8e995ab0e22e72348ad6b3fd43c55218a633e14a0e6ce1231 done
+#23 exporting config sha256:3db102c72d2d7a1dcb2d8aaff1d9bac1d8bb9b462be0e0f091856f0605872a16 done
+#23 exporting attestation manifest sha256:58655220a5ed891d5695180116cddeea5aeca3b589a3f3190caf6dc20a1d37d1 done
+#23 exporting manifest list sha256:f9445179d84a825cf644a64a6037684f42bd71a4d371d6f2078695fc39c00f6d done
+#23 pushing layers
+#23 pushing layers 0.2s done
+#23 ERROR: failed to push ghcr.io/xcq0607/gapi:latest: denied: permission_denied: write_package
+------
+ > exporting to image:
+------
+ERROR: failed to build: failed to solve: failed to push ghcr.io/xcq0607/gapi:latest: denied: permission_denied: write_package
 ```
 
