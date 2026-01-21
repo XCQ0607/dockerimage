@@ -22,8 +22,6 @@ RUN apt-get update && apt-get install -y \
     git \
     python3-pip \
     python3-opencv \
-    python3-colcon-common-extensions \
-    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. 安装必要的 Python 库
