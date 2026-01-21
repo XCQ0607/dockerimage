@@ -40,8 +40,33 @@ RUN git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git && \
     ldconfig /usr/local/lib/ && \
     rm -rf /tmp/Micro-XRCE-DDS-Agent
 
+# -------------------------------------------------------
+# 【新增步骤】创建与 Jetson 宿主机 UID 一致的用户
+# -------------------------------------------------------
+ARG USERNAME=jetson
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+# 创建用户组和用户，并赋予 sudo 权限（开发方便）
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
 # 4. 环境变量
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
-WORKDIR /home/ros2/workspace
+# 5. 修正权限和切换用户
+# 这一步非常重要：把 ROS 的环境 source 脚本加到新用户的 .bashrc 里
+RUN echo "source /opt/ros/humble/setup.bash" >> /home/$USERNAME/.bashrc
+
+# 创建工作空间目录并修正权限
+WORKDIR /home/$USERNAME/workspace
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
+
+# 切换到非 root 用户（这样容器启动时默认就是这个用户，不需要在 compose 里写 user: 1000）
+USER $USERNAME
+
 CMD ["/bin/bash"]
