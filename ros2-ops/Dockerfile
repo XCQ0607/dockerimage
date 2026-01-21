@@ -14,6 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # 注意：Jetson 需要 build-essential 来编译你挂载进去的源码
 RUN apt-get update && apt-get install -y \
     ros-humble-rmw-cyclonedds-cpp \
+    ros-humble-foxglove-bridge \
     ros-humble-cv-bridge \
     ros-humble-vision-msgs \
     build-essential \
@@ -21,6 +22,8 @@ RUN apt-get update && apt-get install -y \
     git \
     python3-pip \
     python3-opencv \
+    python3-colcon-common-extensions \
+    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. 安装必要的 Python 库
