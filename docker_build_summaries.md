@@ -305,3 +305,137 @@ docker pull ghcr.io/xcq0607/gapi:latest
 ERROR: failed to build: failed to solve: failed to push ghcr.io/xcq0607/gapi:latest: denied: permission_denied: write_package
 ```
 
+## 镜像: ros2-ops
+
+### 构建信息
+- 目录: ros2-ops/
+- 完整镜像名: ghcr.io/xcq0607/ros2-ops:latest
+- 架构支持: linux/amd64, linux/arm64
+- 构建状态: ❌ 失败
+- 构建耗时: 8819s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/ros2-ops:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-ros2-ops ghcr.io/xcq0607/ros2-ops:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/ros2-ops:latest
+```
+
+### 构建日志
+
+```
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/multithread
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/multithread/multithread.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_rtems_bsd_net.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/ip.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_rtems_bsd_net.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix_nopoll.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/custom
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/custom/custom_transport.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/can
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport_posix.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/can/can_transport.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/serial
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_platform.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_rtems_bsd_net.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/serial/serial_transport_posix.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/discovery
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/profile/discovery/discovery.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/client.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/communication
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/session.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/type
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/util
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/util/ping.h
+#15 8527.6 -- Installing: /usr/local/include/uxr/client/util/time.h
+#15 8527.6 -- Up-to-date: /usr/local/share
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+#15 8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
+#15 8527.7 qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+#15 8528.1 Segmentation fault (core dumped)
+#15 ERROR: process "/bin/sh -c git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git &&     cd Micro-XRCE-DDS-Agent &&     mkdir build && cd build &&     cmake .. &&     make &&     make install &&     ldconfig /usr/local/lib/ &&     rm -rf /tmp/Micro-XRCE-DDS-Agent" did not complete successfully: exit code: 139
+------
+ > [linux/arm64 5/9] RUN git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git &&     cd Micro-XRCE-DDS-Agent &&     mkdir build && cd build &&     cmake .. &&     make &&     make install &&     ldconfig /usr/local/lib/ &&     rm -rf /tmp/Micro-XRCE-DDS-Agent:
+8527.6 -- Installing: /usr/local/include/uxr/client/util/time.h
+8527.6 -- Up-to-date: /usr/local/share
+8527.6 -- Installing: /usr/local/share/microxrcedds_client
+8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake
+8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+8527.6 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
+8527.7 qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+8528.1 Segmentation fault (core dumped)
+------
+Dockerfile:34
+--------------------
+  33 |     WORKDIR /tmp
+  34 | >>> RUN git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git && \
+  35 | >>>     cd Micro-XRCE-DDS-Agent && \
+  36 | >>>     mkdir build && cd build && \
+  37 | >>>     cmake .. && \
+  38 | >>>     make && \
+  39 | >>>     make install && \
+  40 | >>>     ldconfig /usr/local/lib/ && \
+  41 | >>>     rm -rf /tmp/Micro-XRCE-DDS-Agent
+  42 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git &&     cd Micro-XRCE-DDS-Agent &&     mkdir build && cd build &&     cmake .. &&     make &&     make install &&     ldconfig /usr/local/lib/ &&     rm -rf /tmp/Micro-XRCE-DDS-Agent" did not complete successfully: exit code: 139
+```
+
