@@ -307,3 +307,137 @@ docker pull ghcr.io/xcq0607/cliproxyapi:latest
 #8 DONE 10.4s
 ```
 
+## 镜像: ros2-ops
+
+### 构建信息
+- 目录: ros2-ops/
+- 完整镜像名: ghcr.io/xcq0607/ros2-ops:latest
+- 架构支持: linux/amd64, linux/arm64
+- 构建状态: ✅ 成功
+- 构建耗时: 9030s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/ros2-ops:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-ros2-ops ghcr.io/xcq0607/ros2-ops:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/ros2-ops:latest
+```
+
+### 构建日志
+
+```
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/client.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/communication
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/communication/communication.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_ref.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/session.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/session_info.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_bin.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/write_access.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_storage.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_reliable_stream.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/seq_num.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/reliable_stream.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/output_best_effort_stream.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_reliable_stream.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/stream_id.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/stream/input_best_effort_stream.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/common_create_entities.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/read_access.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/create_entities_xml.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/time_sync.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/session/object_id.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/type
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/core/type/xrce_types.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/util
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/util/ping.h
+#15 8654.0 -- Installing: /usr/local/include/uxr/client/util/time.h
+#15 8654.0 -- Up-to-date: /usr/local/share
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client/cmake
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+#15 8654.0 -- Installing: /usr/local/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake
+#15 DONE 8654.8s
+
+#20 [linux/arm64 6/9] RUN groupadd --gid 1000 jetson     && useradd --uid 1000 --gid 1000 -m jetson     && apt-get update     && apt-get install -y sudo     && echo jetson ALL=(root) NOPASSWD:ALL > /etc/sudoers.d/jetson     && chmod 0440 /etc/sudoers.d/jetson
+#20 0.844 Get:1 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
+#20 1.247 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#20 2.138 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#20 2.245 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1774 kB]
+#20 2.356 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#20 2.656 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#20 2.678 Get:7 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1698 kB]
+#20 4.357 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#20 5.681 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+#20 5.731 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#20 5.740 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#20 6.313 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [3761 kB]
+#20 6.634 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [6313 kB]
+#20 6.924 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1644 kB]
+#20 6.992 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [47.7 kB]
+#20 8.272 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [35.3 kB]
+#20 8.437 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [83.5 kB]
+#20 10.16 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [3443 kB]
+#20 10.44 Get:19 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [6121 kB]
+#20 10.66 Get:20 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [41.2 kB]
+#20 10.66 Get:21 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1341 kB]
+#20 14.73 Fetched 46.2 MB in 14s (3282 kB/s)
+#20 14.73 Reading package lists...
+#20 27.85 Reading package lists...
+#20 40.15 Building dependency tree...
+#20 41.33 Reading state information...
+#20 42.25 sudo is already the newest version (1.9.9-1ubuntu2.5).
+#20 42.25 sudo set to manually installed.
+#20 42.25 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+#20 DONE 42.3s
+
+#21 [linux/arm64 7/9] RUN echo "source /opt/ros/humble/setup.bash" >> /home/jetson/.bashrc
+#21 DONE 0.1s
+
+#22 [linux/arm64 8/9] WORKDIR /home/jetson/workspace
+#22 DONE 0.0s
+
+#23 [linux/arm64 9/9] RUN chown -R jetson:jetson /home/jetson
+#23 DONE 0.1s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 31.3s done
+#24 exporting manifest sha256:ea661fcb0ebeac35eed8bf8504eb3dc3794283960282fcab63503597b489b66c done
+#24 exporting config sha256:a77b924d728c2056d4130ce6db838bee0590a6483d2dea3c94505b8c6ac3a5a0 done
+#24 exporting attestation manifest sha256:be319441d6065fd04141528ff66a1932a703d4d24d3234c773742de710bcd72c done
+#24 exporting manifest sha256:96de53ce47d583569cd678ea210f8131d5317ec6950771907193fd06e6761314 done
+#24 exporting config sha256:3ff304d29f47c8ffa199b9bf4ebbb6285d19f720e10501e5dcba905b7a9fca2b done
+#24 exporting attestation manifest sha256:6e48ad695d076dddad9485b079958fef29f4f174fb92151784a879a8c943eead done
+#24 exporting manifest list sha256:e950cff8b46747938bba0e39af2ad62ddb7b174269b3619f77d68d33d0ef57b8 done
+#24 pushing layers
+#24 ...
+
+#25 [auth] xcq0607/ros2-ops:pull,push token for ghcr.io
+#25 DONE 0.0s
+
+#24 exporting to image
+#24 pushing layers 12.6s done
+#24 pushing manifest for ghcr.io/xcq0607/ros2-ops:latest@sha256:e950cff8b46747938bba0e39af2ad62ddb7b174269b3619f77d68d33d0ef57b8
+#24 pushing manifest for ghcr.io/xcq0607/ros2-ops:latest@sha256:e950cff8b46747938bba0e39af2ad62ddb7b174269b3619f77d68d33d0ef57b8 2.5s done
+#24 DONE 46.5s
+```
+
