@@ -186,7 +186,7 @@
 - 完整镜像名: ghcr.io/xcq0607/ros2-ops-py:latest
 - 架构支持: linux/amd64, linux/arm64
 - 构建状态: ❌ 失败
-- 构建耗时: 1s
+- 构建耗时: 0s
 
 ### 使用方法
 
@@ -211,20 +211,17 @@ docker pull ghcr.io/xcq0607/ros2-ops-py:latest
 ### 构建日志
 
 ```
-#0 building with "builder-99592a34-0bff-4d87-a9db-843991d6e876" instance using docker-container driver
+#0 building with "builder-dfe77802-19c1-4bb9-9285-4344ea05fc6f" instance using docker-container driver
 
 #1 [internal] load build definition from Dockerfile
 #1 transferring dockerfile: 4.45kB done
 #1 DONE 0.0s
 
-#2 [linux/amd64 internal] load metadata for docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0
-#2 ...
+#2 [auth] dustynv/ros:pull token for registry-1.docker.io
+#2 DONE 0.0s
 
-#3 [auth] dustynv/ros:pull token for registry-1.docker.io
-#3 DONE 0.0s
-
-#2 [linux/amd64 internal] load metadata for docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0
-#2 ERROR: docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0: not found
+#3 [linux/amd64 internal] load metadata for docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0
+#3 ERROR: docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0: not found
 
 #4 [linux/arm64 internal] load metadata for docker.io/dustynv/ros:humble-pytorch-l4t-r36.2.0
 #4 CANCELED
