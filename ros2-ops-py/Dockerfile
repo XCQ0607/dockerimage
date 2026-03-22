@@ -1,21 +1,27 @@
 # -------------------------------------------
 # Image B: Jetson 部署专用 (ARM64) - 适配 JetPack 6.x
 # -------------------------------------------
-# 【基底终极替换】使用 Dusty-nv (NVIDIA工程师) 官方社区为 JetPack 6 开源的终极神级镜像
-# 出厂自带配置极度完美的 ROS2 Humble + 底层完整的 CUDA 组件 + GPU版 PyTorch 2.x + 完全编译好支持 nms 的 GPU 版 Torchvision！
-FROM dustynv/ros:humble-pytorch-l4t-r36.2.0
+# 【基底底层换源】：直接使用从 Docker Hub 可以稳定拉取到的英伟达极品底层！
+# dustynv/l4t-pytorch:r36.2.0 内部包含了配置极度完美的 CUDA 12、cuDNN 和硬件级别的 GPU版 PyTorch、Torchvision、Numpy 全家桶！
+# 我们把它当作地基，然后在它的基础上把 ROS2 Humble "叠加"上去，这样既保证了 Cuda 无冲突，又能拥有完整的 ROS 环境。
+FROM dustynv/l4t-pytorch:r36.2.0
 
 LABEL org.opencontainers.image.source=https://github.com/XCQ0607/dockerimage
-LABEL org.opencontainers.image.description="ROS2 Development Image for Jetson JetPack 6 (ARM64) with Pre-built PyTorch"
-LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.description="ROS2 Development Image with Pre-built PyTorch (JetPack 6)"
 
 ENV DEBIAN_FRONTEND=noninteractive
 # 解锁并允许容器调用包括图形、计算能力在内的 NVIDIA 底层驱动：
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,video,graphics,display
 
-# 1. 安装基础编译工具和 ROS 通信/传感器组件
+# 0. 配置添加 ROS2 Humble 的官方软件源
+RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
+    curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# 1. 安装基础编译工具和 ROS 通信/传感器组件 (核心装上 ros-humble-ros-base)
 RUN apt-get update && apt-get install -y \
+    ros-humble-ros-base \
     ros-humble-rmw-cyclonedds-cpp \
     ros-humble-foxglove-bridge \
     ros-humble-cv-bridge \
@@ -34,39 +40,24 @@ RUN apt-get update && apt-get install -y \
     python3-opencv \
     sudo \
     libopenblas-dev \
+    python3-colcon-common-extensions \
+    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 
 # ==============================================================================
-# 2. Python 依赖极简补充安装 (底包包含了最难搞的部分，直接跳过并保留)
+# 2. Python 依赖极简补充安装 
+# 由于使用了 dustynv/l4t-pytorch，这部分被彻底精简！出厂自带 torch, torchvision 和 numpy 科学栈！
+# 你再也不用纠结版本冲不冲突，或者 nvcc 报错的问题了！
 # ==============================================================================
 
-# 2.1: 轻量级工具和通信依赖
+# 2.1 & 2.2 工具及科学计算补充 (不会覆盖底包的张量库)
 RUN pip3 install --no-cache-dir \
-    jinja2 \
-    kconfiglib \
-    jsonschema \
-    pyros-genmsg \
-    pyserial \
-    pymavlink \
-    pyyaml \
-    requests \
-    tqdm \
-    termcolor
+    jinja2 kconfiglib jsonschema pyros-genmsg pyserial pymavlink \
+    pyyaml requests tqdm termcolor \
+    pandas scipy matplotlib seaborn transforms3d shapely scikit-learn
 
-# 2.2: 补充科学计算栈 (基础 Numpy 已存在于底包，这里只补全缺少的额外栈，切勿强制覆盖)
-RUN pip3 install --no-cache-dir \
-    pandas \
-    scipy \
-    matplotlib \
-    seaborn \
-    transforms3d \
-    shapely \
-    scikit-learn
-
-# [第 2.3 步由于使用了 dustynv 镜像，已经永久省略！它内部有完美免驱的 PyTorch + Torchvision]
-
-# 2.4: AI 视觉推流库
-# 直接安装 Ultralytics。由于去掉了 --ignore-installed，pip 将完美重用底包已经准备好的英伟达极速 Torchvision，不会再去 PyPI 下载辣鸡通用库。
+# 2.3 & 2.4 安装 AI 视觉推流库
+# 直接安装 Ultralytics。pip 将完美重用底包已经准备好的英伟达极速 torch 和 torchvision，不再搞错！
 RUN pip3 install --no-cache-dir \
     lapx \
     supervision \
@@ -93,8 +84,6 @@ RUN git clone https://github.com/PX4/px4_msgs.git && \
 WORKDIR /opt/overlay_ws
 RUN apt-get update && \
     . /opt/ros/humble/setup.sh && \
-    rosdep update && \
-    rosdep install -r --from-paths src -i -y --rosdistro humble && \
     colcon build --merge-install --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     rm -rf /var/lib/apt/lists/*
 
