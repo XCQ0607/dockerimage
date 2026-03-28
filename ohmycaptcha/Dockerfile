@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/playwright/python:latest
-
+LABEL org.opencontainers.image.source=https://github.com/XCQ0607/dockerimage
 WORKDIR /app
 
 COPY requirements.txt .
