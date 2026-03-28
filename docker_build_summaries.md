@@ -144,8 +144,6 @@
 ├── ros2-ops
 │   ├── Dockerfile
 │   └── build.flag
-├── ros2-ops-py
-│   └── Dockerfile
 ├── rustdesk
 │   ├── Dockerfile
 │   ├── app
@@ -219,7 +217,7 @@
     ├── entrypoint.sh
     └── fiora
 
-84 directories, 132 files
+83 directories, 131 files
 ```
 
 ## 镜像: ohmycaptcha
@@ -229,7 +227,7 @@
 - 完整镜像名: ghcr.io/xcq0607/ohmycaptcha:latest
 - 架构支持: linux/amd64, linux/arm64
 - 构建状态: ❌ 失败
-- 构建耗时: 23s
+- 构建耗时: 25s
 
 ### 使用方法
 
@@ -254,96 +252,96 @@ docker pull ghcr.io/xcq0607/ohmycaptcha:latest
 ### 构建日志
 
 ```
-#13 7.029    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 222.0 MB/s eta 0:00:00
-#13 7.036 Downloading pyyaml_env_tag-1.1-py3-none-any.whl (4.7 kB)
-#13 7.043 Downloading requests-2.33.0-py3-none-any.whl (65 kB)
-#13 7.045    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.0/65.0 kB 175.6 MB/s eta 0:00:00
-#13 7.052 Downloading certifi-2026.2.25-py3-none-any.whl (153 kB)
-#13 7.055    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.7/153.7 kB 283.6 MB/s eta 0:00:00
-#13 7.067 Downloading starlette-0.48.0-py3-none-any.whl (73 kB)
-#13 7.069    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.7/73.7 kB 233.6 MB/s eta 0:00:00
-#13 7.076 Downloading tqdm-4.67.3-py3-none-any.whl (78 kB)
-#13 7.078    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.4/78.4 kB 194.2 MB/s eta 0:00:00
-#13 7.085 Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
-#13 7.087    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.6/44.6 kB 145.9 MB/s eta 0:00:00
-#13 7.096 Downloading uvloop-0.22.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.8 MB)
-#13 7.110    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 305.1 MB/s eta 0:00:00
-#13 7.117 Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
-#13 7.120    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.1/79.1 kB 257.6 MB/s eta 0:00:00
-#13 7.127 Downloading watchfiles-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
-#13 7.131    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 456.1/456.1 kB 274.4 MB/s eta 0:00:00
-#13 7.138 Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
-#13 7.142    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.6/184.6 kB 177.7 MB/s eta 0:00:00
-#13 7.149 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
-#13 7.156 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
-#13 7.164 Downloading charset_normalizer-3.4.6-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (204 kB)
-#13 7.166    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 204.7/204.7 kB 263.0 MB/s eta 0:00:00
-#13 7.173 Downloading platformdirs-4.9.4-py3-none-any.whl (21 kB)
-#13 7.180 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
-#13 7.183    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 280.9 MB/s eta 0:00:00
-#13 7.191 Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
-#13 7.194    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.6/131.6 kB 291.7 MB/s eta 0:00:00
-#13 7.201 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
-#13 7.792 Installing collected packages: paginate, websockets, watchdog, uvloop, urllib3, typing-extensions, tqdm, sniffio, six, pyyaml, python-dotenv, pygments, pluggy, platformdirs, Pillow, pathspec, packaging, mkdocs-material-extensions, mergedeep, markupsafe, markdown, jiter, iniconfig, idna, httptools, h11, greenlet, distro, colorama, click, charset_normalizer, certifi, backrefs, babel, annotated-types, uvicorn, requests, pyyaml-env-tag, python-dateutil, pytest, pymdown-extensions, pyee, pydantic-core, mkdocs-get-deps, jinja2, httpcore, anyio, watchfiles, starlette, pydantic, playwright, httpx, ghp-import, openai, mkdocs, fastapi, mkdocs-static-i18n, mkdocs-redirects, mkdocs-material
+#14 8.144    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.2/55.2 kB 213.1 MB/s eta 0:00:00
+#14 8.155 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#14 8.166 Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+#14 8.173    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 266.5 MB/s eta 0:00:00
+#14 8.184 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+#14 8.196 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#14 8.200    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 331.3 MB/s eta 0:00:00
+#14 8.212 Downloading pyyaml_env_tag-1.1-py3-none-any.whl (4.7 kB)
+#14 8.223 Downloading requests-2.33.0-py3-none-any.whl (65 kB)
+#14 8.226    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.0/65.0 kB 131.2 MB/s eta 0:00:00
+#14 8.238 Downloading certifi-2026.2.25-py3-none-any.whl (153 kB)
+#14 8.242    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.7/153.7 kB 186.2 MB/s eta 0:00:00
+#14 8.254 Downloading starlette-0.48.0-py3-none-any.whl (73 kB)
+#14 8.257    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.7/73.7 kB 155.8 MB/s eta 0:00:00
+#14 8.269 Downloading tqdm-4.67.3-py3-none-any.whl (78 kB)
+#14 8.273    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.4/78.4 kB 162.4 MB/s eta 0:00:00
+#14 8.285 Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+#14 8.288    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.6/44.6 kB 185.3 MB/s eta 0:00:00
+#14 8.302 Downloading uvloop-0.22.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.8 MB)
+#14 8.325    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 203.3 MB/s eta 0:00:00
+#14 8.337 Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
+#14 8.340    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.1/79.1 kB 170.6 MB/s eta 0:00:00
+#14 8.352 Downloading watchfiles-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+#14 8.357    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 456.1/456.1 kB 195.5 MB/s eta 0:00:00
+#14 8.370 Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+#14 8.373    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.6/184.6 kB 216.4 MB/s eta 0:00:00
+#14 8.385 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#14 8.396 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#14 8.408 Downloading charset_normalizer-3.4.6-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (204 kB)
+#14 8.411    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 204.7/204.7 kB 329.3 MB/s eta 0:00:00
+#14 8.423 Downloading platformdirs-4.9.4-py3-none-any.whl (21 kB)
+#14 8.434 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#14 8.437    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 320.1 MB/s eta 0:00:00
+#14 8.449 Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
+#14 8.452    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.6/131.6 kB 167.1 MB/s eta 0:00:00
+#14 8.464 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#14 9.072 Installing collected packages: paginate, websockets, watchdog, uvloop, urllib3, typing-extensions, tqdm, sniffio, six, pyyaml, python-dotenv, pygments, pluggy, platformdirs, Pillow, pathspec, packaging, mkdocs-material-extensions, mergedeep, markupsafe, markdown, jiter, iniconfig, idna, httptools, h11, greenlet, distro, colorama, click, charset_normalizer, certifi, backrefs, babel, annotated-types, uvicorn, requests, pyyaml-env-tag, python-dateutil, pytest, pymdown-extensions, pyee, pydantic-core, mkdocs-get-deps, jinja2, httpcore, anyio, watchfiles, starlette, pydantic, playwright, httpx, ghp-import, openai, mkdocs, fastapi, mkdocs-static-i18n, mkdocs-redirects, mkdocs-material
+#14 16.83 Successfully installed Pillow-11.1.0 annotated-types-0.7.0 anyio-4.13.0 babel-2.18.0 backrefs-5.9 certifi-2026.2.25 charset_normalizer-3.4.6 click-8.3.1 colorama-0.4.6 distro-1.9.0 fastapi-0.119.0 ghp-import-2.1.0 greenlet-3.1.1 h11-0.16.0 httpcore-1.0.9 httptools-0.7.1 httpx-0.28.1 idna-3.11 iniconfig-2.3.0 jinja2-3.1.6 jiter-0.13.0 markdown-3.10.2 markupsafe-3.0.3 mergedeep-1.3.4 mkdocs-1.6.1 mkdocs-get-deps-0.2.2 mkdocs-material-9.6.7 mkdocs-material-extensions-1.3.1 mkdocs-redirects-1.2.2 mkdocs-static-i18n-1.3.0 openai-1.82.0 packaging-26.0 paginate-0.5.7 pathspec-1.0.4 platformdirs-4.9.4 playwright-1.49.1 pluggy-1.6.0 pydantic-2.10.4 pydantic-core-2.27.2 pyee-12.0.0 pygments-2.19.2 pymdown-extensions-10.14.3 pytest-8.3.5 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 pyyaml-6.0.3 pyyaml-env-tag-1.1 requests-2.33.0 six-1.17.0 sniffio-1.3.1 starlette-0.48.0 tqdm-4.67.3 typing-extensions-4.15.0 urllib3-2.6.3 uvicorn-0.32.1 uvloop-0.22.1 watchdog-6.0.0 watchfiles-1.1.1 websockets-16.0
+#14 16.95 
+#14 16.95 [notice] A new release of pip is available: 24.0 -> 26.0.1
+#14 16.95 [notice] To update, run: pip install --upgrade pip
+#14 DONE 18.2s
+
+#13 [linux/arm64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
 #13 ...
 
-#14 [linux/arm64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
-#14 ...
-
-#13 [linux/amd64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
-#13 15.42 Successfully installed Pillow-11.1.0 annotated-types-0.7.0 anyio-4.13.0 babel-2.18.0 backrefs-5.9 certifi-2026.2.25 charset_normalizer-3.4.6 click-8.3.1 colorama-0.4.6 distro-1.9.0 fastapi-0.119.0 ghp-import-2.1.0 greenlet-3.1.1 h11-0.16.0 httpcore-1.0.9 httptools-0.7.1 httpx-0.28.1 idna-3.11 iniconfig-2.3.0 jinja2-3.1.6 jiter-0.13.0 markdown-3.10.2 markupsafe-3.0.3 mergedeep-1.3.4 mkdocs-1.6.1 mkdocs-get-deps-0.2.2 mkdocs-material-9.6.7 mkdocs-material-extensions-1.3.1 mkdocs-redirects-1.2.2 mkdocs-static-i18n-1.3.0 openai-1.82.0 packaging-26.0 paginate-0.5.7 pathspec-1.0.4 platformdirs-4.9.4 playwright-1.49.1 pluggy-1.6.0 pydantic-2.10.4 pydantic-core-2.27.2 pyee-12.0.0 pygments-2.19.2 pymdown-extensions-10.14.3 pytest-8.3.5 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 pyyaml-6.0.3 pyyaml-env-tag-1.1 requests-2.33.0 six-1.17.0 sniffio-1.3.1 starlette-0.48.0 tqdm-4.67.3 typing-extensions-4.15.0 urllib3-2.6.3 uvicorn-0.32.1 uvloop-0.22.1 watchdog-6.0.0 watchfiles-1.1.1 websockets-16.0
-#13 15.51 
-#13 15.51 [notice] A new release of pip is available: 24.0 -> 26.0.1
-#13 15.51 [notice] To update, run: pip install --upgrade pip
-#13 DONE 16.6s
-
-#14 [linux/arm64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
-#14 ...
-
 #15 [linux/amd64 5/6] RUN playwright install --with-deps chromium
-#15 0.472 BEWARE: your OS is not officially supported by Playwright; installing dependencies for ubuntu20.04-x64 as a fallback.
-#15 0.472 Installing dependencies...
-#15 0.536 Hit:1 http://deb.debian.org/debian trixie InRelease
-#15 0.536 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
-#15 0.544 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
-#15 0.557 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9671 kB]
-#15 0.639 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [5412 B]
-#15 0.640 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [114 kB]
-#15 1.276 Fetched 9881 kB in 1s (12.8 MB/s)
-#15 1.276 Reading package lists...
-#15 1.761 Reading package lists...
-#15 2.252 Building dependency tree...
-#15 2.396 Reading state information...
-#15 2.412 Package ttf-ubuntu-font-family is not available, but is referred to by another package.
-#15 2.412 This may mean that the package is missing, has been obsoleted, or
-#15 2.412 is only available from another source
-#15 2.412 
-#15 2.412 Package ttf-unifont is not available, but is referred to by another package.
-#15 2.412 This may mean that the package is missing, has been obsoleted, or
-#15 2.412 is only available from another source
-#15 2.412 However the following packages replace it:
-#15 2.412   fonts-unifont
-#15 2.412 
-#15 2.414 E: Package 'ttf-unifont' has no installation candidate
-#15 2.414 E: Package 'ttf-ubuntu-font-family' has no installation candidate
-#15 2.417 Failed to install browsers
-#15 2.417 Error: Installation process exited with code: 100
+#15 0.456 BEWARE: your OS is not officially supported by Playwright; installing dependencies for ubuntu20.04-x64 as a fallback.
+#15 0.456 Installing dependencies...
+#15 0.568 Hit:1 http://deb.debian.org/debian trixie InRelease
+#15 0.678 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#15 0.728 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#15 0.759 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9671 kB]
+#15 1.048 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [5412 B]
+#15 1.073 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [114 kB]
+#15 1.731 Fetched 9881 kB in 1s (7970 kB/s)
+#15 1.731 Reading package lists...
+#15 2.280 Reading package lists...
+#15 2.827 Building dependency tree...
+#15 2.986 Reading state information...
+#15 3.009 Package ttf-ubuntu-font-family is not available, but is referred to by another package.
+#15 3.009 This may mean that the package is missing, has been obsoleted, or
+#15 3.009 is only available from another source
+#15 3.009 
+#15 3.009 Package ttf-unifont is not available, but is referred to by another package.
+#15 3.009 This may mean that the package is missing, has been obsoleted, or
+#15 3.009 is only available from another source
+#15 3.009 However the following packages replace it:
+#15 3.009   fonts-unifont
+#15 3.009 
+#15 3.011 E: Package 'ttf-unifont' has no installation candidate
+#15 3.011 E: Package 'ttf-ubuntu-font-family' has no installation candidate
+#15 3.013 Failed to install browsers
+#15 3.013 Error: Installation process exited with code: 100
 #15 ERROR: process "/bin/sh -c playwright install --with-deps chromium" did not complete successfully: exit code: 1
 
-#14 [linux/arm64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
-#14 CANCELED
+#13 [linux/arm64 4/6] RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
+#13 CANCELED
 ------
  > [linux/amd64 5/6] RUN playwright install --with-deps chromium:
-2.412 Package ttf-unifont is not available, but is referred to by another package.
-2.412 This may mean that the package is missing, has been obsoleted, or
-2.412 is only available from another source
-2.412 However the following packages replace it:
-2.412   fonts-unifont
-2.412 
-2.414 E: Package 'ttf-unifont' has no installation candidate
-2.414 E: Package 'ttf-ubuntu-font-family' has no installation candidate
-2.417 Failed to install browsers
-2.417 Error: Installation process exited with code: 100
+3.009 Package ttf-unifont is not available, but is referred to by another package.
+3.009 This may mean that the package is missing, has been obsoleted, or
+3.009 is only available from another source
+3.009 However the following packages replace it:
+3.009   fonts-unifont
+3.009 
+3.011 E: Package 'ttf-unifont' has no installation candidate
+3.011 E: Package 'ttf-ubuntu-font-family' has no installation candidate
+3.013 Failed to install browsers
+3.013 Error: Installation process exited with code: 100
 ------
 Dockerfile:7
 --------------------
@@ -354,139 +352,5 @@ Dockerfile:7
    9 |     COPY . .
 --------------------
 ERROR: failed to build: failed to solve: process "/bin/sh -c playwright install --with-deps chromium" did not complete successfully: exit code: 1
-```
-
-## 镜像: ros2-ops-py
-
-### 构建信息
-- 目录: ros2-ops-py/
-- 完整镜像名: ghcr.io/xcq0607/ros2-ops-py:latest
-- 架构支持: linux/amd64, linux/arm64
-- 构建状态: ❌ 失败
-- 构建耗时: 205s
-
-### 使用方法
-
-#### 在 Dockerfile 中使用:
-
-```Dockerfile
-FROM ghcr.io/xcq0607/ros2-ops-py:latest
-```
-
-#### 使用 docker run 命令运行:
-
-```bash
-docker run -d --name my-ros2-ops-py ghcr.io/xcq0607/ros2-ops-py:latest
-```
-
-#### 拉取镜像到本地:
-
-```bash
-docker pull ghcr.io/xcq0607/ros2-ops-py:latest
-```
-
-### 构建日志
-
-```
-#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/nvidia/weston/libweston-6.so.0 is empty, not checked.
-#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libGLESv2_nvidia.so.2 is empty, not checked.
-#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libGLESv1_CM_nvidia.so.1 is empty, not checked.
-#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/ld.so.conf is empty, not checked.
-#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libEGL_nvidia.so.0 is empty, not checked.
-#9 DONE 68.0s
-
-#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#10 1.365 Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
-#10 1.366 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
-#10 1.468 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
-#10 1.566 Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
-#10 1.651 Get:5 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
-#10 ...
-
-#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#11 1.375 Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
-#11 1.378 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
-#11 1.475 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
-#11 1.519 Get:4 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
-#11 1.575 Hit:5 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
-#11 9.091 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
-#11 ...
-
-#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#10 11.11 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
-#10 12.14 Fetched 1,724 kB in 11s (154 kB/s)
-#10 12.14 Reading package lists...
-#10 ...
-
-#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#11 11.26 Fetched 1,724 kB in 10s (167 kB/s)
-#11 11.26 Reading package lists...
-#11 ...
-
-#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#10 12.14 Reading package lists...
-#10 25.91 Reading package lists...
-#10 ...
-
-#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#11 25.27 Reading package lists...
-#11 38.64 Building dependency tree...
-#11 ...
-
-#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#10 25.91 Reading package lists...
-#10 39.08 Building dependency tree...
-#10 CANCELED
-
-#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
-#11 38.64 Building dependency tree...
-#11 39.89 Reading state information...
-#11 39.93 E: Unable to locate package ros-humble-foxglove-bridge
-#11 ERROR: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
-------
- > [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*:
-1.378 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
-1.475 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
-1.519 Get:4 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
-1.575 Hit:5 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
-9.091 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
-
-
-38.64 Building dependency tree...
-39.89 Reading state information...
-39.93 E: Unable to locate package ros-humble-foxglove-bridge
-------
-
- [33m1 warning found (use docker --debug to expand):
-[0m - InvalidBaseImagePlatform: Base image dustynv/l4t-pytorch:r36.2.0 was pulled with platform "linux/arm64", expected "linux/amd64" for current build (line 7)
-Dockerfile:23
---------------------
-  22 |     # 1. 安装基础编译工具和 ROS 通信/传感器组件 (核心装上 ros-humble-ros-base)
-  23 | >>> RUN apt-get update && apt-get install -y \
-  24 | >>>     ros-humble-ros-base \
-  25 | >>>     ros-humble-rmw-cyclonedds-cpp \
-  26 | >>>     ros-humble-foxglove-bridge \
-  27 | >>>     ros-humble-cv-bridge \
-  28 | >>>     ros-humble-vision-msgs \
-  29 | >>>     ros-humble-actuator-msgs \
-  30 | >>>     ros-humble-gps-msgs \
-  31 | >>>     ros-humble-robot-localization \
-  32 | >>>     build-essential \
-  33 | >>>     cmake \
-  34 | >>>     git \
-  35 | >>>     nano \
-  36 | >>>     tmux \
-  37 | >>>     iputils-ping \
-  38 | >>>     net-tools \
-  39 | >>>     python3-pip \
-  40 | >>>     python3-opencv \
-  41 | >>>     sudo \
-  42 | >>>     libopenblas-dev \
-  43 | >>>     python3-colcon-common-extensions \
-  44 | >>>     python3-rosdep \
-  45 | >>>     && rm -rf /var/lib/apt/lists/*
-  46 |     
---------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
 ```
 
