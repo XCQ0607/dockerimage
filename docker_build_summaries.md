@@ -356,3 +356,137 @@ Dockerfile:7
 ERROR: failed to build: failed to solve: process "/bin/sh -c playwright install --with-deps chromium" did not complete successfully: exit code: 1
 ```
 
+## 镜像: ros2-ops-py
+
+### 构建信息
+- 目录: ros2-ops-py/
+- 完整镜像名: ghcr.io/xcq0607/ros2-ops-py:latest
+- 架构支持: linux/amd64, linux/arm64
+- 构建状态: ❌ 失败
+- 构建耗时: 205s
+
+### 使用方法
+
+#### 在 Dockerfile 中使用:
+
+```Dockerfile
+FROM ghcr.io/xcq0607/ros2-ops-py:latest
+```
+
+#### 使用 docker run 命令运行:
+
+```bash
+docker run -d --name my-ros2-ops-py ghcr.io/xcq0607/ros2-ops-py:latest
+```
+
+#### 拉取镜像到本地:
+
+```bash
+docker pull ghcr.io/xcq0607/ros2-ops-py:latest
+```
+
+### 构建日志
+
+```
+#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/nvidia/weston/libweston-6.so.0 is empty, not checked.
+#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libGLESv2_nvidia.so.2 is empty, not checked.
+#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libGLESv1_CM_nvidia.so.1 is empty, not checked.
+#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/ld.so.conf is empty, not checked.
+#9 66.11 /sbin/ldconfig.real: File /usr/lib/aarch64-linux-gnu/tegra-egl/libEGL_nvidia.so.0 is empty, not checked.
+#9 DONE 68.0s
+
+#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#10 1.365 Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+#10 1.366 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+#10 1.468 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+#10 1.566 Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+#10 1.651 Get:5 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
+#10 ...
+
+#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#11 1.375 Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+#11 1.378 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+#11 1.475 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+#11 1.519 Get:4 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
+#11 1.575 Hit:5 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+#11 9.091 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
+#11 ...
+
+#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#10 11.11 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
+#10 12.14 Fetched 1,724 kB in 11s (154 kB/s)
+#10 12.14 Reading package lists...
+#10 ...
+
+#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#11 11.26 Fetched 1,724 kB in 10s (167 kB/s)
+#11 11.26 Reading package lists...
+#11 ...
+
+#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#10 12.14 Reading package lists...
+#10 25.91 Reading package lists...
+#10 ...
+
+#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#11 25.27 Reading package lists...
+#11 38.64 Building dependency tree...
+#11 ...
+
+#10 [linux/arm64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#10 25.91 Reading package lists...
+#10 39.08 Building dependency tree...
+#10 CANCELED
+
+#11 [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*
+#11 38.64 Building dependency tree...
+#11 39.89 Reading state information...
+#11 39.93 E: Unable to locate package ros-humble-foxglove-bridge
+#11 ERROR: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+------
+ > [linux/amd64  3/15] RUN apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*:
+1.378 Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+1.475 Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+1.519 Get:4 http://packages.ros.org/ros2/ubuntu jammy InRelease [4,682 B]
+1.575 Hit:5 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+9.091 Get:6 http://packages.ros.org/ros2/ubuntu jammy/main arm64 Packages [1,719 kB]
+
+
+38.64 Building dependency tree...
+39.89 Reading state information...
+39.93 E: Unable to locate package ros-humble-foxglove-bridge
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidBaseImagePlatform: Base image dustynv/l4t-pytorch:r36.2.0 was pulled with platform "linux/arm64", expected "linux/amd64" for current build (line 7)
+Dockerfile:23
+--------------------
+  22 |     # 1. 安装基础编译工具和 ROS 通信/传感器组件 (核心装上 ros-humble-ros-base)
+  23 | >>> RUN apt-get update && apt-get install -y \
+  24 | >>>     ros-humble-ros-base \
+  25 | >>>     ros-humble-rmw-cyclonedds-cpp \
+  26 | >>>     ros-humble-foxglove-bridge \
+  27 | >>>     ros-humble-cv-bridge \
+  28 | >>>     ros-humble-vision-msgs \
+  29 | >>>     ros-humble-actuator-msgs \
+  30 | >>>     ros-humble-gps-msgs \
+  31 | >>>     ros-humble-robot-localization \
+  32 | >>>     build-essential \
+  33 | >>>     cmake \
+  34 | >>>     git \
+  35 | >>>     nano \
+  36 | >>>     tmux \
+  37 | >>>     iputils-ping \
+  38 | >>>     net-tools \
+  39 | >>>     python3-pip \
+  40 | >>>     python3-opencv \
+  41 | >>>     sudo \
+  42 | >>>     libopenblas-dev \
+  43 | >>>     python3-colcon-common-extensions \
+  44 | >>>     python3-rosdep \
+  45 | >>>     && rm -rf /var/lib/apt/lists/*
+  46 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y     ros-humble-ros-base     ros-humble-rmw-cyclonedds-cpp     ros-humble-foxglove-bridge     ros-humble-cv-bridge     ros-humble-vision-msgs     ros-humble-actuator-msgs     ros-humble-gps-msgs     ros-humble-robot-localization     build-essential     cmake     git     nano     tmux     iputils-ping     net-tools     python3-pip     python3-opencv     sudo     libopenblas-dev     python3-colcon-common-extensions     python3-rosdep     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+```
+
